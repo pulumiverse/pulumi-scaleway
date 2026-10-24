@@ -292,6 +292,8 @@ type Template struct {
 	ServerTags pulumi.StringArrayOutput `pulumi:"serverTags"`
 	// The commercial type of the server defined in the template.
 	ServerType pulumi.StringOutput `pulumi:"serverType"`
+	// The Scaleway Resource Name (SRN) of the Instance template.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// A list of tags to apply to the template.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The last update timestamp of the Instance template.
@@ -361,6 +363,8 @@ type templateState struct {
 	ServerTags []string `pulumi:"serverTags"`
 	// The commercial type of the server defined in the template.
 	ServerType *string `pulumi:"serverType"`
+	// The Scaleway Resource Name (SRN) of the Instance template.
+	Srn *string `pulumi:"srn"`
 	// A list of tags to apply to the template.
 	Tags []string `pulumi:"tags"`
 	// The last update timestamp of the Instance template.
@@ -398,6 +402,8 @@ type TemplateState struct {
 	ServerTags pulumi.StringArrayInput
 	// The commercial type of the server defined in the template.
 	ServerType pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the Instance template.
+	Srn pulumi.StringPtrInput
 	// A list of tags to apply to the template.
 	Tags pulumi.StringArrayInput
 	// The last update timestamp of the Instance template.
@@ -623,6 +629,11 @@ func (o TemplateOutput) ServerTags() pulumi.StringArrayOutput {
 // The commercial type of the server defined in the template.
 func (o TemplateOutput) ServerType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Template) pulumi.StringOutput { return v.ServerType }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the Instance template.
+func (o TemplateOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Template) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // A list of tags to apply to the template.

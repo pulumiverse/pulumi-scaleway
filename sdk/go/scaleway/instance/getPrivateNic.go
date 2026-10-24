@@ -94,6 +94,7 @@ type LookupPrivateNicResult struct {
 	PrivateNicId     *string                  `pulumi:"privateNicId"`
 	ProjectId        string                   `pulumi:"projectId"`
 	ServerId         string                   `pulumi:"serverId"`
+	Srn              string                   `pulumi:"srn"`
 	Tags             []string                 `pulumi:"tags"`
 	Zone             *string                  `pulumi:"zone"`
 }
@@ -174,6 +175,10 @@ func (o LookupPrivateNicResultOutput) ProjectId() pulumi.StringOutput {
 
 func (o LookupPrivateNicResultOutput) ServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateNicResult) string { return v.ServerId }).(pulumi.StringOutput)
+}
+
+func (o LookupPrivateNicResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateNicResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupPrivateNicResultOutput) Tags() pulumi.StringArrayOutput {

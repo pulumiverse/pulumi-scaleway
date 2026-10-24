@@ -69,6 +69,8 @@ type LookupRedisClusterResult struct {
 	PublicNetworks []GetRedisClusterPublicNetwork `pulumi:"publicNetworks"`
 	// Map of settings for redis cluster.
 	Settings map[string]string `pulumi:"settings"`
+	// The Scaleway Resource Name (SRN) of the Redis Cluster.
+	Srn string `pulumi:"srn"`
 	// The tags associated with the Redis Cluster.
 	Tags []string `pulumi:"tags"`
 	// Whether TLS is enabled or not.
@@ -196,6 +198,11 @@ func (o LookupRedisClusterResultOutput) PublicNetworks() GetRedisClusterPublicNe
 // Map of settings for redis cluster.
 func (o LookupRedisClusterResultOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) map[string]string { return v.Settings }).(pulumi.StringMapOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the Redis Cluster.
+func (o LookupRedisClusterResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRedisClusterResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags associated with the Redis Cluster.

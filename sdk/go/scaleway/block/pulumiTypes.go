@@ -325,6 +325,342 @@ func (o SnapshotImportPtrOutput) Key() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type SnapshotTimeouts struct {
+	// Duration to wait for the snapshot to be created.
+	Create *string `pulumi:"create"`
+	// Duration to wait for the snapshot to be deleted.
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		blockVolume, err := block.NewVolume(ctx, "block_volume", &block.VolumeArgs{
+	// 			Iops:     pulumi.Int(5000),
+	// 			Name:     pulumi.String("some-volume-name"),
+	// 			SizeInGb: pulumi.Int(20),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		_, err = block.NewSnapshot(ctx, "block_snapshot", &block.SnapshotArgs{
+	// 			Name:     pulumi.String("some-snapshot-name"),
+	// 			VolumeId: blockVolume.ID().ToIDOutput().ToStringOutput(),
+	// 			Timeouts: &block.SnapshotTimeoutsArgs{
+	// 				Create: pulumi.String("10m"),
+	// 				Read:   pulumi.String("10m"),
+	// 			},
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	Delete *string `pulumi:"delete"`
+	// Duration to wait for the snapshot to be read.
+	Read *string `pulumi:"read"`
+	// Duration to wait for the snapshot to be updated.
+	Update *string `pulumi:"update"`
+}
+
+// SnapshotTimeoutsInput is an input type that accepts SnapshotTimeoutsArgs and SnapshotTimeoutsOutput values.
+// You can construct a concrete instance of `SnapshotTimeoutsInput` via:
+//
+//	SnapshotTimeoutsArgs{...}
+type SnapshotTimeoutsInput interface {
+	pulumi.Input
+
+	ToSnapshotTimeoutsOutput() SnapshotTimeoutsOutput
+	ToSnapshotTimeoutsOutputWithContext(context.Context) SnapshotTimeoutsOutput
+}
+
+type SnapshotTimeoutsArgs struct {
+	// Duration to wait for the snapshot to be created.
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// Duration to wait for the snapshot to be deleted.
+	//
+	// ```go
+	// package main
+	//
+	// import (
+	// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	// 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block"
+	// )
+	//
+	// func main() {
+	// 	pulumi.Run(func(ctx *pulumi.Context) error {
+	// 		blockVolume, err := block.NewVolume(ctx, "block_volume", &block.VolumeArgs{
+	// 			Iops:     pulumi.Int(5000),
+	// 			Name:     pulumi.String("some-volume-name"),
+	// 			SizeInGb: pulumi.Int(20),
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		_, err = block.NewSnapshot(ctx, "block_snapshot", &block.SnapshotArgs{
+	// 			Name:     pulumi.String("some-snapshot-name"),
+	// 			VolumeId: blockVolume.ID().ToIDOutput().ToStringOutput(),
+	// 			Timeouts: &block.SnapshotTimeoutsArgs{
+	// 				Create: pulumi.String("10m"),
+	// 				Read:   pulumi.String("10m"),
+	// 			},
+	// 		})
+	// 		if err != nil {
+	// 			return err
+	// 		}
+	// 		return nil
+	// 	})
+	// }
+	// ```
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// Duration to wait for the snapshot to be read.
+	Read pulumi.StringPtrInput `pulumi:"read"`
+	// Duration to wait for the snapshot to be updated.
+	Update pulumi.StringPtrInput `pulumi:"update"`
+}
+
+func (SnapshotTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotTimeouts)(nil)).Elem()
+}
+
+func (i SnapshotTimeoutsArgs) ToSnapshotTimeoutsOutput() SnapshotTimeoutsOutput {
+	return i.ToSnapshotTimeoutsOutputWithContext(context.Background())
+}
+
+func (i SnapshotTimeoutsArgs) ToSnapshotTimeoutsOutputWithContext(ctx context.Context) SnapshotTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotTimeoutsOutput)
+}
+
+func (i SnapshotTimeoutsArgs) ToSnapshotTimeoutsPtrOutput() SnapshotTimeoutsPtrOutput {
+	return i.ToSnapshotTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i SnapshotTimeoutsArgs) ToSnapshotTimeoutsPtrOutputWithContext(ctx context.Context) SnapshotTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotTimeoutsOutput).ToSnapshotTimeoutsPtrOutputWithContext(ctx)
+}
+
+// SnapshotTimeoutsPtrInput is an input type that accepts SnapshotTimeoutsArgs, SnapshotTimeoutsPtr and SnapshotTimeoutsPtrOutput values.
+// You can construct a concrete instance of `SnapshotTimeoutsPtrInput` via:
+//
+//	        SnapshotTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SnapshotTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToSnapshotTimeoutsPtrOutput() SnapshotTimeoutsPtrOutput
+	ToSnapshotTimeoutsPtrOutputWithContext(context.Context) SnapshotTimeoutsPtrOutput
+}
+
+type snapshotTimeoutsPtrType SnapshotTimeoutsArgs
+
+func SnapshotTimeoutsPtr(v *SnapshotTimeoutsArgs) SnapshotTimeoutsPtrInput {
+	return (*snapshotTimeoutsPtrType)(v)
+}
+
+func (*snapshotTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SnapshotTimeouts)(nil)).Elem()
+}
+
+func (i *snapshotTimeoutsPtrType) ToSnapshotTimeoutsPtrOutput() SnapshotTimeoutsPtrOutput {
+	return i.ToSnapshotTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *snapshotTimeoutsPtrType) ToSnapshotTimeoutsPtrOutputWithContext(ctx context.Context) SnapshotTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotTimeoutsPtrOutput)
+}
+
+type SnapshotTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (SnapshotTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotTimeouts)(nil)).Elem()
+}
+
+func (o SnapshotTimeoutsOutput) ToSnapshotTimeoutsOutput() SnapshotTimeoutsOutput {
+	return o
+}
+
+func (o SnapshotTimeoutsOutput) ToSnapshotTimeoutsOutputWithContext(ctx context.Context) SnapshotTimeoutsOutput {
+	return o
+}
+
+func (o SnapshotTimeoutsOutput) ToSnapshotTimeoutsPtrOutput() SnapshotTimeoutsPtrOutput {
+	return o.ToSnapshotTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o SnapshotTimeoutsOutput) ToSnapshotTimeoutsPtrOutputWithContext(ctx context.Context) SnapshotTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SnapshotTimeouts) *SnapshotTimeouts {
+		return &v
+	}).(SnapshotTimeoutsPtrOutput)
+}
+
+// Duration to wait for the snapshot to be created.
+func (o SnapshotTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnapshotTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// Duration to wait for the snapshot to be deleted.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			blockVolume, err := block.NewVolume(ctx, "block_volume", &block.VolumeArgs{
+//				Iops:     pulumi.Int(5000),
+//				Name:     pulumi.String("some-volume-name"),
+//				SizeInGb: pulumi.Int(20),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = block.NewSnapshot(ctx, "block_snapshot", &block.SnapshotArgs{
+//				Name:     pulumi.String("some-snapshot-name"),
+//				VolumeId: blockVolume.ID().ToIDOutput().ToStringOutput(),
+//				Timeouts: &block.SnapshotTimeoutsArgs{
+//					Create: pulumi.String("10m"),
+//					Read:   pulumi.String("10m"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+func (o SnapshotTimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnapshotTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+// Duration to wait for the snapshot to be read.
+func (o SnapshotTimeoutsOutput) Read() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnapshotTimeouts) *string { return v.Read }).(pulumi.StringPtrOutput)
+}
+
+// Duration to wait for the snapshot to be updated.
+func (o SnapshotTimeoutsOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SnapshotTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
+}
+
+type SnapshotTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (SnapshotTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SnapshotTimeouts)(nil)).Elem()
+}
+
+func (o SnapshotTimeoutsPtrOutput) ToSnapshotTimeoutsPtrOutput() SnapshotTimeoutsPtrOutput {
+	return o
+}
+
+func (o SnapshotTimeoutsPtrOutput) ToSnapshotTimeoutsPtrOutputWithContext(ctx context.Context) SnapshotTimeoutsPtrOutput {
+	return o
+}
+
+func (o SnapshotTimeoutsPtrOutput) Elem() SnapshotTimeoutsOutput {
+	return o.ApplyT(func(v *SnapshotTimeouts) SnapshotTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret SnapshotTimeouts
+		return ret
+	}).(SnapshotTimeoutsOutput)
+}
+
+// Duration to wait for the snapshot to be created.
+func (o SnapshotTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// Duration to wait for the snapshot to be deleted.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			blockVolume, err := block.NewVolume(ctx, "block_volume", &block.VolumeArgs{
+//				Iops:     pulumi.Int(5000),
+//				Name:     pulumi.String("some-volume-name"),
+//				SizeInGb: pulumi.Int(20),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = block.NewSnapshot(ctx, "block_snapshot", &block.SnapshotArgs{
+//				Name:     pulumi.String("some-snapshot-name"),
+//				VolumeId: blockVolume.ID().ToIDOutput().ToStringOutput(),
+//				Timeouts: &block.SnapshotTimeoutsArgs{
+//					Create: pulumi.String("10m"),
+//					Read:   pulumi.String("10m"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+func (o SnapshotTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+// Duration to wait for the snapshot to be read.
+func (o SnapshotTimeoutsPtrOutput) Read() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(pulumi.StringPtrOutput)
+}
+
+// Duration to wait for the snapshot to be updated.
+func (o SnapshotTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetSnapshotsSnapshot struct {
 	// The ID of the snapshot in the `zone/uuid` format.
 	Id string `pulumi:"id"`
@@ -481,12 +817,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotExportPtrInput)(nil)).Elem(), SnapshotExportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotImportInput)(nil)).Elem(), SnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotImportPtrInput)(nil)).Elem(), SnapshotImportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotTimeoutsInput)(nil)).Elem(), SnapshotTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotTimeoutsPtrInput)(nil)).Elem(), SnapshotTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotsSnapshotInput)(nil)).Elem(), GetSnapshotsSnapshotArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotsSnapshotArrayInput)(nil)).Elem(), GetSnapshotsSnapshotArray{})
 	pulumi.RegisterOutputType(SnapshotExportOutput{})
 	pulumi.RegisterOutputType(SnapshotExportPtrOutput{})
 	pulumi.RegisterOutputType(SnapshotImportOutput{})
 	pulumi.RegisterOutputType(SnapshotImportPtrOutput{})
+	pulumi.RegisterOutputType(SnapshotTimeoutsOutput{})
+	pulumi.RegisterOutputType(SnapshotTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(GetSnapshotsSnapshotOutput{})
 	pulumi.RegisterOutputType(GetSnapshotsSnapshotArrayOutput{})
 }

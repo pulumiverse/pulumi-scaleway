@@ -167,6 +167,7 @@ class _PrivateNicState:
                  private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  server_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -179,6 +180,7 @@ class _PrivateNicState:
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network attached to.
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] server_id: The ID of the server associated with.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the private network interface.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the private NIC.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the server must be created.
         """
@@ -199,6 +201,8 @@ class _PrivateNicState:
             pulumi.set(__self__, "project_id", project_id)
         if server_id is not None:
             pulumi.set(__self__, "server_id", server_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if zone is not None:
@@ -288,6 +292,18 @@ class _PrivateNicState:
     @server_id.setter
     def server_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the private network interface.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -535,6 +551,7 @@ class PrivateNic(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["zone"] = zone
             __props__.__dict__["mac_address"] = None
+            __props__.__dict__["srn"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/instancePrivateNic:InstancePrivateNic")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(PrivateNic, __self__).__init__(
@@ -554,6 +571,7 @@ class PrivateNic(pulumi.CustomResource):
             private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'PrivateNic':
         """
@@ -570,6 +588,7 @@ class PrivateNic(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network attached to.
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.str] server_id: The ID of the server associated with.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the private network interface.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the private NIC.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the server must be created.
         """
@@ -584,6 +603,7 @@ class PrivateNic(pulumi.CustomResource):
         __props__.__dict__["private_network_id"] = private_network_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["server_id"] = server_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["zone"] = zone
         return PrivateNic(resource_name, opts=opts, __props__=__props__)
@@ -644,6 +664,14 @@ class PrivateNic(pulumi.CustomResource):
         The ID of the server associated with.
         """
         return pulumi.get(self, "server_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the private network interface.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

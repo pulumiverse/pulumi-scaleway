@@ -67,6 +67,7 @@ type LookupApiKeyResult struct {
 	ExpiresAt        string `pulumi:"expiresAt"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
+	SecretId  string `pulumi:"secretId"`
 	Srn       string `pulumi:"srn"`
 	UpdatedAt string `pulumi:"updatedAt"`
 	UserId    string `pulumi:"userId"`
@@ -137,6 +138,10 @@ func (o LookupApiKeyResultOutput) ExpiresAt() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o LookupApiKeyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApiKeyResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupApiKeyResultOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupApiKeyResult) string { return v.SecretId }).(pulumi.StringOutput)
 }
 
 func (o LookupApiKeyResultOutput) Srn() pulumi.StringOutput {

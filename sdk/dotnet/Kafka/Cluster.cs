@@ -107,6 +107,49 @@ namespace Pulumiverse.Scaleway.Kafka
     /// });
     /// ```
     /// 
+    /// ### Multi-AZ
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Network.Vpc("main", new()
+    ///     {
+    ///         Region = "fr-par",
+    ///         Name = "my-vpc",
+    ///     });
+    /// 
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn", new()
+    ///     {
+    ///         Name = "my-private-network",
+    ///         Region = "fr-par",
+    ///         VpcId = main.Id,
+    ///     });
+    /// 
+    ///     var mainCluster = new Scaleway.Kafka.Cluster("main", new()
+    ///     {
+    ///         Name = "my-kafka-multi-az",
+    ///         Version = "4.1.1",
+    ///         NodeAmount = 3,
+    ///         NodeType = "KAFK-PLAY-NANO",
+    ///         VolumeType = "sbs_5k",
+    ///         VolumeSizeInGb = 10,
+    ///         MultiAz = true,
+    ///         UserName = "admin",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         PrivateNetwork = new Scaleway.Kafka.Inputs.ClusterPrivateNetworkArgs
+    ///         {
+    ///             PnId = pn.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Kafka clusters can be imported using the `{region}/{id}`, e.g.
@@ -123,6 +166,18 @@ namespace Pulumiverse.Scaleway.Kafka
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `MultiAz`. When unset, defaults to the provider default zone.
+        /// </summary>
+        [Output("monoAzZone")]
+        public Output<string> MonoAzZone { get; private set; } = null!;
+
+        /// <summary>
+        /// Deploy the cluster across multiple availability zones. Conflicts with `MonoAzZone`. When unset, defaults to mono-AZ on the provider default `Zone`.
+        /// </summary>
+        [Output("multiAz")]
+        public Output<bool> MultiAz { get; private set; } = null!;
 
         /// <summary>
         /// Name of the Kafka cluster.
@@ -266,6 +321,18 @@ namespace Pulumiverse.Scaleway.Kafka
     public sealed class ClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `MultiAz`. When unset, defaults to the provider default zone.
+        /// </summary>
+        [Input("monoAzZone")]
+        public Input<string>? MonoAzZone { get; set; }
+
+        /// <summary>
+        /// Deploy the cluster across multiple availability zones. Conflicts with `MonoAzZone`. When unset, defaults to mono-AZ on the provider default `Zone`.
+        /// </summary>
+        [Input("multiAz")]
+        public Input<bool>? MultiAz { get; set; }
+
+        /// <summary>
         /// Name of the Kafka cluster.
         /// </summary>
         [Input("name")]
@@ -366,6 +433,18 @@ namespace Pulumiverse.Scaleway.Kafka
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `MultiAz`. When unset, defaults to the provider default zone.
+        /// </summary>
+        [Input("monoAzZone")]
+        public Input<string>? MonoAzZone { get; set; }
+
+        /// <summary>
+        /// Deploy the cluster across multiple availability zones. Conflicts with `MonoAzZone`. When unset, defaults to mono-AZ on the provider default `Zone`.
+        /// </summary>
+        [Input("multiAz")]
+        public Input<bool>? MultiAz { get; set; }
 
         /// <summary>
         /// Name of the Kafka cluster.

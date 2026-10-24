@@ -179,6 +179,44 @@ export interface BlockSnapshotImport {
     key: pulumi.Input<string>;
 }
 
+export interface BlockSnapshotTimeouts {
+    /**
+     * Duration to wait for the snapshot to be created.
+     */
+    create?: pulumi.Input<string | undefined>;
+    /**
+     * Duration to wait for the snapshot to be deleted.
+     *
+     * ```typescript
+     * import * as pulumi from "@pulumi/pulumi";
+     * import * as scaleway from "@pulumiverse/scaleway";
+     *
+     * const blockVolume = new scaleway.block.Volume("block_volume", {
+     *     iops: 5000,
+     *     name: "some-volume-name",
+     *     sizeInGb: 20,
+     * });
+     * const blockSnapshot = new scaleway.block.Snapshot("block_snapshot", {
+     *     name: "some-snapshot-name",
+     *     volumeId: blockVolume.id,
+     *     timeouts: {
+     *         create: "10m",
+     *         read: "10m",
+     *     },
+     * });
+     * ```
+     */
+    delete?: pulumi.Input<string | undefined>;
+    /**
+     * Duration to wait for the snapshot to be read.
+     */
+    read?: pulumi.Input<string | undefined>;
+    /**
+     * Duration to wait for the snapshot to be updated.
+     */
+    update?: pulumi.Input<string | undefined>;
+}
+
 export interface CockpitAlertManagerContactPoint {
     /**
      * Email addresses for the alert receivers
@@ -2960,6 +2998,44 @@ export namespace block {
          * The key of the QCOW file within the bucket.
          */
         key: pulumi.Input<string>;
+    }
+
+    export interface SnapshotTimeouts {
+        /**
+         * Duration to wait for the snapshot to be created.
+         */
+        create?: pulumi.Input<string | undefined>;
+        /**
+         * Duration to wait for the snapshot to be deleted.
+         *
+         * ```typescript
+         * import * as pulumi from "@pulumi/pulumi";
+         * import * as scaleway from "@pulumiverse/scaleway";
+         *
+         * const blockVolume = new scaleway.block.Volume("block_volume", {
+         *     iops: 5000,
+         *     name: "some-volume-name",
+         *     sizeInGb: 20,
+         * });
+         * const blockSnapshot = new scaleway.block.Snapshot("block_snapshot", {
+         *     name: "some-snapshot-name",
+         *     volumeId: blockVolume.id,
+         *     timeouts: {
+         *         create: "10m",
+         *         read: "10m",
+         *     },
+         * });
+         * ```
+         */
+        delete?: pulumi.Input<string | undefined>;
+        /**
+         * Duration to wait for the snapshot to be read.
+         */
+        read?: pulumi.Input<string | undefined>;
+        /**
+         * Duration to wait for the snapshot to be updated.
+         */
+        update?: pulumi.Input<string | undefined>;
     }
 }
 

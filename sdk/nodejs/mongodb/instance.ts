@@ -121,9 +121,9 @@ export class Instance extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string>;
     /**
-     * Map of settings to define for the instance.
+     * Map of engine settings applied to the instance (read-only).
      */
-    declare public readonly settings: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public /*out*/ readonly settings: pulumi.Output<{[key: string]: string}>;
     /**
      * Snapshot ID to restore the MongoDB® instance from.
      */
@@ -226,7 +226,6 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["publicNetwork"] = args?.publicNetwork;
             resourceInputs["region"] = args?.region;
-            resourceInputs["settings"] = args?.settings;
             resourceInputs["snapshotId"] = args?.snapshotId;
             resourceInputs["snapshotScheduleFrequencyHours"] = args?.snapshotScheduleFrequencyHours;
             resourceInputs["snapshotScheduleRetentionDays"] = args?.snapshotScheduleRetentionDays;
@@ -236,6 +235,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["volumeSizeInGb"] = args?.volumeSizeInGb;
             resourceInputs["volumeType"] = args?.volumeType;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["settings"] = undefined /*out*/;
             resourceInputs["tlsCertificate"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -306,7 +306,7 @@ export interface InstanceState {
      */
     region?: pulumi.Input<string | undefined>;
     /**
-     * Map of settings to define for the instance.
+     * Map of engine settings applied to the instance (read-only).
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -408,10 +408,6 @@ export interface InstanceArgs {
      * `region`) The region in which the MongoDB® instance should be created.
      */
     region?: pulumi.Input<string | undefined>;
-    /**
-     * Map of settings to define for the instance.
-     */
-    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Snapshot ID to restore the MongoDB® instance from.
      */

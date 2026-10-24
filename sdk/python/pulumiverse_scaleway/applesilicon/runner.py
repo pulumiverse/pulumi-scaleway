@@ -126,6 +126,7 @@ class _RunnerState:
                  labels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  token: pulumi.Input[Optional[_builtins.str]] = None,
                  url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -138,6 +139,7 @@ class _RunnerState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] labels: A list of labels applied to the runner. Only for github provider
         :param pulumi.Input[_builtins.str] name: The name of the runner
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the runner
         :param pulumi.Input[_builtins.str] status: The status of the runner
         :param pulumi.Input[_builtins.str] token: The token used to authenticate the runner to run
         :param pulumi.Input[_builtins.str] url: The URL of the runner to run
@@ -153,6 +155,8 @@ class _RunnerState:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if token is not None:
@@ -221,6 +225,18 @@ class _RunnerState:
     @project_id.setter
     def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the runner
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -393,6 +409,7 @@ class Runner(pulumi.CustomResource):
             __props__.__dict__["zone"] = zone
             __props__.__dict__["error_message"] = None
             __props__.__dict__["labels"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -411,6 +428,7 @@ class Runner(pulumi.CustomResource):
             labels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             token: pulumi.Input[Optional[_builtins.str]] = None,
             url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -427,6 +445,7 @@ class Runner(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] labels: A list of labels applied to the runner. Only for github provider
         :param pulumi.Input[_builtins.str] name: The name of the runner
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the runner
         :param pulumi.Input[_builtins.str] status: The status of the runner
         :param pulumi.Input[_builtins.str] token: The token used to authenticate the runner to run
         :param pulumi.Input[_builtins.str] url: The URL of the runner to run
@@ -441,6 +460,7 @@ class Runner(pulumi.CustomResource):
         __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["token"] = token
         __props__.__dict__["url"] = url
@@ -486,6 +506,14 @@ class Runner(pulumi.CustomResource):
         The project_id you want to attach the resource to
         """
         return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the runner
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

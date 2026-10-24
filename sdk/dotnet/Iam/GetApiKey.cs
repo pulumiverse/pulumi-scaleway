@@ -133,6 +133,7 @@ namespace Pulumiverse.Scaleway.Iam
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string SecretId;
         public readonly string Srn;
         public readonly string UpdatedAt;
         public readonly string UserId;
@@ -157,6 +158,8 @@ namespace Pulumiverse.Scaleway.Iam
 
             string id,
 
+            string secretId,
+
             string srn,
 
             string updatedAt,
@@ -172,6 +175,7 @@ namespace Pulumiverse.Scaleway.Iam
             Editable = editable;
             ExpiresAt = expiresAt;
             Id = id;
+            SecretId = secretId;
             Srn = srn;
             UpdatedAt = updatedAt;
             UserId = userId;

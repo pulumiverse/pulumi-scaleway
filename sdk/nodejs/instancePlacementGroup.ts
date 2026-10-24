@@ -80,6 +80,10 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the placement group.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * A list of tags to apply to the placement group.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -109,6 +113,7 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
             resourceInputs["policyRespected"] = state?.policyRespected;
             resourceInputs["policyType"] = state?.policyType;
             resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["zone"] = state?.zone;
         } else {
@@ -120,6 +125,7 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
             resourceInputs["tags"] = args?.tags;
             resourceInputs["zone"] = args?.zone;
             resourceInputs["policyRespected"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(InstancePlacementGroup.__pulumiType, name, resourceInputs, opts);
@@ -154,6 +160,10 @@ export interface InstancePlacementGroupState {
      * `projectId`) The ID of the project the placement group is associated with.
      */
     projectId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the placement group.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the placement group.
      */

@@ -123,6 +123,8 @@ type Cluster struct {
 	// Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
 	// with scaleway API or CLI
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
+	// The Scaleway Resource Name (SRN) of the Redis™ cluster.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The tags associated with the Redis™ cluster.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// Whether TLS is enabled or not.
@@ -252,6 +254,8 @@ type clusterState struct {
 	// Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
 	// with scaleway API or CLI
 	Settings map[string]string `pulumi:"settings"`
+	// The Scaleway Resource Name (SRN) of the Redis™ cluster.
+	Srn *string `pulumi:"srn"`
 	// The tags associated with the Redis™ cluster.
 	Tags []string `pulumi:"tags"`
 	// Whether TLS is enabled or not.
@@ -325,6 +329,8 @@ type ClusterState struct {
 	// Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
 	// with scaleway API or CLI
 	Settings pulumi.StringMapInput
+	// The Scaleway Resource Name (SRN) of the Redis™ cluster.
+	Srn pulumi.StringPtrInput
 	// The tags associated with the Redis™ cluster.
 	Tags pulumi.StringArrayInput
 	// Whether TLS is enabled or not.
@@ -662,6 +668,11 @@ func (o ClusterOutput) PublicNetwork() ClusterPublicNetworkOutput {
 // with scaleway API or CLI
 func (o ClusterOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringMapOutput { return v.Settings }).(pulumi.StringMapOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the Redis™ cluster.
+func (o ClusterOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The tags associated with the Redis™ cluster.
