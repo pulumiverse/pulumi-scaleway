@@ -919,6 +919,27 @@
                 "key"
             ]
         },
+        "scaleway:block/SnapshotTimeouts:SnapshotTimeouts": {
+            "properties": {
+                "create": {
+                    "type": "string",
+                    "description": "Duration to wait for the snapshot to be created.\n"
+                },
+                "delete": {
+                    "type": "string",
+                    "description": "Duration to wait for the snapshot to be deleted.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst blockVolume = new scaleway.block.Volume(\"block_volume\", {\n    iops: 5000,\n    name: \"some-volume-name\",\n    sizeInGb: 20,\n});\nconst blockSnapshot = new scaleway.block.Snapshot(\"block_snapshot\", {\n    name: \"some-snapshot-name\",\n    volumeId: blockVolume.id,\n    timeouts: {\n        create: \"10m\",\n        read: \"10m\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nblock_volume = scaleway.block.Volume(\"block_volume\",\n    iops=5000,\n    name=\"some-volume-name\",\n    size_in_gb=20)\nblock_snapshot = scaleway.block.Snapshot(\"block_snapshot\",\n    name=\"some-snapshot-name\",\n    volume_id=block_volume.id,\n    timeouts={\n        \"create\": \"10m\",\n        \"read\": \"10m\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var blockVolume = new Scaleway.Block.Volume(\"block_volume\", new()\n    {\n        Iops = 5000,\n        Name = \"some-volume-name\",\n        SizeInGb = 20,\n    });\n\n    var blockSnapshot = new Scaleway.Block.Snapshot(\"block_snapshot\", new()\n    {\n        Name = \"some-snapshot-name\",\n        VolumeId = blockVolume.Id,\n        Timeouts = new Scaleway.Block.Inputs.SnapshotTimeoutsArgs\n        {\n            Create = \"10m\",\n            Read = \"10m\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tblockVolume, err := block.NewVolume(ctx, \"block_volume\", \u0026block.VolumeArgs{\n\t\t\tIops:     pulumi.Int(5000),\n\t\t\tName:     pulumi.String(\"some-volume-name\"),\n\t\t\tSizeInGb: pulumi.Int(20),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = block.NewSnapshot(ctx, \"block_snapshot\", \u0026block.SnapshotArgs{\n\t\t\tName:     pulumi.String(\"some-snapshot-name\"),\n\t\t\tVolumeId: blockVolume.ID().ToIDOutput().ToStringOutput(),\n\t\t\tTimeouts: \u0026block.SnapshotTimeoutsArgs{\n\t\t\t\tCreate: pulumi.String(\"10m\"),\n\t\t\t\tRead:   pulumi.String(\"10m\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_block_volume\" \"block_volume\" {\n  iops       = 5000\n  name       = \"some-volume-name\"\n  size_in_gb = 20\n}\nresource \"scaleway_block_snapshot\" \"block_snapshot\" {\n  name      = \"some-snapshot-name\"\n  volume_id = scaleway_block_volume.block_volume.id\n  timeouts = {\n    create = \"10m\"\n    read   = \"10m\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.block.Volume;\nimport com.pulumi.scaleway.block.VolumeArgs;\nimport com.pulumi.scaleway.block.Snapshot;\nimport com.pulumi.scaleway.block.SnapshotArgs;\nimport com.pulumi.scaleway.block.inputs.SnapshotTimeoutsArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var blockVolume = new Volume(\"blockVolume\", VolumeArgs.builder()\n            .iops(5000)\n            .name(\"some-volume-name\")\n            .sizeInGb(20)\n            .build());\n\n        var blockSnapshot = new Snapshot(\"blockSnapshot\", SnapshotArgs.builder()\n            .name(\"some-snapshot-name\")\n            .volumeId(blockVolume.id())\n            .timeouts(SnapshotTimeoutsArgs.builder()\n                .create(\"10m\")\n                .read(\"10m\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  blockVolume:\n    type: scaleway:block:Volume\n    name: block_volume\n    properties:\n      iops: 5000\n      name: some-volume-name\n      sizeInGb: 20\n  blockSnapshot:\n    type: scaleway:block:Snapshot\n    name: block_snapshot\n    properties:\n      name: some-snapshot-name\n      volumeId: ${blockVolume.id}\n      timeouts:\n        create: 10m\n        read: 10m\n```\n\u003c!--End PulumiCodeChooser --\u003e\n"
+                },
+                "read": {
+                    "type": "string",
+                    "description": "Duration to wait for the snapshot to be read.\n"
+                },
+                "update": {
+                    "type": "string",
+                    "description": "Duration to wait for the snapshot to be updated.\n"
+                }
+            },
+            "type": "object"
+        },
         "scaleway:block/getSnapshotsSnapshot:getSnapshotsSnapshot": {
             "properties": {
                 "id": {
@@ -6799,6 +6820,27 @@
                 "bucket",
                 "key"
             ]
+        },
+        "scaleway:index/BlockSnapshotTimeouts:BlockSnapshotTimeouts": {
+            "properties": {
+                "create": {
+                    "type": "string",
+                    "description": "Duration to wait for the snapshot to be created.\n"
+                },
+                "delete": {
+                    "type": "string",
+                    "description": "Duration to wait for the snapshot to be deleted.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst blockVolume = new scaleway.block.Volume(\"block_volume\", {\n    iops: 5000,\n    name: \"some-volume-name\",\n    sizeInGb: 20,\n});\nconst blockSnapshot = new scaleway.block.Snapshot(\"block_snapshot\", {\n    name: \"some-snapshot-name\",\n    volumeId: blockVolume.id,\n    timeouts: {\n        create: \"10m\",\n        read: \"10m\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nblock_volume = scaleway.block.Volume(\"block_volume\",\n    iops=5000,\n    name=\"some-volume-name\",\n    size_in_gb=20)\nblock_snapshot = scaleway.block.Snapshot(\"block_snapshot\",\n    name=\"some-snapshot-name\",\n    volume_id=block_volume.id,\n    timeouts={\n        \"create\": \"10m\",\n        \"read\": \"10m\",\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var blockVolume = new Scaleway.Block.Volume(\"block_volume\", new()\n    {\n        Iops = 5000,\n        Name = \"some-volume-name\",\n        SizeInGb = 20,\n    });\n\n    var blockSnapshot = new Scaleway.Block.Snapshot(\"block_snapshot\", new()\n    {\n        Name = \"some-snapshot-name\",\n        VolumeId = blockVolume.Id,\n        Timeouts = new Scaleway.Block.Inputs.SnapshotTimeoutsArgs\n        {\n            Create = \"10m\",\n            Read = \"10m\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tblockVolume, err := block.NewVolume(ctx, \"block_volume\", \u0026block.VolumeArgs{\n\t\t\tIops:     pulumi.Int(5000),\n\t\t\tName:     pulumi.String(\"some-volume-name\"),\n\t\t\tSizeInGb: pulumi.Int(20),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = block.NewSnapshot(ctx, \"block_snapshot\", \u0026block.SnapshotArgs{\n\t\t\tName:     pulumi.String(\"some-snapshot-name\"),\n\t\t\tVolumeId: blockVolume.ID().ToIDOutput().ToStringOutput(),\n\t\t\tTimeouts: \u0026block.SnapshotTimeoutsArgs{\n\t\t\t\tCreate: pulumi.String(\"10m\"),\n\t\t\t\tRead:   pulumi.String(\"10m\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_block_volume\" \"block_volume\" {\n  iops       = 5000\n  name       = \"some-volume-name\"\n  size_in_gb = 20\n}\nresource \"scaleway_block_snapshot\" \"block_snapshot\" {\n  name      = \"some-snapshot-name\"\n  volume_id = scaleway_block_volume.block_volume.id\n  timeouts = {\n    create = \"10m\"\n    read   = \"10m\"\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.block.Volume;\nimport com.pulumi.scaleway.block.VolumeArgs;\nimport com.pulumi.scaleway.block.Snapshot;\nimport com.pulumi.scaleway.block.SnapshotArgs;\nimport com.pulumi.scaleway.block.inputs.SnapshotTimeoutsArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var blockVolume = new Volume(\"blockVolume\", VolumeArgs.builder()\n            .iops(5000)\n            .name(\"some-volume-name\")\n            .sizeInGb(20)\n            .build());\n\n        var blockSnapshot = new Snapshot(\"blockSnapshot\", SnapshotArgs.builder()\n            .name(\"some-snapshot-name\")\n            .volumeId(blockVolume.id())\n            .timeouts(SnapshotTimeoutsArgs.builder()\n                .create(\"10m\")\n                .read(\"10m\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  blockVolume:\n    type: scaleway:block:Volume\n    name: block_volume\n    properties:\n      iops: 5000\n      name: some-volume-name\n      sizeInGb: 20\n  blockSnapshot:\n    type: scaleway:block:Snapshot\n    name: block_snapshot\n    properties:\n      name: some-snapshot-name\n      volumeId: ${blockVolume.id}\n      timeouts:\n        create: 10m\n        read: 10m\n```\n\u003c!--End PulumiCodeChooser --\u003e\n"
+                },
+                "read": {
+                    "type": "string",
+                    "description": "Duration to wait for the snapshot to be read.\n"
+                },
+                "update": {
+                    "type": "string",
+                    "description": "Duration to wait for the snapshot to be updated.\n"
+                }
+            },
+            "type": "object"
         },
         "scaleway:index/CockpitAlertManagerContactPoint:CockpitAlertManagerContactPoint": {
             "properties": {
@@ -23201,6 +23243,10 @@
                     "type": "string",
                     "description": "The\u003cspan pulumi-lang-nodejs=\" projectId \" pulumi-lang-dotnet=\" ProjectId \" pulumi-lang-go=\" projectId \" pulumi-lang-python=\" project_id \" pulumi-lang-yaml=\" projectId \" pulumi-lang-java=\" projectId \" pulumi-lang-hcl=\" project_id \"\u003e projectId \u003c/span\u003eyou want to attach the resource to\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the runner\n"
+                },
                 "status": {
                     "type": "string",
                     "description": "The status of the runner\n"
@@ -23225,6 +23271,7 @@
                 "labels",
                 "name",
                 "projectId",
+                "srn",
                 "status",
                 "token",
                 "url",
@@ -23290,6 +23337,10 @@
                         "type": "string",
                         "description": "The\u003cspan pulumi-lang-nodejs=\" projectId \" pulumi-lang-dotnet=\" ProjectId \" pulumi-lang-go=\" projectId \" pulumi-lang-python=\" project_id \" pulumi-lang-yaml=\" projectId \" pulumi-lang-java=\" projectId \" pulumi-lang-hcl=\" project_id \"\u003e projectId \u003c/span\u003eyou want to attach the resource to\n",
                         "willReplaceOnChanges": true
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the runner\n"
                     },
                     "status": {
                         "type": "string",
@@ -23382,6 +23433,10 @@
                     },
                     "description": "List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type \u003cspan pulumi-lang-nodejs=\"`github`\" pulumi-lang-dotnet=\"`Github`\" pulumi-lang-go=\"`github`\" pulumi-lang-python=\"`github`\" pulumi-lang-yaml=\"`github`\" pulumi-lang-java=\"`github`\" pulumi-lang-hcl=\"`github`\"\u003e`github`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`gitlab`\" pulumi-lang-dotnet=\"`Gitlab`\" pulumi-lang-go=\"`gitlab`\" pulumi-lang-python=\"`gitlab`\" pulumi-lang-yaml=\"`gitlab`\" pulumi-lang-java=\"`gitlab`\" pulumi-lang-hcl=\"`gitlab`\"\u003e`gitlab`\u003c/span\u003e, with the `devos-sequoia-15.6` offer and `M2-L` server type\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the server.\n"
+                },
                 "state": {
                     "type": "string",
                     "description": "The state of the server.\n"
@@ -23422,6 +23477,7 @@
                 "projectId",
                 "publicBandwidth",
                 "runnerIds",
+                "srn",
                 "state",
                 "type",
                 "updatedAt",
@@ -23560,6 +23616,10 @@
                             "type": "string"
                         },
                         "description": "List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type \u003cspan pulumi-lang-nodejs=\"`github`\" pulumi-lang-dotnet=\"`Github`\" pulumi-lang-go=\"`github`\" pulumi-lang-python=\"`github`\" pulumi-lang-yaml=\"`github`\" pulumi-lang-java=\"`github`\" pulumi-lang-hcl=\"`github`\"\u003e`github`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`gitlab`\" pulumi-lang-dotnet=\"`Gitlab`\" pulumi-lang-go=\"`gitlab`\" pulumi-lang-python=\"`gitlab`\" pulumi-lang-yaml=\"`gitlab`\" pulumi-lang-java=\"`gitlab`\" pulumi-lang-hcl=\"`gitlab`\"\u003e`gitlab`\u003c/span\u003e, with the `devos-sequoia-15.6` offer and `M2-L` server type\n"
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the server.\n"
                     },
                     "state": {
                         "type": "string",
@@ -24600,6 +24660,10 @@
                     },
                     "description": "A list of tags to apply to the snapshot.\n"
                 },
+                "timeouts": {
+                    "$ref": "#/types/scaleway:block/SnapshotTimeouts:SnapshotTimeouts",
+                    "description": "The \u003cspan pulumi-lang-nodejs=\"`timeouts`\" pulumi-lang-dotnet=\"`Timeouts`\" pulumi-lang-go=\"`timeouts`\" pulumi-lang-python=\"`timeouts`\" pulumi-lang-yaml=\"`timeouts`\" pulumi-lang-java=\"`timeouts`\" pulumi-lang-hcl=\"`timeouts`\"\u003e`timeouts`\u003c/span\u003e block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.\n\nThe following arguments are specific to the \u003cspan pulumi-lang-nodejs=\"`timeouts`\" pulumi-lang-dotnet=\"`Timeouts`\" pulumi-lang-go=\"`timeouts`\" pulumi-lang-python=\"`timeouts`\" pulumi-lang-yaml=\"`timeouts`\" pulumi-lang-java=\"`timeouts`\" pulumi-lang-hcl=\"`timeouts`\"\u003e`timeouts`\u003c/span\u003e block:\n"
+                },
                 "volumeId": {
                     "type": "string",
                     "description": "The ID of the volume to take a snapshot from.\n"
@@ -24639,6 +24703,10 @@
                     },
                     "description": "A list of tags to apply to the snapshot.\n"
                 },
+                "timeouts": {
+                    "$ref": "#/types/scaleway:block/SnapshotTimeouts:SnapshotTimeouts",
+                    "description": "The \u003cspan pulumi-lang-nodejs=\"`timeouts`\" pulumi-lang-dotnet=\"`Timeouts`\" pulumi-lang-go=\"`timeouts`\" pulumi-lang-python=\"`timeouts`\" pulumi-lang-yaml=\"`timeouts`\" pulumi-lang-java=\"`timeouts`\" pulumi-lang-hcl=\"`timeouts`\"\u003e`timeouts`\u003c/span\u003e block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.\n\nThe following arguments are specific to the \u003cspan pulumi-lang-nodejs=\"`timeouts`\" pulumi-lang-dotnet=\"`Timeouts`\" pulumi-lang-go=\"`timeouts`\" pulumi-lang-python=\"`timeouts`\" pulumi-lang-yaml=\"`timeouts`\" pulumi-lang-java=\"`timeouts`\" pulumi-lang-hcl=\"`timeouts`\"\u003e`timeouts`\u003c/span\u003e block:\n"
+                },
                 "volumeId": {
                     "type": "string",
                     "description": "The ID of the volume to take a snapshot from.\n"
@@ -24677,6 +24745,10 @@
                             "type": "string"
                         },
                         "description": "A list of tags to apply to the snapshot.\n"
+                    },
+                    "timeouts": {
+                        "$ref": "#/types/scaleway:block/SnapshotTimeouts:SnapshotTimeouts",
+                        "description": "The \u003cspan pulumi-lang-nodejs=\"`timeouts`\" pulumi-lang-dotnet=\"`Timeouts`\" pulumi-lang-go=\"`timeouts`\" pulumi-lang-python=\"`timeouts`\" pulumi-lang-yaml=\"`timeouts`\" pulumi-lang-java=\"`timeouts`\" pulumi-lang-hcl=\"`timeouts`\"\u003e`timeouts`\u003c/span\u003e block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.\n\nThe following arguments are specific to the \u003cspan pulumi-lang-nodejs=\"`timeouts`\" pulumi-lang-dotnet=\"`Timeouts`\" pulumi-lang-go=\"`timeouts`\" pulumi-lang-python=\"`timeouts`\" pulumi-lang-yaml=\"`timeouts`\" pulumi-lang-java=\"`timeouts`\" pulumi-lang-hcl=\"`timeouts`\"\u003e`timeouts`\u003c/span\u003e block:\n"
                     },
                     "volumeId": {
                         "type": "string",
@@ -32089,7 +32161,7 @@
             ]
         },
         "scaleway:iam/apiKey:ApiKey": {
-            "description": "Creates and manages Scaleway API Keys. For more information, refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae).\n\n## Example Usage\n\n### With application\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst ciCd = new scaleway.iam.Application(\"ci_cd\", {name: \"My application\"});\nconst main = new scaleway.iam.ApiKey(\"main\", {\n    applicationId: mainScalewayIamApplication.id,\n    description: \"a description\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nci_cd = scaleway.iam.Application(\"ci_cd\", name=\"My application\")\nmain = scaleway.iam.ApiKey(\"main\",\n    application_id=main_scaleway_iam_application[\"id\"],\n    description=\"a description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ciCd = new Scaleway.Iam.Application(\"ci_cd\", new()\n    {\n        Name = \"My application\",\n    });\n\n    var main = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        ApplicationId = mainScalewayIamApplication.Id,\n        Description = \"a description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := iam.NewApplication(ctx, \"ci_cd\", \u0026iam.ApplicationArgs{\n\t\t\tName: pulumi.String(\"My application\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tApplicationId: pulumi.Any(mainScalewayIamApplication.Id),\n\t\t\tDescription:   pulumi.String(\"a description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_iam_application\" \"ci_cd\" {\n  name = \"My application\"\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  application_id = mainScalewayIamApplication.id\n  description    = \"a description\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.iam.Application;\nimport com.pulumi.scaleway.iam.ApplicationArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ciCd = new Application(\"ciCd\", ApplicationArgs.builder()\n            .name(\"My application\")\n            .build());\n\n        var main = new ApiKey(\"main\", ApiKeyArgs.builder()\n            .applicationId(mainScalewayIamApplication.id())\n            .description(\"a description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ciCd:\n    type: scaleway:iam:Application\n    name: ci_cd\n    properties:\n      name: My application\n  main:\n    type: scaleway:iam:ApiKey\n    properties:\n      applicationId: ${mainScalewayIamApplication.id}\n      description: a description\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With user\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.iam.User(\"main\", {email: \"test@test.com\"});\nconst mainApiKey = new scaleway.iam.ApiKey(\"main\", {\n    userId: main.id,\n    description: \"a description\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.iam.User(\"main\", email=\"test@test.com\")\nmain_api_key = scaleway.iam.ApiKey(\"main\",\n    user_id=main.id,\n    description=\"a description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Iam.User(\"main\", new()\n    {\n        Email = \"test@test.com\",\n    });\n\n    var mainApiKey = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        UserId = main.Id,\n        Description = \"a description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := iam.NewUser(ctx, \"main\", \u0026iam.UserArgs{\n\t\t\tEmail: pulumi.String(\"test@test.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tUserId:      main.ID().ToIDOutput().ToStringOutput(),\n\t\t\tDescription: pulumi.String(\"a description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_iam_user\" \"main\" {\n  email = \"test@test.com\"\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  user_id     = scaleway_iam_user.main.id\n  description = \"a description\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.iam.User;\nimport com.pulumi.scaleway.iam.UserArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new User(\"main\", UserArgs.builder()\n            .email(\"test@test.com\")\n            .build());\n\n        var mainApiKey = new ApiKey(\"mainApiKey\", ApiKeyArgs.builder()\n            .userId(main.id())\n            .description(\"a description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:iam:User\n    properties:\n      email: test@test.com\n  mainApiKey:\n    type: scaleway:iam:ApiKey\n    name: main\n    properties:\n      userId: ${main.id}\n      description: a description\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With expiration\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\nimport * as time from \"@pulumi/time\";\n\nconst rotateAfterAYear = new time.index.Rotating(\"rotate_after_a_year\", {rotationYears: 1});\nconst main = new scaleway.iam.ApiKey(\"main\", {\n    applicationId: mainScalewayIamApplication.id,\n    expiresAt: rotateAfterAYear.rotationRfc3339,\n});\n```\n```python\nimport pulumi\nimport pulumi_time as time\nimport pulumiverse_scaleway as scaleway\n\nrotate_after_a_year = time.Rotating(\"rotate_after_a_year\", rotation_years=1)\nmain = scaleway.iam.ApiKey(\"main\",\n    application_id=main_scaleway_iam_application[\"id\"],\n    expires_at=rotate_after_a_year[\"rotationRfc3339\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\nusing Time = Pulumi.Time;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var rotateAfterAYear = new Time.Rotating(\"rotate_after_a_year\", new()\n    {\n        RotationYears = 1,\n    });\n\n    var main = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        ApplicationId = mainScalewayIamApplication.Id,\n        ExpiresAt = rotateAfterAYear.RotationRfc3339,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trotateAfterAYear, err := time.NewRotating(ctx, \"rotate_after_a_year\", \u0026time.RotatingArgs{\n\t\t\tRotationYears: 1,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tApplicationId: pulumi.Any(mainScalewayIamApplication.Id),\n\t\t\tExpiresAt:     rotateAfterAYear.RotationRfc3339,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"time_rotating\" \"rotate_after_a_year\" {\n  rotation_years = 1\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  application_id = mainScalewayIamApplication.id\n  expires_at     = time_rotating.rotate_after_a_year.rotationRfc3339\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Rotating;\nimport com.pulumi.time.RotatingArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var rotateAfterAYear = new Rotating(\"rotateAfterAYear\", RotatingArgs.builder()\n            .rotationYears(1)\n            .build());\n\n        var main = new ApiKey(\"main\", ApiKeyArgs.builder()\n            .applicationId(mainScalewayIamApplication.id())\n            .expiresAt(rotateAfterAYear.rotationRfc3339())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  rotateAfterAYear:\n    type: time:Rotating\n    name: rotate_after_a_year\n    properties:\n      rotationYears: 1\n  main:\n    type: scaleway:iam:ApiKey\n    properties:\n      applicationId: ${mainScalewayIamApplication.id}\n      expiresAt: ${rotateAfterAYear.rotationRfc3339}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nApi keys can be imported using the `{id}`, e.g.\n\n```sh\n$ pulumi import scaleway:iam/apiKey:ApiKey main 11111111111111111111\n```\n\n\u003e **Warning**: While an \u003cspan pulumi-lang-nodejs=\"`iamApiKey`\" pulumi-lang-dotnet=\"`IamApiKey`\" pulumi-lang-go=\"`iamApiKey`\" pulumi-lang-python=\"`iam_api_key`\" pulumi-lang-yaml=\"`iamApiKey`\" pulumi-lang-java=\"`iamApiKey`\" pulumi-lang-hcl=\"`iam_api_key`\"\u003e`iamApiKey`\u003c/span\u003e can be imported, its \u003cspan pulumi-lang-nodejs=\"`secretKey`\" pulumi-lang-dotnet=\"`SecretKey`\" pulumi-lang-go=\"`secretKey`\" pulumi-lang-python=\"`secret_key`\" pulumi-lang-yaml=\"`secretKey`\" pulumi-lang-java=\"`secretKey`\" pulumi-lang-hcl=\"`secret_key`\"\u003e`secretKey`\u003c/span\u003e is a secret that is not exposed. An imported API key will have \u003cspan pulumi-lang-nodejs=\"`null`\" pulumi-lang-dotnet=\"`Null`\" pulumi-lang-go=\"`null`\" pulumi-lang-python=\"`null`\" pulumi-lang-yaml=\"`null`\" pulumi-lang-java=\"`null`\" pulumi-lang-hcl=\"`null`\"\u003e`null`\u003c/span\u003e as its secret key.\n\n",
+            "description": "Creates and manages Scaleway API Keys. For more information, refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae).\n\n## Example Usage\n\n### With application\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst ciCd = new scaleway.iam.Application(\"ci_cd\", {name: \"My application\"});\nconst main = new scaleway.iam.ApiKey(\"main\", {\n    applicationId: mainScalewayIamApplication.id,\n    description: \"a description\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nci_cd = scaleway.iam.Application(\"ci_cd\", name=\"My application\")\nmain = scaleway.iam.ApiKey(\"main\",\n    application_id=main_scaleway_iam_application[\"id\"],\n    description=\"a description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ciCd = new Scaleway.Iam.Application(\"ci_cd\", new()\n    {\n        Name = \"My application\",\n    });\n\n    var main = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        ApplicationId = mainScalewayIamApplication.Id,\n        Description = \"a description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := iam.NewApplication(ctx, \"ci_cd\", \u0026iam.ApplicationArgs{\n\t\t\tName: pulumi.String(\"My application\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tApplicationId: pulumi.Any(mainScalewayIamApplication.Id),\n\t\t\tDescription:   pulumi.String(\"a description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_iam_application\" \"ci_cd\" {\n  name = \"My application\"\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  application_id = mainScalewayIamApplication.id\n  description    = \"a description\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.iam.Application;\nimport com.pulumi.scaleway.iam.ApplicationArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ciCd = new Application(\"ciCd\", ApplicationArgs.builder()\n            .name(\"My application\")\n            .build());\n\n        var main = new ApiKey(\"main\", ApiKeyArgs.builder()\n            .applicationId(mainScalewayIamApplication.id())\n            .description(\"a description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ciCd:\n    type: scaleway:iam:Application\n    name: ci_cd\n    properties:\n      name: My application\n  main:\n    type: scaleway:iam:ApiKey\n    properties:\n      applicationId: ${mainScalewayIamApplication.id}\n      description: a description\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With user\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.iam.User(\"main\", {email: \"test@test.com\"});\nconst mainApiKey = new scaleway.iam.ApiKey(\"main\", {\n    userId: main.id,\n    description: \"a description\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.iam.User(\"main\", email=\"test@test.com\")\nmain_api_key = scaleway.iam.ApiKey(\"main\",\n    user_id=main.id,\n    description=\"a description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Iam.User(\"main\", new()\n    {\n        Email = \"test@test.com\",\n    });\n\n    var mainApiKey = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        UserId = main.Id,\n        Description = \"a description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := iam.NewUser(ctx, \"main\", \u0026iam.UserArgs{\n\t\t\tEmail: pulumi.String(\"test@test.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tUserId:      main.ID().ToIDOutput().ToStringOutput(),\n\t\t\tDescription: pulumi.String(\"a description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_iam_user\" \"main\" {\n  email = \"test@test.com\"\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  user_id     = scaleway_iam_user.main.id\n  description = \"a description\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.iam.User;\nimport com.pulumi.scaleway.iam.UserArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new User(\"main\", UserArgs.builder()\n            .email(\"test@test.com\")\n            .build());\n\n        var mainApiKey = new ApiKey(\"mainApiKey\", ApiKeyArgs.builder()\n            .userId(main.id())\n            .description(\"a description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:iam:User\n    properties:\n      email: test@test.com\n  mainApiKey:\n    type: scaleway:iam:ApiKey\n    name: main\n    properties:\n      userId: ${main.id}\n      description: a description\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With expiration\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\nimport * as time from \"@pulumi/time\";\n\nconst rotateAfterAYear = new time.index.Rotating(\"rotate_after_a_year\", {rotationYears: 1});\nconst main = new scaleway.iam.ApiKey(\"main\", {\n    applicationId: mainScalewayIamApplication.id,\n    expiresAt: rotateAfterAYear.rotationRfc3339,\n});\n```\n```python\nimport pulumi\nimport pulumi_time as time\nimport pulumiverse_scaleway as scaleway\n\nrotate_after_a_year = time.Rotating(\"rotate_after_a_year\", rotation_years=1)\nmain = scaleway.iam.ApiKey(\"main\",\n    application_id=main_scaleway_iam_application[\"id\"],\n    expires_at=rotate_after_a_year[\"rotationRfc3339\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\nusing Time = Pulumi.Time;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var rotateAfterAYear = new Time.Rotating(\"rotate_after_a_year\", new()\n    {\n        RotationYears = 1,\n    });\n\n    var main = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        ApplicationId = mainScalewayIamApplication.Id,\n        ExpiresAt = rotateAfterAYear.RotationRfc3339,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trotateAfterAYear, err := time.NewRotating(ctx, \"rotate_after_a_year\", \u0026time.RotatingArgs{\n\t\t\tRotationYears: 1,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tApplicationId: pulumi.Any(mainScalewayIamApplication.Id),\n\t\t\tExpiresAt:     rotateAfterAYear.RotationRfc3339,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"time_rotating\" \"rotate_after_a_year\" {\n  rotation_years = 1\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  application_id = mainScalewayIamApplication.id\n  expires_at     = time_rotating.rotate_after_a_year.rotationRfc3339\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Rotating;\nimport com.pulumi.time.RotatingArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var rotateAfterAYear = new Rotating(\"rotateAfterAYear\", RotatingArgs.builder()\n            .rotationYears(1)\n            .build());\n\n        var main = new ApiKey(\"main\", ApiKeyArgs.builder()\n            .applicationId(mainScalewayIamApplication.id())\n            .expiresAt(rotateAfterAYear.rotationRfc3339())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  rotateAfterAYear:\n    type: time:Rotating\n    name: rotate_after_a_year\n    properties:\n      rotationYears: 1\n  main:\n    type: scaleway:iam:ApiKey\n    properties:\n      applicationId: ${mainScalewayIamApplication.id}\n      expiresAt: ${rotateAfterAYear.rotationRfc3339}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With secret (secret_key stored in Secret Manager)\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.secrets.Secret(\"main\", {name: \"My secret\"});\nconst ciCd = new scaleway.iam.Application(\"ci_cd\", {name: \"My application\"});\nconst mainApiKey = new scaleway.iam.ApiKey(\"main\", {\n    applicationId: mainScalewayIamApplication.id,\n    secretId: main.id,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.secrets.Secret(\"main\", name=\"My secret\")\nci_cd = scaleway.iam.Application(\"ci_cd\", name=\"My application\")\nmain_api_key = scaleway.iam.ApiKey(\"main\",\n    application_id=main_scaleway_iam_application[\"id\"],\n    secret_id=main.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Secrets.Secret(\"main\", new()\n    {\n        Name = \"My secret\",\n    });\n\n    var ciCd = new Scaleway.Iam.Application(\"ci_cd\", new()\n    {\n        Name = \"My application\",\n    });\n\n    var mainApiKey = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        ApplicationId = mainScalewayIamApplication.Id,\n        SecretId = main.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/secrets\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := secrets.NewSecret(ctx, \"main\", \u0026secrets.SecretArgs{\n\t\t\tName: pulumi.String(\"My secret\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApplication(ctx, \"ci_cd\", \u0026iam.ApplicationArgs{\n\t\t\tName: pulumi.String(\"My application\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tApplicationId: pulumi.Any(mainScalewayIamApplication.Id),\n\t\t\tSecretId:      main.ID().ToIDOutput().ToStringOutput(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_secrets_secret\" \"main\" {\n  name = \"My secret\"\n}\nresource \"scaleway_iam_application\" \"ci_cd\" {\n  name = \"My application\"\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  application_id = mainScalewayIamApplication.id\n  secret_id      = scaleway_secrets_secret.main.id\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.secrets.Secret;\nimport com.pulumi.scaleway.secrets.SecretArgs;\nimport com.pulumi.scaleway.iam.Application;\nimport com.pulumi.scaleway.iam.ApplicationArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new Secret(\"main\", SecretArgs.builder()\n            .name(\"My secret\")\n            .build());\n\n        var ciCd = new Application(\"ciCd\", ApplicationArgs.builder()\n            .name(\"My application\")\n            .build());\n\n        var mainApiKey = new ApiKey(\"mainApiKey\", ApiKeyArgs.builder()\n            .applicationId(mainScalewayIamApplication.id())\n            .secretId(main.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:secrets:Secret\n    properties:\n      name: My secret\n  ciCd:\n    type: scaleway:iam:Application\n    name: ci_cd\n    properties:\n      name: My application\n  mainApiKey:\n    type: scaleway:iam:ApiKey\n    name: main\n    properties:\n      applicationId: ${mainScalewayIamApplication.id}\n      secretId: ${main.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nThe \u003cspan pulumi-lang-nodejs=\"`secretKey`\" pulumi-lang-dotnet=\"`SecretKey`\" pulumi-lang-go=\"`secretKey`\" pulumi-lang-python=\"`secret_key`\" pulumi-lang-yaml=\"`secretKey`\" pulumi-lang-java=\"`secretKey`\" pulumi-lang-hcl=\"`secret_key`\"\u003e`secretKey`\u003c/span\u003e is then not stored in the Terraform state and can be retrieved with the \u003cspan pulumi-lang-nodejs=\"`scaleway.secrets.Version`\" pulumi-lang-dotnet=\"`scaleway.secrets.Version`\" pulumi-lang-go=\"`secrets.Version`\" pulumi-lang-python=\"`secrets.Version`\" pulumi-lang-yaml=\"`scaleway.secrets.Version`\" pulumi-lang-java=\"`scaleway.secrets.Version`\" pulumi-lang-hcl=\"`scaleway_secret_version`\"\u003e`scaleway.secrets.Version`\u003c/span\u003e ephemeral resource:\n\n## Import\n\nApi keys can be imported using the `{id}`, e.g.\n\n```sh\n$ pulumi import scaleway:iam/apiKey:ApiKey main 11111111111111111111\n```\n\n\u003e **Warning**: While an \u003cspan pulumi-lang-nodejs=\"`iamApiKey`\" pulumi-lang-dotnet=\"`IamApiKey`\" pulumi-lang-go=\"`iamApiKey`\" pulumi-lang-python=\"`iam_api_key`\" pulumi-lang-yaml=\"`iamApiKey`\" pulumi-lang-java=\"`iamApiKey`\" pulumi-lang-hcl=\"`iam_api_key`\"\u003e`iamApiKey`\u003c/span\u003e can be imported, its \u003cspan pulumi-lang-nodejs=\"`secretKey`\" pulumi-lang-dotnet=\"`SecretKey`\" pulumi-lang-go=\"`secretKey`\" pulumi-lang-python=\"`secret_key`\" pulumi-lang-yaml=\"`secretKey`\" pulumi-lang-java=\"`secretKey`\" pulumi-lang-hcl=\"`secret_key`\"\u003e`secretKey`\u003c/span\u003e is a secret that is not exposed. An imported API key will have \u003cspan pulumi-lang-nodejs=\"`null`\" pulumi-lang-dotnet=\"`Null`\" pulumi-lang-go=\"`null`\" pulumi-lang-python=\"`null`\" pulumi-lang-yaml=\"`null`\" pulumi-lang-java=\"`null`\" pulumi-lang-hcl=\"`null`\"\u003e`null`\u003c/span\u003e as its secret key.\n\n",
             "properties": {
                 "accessKey": {
                     "type": "string",
@@ -32123,9 +32195,13 @@
                     "type": "string",
                     "description": "The date and time of the expiration of the IAM API key. Please note that in case of any changes,\nthe resource will be recreated.\n"
                 },
+                "secretId": {
+                    "type": "string",
+                    "description": "ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the \u003cspan pulumi-lang-nodejs=\"`secretKey`\" pulumi-lang-dotnet=\"`SecretKey`\" pulumi-lang-go=\"`secretKey`\" pulumi-lang-python=\"`secret_key`\" pulumi-lang-yaml=\"`secretKey`\" pulumi-lang-java=\"`secretKey`\" pulumi-lang-hcl=\"`secret_key`\"\u003e`secretKey`\u003c/span\u003e of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).\n"
+                },
                 "secretKey": {
                     "type": "string",
-                    "description": "The secret Key of the IAM API key.\n",
+                    "description": "The secret Key of the IAM API key. Not set when \u003cspan pulumi-lang-nodejs=\"`secretId`\" pulumi-lang-dotnet=\"`SecretId`\" pulumi-lang-go=\"`secretId`\" pulumi-lang-python=\"`secret_id`\" pulumi-lang-yaml=\"`secretId`\" pulumi-lang-java=\"`secretId`\" pulumi-lang-hcl=\"`secret_id`\"\u003e`secretId`\u003c/span\u003e is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the \u003cspan pulumi-lang-nodejs=\"`scaleway.secrets.Version`\" pulumi-lang-dotnet=\"`scaleway.secrets.Version`\" pulumi-lang-go=\"`secrets.Version`\" pulumi-lang-python=\"`secrets.Version`\" pulumi-lang-yaml=\"`scaleway.secrets.Version`\" pulumi-lang-java=\"`scaleway.secrets.Version`\" pulumi-lang-hcl=\"`scaleway_secret_version`\"\u003e`scaleway.secrets.Version`\u003c/span\u003e ephemeral resource.\n",
                     "secret": true
                 },
                 "srn": {
@@ -32171,6 +32247,11 @@
                     "description": "The date and time of the expiration of the IAM API key. Please note that in case of any changes,\nthe resource will be recreated.\n",
                     "willReplaceOnChanges": true
                 },
+                "secretId": {
+                    "type": "string",
+                    "description": "ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the \u003cspan pulumi-lang-nodejs=\"`secretKey`\" pulumi-lang-dotnet=\"`SecretKey`\" pulumi-lang-go=\"`secretKey`\" pulumi-lang-python=\"`secret_key`\" pulumi-lang-yaml=\"`secretKey`\" pulumi-lang-java=\"`secretKey`\" pulumi-lang-hcl=\"`secret_key`\"\u003e`secretKey`\u003c/span\u003e of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).\n",
+                    "willReplaceOnChanges": true
+                },
                 "userId": {
                     "type": "string",
                     "description": "ID of the user attached to the API key.\n\u003e **Note** You must specify at least one: \u003cspan pulumi-lang-nodejs=\"`applicationId`\" pulumi-lang-dotnet=\"`ApplicationId`\" pulumi-lang-go=\"`applicationId`\" pulumi-lang-python=\"`application_id`\" pulumi-lang-yaml=\"`applicationId`\" pulumi-lang-java=\"`applicationId`\" pulumi-lang-hcl=\"`application_id`\"\u003e`applicationId`\u003c/span\u003e and/or \u003cspan pulumi-lang-nodejs=\"`userId`\" pulumi-lang-dotnet=\"`UserId`\" pulumi-lang-go=\"`userId`\" pulumi-lang-python=\"`user_id`\" pulumi-lang-yaml=\"`userId`\" pulumi-lang-java=\"`userId`\" pulumi-lang-hcl=\"`user_id`\"\u003e`userId`\u003c/span\u003e.\n"
@@ -32214,9 +32295,14 @@
                         "description": "The date and time of the expiration of the IAM API key. Please note that in case of any changes,\nthe resource will be recreated.\n",
                         "willReplaceOnChanges": true
                     },
+                    "secretId": {
+                        "type": "string",
+                        "description": "ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the \u003cspan pulumi-lang-nodejs=\"`secretKey`\" pulumi-lang-dotnet=\"`SecretKey`\" pulumi-lang-go=\"`secretKey`\" pulumi-lang-python=\"`secret_key`\" pulumi-lang-yaml=\"`secretKey`\" pulumi-lang-java=\"`secretKey`\" pulumi-lang-hcl=\"`secret_key`\"\u003e`secretKey`\u003c/span\u003e of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).\n",
+                        "willReplaceOnChanges": true
+                    },
                     "secretKey": {
                         "type": "string",
-                        "description": "The secret Key of the IAM API key.\n",
+                        "description": "The secret Key of the IAM API key. Not set when \u003cspan pulumi-lang-nodejs=\"`secretId`\" pulumi-lang-dotnet=\"`SecretId`\" pulumi-lang-go=\"`secretId`\" pulumi-lang-python=\"`secret_id`\" pulumi-lang-yaml=\"`secretId`\" pulumi-lang-java=\"`secretId`\" pulumi-lang-hcl=\"`secret_id`\"\u003e`secretId`\u003c/span\u003e is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the \u003cspan pulumi-lang-nodejs=\"`scaleway.secrets.Version`\" pulumi-lang-dotnet=\"`scaleway.secrets.Version`\" pulumi-lang-go=\"`secrets.Version`\" pulumi-lang-python=\"`secrets.Version`\" pulumi-lang-yaml=\"`scaleway.secrets.Version`\" pulumi-lang-java=\"`scaleway.secrets.Version`\" pulumi-lang-hcl=\"`scaleway_secret_version`\"\u003e`scaleway.secrets.Version`\u003c/span\u003e ephemeral resource.\n",
                         "secret": true
                     },
                     "srn": {
@@ -33929,6 +34015,10 @@
                     },
                     "description": "List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type \u003cspan pulumi-lang-nodejs=\"`github`\" pulumi-lang-dotnet=\"`Github`\" pulumi-lang-go=\"`github`\" pulumi-lang-python=\"`github`\" pulumi-lang-yaml=\"`github`\" pulumi-lang-java=\"`github`\" pulumi-lang-hcl=\"`github`\"\u003e`github`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`gitlab`\" pulumi-lang-dotnet=\"`Gitlab`\" pulumi-lang-go=\"`gitlab`\" pulumi-lang-python=\"`gitlab`\" pulumi-lang-yaml=\"`gitlab`\" pulumi-lang-java=\"`gitlab`\" pulumi-lang-hcl=\"`gitlab`\"\u003e`gitlab`\u003c/span\u003e, with the `devos-sequoia-15.6` offer and `M2-L` server type\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the server.\n"
+                },
                 "state": {
                     "type": "string",
                     "description": "The state of the server.\n"
@@ -33969,6 +34059,7 @@
                 "projectId",
                 "publicBandwidth",
                 "runnerIds",
+                "srn",
                 "state",
                 "type",
                 "updatedAt",
@@ -34107,6 +34198,10 @@
                             "type": "string"
                         },
                         "description": "List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type \u003cspan pulumi-lang-nodejs=\"`github`\" pulumi-lang-dotnet=\"`Github`\" pulumi-lang-go=\"`github`\" pulumi-lang-python=\"`github`\" pulumi-lang-yaml=\"`github`\" pulumi-lang-java=\"`github`\" pulumi-lang-hcl=\"`github`\"\u003e`github`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`gitlab`\" pulumi-lang-dotnet=\"`Gitlab`\" pulumi-lang-go=\"`gitlab`\" pulumi-lang-python=\"`gitlab`\" pulumi-lang-yaml=\"`gitlab`\" pulumi-lang-java=\"`gitlab`\" pulumi-lang-hcl=\"`gitlab`\"\u003e`gitlab`\u003c/span\u003e, with the `devos-sequoia-15.6` offer and `M2-L` server type\n"
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the server.\n"
                     },
                     "state": {
                         "type": "string",
@@ -34652,6 +34747,10 @@
                     },
                     "description": "A list of tags to apply to the snapshot.\n"
                 },
+                "timeouts": {
+                    "$ref": "#/types/scaleway:index/BlockSnapshotTimeouts:BlockSnapshotTimeouts",
+                    "description": "The \u003cspan pulumi-lang-nodejs=\"`timeouts`\" pulumi-lang-dotnet=\"`Timeouts`\" pulumi-lang-go=\"`timeouts`\" pulumi-lang-python=\"`timeouts`\" pulumi-lang-yaml=\"`timeouts`\" pulumi-lang-java=\"`timeouts`\" pulumi-lang-hcl=\"`timeouts`\"\u003e`timeouts`\u003c/span\u003e block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.\n\nThe following arguments are specific to the \u003cspan pulumi-lang-nodejs=\"`timeouts`\" pulumi-lang-dotnet=\"`Timeouts`\" pulumi-lang-go=\"`timeouts`\" pulumi-lang-python=\"`timeouts`\" pulumi-lang-yaml=\"`timeouts`\" pulumi-lang-java=\"`timeouts`\" pulumi-lang-hcl=\"`timeouts`\"\u003e`timeouts`\u003c/span\u003e block:\n"
+                },
                 "volumeId": {
                     "type": "string",
                     "description": "The ID of the volume to take a snapshot from.\n"
@@ -34691,6 +34790,10 @@
                     },
                     "description": "A list of tags to apply to the snapshot.\n"
                 },
+                "timeouts": {
+                    "$ref": "#/types/scaleway:index/BlockSnapshotTimeouts:BlockSnapshotTimeouts",
+                    "description": "The \u003cspan pulumi-lang-nodejs=\"`timeouts`\" pulumi-lang-dotnet=\"`Timeouts`\" pulumi-lang-go=\"`timeouts`\" pulumi-lang-python=\"`timeouts`\" pulumi-lang-yaml=\"`timeouts`\" pulumi-lang-java=\"`timeouts`\" pulumi-lang-hcl=\"`timeouts`\"\u003e`timeouts`\u003c/span\u003e block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.\n\nThe following arguments are specific to the \u003cspan pulumi-lang-nodejs=\"`timeouts`\" pulumi-lang-dotnet=\"`Timeouts`\" pulumi-lang-go=\"`timeouts`\" pulumi-lang-python=\"`timeouts`\" pulumi-lang-yaml=\"`timeouts`\" pulumi-lang-java=\"`timeouts`\" pulumi-lang-hcl=\"`timeouts`\"\u003e`timeouts`\u003c/span\u003e block:\n"
+                },
                 "volumeId": {
                     "type": "string",
                     "description": "The ID of the volume to take a snapshot from.\n"
@@ -34729,6 +34832,10 @@
                             "type": "string"
                         },
                         "description": "A list of tags to apply to the snapshot.\n"
+                    },
+                    "timeouts": {
+                        "$ref": "#/types/scaleway:index/BlockSnapshotTimeouts:BlockSnapshotTimeouts",
+                        "description": "The \u003cspan pulumi-lang-nodejs=\"`timeouts`\" pulumi-lang-dotnet=\"`Timeouts`\" pulumi-lang-go=\"`timeouts`\" pulumi-lang-python=\"`timeouts`\" pulumi-lang-yaml=\"`timeouts`\" pulumi-lang-java=\"`timeouts`\" pulumi-lang-hcl=\"`timeouts`\"\u003e`timeouts`\u003c/span\u003e block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.\n\nThe following arguments are specific to the \u003cspan pulumi-lang-nodejs=\"`timeouts`\" pulumi-lang-dotnet=\"`Timeouts`\" pulumi-lang-go=\"`timeouts`\" pulumi-lang-python=\"`timeouts`\" pulumi-lang-yaml=\"`timeouts`\" pulumi-lang-java=\"`timeouts`\" pulumi-lang-hcl=\"`timeouts`\"\u003e`timeouts`\u003c/span\u003e block:\n"
                     },
                     "volumeId": {
                         "type": "string",
@@ -35030,7 +35137,7 @@
                 },
                 "retentionDays": {
                     "type": "integer",
-                    "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.\n"
+                    "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type.\n"
                 },
                 "synchronizedWithGrafana": {
                     "type": "boolean",
@@ -35079,7 +35186,7 @@
                 },
                 "retentionDays": {
                     "type": "integer",
-                    "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.\n"
+                    "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type.\n"
                 },
                 "type": {
                     "type": "string",
@@ -35122,7 +35229,7 @@
                     },
                     "retentionDays": {
                         "type": "integer",
-                        "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.\n"
+                        "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type.\n"
                     },
                     "synchronizedWithGrafana": {
                         "type": "boolean",
@@ -40351,7 +40458,7 @@
             "deprecationMessage": "scaleway.index/functiontrigger.FunctionTrigger has been deprecated in favor of scaleway.functions/trigger.Trigger"
         },
         "scaleway:index/iamApiKey:IamApiKey": {
-            "description": "Creates and manages Scaleway API Keys. For more information, refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae).\n\n## Example Usage\n\n### With application\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst ciCd = new scaleway.iam.Application(\"ci_cd\", {name: \"My application\"});\nconst main = new scaleway.iam.ApiKey(\"main\", {\n    applicationId: mainScalewayIamApplication.id,\n    description: \"a description\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nci_cd = scaleway.iam.Application(\"ci_cd\", name=\"My application\")\nmain = scaleway.iam.ApiKey(\"main\",\n    application_id=main_scaleway_iam_application[\"id\"],\n    description=\"a description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ciCd = new Scaleway.Iam.Application(\"ci_cd\", new()\n    {\n        Name = \"My application\",\n    });\n\n    var main = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        ApplicationId = mainScalewayIamApplication.Id,\n        Description = \"a description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := iam.NewApplication(ctx, \"ci_cd\", \u0026iam.ApplicationArgs{\n\t\t\tName: pulumi.String(\"My application\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tApplicationId: pulumi.Any(mainScalewayIamApplication.Id),\n\t\t\tDescription:   pulumi.String(\"a description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_iam_application\" \"ci_cd\" {\n  name = \"My application\"\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  application_id = mainScalewayIamApplication.id\n  description    = \"a description\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.iam.Application;\nimport com.pulumi.scaleway.iam.ApplicationArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ciCd = new Application(\"ciCd\", ApplicationArgs.builder()\n            .name(\"My application\")\n            .build());\n\n        var main = new ApiKey(\"main\", ApiKeyArgs.builder()\n            .applicationId(mainScalewayIamApplication.id())\n            .description(\"a description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ciCd:\n    type: scaleway:iam:Application\n    name: ci_cd\n    properties:\n      name: My application\n  main:\n    type: scaleway:iam:ApiKey\n    properties:\n      applicationId: ${mainScalewayIamApplication.id}\n      description: a description\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With user\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.iam.User(\"main\", {email: \"test@test.com\"});\nconst mainApiKey = new scaleway.iam.ApiKey(\"main\", {\n    userId: main.id,\n    description: \"a description\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.iam.User(\"main\", email=\"test@test.com\")\nmain_api_key = scaleway.iam.ApiKey(\"main\",\n    user_id=main.id,\n    description=\"a description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Iam.User(\"main\", new()\n    {\n        Email = \"test@test.com\",\n    });\n\n    var mainApiKey = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        UserId = main.Id,\n        Description = \"a description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := iam.NewUser(ctx, \"main\", \u0026iam.UserArgs{\n\t\t\tEmail: pulumi.String(\"test@test.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tUserId:      main.ID().ToIDOutput().ToStringOutput(),\n\t\t\tDescription: pulumi.String(\"a description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_iam_user\" \"main\" {\n  email = \"test@test.com\"\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  user_id     = scaleway_iam_user.main.id\n  description = \"a description\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.iam.User;\nimport com.pulumi.scaleway.iam.UserArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new User(\"main\", UserArgs.builder()\n            .email(\"test@test.com\")\n            .build());\n\n        var mainApiKey = new ApiKey(\"mainApiKey\", ApiKeyArgs.builder()\n            .userId(main.id())\n            .description(\"a description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:iam:User\n    properties:\n      email: test@test.com\n  mainApiKey:\n    type: scaleway:iam:ApiKey\n    name: main\n    properties:\n      userId: ${main.id}\n      description: a description\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With expiration\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\nimport * as time from \"@pulumi/time\";\n\nconst rotateAfterAYear = new time.index.Rotating(\"rotate_after_a_year\", {rotationYears: 1});\nconst main = new scaleway.iam.ApiKey(\"main\", {\n    applicationId: mainScalewayIamApplication.id,\n    expiresAt: rotateAfterAYear.rotationRfc3339,\n});\n```\n```python\nimport pulumi\nimport pulumi_time as time\nimport pulumiverse_scaleway as scaleway\n\nrotate_after_a_year = time.Rotating(\"rotate_after_a_year\", rotation_years=1)\nmain = scaleway.iam.ApiKey(\"main\",\n    application_id=main_scaleway_iam_application[\"id\"],\n    expires_at=rotate_after_a_year[\"rotationRfc3339\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\nusing Time = Pulumi.Time;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var rotateAfterAYear = new Time.Rotating(\"rotate_after_a_year\", new()\n    {\n        RotationYears = 1,\n    });\n\n    var main = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        ApplicationId = mainScalewayIamApplication.Id,\n        ExpiresAt = rotateAfterAYear.RotationRfc3339,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trotateAfterAYear, err := time.NewRotating(ctx, \"rotate_after_a_year\", \u0026time.RotatingArgs{\n\t\t\tRotationYears: 1,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tApplicationId: pulumi.Any(mainScalewayIamApplication.Id),\n\t\t\tExpiresAt:     rotateAfterAYear.RotationRfc3339,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"time_rotating\" \"rotate_after_a_year\" {\n  rotation_years = 1\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  application_id = mainScalewayIamApplication.id\n  expires_at     = time_rotating.rotate_after_a_year.rotationRfc3339\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Rotating;\nimport com.pulumi.time.RotatingArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var rotateAfterAYear = new Rotating(\"rotateAfterAYear\", RotatingArgs.builder()\n            .rotationYears(1)\n            .build());\n\n        var main = new ApiKey(\"main\", ApiKeyArgs.builder()\n            .applicationId(mainScalewayIamApplication.id())\n            .expiresAt(rotateAfterAYear.rotationRfc3339())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  rotateAfterAYear:\n    type: time:Rotating\n    name: rotate_after_a_year\n    properties:\n      rotationYears: 1\n  main:\n    type: scaleway:iam:ApiKey\n    properties:\n      applicationId: ${mainScalewayIamApplication.id}\n      expiresAt: ${rotateAfterAYear.rotationRfc3339}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nApi keys can be imported using the `{id}`, e.g.\n\n```sh\n$ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111\n```\n\n\u003e **Warning**: While an \u003cspan pulumi-lang-nodejs=\"`iamApiKey`\" pulumi-lang-dotnet=\"`IamApiKey`\" pulumi-lang-go=\"`iamApiKey`\" pulumi-lang-python=\"`iam_api_key`\" pulumi-lang-yaml=\"`iamApiKey`\" pulumi-lang-java=\"`iamApiKey`\" pulumi-lang-hcl=\"`iam_api_key`\"\u003e`iamApiKey`\u003c/span\u003e can be imported, its \u003cspan pulumi-lang-nodejs=\"`secretKey`\" pulumi-lang-dotnet=\"`SecretKey`\" pulumi-lang-go=\"`secretKey`\" pulumi-lang-python=\"`secret_key`\" pulumi-lang-yaml=\"`secretKey`\" pulumi-lang-java=\"`secretKey`\" pulumi-lang-hcl=\"`secret_key`\"\u003e`secretKey`\u003c/span\u003e is a secret that is not exposed. An imported API key will have \u003cspan pulumi-lang-nodejs=\"`null`\" pulumi-lang-dotnet=\"`Null`\" pulumi-lang-go=\"`null`\" pulumi-lang-python=\"`null`\" pulumi-lang-yaml=\"`null`\" pulumi-lang-java=\"`null`\" pulumi-lang-hcl=\"`null`\"\u003e`null`\u003c/span\u003e as its secret key.\n\n",
+            "description": "Creates and manages Scaleway API Keys. For more information, refer to the [IAM API documentation](https://www.scaleway.com/en/developers/api/iam/#api-keys-3665ae).\n\n## Example Usage\n\n### With application\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst ciCd = new scaleway.iam.Application(\"ci_cd\", {name: \"My application\"});\nconst main = new scaleway.iam.ApiKey(\"main\", {\n    applicationId: mainScalewayIamApplication.id,\n    description: \"a description\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nci_cd = scaleway.iam.Application(\"ci_cd\", name=\"My application\")\nmain = scaleway.iam.ApiKey(\"main\",\n    application_id=main_scaleway_iam_application[\"id\"],\n    description=\"a description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ciCd = new Scaleway.Iam.Application(\"ci_cd\", new()\n    {\n        Name = \"My application\",\n    });\n\n    var main = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        ApplicationId = mainScalewayIamApplication.Id,\n        Description = \"a description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := iam.NewApplication(ctx, \"ci_cd\", \u0026iam.ApplicationArgs{\n\t\t\tName: pulumi.String(\"My application\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tApplicationId: pulumi.Any(mainScalewayIamApplication.Id),\n\t\t\tDescription:   pulumi.String(\"a description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_iam_application\" \"ci_cd\" {\n  name = \"My application\"\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  application_id = mainScalewayIamApplication.id\n  description    = \"a description\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.iam.Application;\nimport com.pulumi.scaleway.iam.ApplicationArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ciCd = new Application(\"ciCd\", ApplicationArgs.builder()\n            .name(\"My application\")\n            .build());\n\n        var main = new ApiKey(\"main\", ApiKeyArgs.builder()\n            .applicationId(mainScalewayIamApplication.id())\n            .description(\"a description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ciCd:\n    type: scaleway:iam:Application\n    name: ci_cd\n    properties:\n      name: My application\n  main:\n    type: scaleway:iam:ApiKey\n    properties:\n      applicationId: ${mainScalewayIamApplication.id}\n      description: a description\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With user\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.iam.User(\"main\", {email: \"test@test.com\"});\nconst mainApiKey = new scaleway.iam.ApiKey(\"main\", {\n    userId: main.id,\n    description: \"a description\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.iam.User(\"main\", email=\"test@test.com\")\nmain_api_key = scaleway.iam.ApiKey(\"main\",\n    user_id=main.id,\n    description=\"a description\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Iam.User(\"main\", new()\n    {\n        Email = \"test@test.com\",\n    });\n\n    var mainApiKey = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        UserId = main.Id,\n        Description = \"a description\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := iam.NewUser(ctx, \"main\", \u0026iam.UserArgs{\n\t\t\tEmail: pulumi.String(\"test@test.com\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tUserId:      main.ID().ToIDOutput().ToStringOutput(),\n\t\t\tDescription: pulumi.String(\"a description\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_iam_user\" \"main\" {\n  email = \"test@test.com\"\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  user_id     = scaleway_iam_user.main.id\n  description = \"a description\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.iam.User;\nimport com.pulumi.scaleway.iam.UserArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new User(\"main\", UserArgs.builder()\n            .email(\"test@test.com\")\n            .build());\n\n        var mainApiKey = new ApiKey(\"mainApiKey\", ApiKeyArgs.builder()\n            .userId(main.id())\n            .description(\"a description\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:iam:User\n    properties:\n      email: test@test.com\n  mainApiKey:\n    type: scaleway:iam:ApiKey\n    name: main\n    properties:\n      userId: ${main.id}\n      description: a description\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With expiration\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\nimport * as time from \"@pulumi/time\";\n\nconst rotateAfterAYear = new time.index.Rotating(\"rotate_after_a_year\", {rotationYears: 1});\nconst main = new scaleway.iam.ApiKey(\"main\", {\n    applicationId: mainScalewayIamApplication.id,\n    expiresAt: rotateAfterAYear.rotationRfc3339,\n});\n```\n```python\nimport pulumi\nimport pulumi_time as time\nimport pulumiverse_scaleway as scaleway\n\nrotate_after_a_year = time.Rotating(\"rotate_after_a_year\", rotation_years=1)\nmain = scaleway.iam.ApiKey(\"main\",\n    application_id=main_scaleway_iam_application[\"id\"],\n    expires_at=rotate_after_a_year[\"rotationRfc3339\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\nusing Time = Pulumi.Time;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var rotateAfterAYear = new Time.Rotating(\"rotate_after_a_year\", new()\n    {\n        RotationYears = 1,\n    });\n\n    var main = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        ApplicationId = mainScalewayIamApplication.Id,\n        ExpiresAt = rotateAfterAYear.RotationRfc3339,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-time/sdk/go/time\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\trotateAfterAYear, err := time.NewRotating(ctx, \"rotate_after_a_year\", \u0026time.RotatingArgs{\n\t\t\tRotationYears: 1,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tApplicationId: pulumi.Any(mainScalewayIamApplication.Id),\n\t\t\tExpiresAt:     rotateAfterAYear.RotationRfc3339,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"time_rotating\" \"rotate_after_a_year\" {\n  rotation_years = 1\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  application_id = mainScalewayIamApplication.id\n  expires_at     = time_rotating.rotate_after_a_year.rotationRfc3339\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.time.Rotating;\nimport com.pulumi.time.RotatingArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var rotateAfterAYear = new Rotating(\"rotateAfterAYear\", RotatingArgs.builder()\n            .rotationYears(1)\n            .build());\n\n        var main = new ApiKey(\"main\", ApiKeyArgs.builder()\n            .applicationId(mainScalewayIamApplication.id())\n            .expiresAt(rotateAfterAYear.rotationRfc3339())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  rotateAfterAYear:\n    type: time:Rotating\n    name: rotate_after_a_year\n    properties:\n      rotationYears: 1\n  main:\n    type: scaleway:iam:ApiKey\n    properties:\n      applicationId: ${mainScalewayIamApplication.id}\n      expiresAt: ${rotateAfterAYear.rotationRfc3339}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With secret (secret_key stored in Secret Manager)\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.secrets.Secret(\"main\", {name: \"My secret\"});\nconst ciCd = new scaleway.iam.Application(\"ci_cd\", {name: \"My application\"});\nconst mainApiKey = new scaleway.iam.ApiKey(\"main\", {\n    applicationId: mainScalewayIamApplication.id,\n    secretId: main.id,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.secrets.Secret(\"main\", name=\"My secret\")\nci_cd = scaleway.iam.Application(\"ci_cd\", name=\"My application\")\nmain_api_key = scaleway.iam.ApiKey(\"main\",\n    application_id=main_scaleway_iam_application[\"id\"],\n    secret_id=main.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Secrets.Secret(\"main\", new()\n    {\n        Name = \"My secret\",\n    });\n\n    var ciCd = new Scaleway.Iam.Application(\"ci_cd\", new()\n    {\n        Name = \"My application\",\n    });\n\n    var mainApiKey = new Scaleway.Iam.ApiKey(\"main\", new()\n    {\n        ApplicationId = mainScalewayIamApplication.Id,\n        SecretId = main.Id,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/secrets\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := secrets.NewSecret(ctx, \"main\", \u0026secrets.SecretArgs{\n\t\t\tName: pulumi.String(\"My secret\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApplication(ctx, \"ci_cd\", \u0026iam.ApplicationArgs{\n\t\t\tName: pulumi.String(\"My application\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = iam.NewApiKey(ctx, \"main\", \u0026iam.ApiKeyArgs{\n\t\t\tApplicationId: pulumi.Any(mainScalewayIamApplication.Id),\n\t\t\tSecretId:      main.ID().ToIDOutput().ToStringOutput(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_secrets_secret\" \"main\" {\n  name = \"My secret\"\n}\nresource \"scaleway_iam_application\" \"ci_cd\" {\n  name = \"My application\"\n}\nresource \"scaleway_iam_apikey\" \"main\" {\n  application_id = mainScalewayIamApplication.id\n  secret_id      = scaleway_secrets_secret.main.id\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.secrets.Secret;\nimport com.pulumi.scaleway.secrets.SecretArgs;\nimport com.pulumi.scaleway.iam.Application;\nimport com.pulumi.scaleway.iam.ApplicationArgs;\nimport com.pulumi.scaleway.iam.ApiKey;\nimport com.pulumi.scaleway.iam.ApiKeyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new Secret(\"main\", SecretArgs.builder()\n            .name(\"My secret\")\n            .build());\n\n        var ciCd = new Application(\"ciCd\", ApplicationArgs.builder()\n            .name(\"My application\")\n            .build());\n\n        var mainApiKey = new ApiKey(\"mainApiKey\", ApiKeyArgs.builder()\n            .applicationId(mainScalewayIamApplication.id())\n            .secretId(main.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:secrets:Secret\n    properties:\n      name: My secret\n  ciCd:\n    type: scaleway:iam:Application\n    name: ci_cd\n    properties:\n      name: My application\n  mainApiKey:\n    type: scaleway:iam:ApiKey\n    name: main\n    properties:\n      applicationId: ${mainScalewayIamApplication.id}\n      secretId: ${main.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nThe \u003cspan pulumi-lang-nodejs=\"`secretKey`\" pulumi-lang-dotnet=\"`SecretKey`\" pulumi-lang-go=\"`secretKey`\" pulumi-lang-python=\"`secret_key`\" pulumi-lang-yaml=\"`secretKey`\" pulumi-lang-java=\"`secretKey`\" pulumi-lang-hcl=\"`secret_key`\"\u003e`secretKey`\u003c/span\u003e is then not stored in the Terraform state and can be retrieved with the \u003cspan pulumi-lang-nodejs=\"`scaleway.secrets.Version`\" pulumi-lang-dotnet=\"`scaleway.secrets.Version`\" pulumi-lang-go=\"`secrets.Version`\" pulumi-lang-python=\"`secrets.Version`\" pulumi-lang-yaml=\"`scaleway.secrets.Version`\" pulumi-lang-java=\"`scaleway.secrets.Version`\" pulumi-lang-hcl=\"`scaleway_secret_version`\"\u003e`scaleway.secrets.Version`\u003c/span\u003e ephemeral resource:\n\n## Import\n\nApi keys can be imported using the `{id}`, e.g.\n\n```sh\n$ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111\n```\n\n\u003e **Warning**: While an \u003cspan pulumi-lang-nodejs=\"`iamApiKey`\" pulumi-lang-dotnet=\"`IamApiKey`\" pulumi-lang-go=\"`iamApiKey`\" pulumi-lang-python=\"`iam_api_key`\" pulumi-lang-yaml=\"`iamApiKey`\" pulumi-lang-java=\"`iamApiKey`\" pulumi-lang-hcl=\"`iam_api_key`\"\u003e`iamApiKey`\u003c/span\u003e can be imported, its \u003cspan pulumi-lang-nodejs=\"`secretKey`\" pulumi-lang-dotnet=\"`SecretKey`\" pulumi-lang-go=\"`secretKey`\" pulumi-lang-python=\"`secret_key`\" pulumi-lang-yaml=\"`secretKey`\" pulumi-lang-java=\"`secretKey`\" pulumi-lang-hcl=\"`secret_key`\"\u003e`secretKey`\u003c/span\u003e is a secret that is not exposed. An imported API key will have \u003cspan pulumi-lang-nodejs=\"`null`\" pulumi-lang-dotnet=\"`Null`\" pulumi-lang-go=\"`null`\" pulumi-lang-python=\"`null`\" pulumi-lang-yaml=\"`null`\" pulumi-lang-java=\"`null`\" pulumi-lang-hcl=\"`null`\"\u003e`null`\u003c/span\u003e as its secret key.\n\n",
             "properties": {
                 "accessKey": {
                     "type": "string",
@@ -40385,9 +40492,13 @@
                     "type": "string",
                     "description": "The date and time of the expiration of the IAM API key. Please note that in case of any changes,\nthe resource will be recreated.\n"
                 },
+                "secretId": {
+                    "type": "string",
+                    "description": "ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the \u003cspan pulumi-lang-nodejs=\"`secretKey`\" pulumi-lang-dotnet=\"`SecretKey`\" pulumi-lang-go=\"`secretKey`\" pulumi-lang-python=\"`secret_key`\" pulumi-lang-yaml=\"`secretKey`\" pulumi-lang-java=\"`secretKey`\" pulumi-lang-hcl=\"`secret_key`\"\u003e`secretKey`\u003c/span\u003e of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).\n"
+                },
                 "secretKey": {
                     "type": "string",
-                    "description": "The secret Key of the IAM API key.\n",
+                    "description": "The secret Key of the IAM API key. Not set when \u003cspan pulumi-lang-nodejs=\"`secretId`\" pulumi-lang-dotnet=\"`SecretId`\" pulumi-lang-go=\"`secretId`\" pulumi-lang-python=\"`secret_id`\" pulumi-lang-yaml=\"`secretId`\" pulumi-lang-java=\"`secretId`\" pulumi-lang-hcl=\"`secret_id`\"\u003e`secretId`\u003c/span\u003e is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the \u003cspan pulumi-lang-nodejs=\"`scaleway.secrets.Version`\" pulumi-lang-dotnet=\"`scaleway.secrets.Version`\" pulumi-lang-go=\"`secrets.Version`\" pulumi-lang-python=\"`secrets.Version`\" pulumi-lang-yaml=\"`scaleway.secrets.Version`\" pulumi-lang-java=\"`scaleway.secrets.Version`\" pulumi-lang-hcl=\"`scaleway_secret_version`\"\u003e`scaleway.secrets.Version`\u003c/span\u003e ephemeral resource.\n",
                     "secret": true
                 },
                 "srn": {
@@ -40433,6 +40544,11 @@
                     "description": "The date and time of the expiration of the IAM API key. Please note that in case of any changes,\nthe resource will be recreated.\n",
                     "willReplaceOnChanges": true
                 },
+                "secretId": {
+                    "type": "string",
+                    "description": "ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the \u003cspan pulumi-lang-nodejs=\"`secretKey`\" pulumi-lang-dotnet=\"`SecretKey`\" pulumi-lang-go=\"`secretKey`\" pulumi-lang-python=\"`secret_key`\" pulumi-lang-yaml=\"`secretKey`\" pulumi-lang-java=\"`secretKey`\" pulumi-lang-hcl=\"`secret_key`\"\u003e`secretKey`\u003c/span\u003e of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).\n",
+                    "willReplaceOnChanges": true
+                },
                 "userId": {
                     "type": "string",
                     "description": "ID of the user attached to the API key.\n\u003e **Note** You must specify at least one: \u003cspan pulumi-lang-nodejs=\"`applicationId`\" pulumi-lang-dotnet=\"`ApplicationId`\" pulumi-lang-go=\"`applicationId`\" pulumi-lang-python=\"`application_id`\" pulumi-lang-yaml=\"`applicationId`\" pulumi-lang-java=\"`applicationId`\" pulumi-lang-hcl=\"`application_id`\"\u003e`applicationId`\u003c/span\u003e and/or \u003cspan pulumi-lang-nodejs=\"`userId`\" pulumi-lang-dotnet=\"`UserId`\" pulumi-lang-go=\"`userId`\" pulumi-lang-python=\"`user_id`\" pulumi-lang-yaml=\"`userId`\" pulumi-lang-java=\"`userId`\" pulumi-lang-hcl=\"`user_id`\"\u003e`userId`\u003c/span\u003e.\n"
@@ -40476,9 +40592,14 @@
                         "description": "The date and time of the expiration of the IAM API key. Please note that in case of any changes,\nthe resource will be recreated.\n",
                         "willReplaceOnChanges": true
                     },
+                    "secretId": {
+                        "type": "string",
+                        "description": "ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the \u003cspan pulumi-lang-nodejs=\"`secretKey`\" pulumi-lang-dotnet=\"`SecretKey`\" pulumi-lang-go=\"`secretKey`\" pulumi-lang-python=\"`secret_key`\" pulumi-lang-yaml=\"`secretKey`\" pulumi-lang-java=\"`secretKey`\" pulumi-lang-hcl=\"`secret_key`\"\u003e`secretKey`\u003c/span\u003e of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).\n",
+                        "willReplaceOnChanges": true
+                    },
                     "secretKey": {
                         "type": "string",
-                        "description": "The secret Key of the IAM API key.\n",
+                        "description": "The secret Key of the IAM API key. Not set when \u003cspan pulumi-lang-nodejs=\"`secretId`\" pulumi-lang-dotnet=\"`SecretId`\" pulumi-lang-go=\"`secretId`\" pulumi-lang-python=\"`secret_id`\" pulumi-lang-yaml=\"`secretId`\" pulumi-lang-java=\"`secretId`\" pulumi-lang-hcl=\"`secret_id`\"\u003e`secretId`\u003c/span\u003e is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the \u003cspan pulumi-lang-nodejs=\"`scaleway.secrets.Version`\" pulumi-lang-dotnet=\"`scaleway.secrets.Version`\" pulumi-lang-go=\"`secrets.Version`\" pulumi-lang-python=\"`secrets.Version`\" pulumi-lang-yaml=\"`scaleway.secrets.Version`\" pulumi-lang-java=\"`scaleway.secrets.Version`\" pulumi-lang-hcl=\"`scaleway_secret_version`\"\u003e`scaleway.secrets.Version`\u003c/span\u003e ephemeral resource.\n",
                         "secret": true
                     },
                     "srn": {
@@ -42099,6 +42220,10 @@
                     "type": "string",
                     "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the placement group is associated with.\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the placement group.\n"
+                },
                 "tags": {
                     "type": "array",
                     "items": {
@@ -42115,6 +42240,7 @@
                 "name",
                 "policyRespected",
                 "projectId",
+                "srn",
                 "zone"
             ],
             "inputProperties": {
@@ -42175,6 +42301,10 @@
                         "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the placement group is associated with.\n",
                         "willReplaceOnChanges": true
                     },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the placement group.\n"
+                    },
                     "tags": {
                         "type": "array",
                         "items": {
@@ -42233,6 +42363,10 @@
                     "type": "string",
                     "description": "The ID of the server associated with.\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the private network interface.\n"
+                },
                 "tags": {
                     "type": "array",
                     "items": {
@@ -42251,6 +42385,7 @@
                 "privateNetworkId",
                 "projectId",
                 "serverId",
+                "srn",
                 "zone"
             ],
             "inputProperties": {
@@ -42355,6 +42490,10 @@
                         "type": "string",
                         "description": "The ID of the server associated with.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the private network interface.\n"
                     },
                     "tags": {
                         "type": "array",
@@ -48296,7 +48435,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Map of settings to define for the instance."
+                    "description": "Map of engine settings applied to the instance (read-only).\n"
                 },
                 "snapshotId": {
                     "type": "string",
@@ -48352,6 +48491,7 @@
                 "projectId",
                 "publicNetwork",
                 "region",
+                "settings",
                 "snapshotScheduleFrequencyHours",
                 "snapshotScheduleRetentionDays",
                 "tlsCertificate",
@@ -48414,13 +48554,6 @@
                     "type": "string",
                     "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region in which the MongoDB® instance should be created.\n",
                     "willReplaceOnChanges": true
-                },
-                "settings": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "Map of settings to define for the instance."
                 },
                 "snapshotId": {
                     "type": "string",
@@ -48530,7 +48663,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "Map of settings to define for the instance."
+                        "description": "Map of engine settings applied to the instance (read-only).\n"
                     },
                     "snapshotId": {
                         "type": "string",
@@ -49697,6 +49830,10 @@
                     },
                     "description": "Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions\nwith scaleway API or CLI\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the Redis™ cluster.\n"
+                },
                 "tags": {
                     "type": "array",
                     "items": {
@@ -49735,6 +49872,7 @@
                 "privateIps",
                 "projectId",
                 "publicNetwork",
+                "srn",
                 "updatedAt",
                 "userName",
                 "version",
@@ -49913,6 +50051,10 @@
                             "type": "string"
                         },
                         "description": "Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions\nwith scaleway API or CLI\n"
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the Redis™ cluster.\n"
                     },
                     "tags": {
                         "type": "array",
@@ -51075,7 +51217,7 @@
             "deprecationMessage": "scaleway.index/temwebhook.TemWebhook has been deprecated in favor of scaleway.tem/webhook.Webhook"
         },
         "scaleway:index/vpc:Vpc": {
-            "description": "Creates and manages Scaleway Virtual Private Clouds.\nFor more information, see [the main documentation](https://www.scaleway.com/en/docs/vpc/concepts/).\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst vpc01 = new scaleway.network.Vpc(\"vpc01\", {\n    name: \"my-vpc\",\n    tags: [\n        \"demo\",\n        \"terraform\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nvpc01 = scaleway.network.Vpc(\"vpc01\",\n    name=\"my-vpc\",\n    tags=[\n        \"demo\",\n        \"terraform\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vpc01 = new Scaleway.Network.Vpc(\"vpc01\", new()\n    {\n        Name = \"my-vpc\",\n        Tags = new[]\n        {\n            \"demo\",\n            \"terraform\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := network.NewVpc(ctx, \"vpc01\", \u0026network.VpcArgs{\n\t\t\tName: pulumi.String(\"my-vpc\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"demo\"),\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_network_vpc\" \"vpc01\" {\n  name = \"my-vpc\"\n  tags = [\"demo\", \"terraform\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.network.Vpc;\nimport com.pulumi.scaleway.network.VpcArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vpc01 = new Vpc(\"vpc01\", VpcArgs.builder()\n            .name(\"my-vpc\")\n            .tags(            \n                \"demo\",\n                \"terraform\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vpc01:\n    type: scaleway:network:Vpc\n    properties:\n      name: my-vpc\n      tags:\n        - demo\n        - terraform\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Enable routing\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst vpc01 = new scaleway.network.Vpc(\"vpc01\", {\n    name: \"my-vpc\",\n    tags: [\n        \"demo\",\n        \"terraform\",\n        \"routing\",\n    ],\n    enableRouting: true,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nvpc01 = scaleway.network.Vpc(\"vpc01\",\n    name=\"my-vpc\",\n    tags=[\n        \"demo\",\n        \"terraform\",\n        \"routing\",\n    ],\n    enable_routing=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vpc01 = new Scaleway.Network.Vpc(\"vpc01\", new()\n    {\n        Name = \"my-vpc\",\n        Tags = new[]\n        {\n            \"demo\",\n            \"terraform\",\n            \"routing\",\n        },\n        EnableRouting = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := network.NewVpc(ctx, \"vpc01\", \u0026network.VpcArgs{\n\t\t\tName: pulumi.String(\"my-vpc\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"demo\"),\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t\tpulumi.String(\"routing\"),\n\t\t\t},\n\t\t\tEnableRouting: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_network_vpc\" \"vpc01\" {\n  name           = \"my-vpc\"\n  tags           = [\"demo\", \"terraform\", \"routing\"]\n  enable_routing = true\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.network.Vpc;\nimport com.pulumi.scaleway.network.VpcArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vpc01 = new Vpc(\"vpc01\", VpcArgs.builder()\n            .name(\"my-vpc\")\n            .tags(            \n                \"demo\",\n                \"terraform\",\n                \"routing\")\n            .enableRouting(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vpc01:\n    type: scaleway:network:Vpc\n    properties:\n      name: my-vpc\n      tags:\n        - demo\n        - terraform\n        - routing\n      enableRouting: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nVPCs can be imported using `{region}/{id}`, e.g.\n\n```sh\n$ pulumi import scaleway:index/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111\n```\n\n",
+            "description": "Creates and manages Scaleway Virtual Private Clouds.\nFor more information, see [the main documentation](https://www.scaleway.com/en/docs/vpc/concepts/).\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst vpc01 = new scaleway.network.Vpc(\"vpc01\", {\n    name: \"my-vpc\",\n    tags: [\n        \"demo\",\n        \"terraform\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nvpc01 = scaleway.network.Vpc(\"vpc01\",\n    name=\"my-vpc\",\n    tags=[\n        \"demo\",\n        \"terraform\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vpc01 = new Scaleway.Network.Vpc(\"vpc01\", new()\n    {\n        Name = \"my-vpc\",\n        Tags = new[]\n        {\n            \"demo\",\n            \"terraform\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := network.NewVpc(ctx, \"vpc01\", \u0026network.VpcArgs{\n\t\t\tName: pulumi.String(\"my-vpc\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"demo\"),\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_network_vpc\" \"vpc01\" {\n  name = \"my-vpc\"\n  tags = [\"demo\", \"terraform\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.network.Vpc;\nimport com.pulumi.scaleway.network.VpcArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vpc01 = new Vpc(\"vpc01\", VpcArgs.builder()\n            .name(\"my-vpc\")\n            .tags(            \n                \"demo\",\n                \"terraform\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vpc01:\n    type: scaleway:network:Vpc\n    properties:\n      name: my-vpc\n      tags:\n        - demo\n        - terraform\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nVPCs can be imported using `{region}/{id}`, e.g.\n\n```sh\n$ pulumi import scaleway:index/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111\n```\n\n",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -51083,11 +51225,13 @@
                 },
                 "enableCustomRoutesPropagation": {
                     "type": "boolean",
-                    "description": "Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.\n"
+                    "description": "Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.\n",
+                    "deprecationMessage": "Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version"
                 },
                 "enableRouting": {
                     "type": "boolean",
-                    "description": "Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.\n"
+                    "description": "Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.\n",
+                    "deprecationMessage": "Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version"
                 },
                 "enableTransitivity": {
                     "type": "boolean",
@@ -51145,11 +51289,13 @@
             "inputProperties": {
                 "enableCustomRoutesPropagation": {
                     "type": "boolean",
-                    "description": "Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.\n"
+                    "description": "Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.\n",
+                    "deprecationMessage": "Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version"
                 },
                 "enableRouting": {
                     "type": "boolean",
-                    "description": "Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.\n"
+                    "description": "Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.\n",
+                    "deprecationMessage": "Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version"
                 },
                 "enableTransitivity": {
                     "type": "boolean",
@@ -51187,11 +51333,13 @@
                     },
                     "enableCustomRoutesPropagation": {
                         "type": "boolean",
-                        "description": "Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.\n"
+                        "description": "Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.\n",
+                        "deprecationMessage": "Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version"
                     },
                     "enableRouting": {
                         "type": "boolean",
-                        "description": "Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.\n"
+                        "description": "Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.\n",
+                        "deprecationMessage": "Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version"
                     },
                     "enableTransitivity": {
                         "type": "boolean",
@@ -54001,6 +54149,10 @@
                     "type": "string",
                     "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the placement group is associated with.\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the placement group.\n"
+                },
                 "tags": {
                     "type": "array",
                     "items": {
@@ -54017,6 +54169,7 @@
                 "name",
                 "policyRespected",
                 "projectId",
+                "srn",
                 "zone"
             ],
             "inputProperties": {
@@ -54076,6 +54229,10 @@
                         "type": "string",
                         "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the placement group is associated with.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the placement group.\n"
                     },
                     "tags": {
                         "type": "array",
@@ -54139,6 +54296,10 @@
                     "type": "string",
                     "description": "The ID of the server associated with.\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the private network interface.\n"
+                },
                 "tags": {
                     "type": "array",
                     "items": {
@@ -54157,6 +54318,7 @@
                 "privateNetworkId",
                 "projectId",
                 "serverId",
+                "srn",
                 "zone"
             ],
             "inputProperties": {
@@ -54261,6 +54423,10 @@
                         "type": "string",
                         "description": "The ID of the server associated with.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the private network interface.\n"
                     },
                     "tags": {
                         "type": "array",
@@ -55213,6 +55379,10 @@
                     "type": "string",
                     "description": "The commercial type of the server defined in the template.\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the Instance template.\n"
+                },
                 "tags": {
                     "type": "array",
                     "items": {
@@ -55247,6 +55417,7 @@
                 "publicIpv4Count",
                 "publicIpv6Count",
                 "serverType",
+                "srn",
                 "updatedAt",
                 "zone"
             ],
@@ -55381,6 +55552,10 @@
                     "serverType": {
                         "type": "string",
                         "description": "The commercial type of the server defined in the template.\n"
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the Instance template.\n"
                     },
                     "tags": {
                         "type": "array",
@@ -57470,11 +57645,19 @@
             ]
         },
         "scaleway:kafka/cluster:Cluster": {
-            "description": "Creates and manages Scaleway Kafka clusters.\nFor more information refer to the [product documentation](https://www.scaleway.com/en/developers/api/clusters-for-kafka).\n\n\u003e **Important:** The Kafka product is currently in Public Beta.\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.network.Vpc(\"main\", {\n    region: \"fr-par\",\n    name: \"my-vpc\",\n});\nconst pn = new scaleway.network.PrivateNetwork(\"pn\", {\n    name: \"my-private-network\",\n    region: \"fr-par\",\n    vpcId: main.id,\n});\nconst mainCluster = new scaleway.kafka.Cluster(\"main\", {\n    name: \"my-kafka-cluster\",\n    version: \"4.1.1\",\n    nodeAmount: 1,\n    nodeType: \"KAFK-PLAY-NANO\",\n    volumeType: \"sbs_5k\",\n    volumeSizeInGb: 10,\n    userName: \"admin\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    privateNetwork: {\n        pnId: pn.id,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.network.Vpc(\"main\",\n    region=\"fr-par\",\n    name=\"my-vpc\")\npn = scaleway.network.PrivateNetwork(\"pn\",\n    name=\"my-private-network\",\n    region=\"fr-par\",\n    vpc_id=main.id)\nmain_cluster = scaleway.kafka.Cluster(\"main\",\n    name=\"my-kafka-cluster\",\n    version=\"4.1.1\",\n    node_amount=1,\n    node_type=\"KAFK-PLAY-NANO\",\n    volume_type=\"sbs_5k\",\n    volume_size_in_gb=10,\n    user_name=\"admin\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    private_network={\n        \"pn_id\": pn.id,\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Network.Vpc(\"main\", new()\n    {\n        Region = \"fr-par\",\n        Name = \"my-vpc\",\n    });\n\n    var pn = new Scaleway.Network.PrivateNetwork(\"pn\", new()\n    {\n        Name = \"my-private-network\",\n        Region = \"fr-par\",\n        VpcId = main.Id,\n    });\n\n    var mainCluster = new Scaleway.Kafka.Cluster(\"main\", new()\n    {\n        Name = \"my-kafka-cluster\",\n        Version = \"4.1.1\",\n        NodeAmount = 1,\n        NodeType = \"KAFK-PLAY-NANO\",\n        VolumeType = \"sbs_5k\",\n        VolumeSizeInGb = 10,\n        UserName = \"admin\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        PrivateNetwork = new Scaleway.Kafka.Inputs.ClusterPrivateNetworkArgs\n        {\n            PnId = pn.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kafka\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := network.NewVpc(ctx, \"main\", \u0026network.VpcArgs{\n\t\t\tRegion: pulumi.String(\"fr-par\"),\n\t\t\tName:   pulumi.String(\"my-vpc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpn, err := network.NewPrivateNetwork(ctx, \"pn\", \u0026network.PrivateNetworkArgs{\n\t\t\tName:   pulumi.String(\"my-private-network\"),\n\t\t\tRegion: pulumi.String(\"fr-par\"),\n\t\t\tVpcId:  main.ID().ToIDOutput().ToStringOutput(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kafka.NewCluster(ctx, \"main\", \u0026kafka.ClusterArgs{\n\t\t\tName:           pulumi.String(\"my-kafka-cluster\"),\n\t\t\tVersion:        pulumi.String(\"4.1.1\"),\n\t\t\tNodeAmount:     pulumi.Int(1),\n\t\t\tNodeType:       pulumi.String(\"KAFK-PLAY-NANO\"),\n\t\t\tVolumeType:     pulumi.String(\"sbs_5k\"),\n\t\t\tVolumeSizeInGb: pulumi.Int(10),\n\t\t\tUserName:       pulumi.String(\"admin\"),\n\t\t\tPassword:       pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tPrivateNetwork: \u0026kafka.ClusterPrivateNetworkArgs{\n\t\t\t\tPnId: pn.ID().ToIDOutput().ToStringOutput(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_network_vpc\" \"main\" {\n  region = \"fr-par\"\n  name   = \"my-vpc\"\n}\nresource \"scaleway_network_privatenetwork\" \"pn\" {\n  name   = \"my-private-network\"\n  region = \"fr-par\"\n  vpc_id = scaleway_network_vpc.main.id\n}\nresource \"scaleway_kafka_cluster\" \"main\" {\n  name              = \"my-kafka-cluster\"\n  version           = \"4.1.1\"\n  node_amount       = 1\n  node_type         = \"KAFK-PLAY-NANO\"\n  volume_type       = \"sbs_5k\"\n  volume_size_in_gb = 10\n  user_name         = \"admin\"\n  password          = \"thiZ_is_v\u0026ry_s3cret\"\n  private_network = {\n    pn_id = scaleway_network_privatenetwork.pn.id\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.network.Vpc;\nimport com.pulumi.scaleway.network.VpcArgs;\nimport com.pulumi.scaleway.network.PrivateNetwork;\nimport com.pulumi.scaleway.network.PrivateNetworkArgs;\nimport com.pulumi.scaleway.kafka.Cluster;\nimport com.pulumi.scaleway.kafka.ClusterArgs;\nimport com.pulumi.scaleway.kafka.inputs.ClusterPrivateNetworkArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new Vpc(\"main\", VpcArgs.builder()\n            .region(\"fr-par\")\n            .name(\"my-vpc\")\n            .build());\n\n        var pn = new PrivateNetwork(\"pn\", PrivateNetworkArgs.builder()\n            .name(\"my-private-network\")\n            .region(\"fr-par\")\n            .vpcId(main.id())\n            .build());\n\n        var mainCluster = new Cluster(\"mainCluster\", ClusterArgs.builder()\n            .name(\"my-kafka-cluster\")\n            .version(\"4.1.1\")\n            .nodeAmount(1)\n            .nodeType(\"KAFK-PLAY-NANO\")\n            .volumeType(\"sbs_5k\")\n            .volumeSizeInGb(10)\n            .userName(\"admin\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .privateNetwork(ClusterPrivateNetworkArgs.builder()\n                .pnId(pn.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:network:Vpc\n    properties:\n      region: fr-par\n      name: my-vpc\n  pn:\n    type: scaleway:network:PrivateNetwork\n    properties:\n      name: my-private-network\n      region: fr-par\n      vpcId: ${main.id}\n  mainCluster:\n    type: scaleway:kafka:Cluster\n    name: main\n    properties:\n      name: my-kafka-cluster\n      version: 4.1.1\n      nodeAmount: 1\n      nodeType: KAFK-PLAY-NANO\n      volumeType: sbs_5k\n      volumeSizeInGb: 10\n      userName: admin\n      password: thiZ_is_v\u0026ry_s3cret\n      privateNetwork:\n        pnId: ${pn.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With Tags\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.network.Vpc(\"main\", {\n    region: \"fr-par\",\n    name: \"my-vpc\",\n});\nconst pn = new scaleway.network.PrivateNetwork(\"pn\", {\n    name: \"my-private-network\",\n    region: \"fr-par\",\n    vpcId: main.id,\n});\nconst mainCluster = new scaleway.kafka.Cluster(\"main\", {\n    name: \"my-kafka-cluster\",\n    version: \"4.1.1\",\n    nodeAmount: 1,\n    nodeType: \"KAFK-PLAY-NANO\",\n    volumeType: \"sbs_5k\",\n    volumeSizeInGb: 10,\n    userName: \"admin\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    tags: [\n        \"production\",\n        \"messaging\",\n    ],\n    privateNetwork: {\n        pnId: pn.id,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.network.Vpc(\"main\",\n    region=\"fr-par\",\n    name=\"my-vpc\")\npn = scaleway.network.PrivateNetwork(\"pn\",\n    name=\"my-private-network\",\n    region=\"fr-par\",\n    vpc_id=main.id)\nmain_cluster = scaleway.kafka.Cluster(\"main\",\n    name=\"my-kafka-cluster\",\n    version=\"4.1.1\",\n    node_amount=1,\n    node_type=\"KAFK-PLAY-NANO\",\n    volume_type=\"sbs_5k\",\n    volume_size_in_gb=10,\n    user_name=\"admin\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    tags=[\n        \"production\",\n        \"messaging\",\n    ],\n    private_network={\n        \"pn_id\": pn.id,\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Network.Vpc(\"main\", new()\n    {\n        Region = \"fr-par\",\n        Name = \"my-vpc\",\n    });\n\n    var pn = new Scaleway.Network.PrivateNetwork(\"pn\", new()\n    {\n        Name = \"my-private-network\",\n        Region = \"fr-par\",\n        VpcId = main.Id,\n    });\n\n    var mainCluster = new Scaleway.Kafka.Cluster(\"main\", new()\n    {\n        Name = \"my-kafka-cluster\",\n        Version = \"4.1.1\",\n        NodeAmount = 1,\n        NodeType = \"KAFK-PLAY-NANO\",\n        VolumeType = \"sbs_5k\",\n        VolumeSizeInGb = 10,\n        UserName = \"admin\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        Tags = new[]\n        {\n            \"production\",\n            \"messaging\",\n        },\n        PrivateNetwork = new Scaleway.Kafka.Inputs.ClusterPrivateNetworkArgs\n        {\n            PnId = pn.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kafka\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := network.NewVpc(ctx, \"main\", \u0026network.VpcArgs{\n\t\t\tRegion: pulumi.String(\"fr-par\"),\n\t\t\tName:   pulumi.String(\"my-vpc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpn, err := network.NewPrivateNetwork(ctx, \"pn\", \u0026network.PrivateNetworkArgs{\n\t\t\tName:   pulumi.String(\"my-private-network\"),\n\t\t\tRegion: pulumi.String(\"fr-par\"),\n\t\t\tVpcId:  main.ID().ToIDOutput().ToStringOutput(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kafka.NewCluster(ctx, \"main\", \u0026kafka.ClusterArgs{\n\t\t\tName:           pulumi.String(\"my-kafka-cluster\"),\n\t\t\tVersion:        pulumi.String(\"4.1.1\"),\n\t\t\tNodeAmount:     pulumi.Int(1),\n\t\t\tNodeType:       pulumi.String(\"KAFK-PLAY-NANO\"),\n\t\t\tVolumeType:     pulumi.String(\"sbs_5k\"),\n\t\t\tVolumeSizeInGb: pulumi.Int(10),\n\t\t\tUserName:       pulumi.String(\"admin\"),\n\t\t\tPassword:       pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"production\"),\n\t\t\t\tpulumi.String(\"messaging\"),\n\t\t\t},\n\t\t\tPrivateNetwork: \u0026kafka.ClusterPrivateNetworkArgs{\n\t\t\t\tPnId: pn.ID().ToIDOutput().ToStringOutput(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_network_vpc\" \"main\" {\n  region = \"fr-par\"\n  name   = \"my-vpc\"\n}\nresource \"scaleway_network_privatenetwork\" \"pn\" {\n  name   = \"my-private-network\"\n  region = \"fr-par\"\n  vpc_id = scaleway_network_vpc.main.id\n}\nresource \"scaleway_kafka_cluster\" \"main\" {\n  name              = \"my-kafka-cluster\"\n  version           = \"4.1.1\"\n  node_amount       = 1\n  node_type         = \"KAFK-PLAY-NANO\"\n  volume_type       = \"sbs_5k\"\n  volume_size_in_gb = 10\n  user_name         = \"admin\"\n  password          = \"thiZ_is_v\u0026ry_s3cret\"\n  tags              = [\"production\", \"messaging\"]\n  private_network = {\n    pn_id = scaleway_network_privatenetwork.pn.id\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.network.Vpc;\nimport com.pulumi.scaleway.network.VpcArgs;\nimport com.pulumi.scaleway.network.PrivateNetwork;\nimport com.pulumi.scaleway.network.PrivateNetworkArgs;\nimport com.pulumi.scaleway.kafka.Cluster;\nimport com.pulumi.scaleway.kafka.ClusterArgs;\nimport com.pulumi.scaleway.kafka.inputs.ClusterPrivateNetworkArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new Vpc(\"main\", VpcArgs.builder()\n            .region(\"fr-par\")\n            .name(\"my-vpc\")\n            .build());\n\n        var pn = new PrivateNetwork(\"pn\", PrivateNetworkArgs.builder()\n            .name(\"my-private-network\")\n            .region(\"fr-par\")\n            .vpcId(main.id())\n            .build());\n\n        var mainCluster = new Cluster(\"mainCluster\", ClusterArgs.builder()\n            .name(\"my-kafka-cluster\")\n            .version(\"4.1.1\")\n            .nodeAmount(1)\n            .nodeType(\"KAFK-PLAY-NANO\")\n            .volumeType(\"sbs_5k\")\n            .volumeSizeInGb(10)\n            .userName(\"admin\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .tags(            \n                \"production\",\n                \"messaging\")\n            .privateNetwork(ClusterPrivateNetworkArgs.builder()\n                .pnId(pn.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:network:Vpc\n    properties:\n      region: fr-par\n      name: my-vpc\n  pn:\n    type: scaleway:network:PrivateNetwork\n    properties:\n      name: my-private-network\n      region: fr-par\n      vpcId: ${main.id}\n  mainCluster:\n    type: scaleway:kafka:Cluster\n    name: main\n    properties:\n      name: my-kafka-cluster\n      version: 4.1.1\n      nodeAmount: 1\n      nodeType: KAFK-PLAY-NANO\n      volumeType: sbs_5k\n      volumeSizeInGb: 10\n      userName: admin\n      password: thiZ_is_v\u0026ry_s3cret\n      tags:\n        - production\n        - messaging\n      privateNetwork:\n        pnId: ${pn.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nKafka clusters can be imported using the `{region}/{id}`, e.g.\n\n```sh\n$ pulumi import scaleway:kafka/cluster:Cluster main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n",
+            "description": "Creates and manages Scaleway Kafka clusters.\nFor more information refer to the [product documentation](https://www.scaleway.com/en/developers/api/clusters-for-kafka).\n\n\u003e **Important:** The Kafka product is currently in Public Beta.\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.network.Vpc(\"main\", {\n    region: \"fr-par\",\n    name: \"my-vpc\",\n});\nconst pn = new scaleway.network.PrivateNetwork(\"pn\", {\n    name: \"my-private-network\",\n    region: \"fr-par\",\n    vpcId: main.id,\n});\nconst mainCluster = new scaleway.kafka.Cluster(\"main\", {\n    name: \"my-kafka-cluster\",\n    version: \"4.1.1\",\n    nodeAmount: 1,\n    nodeType: \"KAFK-PLAY-NANO\",\n    volumeType: \"sbs_5k\",\n    volumeSizeInGb: 10,\n    userName: \"admin\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    privateNetwork: {\n        pnId: pn.id,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.network.Vpc(\"main\",\n    region=\"fr-par\",\n    name=\"my-vpc\")\npn = scaleway.network.PrivateNetwork(\"pn\",\n    name=\"my-private-network\",\n    region=\"fr-par\",\n    vpc_id=main.id)\nmain_cluster = scaleway.kafka.Cluster(\"main\",\n    name=\"my-kafka-cluster\",\n    version=\"4.1.1\",\n    node_amount=1,\n    node_type=\"KAFK-PLAY-NANO\",\n    volume_type=\"sbs_5k\",\n    volume_size_in_gb=10,\n    user_name=\"admin\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    private_network={\n        \"pn_id\": pn.id,\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Network.Vpc(\"main\", new()\n    {\n        Region = \"fr-par\",\n        Name = \"my-vpc\",\n    });\n\n    var pn = new Scaleway.Network.PrivateNetwork(\"pn\", new()\n    {\n        Name = \"my-private-network\",\n        Region = \"fr-par\",\n        VpcId = main.Id,\n    });\n\n    var mainCluster = new Scaleway.Kafka.Cluster(\"main\", new()\n    {\n        Name = \"my-kafka-cluster\",\n        Version = \"4.1.1\",\n        NodeAmount = 1,\n        NodeType = \"KAFK-PLAY-NANO\",\n        VolumeType = \"sbs_5k\",\n        VolumeSizeInGb = 10,\n        UserName = \"admin\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        PrivateNetwork = new Scaleway.Kafka.Inputs.ClusterPrivateNetworkArgs\n        {\n            PnId = pn.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kafka\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := network.NewVpc(ctx, \"main\", \u0026network.VpcArgs{\n\t\t\tRegion: pulumi.String(\"fr-par\"),\n\t\t\tName:   pulumi.String(\"my-vpc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpn, err := network.NewPrivateNetwork(ctx, \"pn\", \u0026network.PrivateNetworkArgs{\n\t\t\tName:   pulumi.String(\"my-private-network\"),\n\t\t\tRegion: pulumi.String(\"fr-par\"),\n\t\t\tVpcId:  main.ID().ToIDOutput().ToStringOutput(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kafka.NewCluster(ctx, \"main\", \u0026kafka.ClusterArgs{\n\t\t\tName:           pulumi.String(\"my-kafka-cluster\"),\n\t\t\tVersion:        pulumi.String(\"4.1.1\"),\n\t\t\tNodeAmount:     pulumi.Int(1),\n\t\t\tNodeType:       pulumi.String(\"KAFK-PLAY-NANO\"),\n\t\t\tVolumeType:     pulumi.String(\"sbs_5k\"),\n\t\t\tVolumeSizeInGb: pulumi.Int(10),\n\t\t\tUserName:       pulumi.String(\"admin\"),\n\t\t\tPassword:       pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tPrivateNetwork: \u0026kafka.ClusterPrivateNetworkArgs{\n\t\t\t\tPnId: pn.ID().ToIDOutput().ToStringOutput(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_network_vpc\" \"main\" {\n  region = \"fr-par\"\n  name   = \"my-vpc\"\n}\nresource \"scaleway_network_privatenetwork\" \"pn\" {\n  name   = \"my-private-network\"\n  region = \"fr-par\"\n  vpc_id = scaleway_network_vpc.main.id\n}\nresource \"scaleway_kafka_cluster\" \"main\" {\n  name              = \"my-kafka-cluster\"\n  version           = \"4.1.1\"\n  node_amount       = 1\n  node_type         = \"KAFK-PLAY-NANO\"\n  volume_type       = \"sbs_5k\"\n  volume_size_in_gb = 10\n  user_name         = \"admin\"\n  password          = \"thiZ_is_v\u0026ry_s3cret\"\n  private_network = {\n    pn_id = scaleway_network_privatenetwork.pn.id\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.network.Vpc;\nimport com.pulumi.scaleway.network.VpcArgs;\nimport com.pulumi.scaleway.network.PrivateNetwork;\nimport com.pulumi.scaleway.network.PrivateNetworkArgs;\nimport com.pulumi.scaleway.kafka.Cluster;\nimport com.pulumi.scaleway.kafka.ClusterArgs;\nimport com.pulumi.scaleway.kafka.inputs.ClusterPrivateNetworkArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new Vpc(\"main\", VpcArgs.builder()\n            .region(\"fr-par\")\n            .name(\"my-vpc\")\n            .build());\n\n        var pn = new PrivateNetwork(\"pn\", PrivateNetworkArgs.builder()\n            .name(\"my-private-network\")\n            .region(\"fr-par\")\n            .vpcId(main.id())\n            .build());\n\n        var mainCluster = new Cluster(\"mainCluster\", ClusterArgs.builder()\n            .name(\"my-kafka-cluster\")\n            .version(\"4.1.1\")\n            .nodeAmount(1)\n            .nodeType(\"KAFK-PLAY-NANO\")\n            .volumeType(\"sbs_5k\")\n            .volumeSizeInGb(10)\n            .userName(\"admin\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .privateNetwork(ClusterPrivateNetworkArgs.builder()\n                .pnId(pn.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:network:Vpc\n    properties:\n      region: fr-par\n      name: my-vpc\n  pn:\n    type: scaleway:network:PrivateNetwork\n    properties:\n      name: my-private-network\n      region: fr-par\n      vpcId: ${main.id}\n  mainCluster:\n    type: scaleway:kafka:Cluster\n    name: main\n    properties:\n      name: my-kafka-cluster\n      version: 4.1.1\n      nodeAmount: 1\n      nodeType: KAFK-PLAY-NANO\n      volumeType: sbs_5k\n      volumeSizeInGb: 10\n      userName: admin\n      password: thiZ_is_v\u0026ry_s3cret\n      privateNetwork:\n        pnId: ${pn.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### With Tags\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.network.Vpc(\"main\", {\n    region: \"fr-par\",\n    name: \"my-vpc\",\n});\nconst pn = new scaleway.network.PrivateNetwork(\"pn\", {\n    name: \"my-private-network\",\n    region: \"fr-par\",\n    vpcId: main.id,\n});\nconst mainCluster = new scaleway.kafka.Cluster(\"main\", {\n    name: \"my-kafka-cluster\",\n    version: \"4.1.1\",\n    nodeAmount: 1,\n    nodeType: \"KAFK-PLAY-NANO\",\n    volumeType: \"sbs_5k\",\n    volumeSizeInGb: 10,\n    userName: \"admin\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    tags: [\n        \"production\",\n        \"messaging\",\n    ],\n    privateNetwork: {\n        pnId: pn.id,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.network.Vpc(\"main\",\n    region=\"fr-par\",\n    name=\"my-vpc\")\npn = scaleway.network.PrivateNetwork(\"pn\",\n    name=\"my-private-network\",\n    region=\"fr-par\",\n    vpc_id=main.id)\nmain_cluster = scaleway.kafka.Cluster(\"main\",\n    name=\"my-kafka-cluster\",\n    version=\"4.1.1\",\n    node_amount=1,\n    node_type=\"KAFK-PLAY-NANO\",\n    volume_type=\"sbs_5k\",\n    volume_size_in_gb=10,\n    user_name=\"admin\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    tags=[\n        \"production\",\n        \"messaging\",\n    ],\n    private_network={\n        \"pn_id\": pn.id,\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Network.Vpc(\"main\", new()\n    {\n        Region = \"fr-par\",\n        Name = \"my-vpc\",\n    });\n\n    var pn = new Scaleway.Network.PrivateNetwork(\"pn\", new()\n    {\n        Name = \"my-private-network\",\n        Region = \"fr-par\",\n        VpcId = main.Id,\n    });\n\n    var mainCluster = new Scaleway.Kafka.Cluster(\"main\", new()\n    {\n        Name = \"my-kafka-cluster\",\n        Version = \"4.1.1\",\n        NodeAmount = 1,\n        NodeType = \"KAFK-PLAY-NANO\",\n        VolumeType = \"sbs_5k\",\n        VolumeSizeInGb = 10,\n        UserName = \"admin\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        Tags = new[]\n        {\n            \"production\",\n            \"messaging\",\n        },\n        PrivateNetwork = new Scaleway.Kafka.Inputs.ClusterPrivateNetworkArgs\n        {\n            PnId = pn.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kafka\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := network.NewVpc(ctx, \"main\", \u0026network.VpcArgs{\n\t\t\tRegion: pulumi.String(\"fr-par\"),\n\t\t\tName:   pulumi.String(\"my-vpc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpn, err := network.NewPrivateNetwork(ctx, \"pn\", \u0026network.PrivateNetworkArgs{\n\t\t\tName:   pulumi.String(\"my-private-network\"),\n\t\t\tRegion: pulumi.String(\"fr-par\"),\n\t\t\tVpcId:  main.ID().ToIDOutput().ToStringOutput(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kafka.NewCluster(ctx, \"main\", \u0026kafka.ClusterArgs{\n\t\t\tName:           pulumi.String(\"my-kafka-cluster\"),\n\t\t\tVersion:        pulumi.String(\"4.1.1\"),\n\t\t\tNodeAmount:     pulumi.Int(1),\n\t\t\tNodeType:       pulumi.String(\"KAFK-PLAY-NANO\"),\n\t\t\tVolumeType:     pulumi.String(\"sbs_5k\"),\n\t\t\tVolumeSizeInGb: pulumi.Int(10),\n\t\t\tUserName:       pulumi.String(\"admin\"),\n\t\t\tPassword:       pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"production\"),\n\t\t\t\tpulumi.String(\"messaging\"),\n\t\t\t},\n\t\t\tPrivateNetwork: \u0026kafka.ClusterPrivateNetworkArgs{\n\t\t\t\tPnId: pn.ID().ToIDOutput().ToStringOutput(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_network_vpc\" \"main\" {\n  region = \"fr-par\"\n  name   = \"my-vpc\"\n}\nresource \"scaleway_network_privatenetwork\" \"pn\" {\n  name   = \"my-private-network\"\n  region = \"fr-par\"\n  vpc_id = scaleway_network_vpc.main.id\n}\nresource \"scaleway_kafka_cluster\" \"main\" {\n  name              = \"my-kafka-cluster\"\n  version           = \"4.1.1\"\n  node_amount       = 1\n  node_type         = \"KAFK-PLAY-NANO\"\n  volume_type       = \"sbs_5k\"\n  volume_size_in_gb = 10\n  user_name         = \"admin\"\n  password          = \"thiZ_is_v\u0026ry_s3cret\"\n  tags              = [\"production\", \"messaging\"]\n  private_network = {\n    pn_id = scaleway_network_privatenetwork.pn.id\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.network.Vpc;\nimport com.pulumi.scaleway.network.VpcArgs;\nimport com.pulumi.scaleway.network.PrivateNetwork;\nimport com.pulumi.scaleway.network.PrivateNetworkArgs;\nimport com.pulumi.scaleway.kafka.Cluster;\nimport com.pulumi.scaleway.kafka.ClusterArgs;\nimport com.pulumi.scaleway.kafka.inputs.ClusterPrivateNetworkArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new Vpc(\"main\", VpcArgs.builder()\n            .region(\"fr-par\")\n            .name(\"my-vpc\")\n            .build());\n\n        var pn = new PrivateNetwork(\"pn\", PrivateNetworkArgs.builder()\n            .name(\"my-private-network\")\n            .region(\"fr-par\")\n            .vpcId(main.id())\n            .build());\n\n        var mainCluster = new Cluster(\"mainCluster\", ClusterArgs.builder()\n            .name(\"my-kafka-cluster\")\n            .version(\"4.1.1\")\n            .nodeAmount(1)\n            .nodeType(\"KAFK-PLAY-NANO\")\n            .volumeType(\"sbs_5k\")\n            .volumeSizeInGb(10)\n            .userName(\"admin\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .tags(            \n                \"production\",\n                \"messaging\")\n            .privateNetwork(ClusterPrivateNetworkArgs.builder()\n                .pnId(pn.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:network:Vpc\n    properties:\n      region: fr-par\n      name: my-vpc\n  pn:\n    type: scaleway:network:PrivateNetwork\n    properties:\n      name: my-private-network\n      region: fr-par\n      vpcId: ${main.id}\n  mainCluster:\n    type: scaleway:kafka:Cluster\n    name: main\n    properties:\n      name: my-kafka-cluster\n      version: 4.1.1\n      nodeAmount: 1\n      nodeType: KAFK-PLAY-NANO\n      volumeType: sbs_5k\n      volumeSizeInGb: 10\n      userName: admin\n      password: thiZ_is_v\u0026ry_s3cret\n      tags:\n        - production\n        - messaging\n      privateNetwork:\n        pnId: ${pn.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Multi-AZ\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst main = new scaleway.network.Vpc(\"main\", {\n    region: \"fr-par\",\n    name: \"my-vpc\",\n});\nconst pn = new scaleway.network.PrivateNetwork(\"pn\", {\n    name: \"my-private-network\",\n    region: \"fr-par\",\n    vpcId: main.id,\n});\nconst mainCluster = new scaleway.kafka.Cluster(\"main\", {\n    name: \"my-kafka-multi-az\",\n    version: \"4.1.1\",\n    nodeAmount: 3,\n    nodeType: \"KAFK-PLAY-NANO\",\n    volumeType: \"sbs_5k\",\n    volumeSizeInGb: 10,\n    multiAz: true,\n    userName: \"admin\",\n    password: \"thiZ_is_v\u0026ry_s3cret\",\n    privateNetwork: {\n        pnId: pn.id,\n    },\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nmain = scaleway.network.Vpc(\"main\",\n    region=\"fr-par\",\n    name=\"my-vpc\")\npn = scaleway.network.PrivateNetwork(\"pn\",\n    name=\"my-private-network\",\n    region=\"fr-par\",\n    vpc_id=main.id)\nmain_cluster = scaleway.kafka.Cluster(\"main\",\n    name=\"my-kafka-multi-az\",\n    version=\"4.1.1\",\n    node_amount=3,\n    node_type=\"KAFK-PLAY-NANO\",\n    volume_type=\"sbs_5k\",\n    volume_size_in_gb=10,\n    multi_az=True,\n    user_name=\"admin\",\n    password=\"thiZ_is_v\u0026ry_s3cret\",\n    private_network={\n        \"pn_id\": pn.id,\n    })\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var main = new Scaleway.Network.Vpc(\"main\", new()\n    {\n        Region = \"fr-par\",\n        Name = \"my-vpc\",\n    });\n\n    var pn = new Scaleway.Network.PrivateNetwork(\"pn\", new()\n    {\n        Name = \"my-private-network\",\n        Region = \"fr-par\",\n        VpcId = main.Id,\n    });\n\n    var mainCluster = new Scaleway.Kafka.Cluster(\"main\", new()\n    {\n        Name = \"my-kafka-multi-az\",\n        Version = \"4.1.1\",\n        NodeAmount = 3,\n        NodeType = \"KAFK-PLAY-NANO\",\n        VolumeType = \"sbs_5k\",\n        VolumeSizeInGb = 10,\n        MultiAz = true,\n        UserName = \"admin\",\n        Password = \"thiZ_is_v\u0026ry_s3cret\",\n        PrivateNetwork = new Scaleway.Kafka.Inputs.ClusterPrivateNetworkArgs\n        {\n            PnId = pn.Id,\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kafka\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmain, err := network.NewVpc(ctx, \"main\", \u0026network.VpcArgs{\n\t\t\tRegion: pulumi.String(\"fr-par\"),\n\t\t\tName:   pulumi.String(\"my-vpc\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tpn, err := network.NewPrivateNetwork(ctx, \"pn\", \u0026network.PrivateNetworkArgs{\n\t\t\tName:   pulumi.String(\"my-private-network\"),\n\t\t\tRegion: pulumi.String(\"fr-par\"),\n\t\t\tVpcId:  main.ID().ToIDOutput().ToStringOutput(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = kafka.NewCluster(ctx, \"main\", \u0026kafka.ClusterArgs{\n\t\t\tName:           pulumi.String(\"my-kafka-multi-az\"),\n\t\t\tVersion:        pulumi.String(\"4.1.1\"),\n\t\t\tNodeAmount:     pulumi.Int(3),\n\t\t\tNodeType:       pulumi.String(\"KAFK-PLAY-NANO\"),\n\t\t\tVolumeType:     pulumi.String(\"sbs_5k\"),\n\t\t\tVolumeSizeInGb: pulumi.Int(10),\n\t\t\tMultiAz:        pulumi.Bool(true),\n\t\t\tUserName:       pulumi.String(\"admin\"),\n\t\t\tPassword:       pulumi.String(\"thiZ_is_v\u0026ry_s3cret\"),\n\t\t\tPrivateNetwork: \u0026kafka.ClusterPrivateNetworkArgs{\n\t\t\t\tPnId: pn.ID().ToIDOutput().ToStringOutput(),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_network_vpc\" \"main\" {\n  region = \"fr-par\"\n  name   = \"my-vpc\"\n}\nresource \"scaleway_network_privatenetwork\" \"pn\" {\n  name   = \"my-private-network\"\n  region = \"fr-par\"\n  vpc_id = scaleway_network_vpc.main.id\n}\nresource \"scaleway_kafka_cluster\" \"main\" {\n  name              = \"my-kafka-multi-az\"\n  version           = \"4.1.1\"\n  node_amount       = 3\n  node_type         = \"KAFK-PLAY-NANO\"\n  volume_type       = \"sbs_5k\"\n  volume_size_in_gb = 10\n  multi_az          = true\n  user_name         = \"admin\"\n  password          = \"thiZ_is_v\u0026ry_s3cret\"\n  private_network = {\n    pn_id = scaleway_network_privatenetwork.pn.id\n  }\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.network.Vpc;\nimport com.pulumi.scaleway.network.VpcArgs;\nimport com.pulumi.scaleway.network.PrivateNetwork;\nimport com.pulumi.scaleway.network.PrivateNetworkArgs;\nimport com.pulumi.scaleway.kafka.Cluster;\nimport com.pulumi.scaleway.kafka.ClusterArgs;\nimport com.pulumi.scaleway.kafka.inputs.ClusterPrivateNetworkArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var main = new Vpc(\"main\", VpcArgs.builder()\n            .region(\"fr-par\")\n            .name(\"my-vpc\")\n            .build());\n\n        var pn = new PrivateNetwork(\"pn\", PrivateNetworkArgs.builder()\n            .name(\"my-private-network\")\n            .region(\"fr-par\")\n            .vpcId(main.id())\n            .build());\n\n        var mainCluster = new Cluster(\"mainCluster\", ClusterArgs.builder()\n            .name(\"my-kafka-multi-az\")\n            .version(\"4.1.1\")\n            .nodeAmount(3)\n            .nodeType(\"KAFK-PLAY-NANO\")\n            .volumeType(\"sbs_5k\")\n            .volumeSizeInGb(10)\n            .multiAz(true)\n            .userName(\"admin\")\n            .password(\"thiZ_is_v\u0026ry_s3cret\")\n            .privateNetwork(ClusterPrivateNetworkArgs.builder()\n                .pnId(pn.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  main:\n    type: scaleway:network:Vpc\n    properties:\n      region: fr-par\n      name: my-vpc\n  pn:\n    type: scaleway:network:PrivateNetwork\n    properties:\n      name: my-private-network\n      region: fr-par\n      vpcId: ${main.id}\n  mainCluster:\n    type: scaleway:kafka:Cluster\n    name: main\n    properties:\n      name: my-kafka-multi-az\n      version: 4.1.1\n      nodeAmount: 3\n      nodeType: KAFK-PLAY-NANO\n      volumeType: sbs_5k\n      volumeSizeInGb: 10\n      multiAz: true\n      userName: admin\n      password: thiZ_is_v\u0026ry_s3cret\n      privateNetwork:\n        pnId: ${pn.id}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nKafka clusters can be imported using the `{region}/{id}`, e.g.\n\n```sh\n$ pulumi import scaleway:kafka/cluster:Cluster main fr-par/11111111-1111-1111-1111-111111111111\n```\n\n",
             "properties": {
                 "createdAt": {
                     "type": "string",
                     "description": "Date and time of cluster creation (RFC 3339 format).\n"
+                },
+                "monoAzZone": {
+                    "type": "string",
+                    "description": "Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with \u003cspan pulumi-lang-nodejs=\"`multiAz`\" pulumi-lang-dotnet=\"`MultiAz`\" pulumi-lang-go=\"`multiAz`\" pulumi-lang-python=\"`multi_az`\" pulumi-lang-yaml=\"`multiAz`\" pulumi-lang-java=\"`multiAz`\" pulumi-lang-hcl=\"`multi_az`\"\u003e`multiAz`\u003c/span\u003e. When unset, defaults to the provider default zone.\n"
+                },
+                "multiAz": {
+                    "type": "boolean",
+                    "description": "Deploy the cluster across multiple availability zones. Conflicts with \u003cspan pulumi-lang-nodejs=\"`monoAzZone`\" pulumi-lang-dotnet=\"`MonoAzZone`\" pulumi-lang-go=\"`monoAzZone`\" pulumi-lang-python=\"`mono_az_zone`\" pulumi-lang-yaml=\"`monoAzZone`\" pulumi-lang-java=\"`monoAzZone`\" pulumi-lang-hcl=\"`mono_az_zone`\"\u003e`monoAzZone`\u003c/span\u003e. When unset, defaults to mono-AZ on the provider default \u003cspan pulumi-lang-nodejs=\"`zone`\" pulumi-lang-dotnet=\"`Zone`\" pulumi-lang-go=\"`zone`\" pulumi-lang-python=\"`zone`\" pulumi-lang-yaml=\"`zone`\" pulumi-lang-java=\"`zone`\" pulumi-lang-hcl=\"`zone`\"\u003e`zone`\u003c/span\u003e.\n"
                 },
                 "name": {
                     "type": "string",
@@ -57546,6 +57729,8 @@
             },
             "required": [
                 "createdAt",
+                "monoAzZone",
+                "multiAz",
                 "name",
                 "nodeAmount",
                 "nodeType",
@@ -57559,6 +57744,16 @@
                 "volumeType"
             ],
             "inputProperties": {
+                "monoAzZone": {
+                    "type": "string",
+                    "description": "Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with \u003cspan pulumi-lang-nodejs=\"`multiAz`\" pulumi-lang-dotnet=\"`MultiAz`\" pulumi-lang-go=\"`multiAz`\" pulumi-lang-python=\"`multi_az`\" pulumi-lang-yaml=\"`multiAz`\" pulumi-lang-java=\"`multiAz`\" pulumi-lang-hcl=\"`multi_az`\"\u003e`multiAz`\u003c/span\u003e. When unset, defaults to the provider default zone.\n",
+                    "willReplaceOnChanges": true
+                },
+                "multiAz": {
+                    "type": "boolean",
+                    "description": "Deploy the cluster across multiple availability zones. Conflicts with \u003cspan pulumi-lang-nodejs=\"`monoAzZone`\" pulumi-lang-dotnet=\"`MonoAzZone`\" pulumi-lang-go=\"`monoAzZone`\" pulumi-lang-python=\"`mono_az_zone`\" pulumi-lang-yaml=\"`monoAzZone`\" pulumi-lang-java=\"`monoAzZone`\" pulumi-lang-hcl=\"`mono_az_zone`\"\u003e`monoAzZone`\u003c/span\u003e. When unset, defaults to mono-AZ on the provider default \u003cspan pulumi-lang-nodejs=\"`zone`\" pulumi-lang-dotnet=\"`Zone`\" pulumi-lang-go=\"`zone`\" pulumi-lang-python=\"`zone`\" pulumi-lang-yaml=\"`zone`\" pulumi-lang-java=\"`zone`\" pulumi-lang-hcl=\"`zone`\"\u003e`zone`\u003c/span\u003e.\n",
+                    "willReplaceOnChanges": true
+                },
                 "name": {
                     "type": "string",
                     "description": "Name of the Kafka cluster.\n"
@@ -57635,6 +57830,16 @@
                     "createdAt": {
                         "type": "string",
                         "description": "Date and time of cluster creation (RFC 3339 format).\n"
+                    },
+                    "monoAzZone": {
+                        "type": "string",
+                        "description": "Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with \u003cspan pulumi-lang-nodejs=\"`multiAz`\" pulumi-lang-dotnet=\"`MultiAz`\" pulumi-lang-go=\"`multiAz`\" pulumi-lang-python=\"`multi_az`\" pulumi-lang-yaml=\"`multiAz`\" pulumi-lang-java=\"`multiAz`\" pulumi-lang-hcl=\"`multi_az`\"\u003e`multiAz`\u003c/span\u003e. When unset, defaults to the provider default zone.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "multiAz": {
+                        "type": "boolean",
+                        "description": "Deploy the cluster across multiple availability zones. Conflicts with \u003cspan pulumi-lang-nodejs=\"`monoAzZone`\" pulumi-lang-dotnet=\"`MonoAzZone`\" pulumi-lang-go=\"`monoAzZone`\" pulumi-lang-python=\"`mono_az_zone`\" pulumi-lang-yaml=\"`monoAzZone`\" pulumi-lang-java=\"`monoAzZone`\" pulumi-lang-hcl=\"`mono_az_zone`\"\u003e`monoAzZone`\u003c/span\u003e. When unset, defaults to mono-AZ on the provider default \u003cspan pulumi-lang-nodejs=\"`zone`\" pulumi-lang-dotnet=\"`Zone`\" pulumi-lang-go=\"`zone`\" pulumi-lang-python=\"`zone`\" pulumi-lang-yaml=\"`zone`\" pulumi-lang-java=\"`zone`\" pulumi-lang-hcl=\"`zone`\"\u003e`zone`\u003c/span\u003e.\n",
+                        "willReplaceOnChanges": true
                     },
                     "name": {
                         "type": "string",
@@ -62659,7 +62864,7 @@
                     "additionalProperties": {
                         "type": "string"
                     },
-                    "description": "Map of settings to define for the instance."
+                    "description": "Map of engine settings applied to the instance (read-only).\n"
                 },
                 "snapshotId": {
                     "type": "string",
@@ -62715,6 +62920,7 @@
                 "projectId",
                 "publicNetwork",
                 "region",
+                "settings",
                 "snapshotScheduleFrequencyHours",
                 "snapshotScheduleRetentionDays",
                 "tlsCertificate",
@@ -62777,13 +62983,6 @@
                     "type": "string",
                     "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region in which the MongoDB® instance should be created.\n",
                     "willReplaceOnChanges": true
-                },
-                "settings": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    },
-                    "description": "Map of settings to define for the instance."
                 },
                 "snapshotId": {
                     "type": "string",
@@ -62893,7 +63092,7 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "description": "Map of settings to define for the instance."
+                        "description": "Map of engine settings applied to the instance (read-only).\n"
                     },
                     "snapshotId": {
                         "type": "string",
@@ -65461,7 +65660,7 @@
             ]
         },
         "scaleway:network/vpc:Vpc": {
-            "description": "Creates and manages Scaleway Virtual Private Clouds.\nFor more information, see [the main documentation](https://www.scaleway.com/en/docs/vpc/concepts/).\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst vpc01 = new scaleway.network.Vpc(\"vpc01\", {\n    name: \"my-vpc\",\n    tags: [\n        \"demo\",\n        \"terraform\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nvpc01 = scaleway.network.Vpc(\"vpc01\",\n    name=\"my-vpc\",\n    tags=[\n        \"demo\",\n        \"terraform\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vpc01 = new Scaleway.Network.Vpc(\"vpc01\", new()\n    {\n        Name = \"my-vpc\",\n        Tags = new[]\n        {\n            \"demo\",\n            \"terraform\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := network.NewVpc(ctx, \"vpc01\", \u0026network.VpcArgs{\n\t\t\tName: pulumi.String(\"my-vpc\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"demo\"),\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_network_vpc\" \"vpc01\" {\n  name = \"my-vpc\"\n  tags = [\"demo\", \"terraform\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.network.Vpc;\nimport com.pulumi.scaleway.network.VpcArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vpc01 = new Vpc(\"vpc01\", VpcArgs.builder()\n            .name(\"my-vpc\")\n            .tags(            \n                \"demo\",\n                \"terraform\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vpc01:\n    type: scaleway:network:Vpc\n    properties:\n      name: my-vpc\n      tags:\n        - demo\n        - terraform\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Enable routing\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst vpc01 = new scaleway.network.Vpc(\"vpc01\", {\n    name: \"my-vpc\",\n    tags: [\n        \"demo\",\n        \"terraform\",\n        \"routing\",\n    ],\n    enableRouting: true,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nvpc01 = scaleway.network.Vpc(\"vpc01\",\n    name=\"my-vpc\",\n    tags=[\n        \"demo\",\n        \"terraform\",\n        \"routing\",\n    ],\n    enable_routing=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vpc01 = new Scaleway.Network.Vpc(\"vpc01\", new()\n    {\n        Name = \"my-vpc\",\n        Tags = new[]\n        {\n            \"demo\",\n            \"terraform\",\n            \"routing\",\n        },\n        EnableRouting = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := network.NewVpc(ctx, \"vpc01\", \u0026network.VpcArgs{\n\t\t\tName: pulumi.String(\"my-vpc\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"demo\"),\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t\tpulumi.String(\"routing\"),\n\t\t\t},\n\t\t\tEnableRouting: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_network_vpc\" \"vpc01\" {\n  name           = \"my-vpc\"\n  tags           = [\"demo\", \"terraform\", \"routing\"]\n  enable_routing = true\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.network.Vpc;\nimport com.pulumi.scaleway.network.VpcArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vpc01 = new Vpc(\"vpc01\", VpcArgs.builder()\n            .name(\"my-vpc\")\n            .tags(            \n                \"demo\",\n                \"terraform\",\n                \"routing\")\n            .enableRouting(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vpc01:\n    type: scaleway:network:Vpc\n    properties:\n      name: my-vpc\n      tags:\n        - demo\n        - terraform\n        - routing\n      enableRouting: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nVPCs can be imported using `{region}/{id}`, e.g.\n\n```sh\n$ pulumi import scaleway:network/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111\n```\n\n",
+            "description": "Creates and manages Scaleway Virtual Private Clouds.\nFor more information, see [the main documentation](https://www.scaleway.com/en/docs/vpc/concepts/).\n\n## Example Usage\n\n### Basic\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst vpc01 = new scaleway.network.Vpc(\"vpc01\", {\n    name: \"my-vpc\",\n    tags: [\n        \"demo\",\n        \"terraform\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nvpc01 = scaleway.network.Vpc(\"vpc01\",\n    name=\"my-vpc\",\n    tags=[\n        \"demo\",\n        \"terraform\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var vpc01 = new Scaleway.Network.Vpc(\"vpc01\", new()\n    {\n        Name = \"my-vpc\",\n        Tags = new[]\n        {\n            \"demo\",\n            \"terraform\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := network.NewVpc(ctx, \"vpc01\", \u0026network.VpcArgs{\n\t\t\tName: pulumi.String(\"my-vpc\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"demo\"),\n\t\t\t\tpulumi.String(\"terraform\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_network_vpc\" \"vpc01\" {\n  name = \"my-vpc\"\n  tags = [\"demo\", \"terraform\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.network.Vpc;\nimport com.pulumi.scaleway.network.VpcArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var vpc01 = new Vpc(\"vpc01\", VpcArgs.builder()\n            .name(\"my-vpc\")\n            .tags(            \n                \"demo\",\n                \"terraform\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  vpc01:\n    type: scaleway:network:Vpc\n    properties:\n      name: my-vpc\n      tags:\n        - demo\n        - terraform\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nVPCs can be imported using `{region}/{id}`, e.g.\n\n```sh\n$ pulumi import scaleway:network/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111\n```\n\n",
             "properties": {
                 "createdAt": {
                     "type": "string",
@@ -65469,11 +65668,13 @@
                 },
                 "enableCustomRoutesPropagation": {
                     "type": "boolean",
-                    "description": "Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.\n"
+                    "description": "Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.\n",
+                    "deprecationMessage": "Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version"
                 },
                 "enableRouting": {
                     "type": "boolean",
-                    "description": "Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.\n"
+                    "description": "Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.\n",
+                    "deprecationMessage": "Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version"
                 },
                 "enableTransitivity": {
                     "type": "boolean",
@@ -65531,11 +65732,13 @@
             "inputProperties": {
                 "enableCustomRoutesPropagation": {
                     "type": "boolean",
-                    "description": "Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.\n"
+                    "description": "Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.\n",
+                    "deprecationMessage": "Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version"
                 },
                 "enableRouting": {
                     "type": "boolean",
-                    "description": "Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.\n"
+                    "description": "Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.\n",
+                    "deprecationMessage": "Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version"
                 },
                 "enableTransitivity": {
                     "type": "boolean",
@@ -65573,11 +65776,13 @@
                     },
                     "enableCustomRoutesPropagation": {
                         "type": "boolean",
-                        "description": "Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.\n"
+                        "description": "Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.\n",
+                        "deprecationMessage": "Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version"
                     },
                     "enableRouting": {
                         "type": "boolean",
-                        "description": "Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.\n"
+                        "description": "Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.\n",
+                        "deprecationMessage": "Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version"
                     },
                     "enableTransitivity": {
                         "type": "boolean",
@@ -66886,7 +67091,7 @@
                 },
                 "retentionDays": {
                     "type": "integer",
-                    "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.\n"
+                    "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type.\n"
                 },
                 "synchronizedWithGrafana": {
                     "type": "boolean",
@@ -66935,7 +67140,7 @@
                 },
                 "retentionDays": {
                     "type": "integer",
-                    "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.\n"
+                    "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type.\n"
                 },
                 "type": {
                     "type": "string",
@@ -66978,7 +67183,7 @@
                     },
                     "retentionDays": {
                         "type": "integer",
-                        "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type. Note: Changes to this field will force the creation of a new resource.\n"
+                        "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type.\n"
                     },
                     "synchronizedWithGrafana": {
                         "type": "boolean",
@@ -67771,6 +67976,10 @@
                     },
                     "description": "Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions\nwith scaleway API or CLI\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the Redis™ cluster.\n"
+                },
                 "tags": {
                     "type": "array",
                     "items": {
@@ -67809,6 +68018,7 @@
                 "privateIps",
                 "projectId",
                 "publicNetwork",
+                "srn",
                 "updatedAt",
                 "userName",
                 "version",
@@ -67987,6 +68197,10 @@
                             "type": "string"
                         },
                         "description": "Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions\nwith scaleway API or CLI\n"
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the Redis™ cluster.\n"
                     },
                     "tags": {
                         "type": "array",
@@ -74836,6 +75050,9 @@
                         "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
+                    "secretId": {
+                        "type": "string"
+                    },
                     "srn": {
                         "type": "string"
                     },
@@ -74855,6 +75072,7 @@
                     "description",
                     "editable",
                     "expiresAt",
+                    "secretId",
                     "srn",
                     "updatedAt",
                     "userId",
@@ -78055,6 +78273,9 @@
                         "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
+                    "secretId": {
+                        "type": "string"
+                    },
                     "srn": {
                         "type": "string"
                     },
@@ -78074,6 +78295,7 @@
                     "description",
                     "editable",
                     "expiresAt",
+                    "secretId",
                     "srn",
                     "updatedAt",
                     "userId",
@@ -78704,6 +78926,10 @@
                     "projectId": {
                         "type": "string"
                     },
+                    "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the placement group.\n",
+                        "type": "string"
+                    },
                     "tags": {
                         "description": "A list of tags to apply to the placement group.\n",
                         "items": {
@@ -78720,6 +78946,7 @@
                     "policyRespected",
                     "policyType",
                     "projectId",
+                    "srn",
                     "tags",
                     "id"
                 ],
@@ -78801,6 +79028,9 @@
                     "serverId": {
                         "type": "string"
                     },
+                    "srn": {
+                        "type": "string"
+                    },
                     "tags": {
                         "items": {
                             "type": "string"
@@ -78818,6 +79048,7 @@
                     "privateIps",
                     "projectId",
                     "serverId",
+                    "srn",
                     "id"
                 ],
                 "type": "object"
@@ -82032,6 +82263,10 @@
                         "description": "Map of settings for redis cluster.\n",
                         "type": "object"
                     },
+                    "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the Redis Cluster.\n",
+                        "type": "string"
+                    },
                     "tags": {
                         "description": "The tags associated with the Redis Cluster.\n",
                         "items": {
@@ -82073,6 +82308,7 @@
                     "privateNetworks",
                     "publicNetworks",
                     "settings",
+                    "srn",
                     "tags",
                     "tlsEnabled",
                     "updatedAt",
@@ -84334,6 +84570,10 @@
                     "projectId": {
                         "type": "string"
                     },
+                    "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the placement group.\n",
+                        "type": "string"
+                    },
                     "tags": {
                         "description": "A list of tags to apply to the placement group.\n",
                         "items": {
@@ -84350,6 +84590,7 @@
                     "policyRespected",
                     "policyType",
                     "projectId",
+                    "srn",
                     "tags",
                     "id"
                 ],
@@ -84430,6 +84671,9 @@
                     "serverId": {
                         "type": "string"
                     },
+                    "srn": {
+                        "type": "string"
+                    },
                     "tags": {
                         "items": {
                             "type": "string"
@@ -84447,6 +84691,7 @@
                     "privateIps",
                     "projectId",
                     "serverId",
+                    "srn",
                     "id"
                 ],
                 "type": "object"
@@ -86222,6 +86467,12 @@
                         "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
+                    "monoAzZone": {
+                        "type": "string"
+                    },
+                    "multiAz": {
+                        "type": "boolean"
+                    },
                     "name": {
                         "description": "Name of the Kafka cluster\n",
                         "type": "string"
@@ -86295,6 +86546,8 @@
                 },
                 "required": [
                     "createdAt",
+                    "monoAzZone",
+                    "multiAz",
                     "nodeAmount",
                     "nodeType",
                     "password",
@@ -91206,6 +91459,10 @@
                         "description": "Map of settings for redis cluster.\n",
                         "type": "object"
                     },
+                    "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the Redis Cluster.\n",
+                        "type": "string"
+                    },
                     "tags": {
                         "description": "The tags associated with the Redis Cluster.\n",
                         "items": {
@@ -91247,6 +91504,7 @@
                     "privateNetworks",
                     "publicNetworks",
                     "settings",
+                    "srn",
                     "tags",
                     "tlsEnabled",
                     "updatedAt",
