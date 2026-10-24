@@ -120,6 +120,10 @@ namespace Pulumiverse.Scaleway.Instance
         public readonly string PolicyType;
         public readonly string ProjectId;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the placement group.
+        /// </summary>
+        public readonly string Srn;
+        /// <summary>
         /// A list of tags to apply to the placement group.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
@@ -141,6 +145,8 @@ namespace Pulumiverse.Scaleway.Instance
 
             string projectId,
 
+            string srn,
+
             ImmutableArray<string> tags,
 
             string? zone)
@@ -152,6 +158,7 @@ namespace Pulumiverse.Scaleway.Instance
             PolicyRespected = policyRespected;
             PolicyType = policyType;
             ProjectId = projectId;
+            Srn = srn;
             Tags = tags;
             Zone = zone;
         }

@@ -78,6 +78,10 @@ export class Runner extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the runner
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The status of the runner
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -112,6 +116,7 @@ export class Runner extends pulumi.CustomResource {
             resourceInputs["labels"] = state?.labels;
             resourceInputs["name"] = state?.name;
             resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["token"] = state?.token;
             resourceInputs["url"] = state?.url;
@@ -135,6 +140,7 @@ export class Runner extends pulumi.CustomResource {
             resourceInputs["zone"] = args?.zone;
             resourceInputs["errorMessage"] = undefined /*out*/;
             resourceInputs["labels"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -168,6 +174,10 @@ export interface RunnerState {
      * The projectId you want to attach the resource to
      */
     projectId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the runner
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The status of the runner
      */

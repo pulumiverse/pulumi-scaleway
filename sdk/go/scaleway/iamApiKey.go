@@ -115,6 +115,48 @@ import (
 //
 // ```
 //
+// ### With secret (secret_key stored in Secret Manager)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/secrets"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := secrets.NewSecret(ctx, "main", &secrets.SecretArgs{
+//				Name: pulumi.String("My secret"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = iam.NewApplication(ctx, "ci_cd", &iam.ApplicationArgs{
+//				Name: pulumi.String("My application"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = iam.NewApiKey(ctx, "main", &iam.ApiKeyArgs{
+//				ApplicationId: pulumi.Any(mainScalewayIamApplication.Id),
+//				SecretId:      main.ID().ToIDOutput().ToStringOutput(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// The `secretKey` is then not stored in the Terraform state and can be retrieved with the `secrets.Version` ephemeral resource:
+//
 // ## Import
 //
 // Api keys can be imported using the `{id}`, e.g.
@@ -146,7 +188,9 @@ type IamApiKey struct {
 	// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
 	// the resource will be recreated.
 	ExpiresAt pulumi.StringPtrOutput `pulumi:"expiresAt"`
-	// The secret Key of the IAM API key.
+	// ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secretKey` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+	SecretId pulumi.StringPtrOutput `pulumi:"secretId"`
+	// The secret Key of the IAM API key. Not set when `secretId` is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the `secrets.Version` ephemeral resource.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
 	// The Scaleway Resource Name (SRN) of the API key.
 	Srn pulumi.StringOutput `pulumi:"srn"`
@@ -208,7 +252,9 @@ type iamApiKeyState struct {
 	// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
 	// the resource will be recreated.
 	ExpiresAt *string `pulumi:"expiresAt"`
-	// The secret Key of the IAM API key.
+	// ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secretKey` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+	SecretId *string `pulumi:"secretId"`
+	// The secret Key of the IAM API key. Not set when `secretId` is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the `secrets.Version` ephemeral resource.
 	SecretKey *string `pulumi:"secretKey"`
 	// The Scaleway Resource Name (SRN) of the API key.
 	Srn *string `pulumi:"srn"`
@@ -237,7 +283,9 @@ type IamApiKeyState struct {
 	// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
 	// the resource will be recreated.
 	ExpiresAt pulumi.StringPtrInput
-	// The secret Key of the IAM API key.
+	// ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secretKey` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+	SecretId pulumi.StringPtrInput
+	// The secret Key of the IAM API key. Not set when `secretId` is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the `secrets.Version` ephemeral resource.
 	SecretKey pulumi.StringPtrInput
 	// The Scaleway Resource Name (SRN) of the API key.
 	Srn pulumi.StringPtrInput
@@ -262,6 +310,8 @@ type iamApiKeyArgs struct {
 	// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
 	// the resource will be recreated.
 	ExpiresAt *string `pulumi:"expiresAt"`
+	// ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secretKey` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+	SecretId *string `pulumi:"secretId"`
 	// ID of the user attached to the API key.
 	// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 	UserId *string `pulumi:"userId"`
@@ -278,6 +328,8 @@ type IamApiKeyArgs struct {
 	// The date and time of the expiration of the IAM API key. Please note that in case of any changes,
 	// the resource will be recreated.
 	ExpiresAt pulumi.StringPtrInput
+	// ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secretKey` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+	SecretId pulumi.StringPtrInput
 	// ID of the user attached to the API key.
 	// > **Note** You must specify at least one: `applicationId` and/or `userId`.
 	UserId pulumi.StringPtrInput
@@ -411,7 +463,12 @@ func (o IamApiKeyOutput) ExpiresAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringPtrOutput { return v.ExpiresAt }).(pulumi.StringPtrOutput)
 }
 
-// The secret Key of the IAM API key.
+// ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secretKey` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+func (o IamApiKeyOutput) SecretId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IamApiKey) pulumi.StringPtrOutput { return v.SecretId }).(pulumi.StringPtrOutput)
+}
+
+// The secret Key of the IAM API key. Not set when `secretId` is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the `secrets.Version` ephemeral resource.
 func (o IamApiKeyOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamApiKey) pulumi.StringOutput { return v.SecretKey }).(pulumi.StringOutput)
 }

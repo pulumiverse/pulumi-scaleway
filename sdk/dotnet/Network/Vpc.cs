@@ -39,31 +39,6 @@ namespace Pulumiverse.Scaleway.Network
     /// });
     /// ```
     /// 
-    /// ### Enable routing
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
-    ///     {
-    ///         Name = "my-vpc",
-    ///         Tags = new[]
-    ///         {
-    ///             "demo",
-    ///             "terraform",
-    ///             "routing",
-    ///         },
-    ///         EnableRouting = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// VPCs can be imported using `{region}/{id}`, e.g.
@@ -82,13 +57,13 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+        /// Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         /// </summary>
         [Output("enableCustomRoutesPropagation")]
         public Output<bool> EnableCustomRoutesPropagation { get; private set; } = null!;
 
         /// <summary>
-        /// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        /// Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         /// </summary>
         [Output("enableRouting")]
         public Output<bool> EnableRouting { get; private set; } = null!;
@@ -199,13 +174,13 @@ namespace Pulumiverse.Scaleway.Network
     public sealed class VpcArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+        /// Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         /// </summary>
         [Input("enableCustomRoutesPropagation")]
         public Input<bool>? EnableCustomRoutesPropagation { get; set; }
 
         /// <summary>
-        /// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        /// Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         /// </summary>
         [Input("enableRouting")]
         public Input<bool>? EnableRouting { get; set; }
@@ -261,13 +236,13 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+        /// Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         /// </summary>
         [Input("enableCustomRoutesPropagation")]
         public Input<bool>? EnableCustomRoutesPropagation { get; set; }
 
         /// <summary>
-        /// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        /// Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         /// </summary>
         [Input("enableRouting")]
         public Input<bool>? EnableRouting { get; set; }

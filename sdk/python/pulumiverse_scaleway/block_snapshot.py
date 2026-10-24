@@ -26,6 +26,7 @@ class BlockSnapshotArgs:
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeouts: pulumi.Input[Optional['BlockSnapshotTimeoutsArgs']] = None,
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -36,6 +37,9 @@ class BlockSnapshotArgs:
         :param pulumi.Input[_builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
+        :param pulumi.Input['BlockSnapshotTimeoutsArgs'] timeouts: The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+               
+               The following arguments are specific to the `timeouts` block:
         :param pulumi.Input[_builtins.str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[_builtins.str] zone: ). The zone in which the snapshot should be created.
         """
@@ -49,6 +53,8 @@ class BlockSnapshotArgs:
             pulumi.set(__self__, "project_id", project_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if timeouts is not None:
+            pulumi.set(__self__, "timeouts", timeouts)
         if volume_id is not None:
             pulumi.set(__self__, "volume_id", volume_id)
         if zone is not None:
@@ -115,6 +121,20 @@ class BlockSnapshotArgs:
         pulumi.set(self, "tags", value)
 
     @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> pulumi.Input[Optional['BlockSnapshotTimeoutsArgs']]:
+        """
+        The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+
+        The following arguments are specific to the `timeouts` block:
+        """
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: pulumi.Input[Optional['BlockSnapshotTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
+    @_builtins.property
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -148,6 +168,7 @@ class _BlockSnapshotState:
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeouts: pulumi.Input[Optional['BlockSnapshotTimeoutsArgs']] = None,
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -159,6 +180,9 @@ class _BlockSnapshotState:
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
+        :param pulumi.Input['BlockSnapshotTimeoutsArgs'] timeouts: The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+               
+               The following arguments are specific to the `timeouts` block:
         :param pulumi.Input[_builtins.str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[_builtins.str] zone: ). The zone in which the snapshot should be created.
         """
@@ -174,6 +198,8 @@ class _BlockSnapshotState:
             pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if timeouts is not None:
+            pulumi.set(__self__, "timeouts", timeouts)
         if volume_id is not None:
             pulumi.set(__self__, "volume_id", volume_id)
         if zone is not None:
@@ -252,6 +278,20 @@ class _BlockSnapshotState:
         pulumi.set(self, "tags", value)
 
     @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> pulumi.Input[Optional['BlockSnapshotTimeoutsArgs']]:
+        """
+        The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+
+        The following arguments are specific to the `timeouts` block:
+        """
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: pulumi.Input[Optional['BlockSnapshotTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
+    @_builtins.property
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -292,6 +332,7 @@ class BlockSnapshot(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeouts: pulumi.Input[Optional[Union['BlockSnapshotTimeoutsArgs', 'BlockSnapshotTimeoutsArgsDict']]] = None,
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -374,6 +415,9 @@ class BlockSnapshot(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
+        :param pulumi.Input[Union['BlockSnapshotTimeoutsArgs', 'BlockSnapshotTimeoutsArgsDict']] timeouts: The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+               
+               The following arguments are specific to the `timeouts` block:
         :param pulumi.Input[_builtins.str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[_builtins.str] zone: ). The zone in which the snapshot should be created.
         """
@@ -475,6 +519,7 @@ class BlockSnapshot(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 timeouts: pulumi.Input[Optional[Union['BlockSnapshotTimeoutsArgs', 'BlockSnapshotTimeoutsArgsDict']]] = None,
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -492,6 +537,7 @@ class BlockSnapshot(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["timeouts"] = timeouts
             __props__.__dict__["volume_id"] = volume_id
             __props__.__dict__["zone"] = zone
             __props__.__dict__["srn"] = None
@@ -511,6 +557,7 @@ class BlockSnapshot(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            timeouts: pulumi.Input[Optional[Union['BlockSnapshotTimeoutsArgs', 'BlockSnapshotTimeoutsArgsDict']]] = None,
             volume_id: pulumi.Input[Optional[_builtins.str]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'BlockSnapshot':
         """
@@ -526,6 +573,9 @@ class BlockSnapshot(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
+        :param pulumi.Input[Union['BlockSnapshotTimeoutsArgs', 'BlockSnapshotTimeoutsArgsDict']] timeouts: The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+               
+               The following arguments are specific to the `timeouts` block:
         :param pulumi.Input[_builtins.str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[_builtins.str] zone: ). The zone in which the snapshot should be created.
         """
@@ -539,6 +589,7 @@ class BlockSnapshot(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["timeouts"] = timeouts
         __props__.__dict__["volume_id"] = volume_id
         __props__.__dict__["zone"] = zone
         return BlockSnapshot(resource_name, opts=opts, __props__=__props__)
@@ -590,6 +641,16 @@ class BlockSnapshot(pulumi.CustomResource):
         A list of tags to apply to the snapshot.
         """
         return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> pulumi.Output[Optional['outputs.BlockSnapshotTimeouts']]:
+        """
+        The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+
+        The following arguments are specific to the `timeouts` block:
+        """
+        return pulumi.get(self, "timeouts")
 
     @_builtins.property
     @pulumi.getter(name="volumeId")

@@ -29,8 +29,8 @@ class VpcArgs:
         """
         The set of arguments for constructing a Vpc resource.
 
-        :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
-        :param pulumi.Input[_builtins.bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+        :param pulumi.Input[_builtins.bool] enable_routing: Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         :param pulumi.Input[_builtins.bool] enable_transitivity: Enable packets from peered VPCs to transit through this VPC.
         :param pulumi.Input[_builtins.str] name: The name for the VPC. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the VPC is associated with.
@@ -38,7 +38,13 @@ class VpcArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags to associate with the VPC.
         """
         if enable_custom_routes_propagation is not None:
+            warnings.warn("""Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""", DeprecationWarning)
+            pulumi.log.warn("""enable_custom_routes_propagation is deprecated: Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""")
+        if enable_custom_routes_propagation is not None:
             pulumi.set(__self__, "enable_custom_routes_propagation", enable_custom_routes_propagation)
+        if enable_routing is not None:
+            warnings.warn("""Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""", DeprecationWarning)
+            pulumi.log.warn("""enable_routing is deprecated: Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""")
         if enable_routing is not None:
             pulumi.set(__self__, "enable_routing", enable_routing)
         if enable_transitivity is not None:
@@ -54,9 +60,10 @@ class VpcArgs:
 
     @_builtins.property
     @pulumi.getter(name="enableCustomRoutesPropagation")
+    @_utilities.deprecated("""Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""")
     def enable_custom_routes_propagation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+        Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         """
         return pulumi.get(self, "enable_custom_routes_propagation")
 
@@ -66,9 +73,10 @@ class VpcArgs:
 
     @_builtins.property
     @pulumi.getter(name="enableRouting")
+    @_utilities.deprecated("""Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""")
     def enable_routing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         """
         return pulumi.get(self, "enable_routing")
 
@@ -156,8 +164,8 @@ class _VpcState:
         Input properties used for looking up and filtering Vpc resources.
 
         :param pulumi.Input[_builtins.str] created_at: Date and time of VPC's creation (RFC 3339 format).
-        :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
-        :param pulumi.Input[_builtins.bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+        :param pulumi.Input[_builtins.bool] enable_routing: Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         :param pulumi.Input[_builtins.bool] enable_transitivity: Enable packets from peered VPCs to transit through this VPC.
         :param pulumi.Input[_builtins.bool] is_default: Defines whether the VPC is the default one for its Project.
         :param pulumi.Input[_builtins.str] name: The name for the VPC. If not provided it will be randomly generated.
@@ -171,7 +179,13 @@ class _VpcState:
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if enable_custom_routes_propagation is not None:
+            warnings.warn("""Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""", DeprecationWarning)
+            pulumi.log.warn("""enable_custom_routes_propagation is deprecated: Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""")
+        if enable_custom_routes_propagation is not None:
             pulumi.set(__self__, "enable_custom_routes_propagation", enable_custom_routes_propagation)
+        if enable_routing is not None:
+            warnings.warn("""Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""", DeprecationWarning)
+            pulumi.log.warn("""enable_routing is deprecated: Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""")
         if enable_routing is not None:
             pulumi.set(__self__, "enable_routing", enable_routing)
         if enable_transitivity is not None:
@@ -207,9 +221,10 @@ class _VpcState:
 
     @_builtins.property
     @pulumi.getter(name="enableCustomRoutesPropagation")
+    @_utilities.deprecated("""Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""")
     def enable_custom_routes_propagation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+        Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         """
         return pulumi.get(self, "enable_custom_routes_propagation")
 
@@ -219,9 +234,10 @@ class _VpcState:
 
     @_builtins.property
     @pulumi.getter(name="enableRouting")
+    @_utilities.deprecated("""Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""")
     def enable_routing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         """
         return pulumi.get(self, "enable_routing")
 
@@ -372,22 +388,6 @@ class Vpc(pulumi.CustomResource):
             ])
         ```
 
-        ### Enable routing
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        vpc01 = scaleway.network.Vpc("vpc01",
-            name="my-vpc",
-            tags=[
-                "demo",
-                "terraform",
-                "routing",
-            ],
-            enable_routing=True)
-        ```
-
         ## Import
 
         VPCs can be imported using `{region}/{id}`, e.g.
@@ -399,8 +399,8 @@ class Vpc(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
-        :param pulumi.Input[_builtins.bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+        :param pulumi.Input[_builtins.bool] enable_routing: Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         :param pulumi.Input[_builtins.bool] enable_transitivity: Enable packets from peered VPCs to transit through this VPC.
         :param pulumi.Input[_builtins.str] name: The name for the VPC. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the VPC is associated with.
@@ -431,22 +431,6 @@ class Vpc(pulumi.CustomResource):
                 "demo",
                 "terraform",
             ])
-        ```
-
-        ### Enable routing
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        vpc01 = scaleway.network.Vpc("vpc01",
-            name="my-vpc",
-            tags=[
-                "demo",
-                "terraform",
-                "routing",
-            ],
-            enable_routing=True)
         ```
 
         ## Import
@@ -533,8 +517,8 @@ class Vpc(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: Date and time of VPC's creation (RFC 3339 format).
-        :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
-        :param pulumi.Input[_builtins.bool] enable_routing: Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        :param pulumi.Input[_builtins.bool] enable_custom_routes_propagation: Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+        :param pulumi.Input[_builtins.bool] enable_routing: Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         :param pulumi.Input[_builtins.bool] enable_transitivity: Enable packets from peered VPCs to transit through this VPC.
         :param pulumi.Input[_builtins.bool] is_default: Defines whether the VPC is the default one for its Project.
         :param pulumi.Input[_builtins.str] name: The name for the VPC. If not provided it will be randomly generated.
@@ -573,17 +557,19 @@ class Vpc(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="enableCustomRoutesPropagation")
+    @_utilities.deprecated("""Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""")
     def enable_custom_routes_propagation(self) -> pulumi.Output[_builtins.bool]:
         """
-        Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+        Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         """
         return pulumi.get(self, "enable_custom_routes_propagation")
 
     @_builtins.property
     @pulumi.getter(name="enableRouting")
+    @_utilities.deprecated("""Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version""")
     def enable_routing(self) -> pulumi.Output[_builtins.bool]:
         """
-        Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+        Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
         """
         return pulumi.get(self, "enable_routing")
 

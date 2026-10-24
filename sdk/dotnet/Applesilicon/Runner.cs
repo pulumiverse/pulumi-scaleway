@@ -76,6 +76,12 @@ namespace Pulumiverse.Scaleway.Applesilicon
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the runner
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the runner
         /// </summary>
         [Output("status")]
@@ -239,6 +245,12 @@ namespace Pulumiverse.Scaleway.Applesilicon
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the runner
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The status of the runner

@@ -133,10 +133,10 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Map of settings to define for the instance.
+        /// Map of engine settings applied to the instance (read-only).
         /// </summary>
         [Output("settings")]
-        public Output<ImmutableDictionary<string, string>?> Settings { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>> Settings { get; private set; } = null!;
 
         /// <summary>
         /// Snapshot ID to restore the MongoDB® instance from.
@@ -357,18 +357,6 @@ namespace Pulumiverse.Scaleway.Mongodb
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        [Input("settings")]
-        private InputMap<string>? _settings;
-
-        /// <summary>
-        /// Map of settings to define for the instance.
-        /// </summary>
-        public InputMap<string> Settings
-        {
-            get => _settings ?? (_settings = new InputMap<string>());
-            set => _settings = value;
-        }
-
         /// <summary>
         /// Snapshot ID to restore the MongoDB® instance from.
         /// </summary>
@@ -544,7 +532,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         private InputMap<string>? _settings;
 
         /// <summary>
-        /// Map of settings to define for the instance.
+        /// Map of engine settings applied to the instance (read-only).
         /// </summary>
         public InputMap<string> Settings
         {

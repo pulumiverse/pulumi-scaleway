@@ -25,23 +25,6 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ### Enable routing
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const vpc01 = new scaleway.network.Vpc("vpc01", {
- *     name: "my-vpc",
- *     tags: [
- *         "demo",
- *         "terraform",
- *         "routing",
- *     ],
- *     enableRouting: true,
- * });
- * ```
- *
  * ## Import
  *
  * VPCs can be imported using `{region}/{id}`, e.g.
@@ -83,11 +66,15 @@ export class Vpc extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
-     * Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+     * Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+     *
+     * @deprecated Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
      */
     declare public readonly enableCustomRoutesPropagation: pulumi.Output<boolean>;
     /**
-     * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+     * Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+     *
+     * @deprecated Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
      */
     declare public readonly enableRouting: pulumi.Output<boolean>;
     /**
@@ -183,11 +170,15 @@ export interface VpcState {
      */
     createdAt?: pulumi.Input<string | undefined>;
     /**
-     * Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+     * Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+     *
+     * @deprecated Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
      */
     enableCustomRoutesPropagation?: pulumi.Input<boolean | undefined>;
     /**
-     * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+     * Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+     *
+     * @deprecated Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
      */
     enableRouting?: pulumi.Input<boolean | undefined>;
     /**
@@ -233,11 +224,15 @@ export interface VpcState {
  */
 export interface VpcArgs {
     /**
-     * Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+     * Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+     *
+     * @deprecated Custom routes propagation is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
      */
     enableCustomRoutesPropagation?: pulumi.Input<boolean | undefined>;
     /**
-     * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
+     * Routing between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
+     *
+     * @deprecated Routing is always enabled on newly created VPCs and cannot be disabled, this argument is ignored and will be removed in a future major version
      */
     enableRouting?: pulumi.Input<boolean | undefined>;
     /**

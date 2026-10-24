@@ -215,6 +215,10 @@ export class Template extends pulumi.CustomResource {
      */
     declare public readonly serverType: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the Instance template.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * A list of tags to apply to the template.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -261,6 +265,7 @@ export class Template extends pulumi.CustomResource {
             resourceInputs["securityGroupId"] = state?.securityGroupId;
             resourceInputs["serverTags"] = state?.serverTags;
             resourceInputs["serverType"] = state?.serverType;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
             resourceInputs["volumes"] = state?.volumes;
@@ -286,6 +291,7 @@ export class Template extends pulumi.CustomResource {
             resourceInputs["windowsRdpSshKeyId"] = args?.windowsRdpSshKeyId;
             resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -341,6 +347,10 @@ export interface TemplateState {
      * The commercial type of the server defined in the template.
      */
     serverType?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the Instance template.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the template.
      */

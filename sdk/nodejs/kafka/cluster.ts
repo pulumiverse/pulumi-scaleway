@@ -78,6 +78,37 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Multi-AZ
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.network.Vpc("main", {
+ *     region: "fr-par",
+ *     name: "my-vpc",
+ * });
+ * const pn = new scaleway.network.PrivateNetwork("pn", {
+ *     name: "my-private-network",
+ *     region: "fr-par",
+ *     vpcId: main.id,
+ * });
+ * const mainCluster = new scaleway.kafka.Cluster("main", {
+ *     name: "my-kafka-multi-az",
+ *     version: "4.1.1",
+ *     nodeAmount: 3,
+ *     nodeType: "KAFK-PLAY-NANO",
+ *     volumeType: "sbs_5k",
+ *     volumeSizeInGb: 10,
+ *     multiAz: true,
+ *     userName: "admin",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     privateNetwork: {
+ *         pnId: pn.id,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Kafka clusters can be imported using the `{region}/{id}`, e.g.
@@ -118,6 +149,14 @@ export class Cluster extends pulumi.CustomResource {
      * Date and time of cluster creation (RFC 3339 format).
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
+    /**
+     * Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multiAz`. When unset, defaults to the provider default zone.
+     */
+    declare public readonly monoAzZone: pulumi.Output<string>;
+    /**
+     * Deploy the cluster across multiple availability zones. Conflicts with `monoAzZone`. When unset, defaults to mono-AZ on the provider default `zone`.
+     */
+    declare public readonly multiAz: pulumi.Output<boolean>;
     /**
      * Name of the Kafka cluster.
      */
@@ -193,6 +232,8 @@ export class Cluster extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ClusterState | undefined;
             resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["monoAzZone"] = state?.monoAzZone;
+            resourceInputs["multiAz"] = state?.multiAz;
             resourceInputs["name"] = state?.name;
             resourceInputs["nodeAmount"] = state?.nodeAmount;
             resourceInputs["nodeType"] = state?.nodeType;
@@ -225,6 +266,8 @@ export class Cluster extends pulumi.CustomResource {
             if (args?.volumeType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'volumeType'");
             }
+            resourceInputs["monoAzZone"] = args?.monoAzZone;
+            resourceInputs["multiAz"] = args?.multiAz;
             resourceInputs["name"] = args?.name;
             resourceInputs["nodeAmount"] = args?.nodeAmount;
             resourceInputs["nodeType"] = args?.nodeType;
@@ -257,6 +300,14 @@ export interface ClusterState {
      * Date and time of cluster creation (RFC 3339 format).
      */
     createdAt?: pulumi.Input<string | undefined>;
+    /**
+     * Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multiAz`. When unset, defaults to the provider default zone.
+     */
+    monoAzZone?: pulumi.Input<string | undefined>;
+    /**
+     * Deploy the cluster across multiple availability zones. Conflicts with `monoAzZone`. When unset, defaults to mono-AZ on the provider default `zone`.
+     */
+    multiAz?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the Kafka cluster.
      */
@@ -323,6 +374,14 @@ export interface ClusterState {
  * The set of arguments for constructing a Cluster resource.
  */
 export interface ClusterArgs {
+    /**
+     * Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multiAz`. When unset, defaults to the provider default zone.
+     */
+    monoAzZone?: pulumi.Input<string | undefined>;
+    /**
+     * Deploy the cluster across multiple availability zones. Conflicts with `monoAzZone`. When unset, defaults to mono-AZ on the provider default `zone`.
+     */
+    multiAz?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the Kafka cluster.
      */

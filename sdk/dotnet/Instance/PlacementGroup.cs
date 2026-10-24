@@ -70,6 +70,12 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the placement group.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// A list of tags to apply to the placement group.
         /// </summary>
         [Output("tags")]
@@ -211,6 +217,12 @@ namespace Pulumiverse.Scaleway.Instance
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the placement group.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

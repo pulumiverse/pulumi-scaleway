@@ -87,6 +87,7 @@ export interface GetInstancePrivateNicResult {
     readonly privateNicId?: string;
     readonly projectId: string;
     readonly serverId: string;
+    readonly srn: string;
     readonly tags?: string[];
     readonly zone?: string;
 }

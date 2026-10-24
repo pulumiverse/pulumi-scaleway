@@ -170,6 +170,14 @@ namespace Pulumiverse.Scaleway.Block
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
+        /// The `Timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+        /// 
+        /// The following arguments are specific to the `Timeouts` block:
+        /// </summary>
+        [Output("timeouts")]
+        public Output<Outputs.SnapshotTimeouts?> Timeouts { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the volume to take a snapshot from.
         /// </summary>
         [Output("volumeId")]
@@ -269,6 +277,14 @@ namespace Pulumiverse.Scaleway.Block
         }
 
         /// <summary>
+        /// The `Timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+        /// 
+        /// The following arguments are specific to the `Timeouts` block:
+        /// </summary>
+        [Input("timeouts")]
+        public Input<Inputs.SnapshotTimeoutsArgs>? Timeouts { get; set; }
+
+        /// <summary>
         /// The ID of the volume to take a snapshot from.
         /// </summary>
         [Input("volumeId")]
@@ -329,6 +345,14 @@ namespace Pulumiverse.Scaleway.Block
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// The `Timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+        /// 
+        /// The following arguments are specific to the `Timeouts` block:
+        /// </summary>
+        [Input("timeouts")]
+        public Input<Inputs.SnapshotTimeoutsGetArgs>? Timeouts { get; set; }
 
         /// <summary>
         /// The ID of the volume to take a snapshot from.

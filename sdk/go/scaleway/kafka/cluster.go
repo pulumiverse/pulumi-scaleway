@@ -127,6 +127,59 @@ import (
 //
 // ```
 //
+// ### Multi-AZ
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kafka"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := network.NewVpc(ctx, "main", &network.VpcArgs{
+//				Region: pulumi.String("fr-par"),
+//				Name:   pulumi.String("my-vpc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
+//				Name:   pulumi.String("my-private-network"),
+//				Region: pulumi.String("fr-par"),
+//				VpcId:  main.ID().ToIDOutput().ToStringOutput(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kafka.NewCluster(ctx, "main", &kafka.ClusterArgs{
+//				Name:           pulumi.String("my-kafka-multi-az"),
+//				Version:        pulumi.String("4.1.1"),
+//				NodeAmount:     pulumi.Int(3),
+//				NodeType:       pulumi.String("KAFK-PLAY-NANO"),
+//				VolumeType:     pulumi.String("sbs_5k"),
+//				VolumeSizeInGb: pulumi.Int(10),
+//				MultiAz:        pulumi.Bool(true),
+//				UserName:       pulumi.String("admin"),
+//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
+//				PrivateNetwork: &kafka.ClusterPrivateNetworkArgs{
+//					PnId: pn.ID().ToIDOutput().ToStringOutput(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Kafka clusters can be imported using the `{region}/{id}`, e.g.
@@ -139,6 +192,10 @@ type Cluster struct {
 
 	// Date and time of cluster creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multiAz`. When unset, defaults to the provider default zone.
+	MonoAzZone pulumi.StringOutput `pulumi:"monoAzZone"`
+	// Deploy the cluster across multiple availability zones. Conflicts with `monoAzZone`. When unset, defaults to mono-AZ on the provider default `zone`.
+	MultiAz pulumi.BoolOutput `pulumi:"multiAz"`
 	// Name of the Kafka cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Number of nodes in the cluster. Changing this forces recreation of the cluster.
@@ -225,6 +282,10 @@ func GetCluster(ctx *pulumi.Context,
 type clusterState struct {
 	// Date and time of cluster creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
+	// Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multiAz`. When unset, defaults to the provider default zone.
+	MonoAzZone *string `pulumi:"monoAzZone"`
+	// Deploy the cluster across multiple availability zones. Conflicts with `monoAzZone`. When unset, defaults to mono-AZ on the provider default `zone`.
+	MultiAz *bool `pulumi:"multiAz"`
 	// Name of the Kafka cluster.
 	Name *string `pulumi:"name"`
 	// Number of nodes in the cluster. Changing this forces recreation of the cluster.
@@ -260,6 +321,10 @@ type clusterState struct {
 type ClusterState struct {
 	// Date and time of cluster creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
+	// Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multiAz`. When unset, defaults to the provider default zone.
+	MonoAzZone pulumi.StringPtrInput
+	// Deploy the cluster across multiple availability zones. Conflicts with `monoAzZone`. When unset, defaults to mono-AZ on the provider default `zone`.
+	MultiAz pulumi.BoolPtrInput
 	// Name of the Kafka cluster.
 	Name pulumi.StringPtrInput
 	// Number of nodes in the cluster. Changing this forces recreation of the cluster.
@@ -297,6 +362,10 @@ func (ClusterState) ElementType() reflect.Type {
 }
 
 type clusterArgs struct {
+	// Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multiAz`. When unset, defaults to the provider default zone.
+	MonoAzZone *string `pulumi:"monoAzZone"`
+	// Deploy the cluster across multiple availability zones. Conflicts with `monoAzZone`. When unset, defaults to mono-AZ on the provider default `zone`.
+	MultiAz *bool `pulumi:"multiAz"`
 	// Name of the Kafka cluster.
 	Name *string `pulumi:"name"`
 	// Number of nodes in the cluster. Changing this forces recreation of the cluster.
@@ -325,6 +394,10 @@ type clusterArgs struct {
 
 // The set of arguments for constructing a Cluster resource.
 type ClusterArgs struct {
+	// Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multiAz`. When unset, defaults to the provider default zone.
+	MonoAzZone pulumi.StringPtrInput
+	// Deploy the cluster across multiple availability zones. Conflicts with `monoAzZone`. When unset, defaults to mono-AZ on the provider default `zone`.
+	MultiAz pulumi.BoolPtrInput
 	// Name of the Kafka cluster.
 	Name pulumi.StringPtrInput
 	// Number of nodes in the cluster. Changing this forces recreation of the cluster.
@@ -441,6 +514,16 @@ func (o ClusterOutput) ToClusterOutputWithContext(ctx context.Context) ClusterOu
 // Date and time of cluster creation (RFC 3339 format).
 func (o ClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Zone for a mono-AZ cluster (e.g. `fr-par-1`). Conflicts with `multiAz`. When unset, defaults to the provider default zone.
+func (o ClusterOutput) MonoAzZone() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.MonoAzZone }).(pulumi.StringOutput)
+}
+
+// Deploy the cluster across multiple availability zones. Conflicts with `monoAzZone`. When unset, defaults to mono-AZ on the provider default `zone`.
+func (o ClusterOutput) MultiAz() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.BoolOutput { return v.MultiAz }).(pulumi.BoolOutput)
 }
 
 // Name of the Kafka cluster.

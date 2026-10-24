@@ -88,6 +88,37 @@ namespace Pulumiverse.Scaleway.Iam
     /// });
     /// ```
     /// 
+    /// ### With secret (secret_key stored in Secret Manager)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Secrets.Secret("main", new()
+    ///     {
+    ///         Name = "My secret",
+    ///     });
+    /// 
+    ///     var ciCd = new Scaleway.Iam.Application("ci_cd", new()
+    ///     {
+    ///         Name = "My application",
+    ///     });
+    /// 
+    ///     var mainApiKey = new Scaleway.Iam.ApiKey("main", new()
+    ///     {
+    ///         ApplicationId = mainScalewayIamApplication.Id,
+    ///         SecretId = main.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// The `SecretKey` is then not stored in the Terraform state and can be retrieved with the `scaleway.secrets.Version` ephemeral resource:
+    /// 
     /// ## Import
     /// 
     /// Api keys can be imported using the `{id}`, e.g.
@@ -151,7 +182,13 @@ namespace Pulumiverse.Scaleway.Iam
         public Output<string?> ExpiresAt { get; private set; } = null!;
 
         /// <summary>
-        /// The secret Key of the IAM API key.
+        /// ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `SecretKey` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+        /// </summary>
+        [Output("secretId")]
+        public Output<string?> SecretId { get; private set; } = null!;
+
+        /// <summary>
+        /// The secret Key of the IAM API key. Not set when `SecretId` is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the `scaleway.secrets.Version` ephemeral resource.
         /// </summary>
         [Output("secretKey")]
         public Output<string> SecretKey { get; private set; } = null!;
@@ -256,6 +293,12 @@ namespace Pulumiverse.Scaleway.Iam
         public Input<string>? ExpiresAt { get; set; }
 
         /// <summary>
+        /// ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `SecretKey` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+        /// </summary>
+        [Input("secretId")]
+        public Input<string>? SecretId { get; set; }
+
+        /// <summary>
         /// ID of the user attached to the API key.
         /// &gt; **Note** You must specify at least one: `ApplicationId` and/or `UserId`.
         /// </summary>
@@ -319,11 +362,17 @@ namespace Pulumiverse.Scaleway.Iam
         [Input("expiresAt")]
         public Input<string>? ExpiresAt { get; set; }
 
+        /// <summary>
+        /// ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `SecretKey` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+        /// </summary>
+        [Input("secretId")]
+        public Input<string>? SecretId { get; set; }
+
         [Input("secretKey")]
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// The secret Key of the IAM API key.
+        /// The secret Key of the IAM API key. Not set when `SecretId` is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the `scaleway.secrets.Version` ephemeral resource.
         /// </summary>
         public Input<string>? SecretKey
         {

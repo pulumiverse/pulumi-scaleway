@@ -27,7 +27,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, acls=None, certificate=None, cluster_id=None, cluster_size=None, connection_string=None, created_at=None, id=None, name=None, node_type=None, password=None, password_wo=None, password_wo_version=None, private_ips=None, private_networks=None, project_id=None, public_networks=None, settings=None, tags=None, tls_enabled=None, updated_at=None, user_name=None, version=None, zone=None):
+    def __init__(__self__, acls=None, certificate=None, cluster_id=None, cluster_size=None, connection_string=None, created_at=None, id=None, name=None, node_type=None, password=None, password_wo=None, password_wo_version=None, private_ips=None, private_networks=None, project_id=None, public_networks=None, settings=None, srn=None, tags=None, tls_enabled=None, updated_at=None, user_name=None, version=None, zone=None):
         if acls and not isinstance(acls, list):
             raise TypeError("Expected argument 'acls' to be a list")
         pulumi.set(__self__, "acls", acls)
@@ -79,6 +79,9 @@ class GetClusterResult:
         if settings and not isinstance(settings, dict):
             raise TypeError("Expected argument 'settings' to be a dict")
         pulumi.set(__self__, "settings", settings)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -215,6 +218,14 @@ class GetClusterResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the Redis Cluster.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         """
         The tags associated with the Redis Cluster.
@@ -282,6 +293,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             project_id=self.project_id,
             public_networks=self.public_networks,
             settings=self.settings,
+            srn=self.srn,
             tags=self.tags,
             tls_enabled=self.tls_enabled,
             updated_at=self.updated_at,
@@ -334,6 +346,7 @@ def get_cluster(cluster_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         public_networks=pulumi.get(__ret__, 'public_networks'),
         settings=pulumi.get(__ret__, 'settings'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         tls_enabled=pulumi.get(__ret__, 'tls_enabled'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
@@ -383,6 +396,7 @@ def get_cluster_output(cluster_id: pulumi.Input[Optional[Optional[_builtins.str]
         project_id=pulumi.get(__response__, 'project_id'),
         public_networks=pulumi.get(__response__, 'public_networks'),
         settings=pulumi.get(__response__, 'settings'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         tls_enabled=pulumi.get(__response__, 'tls_enabled'),
         updated_at=pulumi.get(__response__, 'updated_at'),

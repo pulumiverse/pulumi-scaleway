@@ -178,6 +178,8 @@ type Server struct {
 	PublicBandwidth pulumi.IntOutput `pulumi:"publicBandwidth"`
 	// List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
 	RunnerIds pulumi.StringArrayOutput `pulumi:"runnerIds"`
+	// The Scaleway Resource Name (SRN) of the server.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The state of the server.
 	State pulumi.StringOutput `pulumi:"state"`
 	// The commercial type of the server. You find all the available types on
@@ -269,6 +271,8 @@ type serverState struct {
 	PublicBandwidth *int `pulumi:"publicBandwidth"`
 	// List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
 	RunnerIds []string `pulumi:"runnerIds"`
+	// The Scaleway Resource Name (SRN) of the server.
+	Srn *string `pulumi:"srn"`
 	// The state of the server.
 	State *string `pulumi:"state"`
 	// The commercial type of the server. You find all the available types on
@@ -318,6 +322,8 @@ type ServerState struct {
 	PublicBandwidth pulumi.IntPtrInput
 	// List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
 	RunnerIds pulumi.StringArrayInput
+	// The Scaleway Resource Name (SRN) of the server.
+	Srn pulumi.StringPtrInput
 	// The state of the server.
 	State pulumi.StringPtrInput
 	// The commercial type of the server. You find all the available types on
@@ -556,6 +562,11 @@ func (o ServerOutput) PublicBandwidth() pulumi.IntOutput {
 // List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
 func (o ServerOutput) RunnerIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringArrayOutput { return v.RunnerIds }).(pulumi.StringArrayOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the server.
+func (o ServerOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The state of the server.

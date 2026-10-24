@@ -27,7 +27,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, cluster_id=None, created_at=None, id=None, name=None, node_amount=None, node_type=None, password=None, private_networks=None, project_id=None, public_networks=None, region=None, status=None, tags=None, updated_at=None, user_name=None, version=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, cluster_id=None, created_at=None, id=None, mono_az_zone=None, multi_az=None, name=None, node_amount=None, node_type=None, password=None, private_networks=None, project_id=None, public_networks=None, region=None, status=None, tags=None, updated_at=None, user_name=None, version=None, volume_size_in_gb=None, volume_type=None):
         if cluster_id and not isinstance(cluster_id, str):
             raise TypeError("Expected argument 'cluster_id' to be a str")
         pulumi.set(__self__, "cluster_id", cluster_id)
@@ -37,6 +37,12 @@ class GetClusterResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if mono_az_zone and not isinstance(mono_az_zone, str):
+            raise TypeError("Expected argument 'mono_az_zone' to be a str")
+        pulumi.set(__self__, "mono_az_zone", mono_az_zone)
+        if multi_az and not isinstance(multi_az, bool):
+            raise TypeError("Expected argument 'multi_az' to be a bool")
+        pulumi.set(__self__, "multi_az", multi_az)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -106,6 +112,16 @@ class GetClusterResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="monoAzZone")
+    def mono_az_zone(self) -> _builtins.str:
+        return pulumi.get(self, "mono_az_zone")
+
+    @_builtins.property
+    @pulumi.getter(name="multiAz")
+    def multi_az(self) -> _builtins.bool:
+        return pulumi.get(self, "multi_az")
 
     @_builtins.property
     @pulumi.getter
@@ -237,6 +253,8 @@ class AwaitableGetClusterResult(GetClusterResult):
             cluster_id=self.cluster_id,
             created_at=self.created_at,
             id=self.id,
+            mono_az_zone=self.mono_az_zone,
+            multi_az=self.multi_az,
             name=self.name,
             node_amount=self.node_amount,
             node_type=self.node_type,
@@ -279,6 +297,8 @@ def get_cluster(cluster_id: Optional[_builtins.str] = None,
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
         created_at=pulumi.get(__ret__, 'created_at'),
         id=pulumi.get(__ret__, 'id'),
+        mono_az_zone=pulumi.get(__ret__, 'mono_az_zone'),
+        multi_az=pulumi.get(__ret__, 'multi_az'),
         name=pulumi.get(__ret__, 'name'),
         node_amount=pulumi.get(__ret__, 'node_amount'),
         node_type=pulumi.get(__ret__, 'node_type'),
@@ -318,6 +338,8 @@ def get_cluster_output(cluster_id: pulumi.Input[Optional[Optional[_builtins.str]
         cluster_id=pulumi.get(__response__, 'cluster_id'),
         created_at=pulumi.get(__response__, 'created_at'),
         id=pulumi.get(__response__, 'id'),
+        mono_az_zone=pulumi.get(__response__, 'mono_az_zone'),
+        multi_az=pulumi.get(__response__, 'multi_az'),
         name=pulumi.get(__response__, 'name'),
         node_amount=pulumi.get(__response__, 'node_amount'),
         node_type=pulumi.get(__response__, 'node_type'),

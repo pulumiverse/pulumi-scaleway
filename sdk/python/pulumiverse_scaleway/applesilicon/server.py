@@ -227,6 +227,7 @@ class _ServerState:
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  public_bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
                  runner_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  state: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -252,6 +253,7 @@ class _ServerState:
                associated with.
         :param pulumi.Input[_builtins.int] public_bandwidth: Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] runner_ids: List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the server.
         :param pulumi.Input[_builtins.str] state: The state of the server.
         :param pulumi.Input[_builtins.str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
@@ -291,6 +293,8 @@ class _ServerState:
             pulumi.set(__self__, "public_bandwidth", public_bandwidth)
         if runner_ids is not None:
             pulumi.set(__self__, "runner_ids", runner_ids)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if state is not None:
             pulumi.set(__self__, "state", state)
         if type is not None:
@@ -474,6 +478,18 @@ class _ServerState:
     @runner_ids.setter
     def runner_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "runner_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the server.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -792,6 +808,7 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["ip"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["password"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["state"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["username"] = None
@@ -825,6 +842,7 @@ class Server(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             public_bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
             runner_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -854,6 +872,7 @@ class Server(pulumi.CustomResource):
                associated with.
         :param pulumi.Input[_builtins.int] public_bandwidth: Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] runner_ids: List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the server.
         :param pulumi.Input[_builtins.str] state: The state of the server.
         :param pulumi.Input[_builtins.str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
@@ -883,6 +902,7 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_bandwidth"] = public_bandwidth
         __props__.__dict__["runner_ids"] = runner_ids
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["state"] = state
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
@@ -1004,6 +1024,14 @@ class Server(pulumi.CustomResource):
         List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
         """
         return pulumi.get(self, "runner_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the server.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

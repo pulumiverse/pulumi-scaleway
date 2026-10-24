@@ -63,6 +63,8 @@ type Runner struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// The Scaleway Resource Name (SRN) of the runner
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The status of the runner
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The token used to authenticate the runner to run
@@ -129,6 +131,8 @@ type runnerState struct {
 	Name *string `pulumi:"name"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
+	// The Scaleway Resource Name (SRN) of the runner
+	Srn *string `pulumi:"srn"`
 	// The status of the runner
 	Status *string `pulumi:"status"`
 	// The token used to authenticate the runner to run
@@ -150,6 +154,8 @@ type RunnerState struct {
 	Name pulumi.StringPtrInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the runner
+	Srn pulumi.StringPtrInput
 	// The status of the runner
 	Status pulumi.StringPtrInput
 	// The token used to authenticate the runner to run
@@ -305,6 +311,11 @@ func (o RunnerOutput) Name() pulumi.StringOutput {
 // The projectId you want to attach the resource to
 func (o RunnerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Runner) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the runner
+func (o RunnerOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Runner) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The status of the runner

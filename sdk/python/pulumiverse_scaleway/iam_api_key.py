@@ -23,6 +23,7 @@ class IamApiKeyArgs:
                  default_project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a IamApiKey resource.
@@ -32,6 +33,7 @@ class IamApiKeyArgs:
         :param pulumi.Input[_builtins.str] description: The description of the API key.
         :param pulumi.Input[_builtins.str] expires_at: The date and time of the expiration of the IAM API key. Please note that in case of any changes,
                the resource will be recreated.
+        :param pulumi.Input[_builtins.str] secret_id: ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secret_key` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
         :param pulumi.Input[_builtins.str] user_id: ID of the user attached to the API key.
                > **Note** You must specify at least one: `application_id` and/or `user_id`.
         """
@@ -43,6 +45,8 @@ class IamApiKeyArgs:
             pulumi.set(__self__, "description", description)
         if expires_at is not None:
             pulumi.set(__self__, "expires_at", expires_at)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
         if user_id is not None:
             pulumi.set(__self__, "user_id", user_id)
 
@@ -96,6 +100,18 @@ class IamApiKeyArgs:
         pulumi.set(self, "expires_at", value)
 
     @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secret_key` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+        """
+        return pulumi.get(self, "secret_id")
+
+    @secret_id.setter
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "secret_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="userId")
     def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -120,6 +136,7 @@ class _IamApiKeyState:
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  editable: pulumi.Input[Optional[_builtins.bool]] = None,
                  expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_key: pulumi.Input[Optional[_builtins.str]] = None,
                  srn: pulumi.Input[Optional[_builtins.str]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -136,7 +153,8 @@ class _IamApiKeyState:
         :param pulumi.Input[_builtins.bool] editable: Whether the IAM API key is editable.
         :param pulumi.Input[_builtins.str] expires_at: The date and time of the expiration of the IAM API key. Please note that in case of any changes,
                the resource will be recreated.
-        :param pulumi.Input[_builtins.str] secret_key: The secret Key of the IAM API key.
+        :param pulumi.Input[_builtins.str] secret_id: ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secret_key` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+        :param pulumi.Input[_builtins.str] secret_key: The secret Key of the IAM API key. Not set when `secret_id` is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the `secrets.Version` ephemeral resource.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the API key.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the IAM API key.
         :param pulumi.Input[_builtins.str] user_id: ID of the user attached to the API key.
@@ -158,6 +176,8 @@ class _IamApiKeyState:
             pulumi.set(__self__, "editable", editable)
         if expires_at is not None:
             pulumi.set(__self__, "expires_at", expires_at)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if srn is not None:
@@ -265,10 +285,22 @@ class _IamApiKeyState:
         pulumi.set(self, "expires_at", value)
 
     @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secret_key` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+        """
+        return pulumi.get(self, "secret_id")
+
+    @secret_id.setter
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "secret_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The secret Key of the IAM API key.
+        The secret Key of the IAM API key. Not set when `secret_id` is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the `secrets.Version` ephemeral resource.
         """
         return pulumi.get(self, "secret_key")
 
@@ -329,6 +361,7 @@ class IamApiKey(pulumi.CustomResource):
                  default_project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -373,6 +406,21 @@ class IamApiKey(pulumi.CustomResource):
             expires_at=rotate_after_a_year["rotationRfc3339"])
         ```
 
+        ### With secret (secret_key stored in Secret Manager)
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.secrets.Secret("main", name="My secret")
+        ci_cd = scaleway.iam.Application("ci_cd", name="My application")
+        main_api_key = scaleway.iam.ApiKey("main",
+            application_id=main_scaleway_iam_application["id"],
+            secret_id=main.id)
+        ```
+
+        The `secret_key` is then not stored in the Terraform state and can be retrieved with the `secrets.Version` ephemeral resource:
+
         ## Import
 
         Api keys can be imported using the `{id}`, e.g.
@@ -391,6 +439,7 @@ class IamApiKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: The description of the API key.
         :param pulumi.Input[_builtins.str] expires_at: The date and time of the expiration of the IAM API key. Please note that in case of any changes,
                the resource will be recreated.
+        :param pulumi.Input[_builtins.str] secret_id: ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secret_key` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
         :param pulumi.Input[_builtins.str] user_id: ID of the user attached to the API key.
                > **Note** You must specify at least one: `application_id` and/or `user_id`.
         """
@@ -442,6 +491,21 @@ class IamApiKey(pulumi.CustomResource):
             expires_at=rotate_after_a_year["rotationRfc3339"])
         ```
 
+        ### With secret (secret_key stored in Secret Manager)
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.secrets.Secret("main", name="My secret")
+        ci_cd = scaleway.iam.Application("ci_cd", name="My application")
+        main_api_key = scaleway.iam.ApiKey("main",
+            application_id=main_scaleway_iam_application["id"],
+            secret_id=main.id)
+        ```
+
+        The `secret_key` is then not stored in the Terraform state and can be retrieved with the `secrets.Version` ephemeral resource:
+
         ## Import
 
         Api keys can be imported using the `{id}`, e.g.
@@ -472,6 +536,7 @@ class IamApiKey(pulumi.CustomResource):
                  default_project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""IamApiKey is deprecated: scaleway.index/iamapikey.IamApiKey has been deprecated in favor of scaleway.iam/apikey.ApiKey""")
@@ -487,6 +552,7 @@ class IamApiKey(pulumi.CustomResource):
             __props__.__dict__["default_project_id"] = default_project_id
             __props__.__dict__["description"] = description
             __props__.__dict__["expires_at"] = expires_at
+            __props__.__dict__["secret_id"] = secret_id
             __props__.__dict__["user_id"] = user_id
             __props__.__dict__["access_key"] = None
             __props__.__dict__["created_at"] = None
@@ -515,6 +581,7 @@ class IamApiKey(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             editable: pulumi.Input[Optional[_builtins.bool]] = None,
             expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None,
             secret_key: pulumi.Input[Optional[_builtins.str]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -535,7 +602,8 @@ class IamApiKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] editable: Whether the IAM API key is editable.
         :param pulumi.Input[_builtins.str] expires_at: The date and time of the expiration of the IAM API key. Please note that in case of any changes,
                the resource will be recreated.
-        :param pulumi.Input[_builtins.str] secret_key: The secret Key of the IAM API key.
+        :param pulumi.Input[_builtins.str] secret_id: ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secret_key` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+        :param pulumi.Input[_builtins.str] secret_key: The secret Key of the IAM API key. Not set when `secret_id` is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the `secrets.Version` ephemeral resource.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the API key.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the IAM API key.
         :param pulumi.Input[_builtins.str] user_id: ID of the user attached to the API key.
@@ -553,6 +621,7 @@ class IamApiKey(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["editable"] = editable
         __props__.__dict__["expires_at"] = expires_at
+        __props__.__dict__["secret_id"] = secret_id
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["srn"] = srn
         __props__.__dict__["updated_at"] = updated_at
@@ -625,10 +694,18 @@ class IamApiKey(pulumi.CustomResource):
         return pulumi.get(self, "expires_at")
 
     @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        ID of a [Secret Manager](https://www.scaleway.com/en/secret-manager/) secret. If set, the `secret_key` of the API key is stored as a new version of this secret and is not stored in the Terraform state. The secret itself is not managed by this resource. Can be a UUID or a regional ID (`region/UUID`).
+        """
+        return pulumi.get(self, "secret_id")
+
+    @_builtins.property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Output[_builtins.str]:
         """
-        The secret Key of the IAM API key.
+        The secret Key of the IAM API key. Not set when `secret_id` is specified, in which case the secret key is stored as a new version of the referenced secret and can be retrieved with the `secrets.Version` ephemeral resource.
         """
         return pulumi.get(self, "secret_key")
 
