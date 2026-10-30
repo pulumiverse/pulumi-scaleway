@@ -25,6 +25,7 @@ class DatabaseInstanceArgs:
                  backup_same_region: pulumi.Input[Optional[_builtins.bool]] = None,
                  backup_schedule_frequency: pulumi.Input[Optional[_builtins.int]] = None,
                  backup_schedule_retention: pulumi.Input[Optional[_builtins.int]] = None,
+                 clone_from: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_backup: pulumi.Input[Optional[_builtins.bool]] = None,
                  encryption_at_rest: pulumi.Input[Optional[_builtins.bool]] = None,
                  engine: pulumi.Input[Optional[_builtins.str]] = None,
@@ -58,6 +59,19 @@ class DatabaseInstanceArgs:
         :param pulumi.Input[_builtins.bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
         :param pulumi.Input[_builtins.int] backup_schedule_frequency: Backup schedule frequency in hours
         :param pulumi.Input[_builtins.int] backup_schedule_retention: Backup schedule retention in days
+        :param pulumi.Input[_builtins.str] clone_from: The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `node_type` or upgrade to a larger one. Conflicts with the `engine` and `snapshot_id` parameters.
+               
+               > **Important** Updates to `clone_from` will recreate the Database Instance.
+               
+               > **Note** `CloneInstance` only accepts `name` and optional `node_type`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+               
+               > **Note** Same-apply overrides after clone: set `is_ha_cluster` or `disable_backup` explicitly to change HA/backups; `tags`, `settings`, `logs_policy`, and endpoints (`load_balancer` / `private_network`) are also applied during Create. If you omit `is_ha_cluster` / `disable_backup`, the source values are kept.
+               
+               > **Note** Not applied during clone Create: `volume_type` (schema default `lssd` — set it to match a non-`lssd` source), `volume_size_in_gb`, and `project_id` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+               
+               > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+               
+               > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `load_balancer {}` block, or omit the block to remove it (same behaviour as `snapshot_id`).
         :param pulumi.Input[_builtins.bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[_builtins.bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[_builtins.str] engine: Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
@@ -87,7 +101,7 @@ class DatabaseInstanceArgs:
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of engine settings to be set on a running instance.
-        :param pulumi.Input[_builtins.str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+        :param pulumi.Input[_builtins.str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `clone_from` parameters.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[_builtins.str] user_name: Identifier for the first user of the Database Instance.
                
@@ -104,6 +118,8 @@ class DatabaseInstanceArgs:
             pulumi.set(__self__, "backup_schedule_frequency", backup_schedule_frequency)
         if backup_schedule_retention is not None:
             pulumi.set(__self__, "backup_schedule_retention", backup_schedule_retention)
+        if clone_from is not None:
+            pulumi.set(__self__, "clone_from", clone_from)
         if disable_backup is not None:
             pulumi.set(__self__, "disable_backup", disable_backup)
         if encryption_at_rest is not None:
@@ -199,6 +215,30 @@ class DatabaseInstanceArgs:
     @backup_schedule_retention.setter
     def backup_schedule_retention(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "backup_schedule_retention", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneFrom")
+    def clone_from(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `node_type` or upgrade to a larger one. Conflicts with the `engine` and `snapshot_id` parameters.
+
+        > **Important** Updates to `clone_from` will recreate the Database Instance.
+
+        > **Note** `CloneInstance` only accepts `name` and optional `node_type`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+
+        > **Note** Same-apply overrides after clone: set `is_ha_cluster` or `disable_backup` explicitly to change HA/backups; `tags`, `settings`, `logs_policy`, and endpoints (`load_balancer` / `private_network`) are also applied during Create. If you omit `is_ha_cluster` / `disable_backup`, the source values are kept.
+
+        > **Note** Not applied during clone Create: `volume_type` (schema default `lssd` — set it to match a non-`lssd` source), `volume_size_in_gb`, and `project_id` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+
+        > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+
+        > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `load_balancer {}` block, or omit the block to remove it (same behaviour as `snapshot_id`).
+        """
+        return pulumi.get(self, "clone_from")
+
+    @clone_from.setter
+    def clone_from(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "clone_from", value)
 
     @_builtins.property
     @pulumi.getter(name="disableBackup")
@@ -409,7 +449,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+        The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `clone_from` parameters.
         """
         return pulumi.get(self, "snapshot_id")
 
@@ -477,6 +517,7 @@ class _DatabaseInstanceState:
                  backup_schedule_frequency: pulumi.Input[Optional[_builtins.int]] = None,
                  backup_schedule_retention: pulumi.Input[Optional[_builtins.int]] = None,
                  certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 clone_from: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_backup: pulumi.Input[Optional[_builtins.bool]] = None,
                  encryption_at_rest: pulumi.Input[Optional[_builtins.bool]] = None,
                  endpoint_ip: pulumi.Input[Optional[_builtins.str]] = None,
@@ -512,6 +553,19 @@ class _DatabaseInstanceState:
         :param pulumi.Input[_builtins.int] backup_schedule_frequency: Backup schedule frequency in hours
         :param pulumi.Input[_builtins.int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[_builtins.str] certificate: Certificate of the Database Instance.
+        :param pulumi.Input[_builtins.str] clone_from: The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `node_type` or upgrade to a larger one. Conflicts with the `engine` and `snapshot_id` parameters.
+               
+               > **Important** Updates to `clone_from` will recreate the Database Instance.
+               
+               > **Note** `CloneInstance` only accepts `name` and optional `node_type`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+               
+               > **Note** Same-apply overrides after clone: set `is_ha_cluster` or `disable_backup` explicitly to change HA/backups; `tags`, `settings`, `logs_policy`, and endpoints (`load_balancer` / `private_network`) are also applied during Create. If you omit `is_ha_cluster` / `disable_backup`, the source values are kept.
+               
+               > **Note** Not applied during clone Create: `volume_type` (schema default `lssd` — set it to match a non-`lssd` source), `volume_size_in_gb`, and `project_id` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+               
+               > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+               
+               > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `load_balancer {}` block, or omit the block to remove it (same behaviour as `snapshot_id`).
         :param pulumi.Input[_builtins.bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[_builtins.bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[_builtins.str] endpoint_ip: (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
@@ -552,7 +606,7 @@ class _DatabaseInstanceState:
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of engine settings to be set on a running instance.
-        :param pulumi.Input[_builtins.str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+        :param pulumi.Input[_builtins.str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `clone_from` parameters.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceUpgradableVersionArgs']]] upgradable_versions: List of available engine versions for upgrade. Each version contains:
         :param pulumi.Input[_builtins.str] user_name: Identifier for the first user of the Database Instance.
@@ -571,6 +625,8 @@ class _DatabaseInstanceState:
             pulumi.set(__self__, "backup_schedule_retention", backup_schedule_retention)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
+        if clone_from is not None:
+            pulumi.set(__self__, "clone_from", clone_from)
         if disable_backup is not None:
             pulumi.set(__self__, "disable_backup", disable_backup)
         if encryption_at_rest is not None:
@@ -681,6 +737,30 @@ class _DatabaseInstanceState:
     @certificate.setter
     def certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "certificate", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloneFrom")
+    def clone_from(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `node_type` or upgrade to a larger one. Conflicts with the `engine` and `snapshot_id` parameters.
+
+        > **Important** Updates to `clone_from` will recreate the Database Instance.
+
+        > **Note** `CloneInstance` only accepts `name` and optional `node_type`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+
+        > **Note** Same-apply overrides after clone: set `is_ha_cluster` or `disable_backup` explicitly to change HA/backups; `tags`, `settings`, `logs_policy`, and endpoints (`load_balancer` / `private_network`) are also applied during Create. If you omit `is_ha_cluster` / `disable_backup`, the source values are kept.
+
+        > **Note** Not applied during clone Create: `volume_type` (schema default `lssd` — set it to match a non-`lssd` source), `volume_size_in_gb`, and `project_id` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+
+        > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+
+        > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `load_balancer {}` block, or omit the block to remove it (same behaviour as `snapshot_id`).
+        """
+        return pulumi.get(self, "clone_from")
+
+    @clone_from.setter
+    def clone_from(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "clone_from", value)
 
     @_builtins.property
     @pulumi.getter(name="disableBackup")
@@ -970,7 +1050,7 @@ class _DatabaseInstanceState:
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+        The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `clone_from` parameters.
         """
         return pulumi.get(self, "snapshot_id")
 
@@ -1057,6 +1137,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  backup_same_region: pulumi.Input[Optional[_builtins.bool]] = None,
                  backup_schedule_frequency: pulumi.Input[Optional[_builtins.int]] = None,
                  backup_schedule_retention: pulumi.Input[Optional[_builtins.int]] = None,
+                 clone_from: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_backup: pulumi.Input[Optional[_builtins.bool]] = None,
                  encryption_at_rest: pulumi.Input[Optional[_builtins.bool]] = None,
                  engine: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1103,6 +1184,27 @@ class DatabaseInstance(pulumi.CustomResource):
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             encryption_at_rest=True)
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ### Example Clone
+        source = scaleway.databases.Instance("source",
+            name="test-rdb-source",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-15",
+            is_ha_cluster=False,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
+        clone = scaleway.databases.Instance("clone",
+            name="test-rdb-clone",
+            node_type="DB-DEV-M",
+            clone_from=source.id,
+            volume_type="lssd",
+            load_balancer={})
         ```
 
         ```python
@@ -1189,6 +1291,19 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] backup_same_region: Boolean to store logical backups in the same region as the database instance
         :param pulumi.Input[_builtins.int] backup_schedule_frequency: Backup schedule frequency in hours
         :param pulumi.Input[_builtins.int] backup_schedule_retention: Backup schedule retention in days
+        :param pulumi.Input[_builtins.str] clone_from: The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `node_type` or upgrade to a larger one. Conflicts with the `engine` and `snapshot_id` parameters.
+               
+               > **Important** Updates to `clone_from` will recreate the Database Instance.
+               
+               > **Note** `CloneInstance` only accepts `name` and optional `node_type`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+               
+               > **Note** Same-apply overrides after clone: set `is_ha_cluster` or `disable_backup` explicitly to change HA/backups; `tags`, `settings`, `logs_policy`, and endpoints (`load_balancer` / `private_network`) are also applied during Create. If you omit `is_ha_cluster` / `disable_backup`, the source values are kept.
+               
+               > **Note** Not applied during clone Create: `volume_type` (schema default `lssd` — set it to match a non-`lssd` source), `volume_size_in_gb`, and `project_id` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+               
+               > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+               
+               > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `load_balancer {}` block, or omit the block to remove it (same behaviour as `snapshot_id`).
         :param pulumi.Input[_builtins.bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[_builtins.bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[_builtins.str] engine: Database Instance's engine version name (e.g. `PostgreSQL-16`, `MySQL-8`).
@@ -1224,7 +1339,7 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of engine settings to be set on a running instance.
-        :param pulumi.Input[_builtins.str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+        :param pulumi.Input[_builtins.str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `clone_from` parameters.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[_builtins.str] user_name: Identifier for the first user of the Database Instance.
                
@@ -1263,6 +1378,27 @@ class DatabaseInstance(pulumi.CustomResource):
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             encryption_at_rest=True)
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ### Example Clone
+        source = scaleway.databases.Instance("source",
+            name="test-rdb-source",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-15",
+            is_ha_cluster=False,
+            disable_backup=True,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret")
+        clone = scaleway.databases.Instance("clone",
+            name="test-rdb-clone",
+            node_type="DB-DEV-M",
+            clone_from=source.id,
+            volume_type="lssd",
+            load_balancer={})
         ```
 
         ```python
@@ -1362,6 +1498,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  backup_same_region: pulumi.Input[Optional[_builtins.bool]] = None,
                  backup_schedule_frequency: pulumi.Input[Optional[_builtins.int]] = None,
                  backup_schedule_retention: pulumi.Input[Optional[_builtins.int]] = None,
+                 clone_from: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_backup: pulumi.Input[Optional[_builtins.bool]] = None,
                  encryption_at_rest: pulumi.Input[Optional[_builtins.bool]] = None,
                  engine: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1397,6 +1534,7 @@ class DatabaseInstance(pulumi.CustomResource):
             __props__.__dict__["backup_same_region"] = backup_same_region
             __props__.__dict__["backup_schedule_frequency"] = backup_schedule_frequency
             __props__.__dict__["backup_schedule_retention"] = backup_schedule_retention
+            __props__.__dict__["clone_from"] = clone_from
             __props__.__dict__["disable_backup"] = disable_backup
             __props__.__dict__["encryption_at_rest"] = encryption_at_rest
             __props__.__dict__["engine"] = engine
@@ -1444,6 +1582,7 @@ class DatabaseInstance(pulumi.CustomResource):
             backup_schedule_frequency: pulumi.Input[Optional[_builtins.int]] = None,
             backup_schedule_retention: pulumi.Input[Optional[_builtins.int]] = None,
             certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            clone_from: pulumi.Input[Optional[_builtins.str]] = None,
             disable_backup: pulumi.Input[Optional[_builtins.bool]] = None,
             encryption_at_rest: pulumi.Input[Optional[_builtins.bool]] = None,
             endpoint_ip: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1483,6 +1622,19 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] backup_schedule_frequency: Backup schedule frequency in hours
         :param pulumi.Input[_builtins.int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[_builtins.str] certificate: Certificate of the Database Instance.
+        :param pulumi.Input[_builtins.str] clone_from: The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `node_type` or upgrade to a larger one. Conflicts with the `engine` and `snapshot_id` parameters.
+               
+               > **Important** Updates to `clone_from` will recreate the Database Instance.
+               
+               > **Note** `CloneInstance` only accepts `name` and optional `node_type`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+               
+               > **Note** Same-apply overrides after clone: set `is_ha_cluster` or `disable_backup` explicitly to change HA/backups; `tags`, `settings`, `logs_policy`, and endpoints (`load_balancer` / `private_network`) are also applied during Create. If you omit `is_ha_cluster` / `disable_backup`, the source values are kept.
+               
+               > **Note** Not applied during clone Create: `volume_type` (schema default `lssd` — set it to match a non-`lssd` source), `volume_size_in_gb`, and `project_id` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+               
+               > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+               
+               > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `load_balancer {}` block, or omit the block to remove it (same behaviour as `snapshot_id`).
         :param pulumi.Input[_builtins.bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[_builtins.bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[_builtins.str] endpoint_ip: (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
@@ -1523,7 +1675,7 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of engine settings to be set on a running instance.
-        :param pulumi.Input[_builtins.str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+        :param pulumi.Input[_builtins.str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `clone_from` parameters.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceUpgradableVersionArgs', 'DatabaseInstanceUpgradableVersionArgsDict']]]] upgradable_versions: List of available engine versions for upgrade. Each version contains:
         :param pulumi.Input[_builtins.str] user_name: Identifier for the first user of the Database Instance.
@@ -1542,6 +1694,7 @@ class DatabaseInstance(pulumi.CustomResource):
         __props__.__dict__["backup_schedule_frequency"] = backup_schedule_frequency
         __props__.__dict__["backup_schedule_retention"] = backup_schedule_retention
         __props__.__dict__["certificate"] = certificate
+        __props__.__dict__["clone_from"] = clone_from
         __props__.__dict__["disable_backup"] = disable_backup
         __props__.__dict__["encryption_at_rest"] = encryption_at_rest
         __props__.__dict__["endpoint_ip"] = endpoint_ip
@@ -1605,8 +1758,28 @@ class DatabaseInstance(pulumi.CustomResource):
         return pulumi.get(self, "certificate")
 
     @_builtins.property
+    @pulumi.getter(name="cloneFrom")
+    def clone_from(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `node_type` or upgrade to a larger one. Conflicts with the `engine` and `snapshot_id` parameters.
+
+        > **Important** Updates to `clone_from` will recreate the Database Instance.
+
+        > **Note** `CloneInstance` only accepts `name` and optional `node_type`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+
+        > **Note** Same-apply overrides after clone: set `is_ha_cluster` or `disable_backup` explicitly to change HA/backups; `tags`, `settings`, `logs_policy`, and endpoints (`load_balancer` / `private_network`) are also applied during Create. If you omit `is_ha_cluster` / `disable_backup`, the source values are kept.
+
+        > **Note** Not applied during clone Create: `volume_type` (schema default `lssd` — set it to match a non-`lssd` source), `volume_size_in_gb`, and `project_id` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+
+        > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+
+        > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `load_balancer {}` block, or omit the block to remove it (same behaviour as `snapshot_id`).
+        """
+        return pulumi.get(self, "clone_from")
+
+    @_builtins.property
     @pulumi.getter(name="disableBackup")
-    def disable_backup(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def disable_backup(self) -> pulumi.Output[_builtins.bool]:
         """
         Disable automated backup for the database instance
         """
@@ -1664,7 +1837,7 @@ class DatabaseInstance(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="isHaCluster")
-    def is_ha_cluster(self) -> pulumi.Output[Optional[_builtins.bool]]:
+    def is_ha_cluster(self) -> pulumi.Output[_builtins.bool]:
         """
         Enable or disable high availability for the Database Instance.
 
@@ -1804,7 +1977,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+        The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `clone_from` parameters.
         """
         return pulumi.get(self, "snapshot_id")
 

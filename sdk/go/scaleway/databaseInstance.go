@@ -64,6 +64,47 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			//## Example Clone
+//			source, err := databases.NewInstance(ctx, "source", &databases.InstanceArgs{
+//				Name:          pulumi.String("test-rdb-source"),
+//				NodeType:      pulumi.String("DB-DEV-S"),
+//				Engine:        pulumi.String("PostgreSQL-15"),
+//				IsHaCluster:   pulumi.Bool(false),
+//				DisableBackup: pulumi.Bool(true),
+//				UserName:      pulumi.String("my_initial_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = databases.NewInstance(ctx, "clone", &databases.InstanceArgs{
+//				Name:         pulumi.String("test-rdb-clone"),
+//				NodeType:     pulumi.String("DB-DEV-M"),
+//				CloneFrom:    source.ID().ToIDOutput().ToStringOutput(),
+//				VolumeType:   pulumi.String("lssd"),
+//				LoadBalancer: &databases.InstanceLoadBalancerArgs{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
 //			//## Example Engine Upgrade
 //			// Initial creation with PostgreSQL 14
 //			main, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
@@ -174,8 +215,22 @@ type DatabaseInstance struct {
 	BackupScheduleRetention pulumi.IntOutput `pulumi:"backupScheduleRetention"`
 	// Certificate of the Database Instance.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
+	// The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `nodeType` or upgrade to a larger one. Conflicts with the `engine` and `snapshotId` parameters.
+	//
+	// > **Important** Updates to `cloneFrom` will recreate the Database Instance.
+	//
+	// > **Note** `CloneInstance` only accepts `name` and optional `nodeType`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+	//
+	// > **Note** Same-apply overrides after clone: set `isHaCluster` or `disableBackup` explicitly to change HA/backups; `tags`, `settings`, `logsPolicy`, and endpoints (`loadBalancer` / `privateNetwork`) are also applied during Create. If you omit `isHaCluster` / `disableBackup`, the source values are kept.
+	//
+	// > **Note** Not applied during clone Create: `volumeType` (schema default `lssd` — set it to match a non-`lssd` source), `volumeSizeInGb`, and `projectId` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+	//
+	// > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+	//
+	// > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `loadBalancer {}` block, or omit the block to remove it (same behaviour as `snapshotId`).
+	CloneFrom pulumi.StringPtrOutput `pulumi:"cloneFrom"`
 	// Disable automated backup for the database instance
-	DisableBackup pulumi.BoolPtrOutput `pulumi:"disableBackup"`
+	DisableBackup pulumi.BoolOutput `pulumi:"disableBackup"`
 	// Enable or disable encryption at rest for the Database Instance.
 	EncryptionAtRest pulumi.BoolPtrOutput `pulumi:"encryptionAtRest"`
 	// (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
@@ -201,7 +256,7 @@ type DatabaseInstance struct {
 	// Enable or disable high availability for the Database Instance.
 	//
 	// > **Important** Updates to `isHaCluster` will recreate the Database Instance.
-	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
+	IsHaCluster pulumi.BoolOutput `pulumi:"isHaCluster"`
 	// List of Load Balancer endpoints of the Database Instance.
 	LoadBalancer DatabaseInstanceLoadBalancerOutput `pulumi:"loadBalancer"`
 	// Logs policy configuration for remote logs retention on the Database Instance
@@ -240,7 +295,7 @@ type DatabaseInstance struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
-	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `cloneFrom` parameters.
 	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -310,6 +365,20 @@ type databaseInstanceState struct {
 	BackupScheduleRetention *int `pulumi:"backupScheduleRetention"`
 	// Certificate of the Database Instance.
 	Certificate *string `pulumi:"certificate"`
+	// The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `nodeType` or upgrade to a larger one. Conflicts with the `engine` and `snapshotId` parameters.
+	//
+	// > **Important** Updates to `cloneFrom` will recreate the Database Instance.
+	//
+	// > **Note** `CloneInstance` only accepts `name` and optional `nodeType`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+	//
+	// > **Note** Same-apply overrides after clone: set `isHaCluster` or `disableBackup` explicitly to change HA/backups; `tags`, `settings`, `logsPolicy`, and endpoints (`loadBalancer` / `privateNetwork`) are also applied during Create. If you omit `isHaCluster` / `disableBackup`, the source values are kept.
+	//
+	// > **Note** Not applied during clone Create: `volumeType` (schema default `lssd` — set it to match a non-`lssd` source), `volumeSizeInGb`, and `projectId` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+	//
+	// > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+	//
+	// > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `loadBalancer {}` block, or omit the block to remove it (same behaviour as `snapshotId`).
+	CloneFrom *string `pulumi:"cloneFrom"`
 	// Disable automated backup for the database instance
 	DisableBackup *bool `pulumi:"disableBackup"`
 	// Enable or disable encryption at rest for the Database Instance.
@@ -376,7 +445,7 @@ type databaseInstanceState struct {
 	Region *string `pulumi:"region"`
 	// Map of engine settings to be set on a running instance.
 	Settings map[string]string `pulumi:"settings"`
-	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `cloneFrom` parameters.
 	SnapshotId *string `pulumi:"snapshotId"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
@@ -403,6 +472,20 @@ type DatabaseInstanceState struct {
 	BackupScheduleRetention pulumi.IntPtrInput
 	// Certificate of the Database Instance.
 	Certificate pulumi.StringPtrInput
+	// The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `nodeType` or upgrade to a larger one. Conflicts with the `engine` and `snapshotId` parameters.
+	//
+	// > **Important** Updates to `cloneFrom` will recreate the Database Instance.
+	//
+	// > **Note** `CloneInstance` only accepts `name` and optional `nodeType`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+	//
+	// > **Note** Same-apply overrides after clone: set `isHaCluster` or `disableBackup` explicitly to change HA/backups; `tags`, `settings`, `logsPolicy`, and endpoints (`loadBalancer` / `privateNetwork`) are also applied during Create. If you omit `isHaCluster` / `disableBackup`, the source values are kept.
+	//
+	// > **Note** Not applied during clone Create: `volumeType` (schema default `lssd` — set it to match a non-`lssd` source), `volumeSizeInGb`, and `projectId` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+	//
+	// > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+	//
+	// > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `loadBalancer {}` block, or omit the block to remove it (same behaviour as `snapshotId`).
+	CloneFrom pulumi.StringPtrInput
 	// Disable automated backup for the database instance
 	DisableBackup pulumi.BoolPtrInput
 	// Enable or disable encryption at rest for the Database Instance.
@@ -469,7 +552,7 @@ type DatabaseInstanceState struct {
 	Region pulumi.StringPtrInput
 	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapInput
-	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `cloneFrom` parameters.
 	SnapshotId pulumi.StringPtrInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
@@ -498,6 +581,20 @@ type databaseInstanceArgs struct {
 	BackupScheduleFrequency *int `pulumi:"backupScheduleFrequency"`
 	// Backup schedule retention in days
 	BackupScheduleRetention *int `pulumi:"backupScheduleRetention"`
+	// The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `nodeType` or upgrade to a larger one. Conflicts with the `engine` and `snapshotId` parameters.
+	//
+	// > **Important** Updates to `cloneFrom` will recreate the Database Instance.
+	//
+	// > **Note** `CloneInstance` only accepts `name` and optional `nodeType`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+	//
+	// > **Note** Same-apply overrides after clone: set `isHaCluster` or `disableBackup` explicitly to change HA/backups; `tags`, `settings`, `logsPolicy`, and endpoints (`loadBalancer` / `privateNetwork`) are also applied during Create. If you omit `isHaCluster` / `disableBackup`, the source values are kept.
+	//
+	// > **Note** Not applied during clone Create: `volumeType` (schema default `lssd` — set it to match a non-`lssd` source), `volumeSizeInGb`, and `projectId` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+	//
+	// > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+	//
+	// > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `loadBalancer {}` block, or omit the block to remove it (same behaviour as `snapshotId`).
+	CloneFrom *string `pulumi:"cloneFrom"`
 	// Disable automated backup for the database instance
 	DisableBackup *bool `pulumi:"disableBackup"`
 	// Enable or disable encryption at rest for the Database Instance.
@@ -550,7 +647,7 @@ type databaseInstanceArgs struct {
 	Region *string `pulumi:"region"`
 	// Map of engine settings to be set on a running instance.
 	Settings map[string]string `pulumi:"settings"`
-	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `cloneFrom` parameters.
 	SnapshotId *string `pulumi:"snapshotId"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
@@ -574,6 +671,20 @@ type DatabaseInstanceArgs struct {
 	BackupScheduleFrequency pulumi.IntPtrInput
 	// Backup schedule retention in days
 	BackupScheduleRetention pulumi.IntPtrInput
+	// The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `nodeType` or upgrade to a larger one. Conflicts with the `engine` and `snapshotId` parameters.
+	//
+	// > **Important** Updates to `cloneFrom` will recreate the Database Instance.
+	//
+	// > **Note** `CloneInstance` only accepts `name` and optional `nodeType`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+	//
+	// > **Note** Same-apply overrides after clone: set `isHaCluster` or `disableBackup` explicitly to change HA/backups; `tags`, `settings`, `logsPolicy`, and endpoints (`loadBalancer` / `privateNetwork`) are also applied during Create. If you omit `isHaCluster` / `disableBackup`, the source values are kept.
+	//
+	// > **Note** Not applied during clone Create: `volumeType` (schema default `lssd` — set it to match a non-`lssd` source), `volumeSizeInGb`, and `projectId` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+	//
+	// > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+	//
+	// > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `loadBalancer {}` block, or omit the block to remove it (same behaviour as `snapshotId`).
+	CloneFrom pulumi.StringPtrInput
 	// Disable automated backup for the database instance
 	DisableBackup pulumi.BoolPtrInput
 	// Enable or disable encryption at rest for the Database Instance.
@@ -626,7 +737,7 @@ type DatabaseInstanceArgs struct {
 	Region pulumi.StringPtrInput
 	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapInput
-	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `cloneFrom` parameters.
 	SnapshotId pulumi.StringPtrInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
@@ -749,9 +860,26 @@ func (o DatabaseInstanceOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
 }
 
+// The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `nodeType` or upgrade to a larger one. Conflicts with the `engine` and `snapshotId` parameters.
+//
+// > **Important** Updates to `cloneFrom` will recreate the Database Instance.
+//
+// > **Note** `CloneInstance` only accepts `name` and optional `nodeType`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+//
+// > **Note** Same-apply overrides after clone: set `isHaCluster` or `disableBackup` explicitly to change HA/backups; `tags`, `settings`, `logsPolicy`, and endpoints (`loadBalancer` / `privateNetwork`) are also applied during Create. If you omit `isHaCluster` / `disableBackup`, the source values are kept.
+//
+// > **Note** Not applied during clone Create: `volumeType` (schema default `lssd` — set it to match a non-`lssd` source), `volumeSizeInGb`, and `projectId` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+//
+// > **Note** When cloning from Local Storage (`lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+//
+// > **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `loadBalancer {}` block, or omit the block to remove it (same behaviour as `snapshotId`).
+func (o DatabaseInstanceOutput) CloneFrom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.CloneFrom }).(pulumi.StringPtrOutput)
+}
+
 // Disable automated backup for the database instance
-func (o DatabaseInstanceOutput) DisableBackup() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolPtrOutput { return v.DisableBackup }).(pulumi.BoolPtrOutput)
+func (o DatabaseInstanceOutput) DisableBackup() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolOutput { return v.DisableBackup }).(pulumi.BoolOutput)
 }
 
 // Enable or disable encryption at rest for the Database Instance.
@@ -794,8 +922,8 @@ func (o DatabaseInstanceOutput) InitSettings() pulumi.StringMapOutput {
 // Enable or disable high availability for the Database Instance.
 //
 // > **Important** Updates to `isHaCluster` will recreate the Database Instance.
-func (o DatabaseInstanceOutput) IsHaCluster() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolPtrOutput { return v.IsHaCluster }).(pulumi.BoolPtrOutput)
+func (o DatabaseInstanceOutput) IsHaCluster() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DatabaseInstance) pulumi.BoolOutput { return v.IsHaCluster }).(pulumi.BoolOutput)
 }
 
 // List of Load Balancer endpoints of the Database Instance.
@@ -881,7 +1009,7 @@ func (o DatabaseInstanceOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringMapOutput { return v.Settings }).(pulumi.StringMapOutput)
 }
 
-// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
+// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `cloneFrom` parameters.
 func (o DatabaseInstanceOutput) SnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.SnapshotId }).(pulumi.StringPtrOutput)
 }

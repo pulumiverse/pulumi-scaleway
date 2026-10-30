@@ -84,8 +84,10 @@ export interface GetPrivateNicResult {
     readonly privateNetworkId?: string;
     readonly privateNicId?: string;
     readonly projectId: string;
+    readonly securityGroupId: string;
     readonly serverId: string;
     readonly srn: string;
+    readonly status: string;
     readonly tags?: string[];
     readonly zone?: string;
 }
