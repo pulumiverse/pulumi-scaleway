@@ -143,13 +143,21 @@ export class InstancePrivateNic extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * The ID of the server associated with.
+     * The ID of the security group associated with the private network interface.
      */
-    declare public readonly serverId: pulumi.Output<string>;
+    declare public readonly securityGroupId: pulumi.Output<string | undefined>;
+    /**
+     * The ID of the server associated with the private network interface.
+     */
+    declare public readonly serverId: pulumi.Output<string | undefined>;
     /**
      * The Scaleway Resource Name (SRN) of the private network interface.
      */
     declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
+     * The status of the private network interface.
+     */
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The tags associated with the private NIC.
      */
@@ -181,8 +189,10 @@ export class InstancePrivateNic extends pulumi.CustomResource {
             resourceInputs["privateIps"] = state?.privateIps;
             resourceInputs["privateNetworkId"] = state?.privateNetworkId;
             resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["securityGroupId"] = state?.securityGroupId;
             resourceInputs["serverId"] = state?.serverId;
             resourceInputs["srn"] = state?.srn;
+            resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["zone"] = state?.zone;
         } else {
@@ -190,19 +200,18 @@ export class InstancePrivateNic extends pulumi.CustomResource {
             if (args?.privateNetworkId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'privateNetworkId'");
             }
-            if (args?.serverId === undefined && !opts.urn) {
-                throw new Error("Missing required property 'serverId'");
-            }
             resourceInputs["ipIds"] = args?.ipIds;
             resourceInputs["ipamIpIds"] = args?.ipamIpIds;
             resourceInputs["privateIps"] = args?.privateIps;
             resourceInputs["privateNetworkId"] = args?.privateNetworkId;
             resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["securityGroupId"] = args?.securityGroupId;
             resourceInputs["serverId"] = args?.serverId;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["zone"] = args?.zone;
             resourceInputs["macAddress"] = undefined /*out*/;
             resourceInputs["srn"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(InstancePrivateNic.__pulumiType, name, resourceInputs, opts);
@@ -240,13 +249,21 @@ export interface InstancePrivateNicState {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * The ID of the server associated with.
+     * The ID of the security group associated with the private network interface.
+     */
+    securityGroupId?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of the server associated with the private network interface.
      */
     serverId?: pulumi.Input<string | undefined>;
     /**
      * The Scaleway Resource Name (SRN) of the private network interface.
      */
     srn?: pulumi.Input<string | undefined>;
+    /**
+     * The status of the private network interface.
+     */
+    status?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the private NIC.
      */
@@ -284,9 +301,13 @@ export interface InstancePrivateNicArgs {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * The ID of the server associated with.
+     * The ID of the security group associated with the private network interface.
      */
-    serverId: pulumi.Input<string>;
+    securityGroupId?: pulumi.Input<string | undefined>;
+    /**
+     * The ID of the server associated with the private network interface.
+     */
+    serverId?: pulumi.Input<string | undefined>;
     /**
      * The tags associated with the private NIC.
      */
