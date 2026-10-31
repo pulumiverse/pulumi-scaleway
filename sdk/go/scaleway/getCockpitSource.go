@@ -116,6 +116,8 @@ type LookupCockpitSourceResult struct {
 	Region    *string `pulumi:"region"`
 	// The number of days the data is retained in the data source.
 	RetentionDays int `pulumi:"retentionDays"`
+	// The Scaleway Resource Name (SRN) of the data source.
+	Srn string `pulumi:"srn"`
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana bool    `pulumi:"synchronizedWithGrafana"`
 	Type                    *string `pulumi:"type"`
@@ -199,6 +201,11 @@ func (o LookupCockpitSourceResultOutput) Region() pulumi.StringPtrOutput {
 // The number of days the data is retained in the data source.
 func (o LookupCockpitSourceResultOutput) RetentionDays() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCockpitSourceResult) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the data source.
+func (o LookupCockpitSourceResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupCockpitSourceResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Indicates whether the data source is synchronized with Grafana.

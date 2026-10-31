@@ -42,8 +42,9 @@ type LookupAccountProjectArgs struct {
 
 // A collection of values returned by getAccountProject.
 type LookupAccountProjectResult struct {
-	CreatedAt   string `pulumi:"createdAt"`
-	Description string `pulumi:"description"`
+	CreatedAt           string `pulumi:"createdAt"`
+	DeleteWithResources bool   `pulumi:"deleteWithResources"`
+	Description         string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
 	Name           *string `pulumi:"name"`
@@ -93,6 +94,10 @@ func (o LookupAccountProjectResultOutput) ToLookupAccountProjectResultOutputWith
 
 func (o LookupAccountProjectResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAccountProjectResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupAccountProjectResultOutput) DeleteWithResources() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupAccountProjectResult) bool { return v.DeleteWithResources }).(pulumi.BoolOutput)
 }
 
 func (o LookupAccountProjectResultOutput) Description() pulumi.StringOutput {

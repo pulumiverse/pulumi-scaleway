@@ -228,6 +228,7 @@ class GetPartnersPartnerResult(dict):
                  logo_url: _builtins.str,
                  name: _builtins.str,
                  portal_url: _builtins.str,
+                 srn: _builtins.str,
                  updated_at: _builtins.str):
         """
         :param _builtins.str contact_email: Contact email address.
@@ -236,6 +237,7 @@ class GetPartnersPartnerResult(dict):
         :param _builtins.str logo_url: URL of the partner's logo.
         :param _builtins.str name: Name of the partner.
         :param _builtins.str portal_url: URL of the partner's portal.
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the partner.
         :param _builtins.str updated_at: Last update date.
         """
         pulumi.set(__self__, "contact_email", contact_email)
@@ -244,6 +246,7 @@ class GetPartnersPartnerResult(dict):
         pulumi.set(__self__, "logo_url", logo_url)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "portal_url", portal_url)
+        pulumi.set(__self__, "srn", srn)
         pulumi.set(__self__, "updated_at", updated_at)
 
     @_builtins.property
@@ -295,6 +298,14 @@ class GetPartnersPartnerResult(dict):
         return pulumi.get(self, "portal_url")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the partner.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> _builtins.str:
         """
@@ -314,7 +325,8 @@ class GetPopsPopResult(dict):
                  id: _builtins.str,
                  logo_url: _builtins.str,
                  name: _builtins.str,
-                 region: _builtins.str):
+                 region: _builtins.str,
+                 srn: _builtins.str):
         """
         :param _builtins.str address: Physical address of the PoP.
         :param Sequence[_builtins.int] available_link_bandwidths_mbps: List of available bandwidth options in Mbps.
@@ -325,6 +337,7 @@ class GetPopsPopResult(dict):
         :param _builtins.str logo_url: URL of the PoP's logo.
         :param _builtins.str name: PoP name to filter for.
         :param _builtins.str region: `region`) The region to list PoPs from.
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the PoP.
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "available_link_bandwidths_mbps", available_link_bandwidths_mbps)
@@ -335,6 +348,7 @@ class GetPopsPopResult(dict):
         pulumi.set(__self__, "logo_url", logo_url)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "srn", srn)
 
     @_builtins.property
     @pulumi.getter
@@ -407,5 +421,13 @@ class GetPopsPopResult(dict):
         `region`) The region to list PoPs from.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the PoP.
+        """
+        return pulumi.get(self, "srn")
 
 

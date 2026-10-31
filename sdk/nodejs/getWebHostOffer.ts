@@ -71,7 +71,7 @@ export interface GetWebHostOfferResult {
     readonly billingOperationPath: string;
     readonly controlPanel?: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The unique identifier of the option.
      */
     readonly id: string;
     /**
@@ -89,8 +89,6 @@ export interface GetWebHostOfferResult {
     readonly price: string;
     /**
      * (deprecated) The offer product.
-     *
-     * @deprecated The product field is deprecated. Please use the offer field instead.
      */
     readonly products: outputs.GetWebHostOfferProduct[];
     readonly region: string;

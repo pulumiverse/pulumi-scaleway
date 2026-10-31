@@ -138,6 +138,12 @@ namespace Pulumiverse.Scaleway.Partner
         public Output<string> PhoneNumber { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the organization.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The current status of the organization.
         /// </summary>
         [Output("status")]
@@ -305,6 +311,12 @@ namespace Pulumiverse.Scaleway.Partner
         /// </summary>
         [Input("phoneNumber")]
         public Input<string>? PhoneNumber { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the organization.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The current status of the organization.

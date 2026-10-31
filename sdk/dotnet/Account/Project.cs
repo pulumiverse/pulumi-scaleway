@@ -15,6 +15,8 @@ namespace Pulumiverse.Scaleway.Account
     /// 
     /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
     /// 
+    /// By default, destroying a project that still contains resources fails. Set `DeleteWithResources` to `True` to delete the project along with all the resources it contains, including resources not managed by Terraform. Deleting a project is permanent and cannot be undone.
+    /// 
     /// ## Example Usage
     /// 
     /// ### Create a Scaleway Project
@@ -32,6 +34,27 @@ namespace Pulumiverse.Scaleway.Account
     ///     var project = new Scaleway.Account.Project("project", new()
     ///     {
     ///         Name = "project",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Create a Scaleway Project and delete all its resources on deletion
+    /// 
+    /// The following command allows you to create a project named `MyProject`. Destroying this project will also delete all the resources it contains, including resources not managed by Terraform.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project = new Scaleway.Account.Project("project", new()
+    ///     {
+    ///         Name = "my_project",
+    ///         DeleteWithResources = true,
     ///     });
     /// 
     /// });
@@ -80,6 +103,12 @@ namespace Pulumiverse.Scaleway.Account
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `False`.
+        /// </summary>
+        [Output("deleteWithResources")]
+        public Output<bool?> DeleteWithResources { get; private set; } = null!;
 
         /// <summary>
         /// The description of the Project.
@@ -163,6 +192,12 @@ namespace Pulumiverse.Scaleway.Account
     public sealed class ProjectArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `False`.
+        /// </summary>
+        [Input("deleteWithResources")]
+        public Input<bool>? DeleteWithResources { get; set; }
+
+        /// <summary>
         /// The description of the Project.
         /// </summary>
         [Input("description")]
@@ -193,6 +228,12 @@ namespace Pulumiverse.Scaleway.Account
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `False`.
+        /// </summary>
+        [Input("deleteWithResources")]
+        public Input<bool>? DeleteWithResources { get; set; }
 
         /// <summary>
         /// The description of the Project.

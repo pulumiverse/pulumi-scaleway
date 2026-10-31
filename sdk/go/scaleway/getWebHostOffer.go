@@ -76,7 +76,7 @@ type GetWebHostOfferResult struct {
 	// The billing operation identifier for the option.
 	BillingOperationPath string  `pulumi:"billingOperationPath"`
 	ControlPanel         *string `pulumi:"controlPanel"`
-	// The provider-assigned unique ID for this managed resource.
+	// The unique identifier of the option.
 	Id string `pulumi:"id"`
 	// The name of the option.
 	Name    *string `pulumi:"name"`
@@ -86,8 +86,6 @@ type GetWebHostOfferResult struct {
 	// The offer price.
 	Price string `pulumi:"price"`
 	// (deprecated) The offer product.
-	//
-	// Deprecated: The product field is deprecated. Please use the offer field instead.
 	Products []GetWebHostOfferProduct `pulumi:"products"`
 	Region   string                   `pulumi:"region"`
 }
@@ -137,7 +135,7 @@ func (o GetWebHostOfferResultOutput) ControlPanel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetWebHostOfferResult) *string { return v.ControlPanel }).(pulumi.StringPtrOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The unique identifier of the option.
 func (o GetWebHostOfferResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebHostOfferResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -162,8 +160,6 @@ func (o GetWebHostOfferResultOutput) Price() pulumi.StringOutput {
 }
 
 // (deprecated) The offer product.
-//
-// Deprecated: The product field is deprecated. Please use the offer field instead.
 func (o GetWebHostOfferResultOutput) Products() GetWebHostOfferProductArrayOutput {
 	return o.ApplyT(func(v GetWebHostOfferResult) []GetWebHostOfferProduct { return v.Products }).(GetWebHostOfferProductArrayOutput)
 }

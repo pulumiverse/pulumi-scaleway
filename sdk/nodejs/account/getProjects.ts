@@ -75,6 +75,7 @@ export interface GetProjectsResult {
      * (Computed) The date and time when the project was created.
      */
     readonly createdAt: string;
+    readonly deleteWithResources: boolean;
     /**
      * (Computed) The description of the project.
      */

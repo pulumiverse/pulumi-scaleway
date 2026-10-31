@@ -786,6 +786,7 @@ class GetSourcesSourceResult(dict):
                  push_url: _builtins.str,
                  region: _builtins.str,
                  retention_days: _builtins.int,
+                 srn: _builtins.str,
                  synchronized_with_grafana: _builtins.bool,
                  type: _builtins.str,
                  updated_at: _builtins.str,
@@ -799,6 +800,7 @@ class GetSourcesSourceResult(dict):
         :param _builtins.str push_url: The URL endpoint used for pushing data to the cockpit data source.
         :param _builtins.str region: The region in which the cockpit sources are located.
         :param _builtins.int retention_days: The number of days to retain data.
+        :param _builtins.str srn: The Scaleway Resource Name (SRN) of the data source.
         :param _builtins.bool synchronized_with_grafana: Indicates whether the data source is synchronized with Grafana.
         :param _builtins.str type: Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
         :param _builtins.str updated_at: The date and time of the last update of the cockpit datasource.
@@ -812,6 +814,7 @@ class GetSourcesSourceResult(dict):
         pulumi.set(__self__, "push_url", push_url)
         pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "retention_days", retention_days)
+        pulumi.set(__self__, "srn", srn)
         pulumi.set(__self__, "synchronized_with_grafana", synchronized_with_grafana)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "updated_at", updated_at)
@@ -880,6 +883,14 @@ class GetSourcesSourceResult(dict):
         The number of days to retain data.
         """
         return pulumi.get(self, "retention_days")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the data source.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter(name="synchronizedWithGrafana")

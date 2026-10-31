@@ -75,7 +75,7 @@ class GetWebHostOfferResult:
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The unique identifier of the option.
         """
         return pulumi.get(self, "id")
 
@@ -110,7 +110,6 @@ class GetWebHostOfferResult:
 
     @_builtins.property
     @pulumi.getter
-    @_utilities.deprecated("""The product field is deprecated. Please use the offer field instead.""")
     def products(self) -> Sequence['outputs.GetWebHostOfferProductResult']:
         """
         (deprecated) The offer product.

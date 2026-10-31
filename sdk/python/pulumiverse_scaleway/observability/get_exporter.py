@@ -27,7 +27,7 @@ class GetExporterResult:
     """
     A collection of values returned by getExporter.
     """
-    def __init__(__self__, created_at=None, datadog_destinations=None, datasource_id=None, description=None, exported_products=None, id=None, name=None, otlp_destinations=None, project_id=None, region=None, status=None, updated_at=None):
+    def __init__(__self__, created_at=None, datadog_destinations=None, datasource_id=None, description=None, exported_products=None, id=None, name=None, otlp_destinations=None, project_id=None, region=None, srn=None, status=None, updated_at=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -58,6 +58,9 @@ class GetExporterResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -141,6 +144,14 @@ class GetExporterResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the data export.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> _builtins.str:
         """
         Status of the data export (`creating`, `ready`, `error`).
@@ -172,6 +183,7 @@ class AwaitableGetExporterResult(GetExporterResult):
             otlp_destinations=self.otlp_destinations,
             project_id=self.project_id,
             region=self.region,
+            srn=self.srn,
             status=self.status,
             updated_at=self.updated_at)
 
@@ -232,6 +244,7 @@ def get_exporter(id: Optional[_builtins.str] = None,
         otlp_destinations=pulumi.get(__ret__, 'otlp_destinations'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
+        srn=pulumi.get(__ret__, 'srn'),
         status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_exporter_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -289,5 +302,6 @@ def get_exporter_output(id: pulumi.Input[Optional[Optional[_builtins.str]]] = No
         otlp_destinations=pulumi.get(__response__, 'otlp_destinations'),
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),
+        srn=pulumi.get(__response__, 'srn'),
         status=pulumi.get(__response__, 'status'),
         updated_at=pulumi.get(__response__, 'updated_at')))

@@ -592,6 +592,8 @@ type GetPartnersPartner struct {
 	Name string `pulumi:"name"`
 	// URL of the partner's portal.
 	PortalUrl string `pulumi:"portalUrl"`
+	// The Scaleway Resource Name (SRN) of the partner.
+	Srn string `pulumi:"srn"`
 	// Last update date.
 	UpdatedAt string `pulumi:"updatedAt"`
 }
@@ -620,6 +622,8 @@ type GetPartnersPartnerArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// URL of the partner's portal.
 	PortalUrl pulumi.StringInput `pulumi:"portalUrl"`
+	// The Scaleway Resource Name (SRN) of the partner.
+	Srn pulumi.StringInput `pulumi:"srn"`
 	// Last update date.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
@@ -705,6 +709,11 @@ func (o GetPartnersPartnerOutput) PortalUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPartnersPartner) string { return v.PortalUrl }).(pulumi.StringOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the partner.
+func (o GetPartnersPartnerOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPartnersPartner) string { return v.Srn }).(pulumi.StringOutput)
+}
+
 // Last update date.
 func (o GetPartnersPartnerOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPartnersPartner) string { return v.UpdatedAt }).(pulumi.StringOutput)
@@ -749,6 +758,8 @@ type GetPopsPop struct {
 	Name string `pulumi:"name"`
 	// `region`) The region to list PoPs from.
 	Region string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the PoP.
+	Srn string `pulumi:"srn"`
 }
 
 // GetPopsPopInput is an input type that accepts GetPopsPopArgs and GetPopsPopOutput values.
@@ -781,6 +792,8 @@ type GetPopsPopArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// `region`) The region to list PoPs from.
 	Region pulumi.StringInput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the PoP.
+	Srn pulumi.StringInput `pulumi:"srn"`
 }
 
 func (GetPopsPopArgs) ElementType() reflect.Type {
@@ -877,6 +890,11 @@ func (o GetPopsPopOutput) Name() pulumi.StringOutput {
 // `region`) The region to list PoPs from.
 func (o GetPopsPopOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPopsPop) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the PoP.
+func (o GetPopsPopOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPopsPop) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 type GetPopsPopArrayOutput struct{ *pulumi.OutputState }

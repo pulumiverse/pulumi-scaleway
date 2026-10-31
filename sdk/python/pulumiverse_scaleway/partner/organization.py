@@ -146,6 +146,7 @@ class _OrganizationState:
                  owner_lastname: pulumi.Input[Optional[_builtins.str]] = None,
                  partner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  phone_number: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
@@ -161,6 +162,7 @@ class _OrganizationState:
         :param pulumi.Input[_builtins.str] owner_lastname: The last name of the new organization owner.
         :param pulumi.Input[_builtins.str] partner_id: Your personal partner_id. This is the same as your Organization ID. If not provided, the default organization configured in the provider is used.
         :param pulumi.Input[_builtins.str] phone_number: The phone number of the new organization owner.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the organization.
         :param pulumi.Input[_builtins.str] status: The current status of the organization.
         """
         if created_at is not None:
@@ -185,6 +187,8 @@ class _OrganizationState:
             pulumi.set(__self__, "partner_id", partner_id)
         if phone_number is not None:
             pulumi.set(__self__, "phone_number", phone_number)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
 
@@ -319,6 +323,18 @@ class _OrganizationState:
     @phone_number.setter
     def phone_number(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "phone_number", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the organization.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -501,6 +517,7 @@ class Organization(pulumi.CustomResource):
             __props__.__dict__["lock_reason_message"] = None
             __props__.__dict__["locked_at"] = None
             __props__.__dict__["locked_by"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
         super(Organization, __self__).__init__(
             'scaleway:partner/organization:Organization',
@@ -523,6 +540,7 @@ class Organization(pulumi.CustomResource):
             owner_lastname: pulumi.Input[Optional[_builtins.str]] = None,
             partner_id: pulumi.Input[Optional[_builtins.str]] = None,
             phone_number: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None) -> 'Organization':
         """
         Get an existing Organization resource's state with the given name, id, and optional extra
@@ -542,6 +560,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] owner_lastname: The last name of the new organization owner.
         :param pulumi.Input[_builtins.str] partner_id: Your personal partner_id. This is the same as your Organization ID. If not provided, the default organization configured in the provider is used.
         :param pulumi.Input[_builtins.str] phone_number: The phone number of the new organization owner.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the organization.
         :param pulumi.Input[_builtins.str] status: The current status of the organization.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -559,6 +578,7 @@ class Organization(pulumi.CustomResource):
         __props__.__dict__["owner_lastname"] = owner_lastname
         __props__.__dict__["partner_id"] = partner_id
         __props__.__dict__["phone_number"] = phone_number
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         return Organization(resource_name, opts=opts, __props__=__props__)
 
@@ -649,6 +669,14 @@ class Organization(pulumi.CustomResource):
         The phone number of the new organization owner.
         """
         return pulumi.get(self, "phone_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the organization.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

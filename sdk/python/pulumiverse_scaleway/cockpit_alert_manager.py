@@ -119,7 +119,8 @@ class _CockpitAlertManagerState:
                  enable_managed_alerts: pulumi.Input[Optional[_builtins.bool]] = None,
                  preconfigured_alert_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 region: pulumi.Input[Optional[_builtins.str]] = None):
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CockpitAlertManager resources.
 
@@ -129,6 +130,7 @@ class _CockpitAlertManagerState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] preconfigured_alert_ids: A set of preconfigured alert rule IDs to enable explicitly. Use the `observability_get_preconfigured_alert` data source to list available alerts.
         :param pulumi.Input[_builtins.str] project_id: ) The ID of the Project the Cockpit is associated with.
         :param pulumi.Input[_builtins.str] region: ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the alert manager.
         """
         if alert_manager_url is not None:
             pulumi.set(__self__, "alert_manager_url", alert_manager_url)
@@ -145,6 +147,8 @@ class _CockpitAlertManagerState:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
 
     @_builtins.property
     @pulumi.getter(name="alertManagerUrl")
@@ -218,6 +222,18 @@ class _CockpitAlertManagerState:
     @region.setter
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the alert manager.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
 
 warnings.warn("""scaleway.index/cockpitalertmanager.CockpitAlertManager has been deprecated in favor of scaleway.observability/alertmanager.AlertManager""", DeprecationWarning)
@@ -429,6 +445,7 @@ class CockpitAlertManager(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["alert_manager_url"] = None
+            __props__.__dict__["srn"] = None
         super(CockpitAlertManager, __self__).__init__(
             'scaleway:index/cockpitAlertManager:CockpitAlertManager',
             resource_name,
@@ -444,7 +461,8 @@ class CockpitAlertManager(pulumi.CustomResource):
             enable_managed_alerts: pulumi.Input[Optional[_builtins.bool]] = None,
             preconfigured_alert_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            region: pulumi.Input[Optional[_builtins.str]] = None) -> 'CockpitAlertManager':
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None) -> 'CockpitAlertManager':
         """
         Get an existing CockpitAlertManager resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -458,6 +476,7 @@ class CockpitAlertManager(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] preconfigured_alert_ids: A set of preconfigured alert rule IDs to enable explicitly. Use the `observability_get_preconfigured_alert` data source to list available alerts.
         :param pulumi.Input[_builtins.str] project_id: ) The ID of the Project the Cockpit is associated with.
         :param pulumi.Input[_builtins.str] region: ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the alert manager.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -469,6 +488,7 @@ class CockpitAlertManager(pulumi.CustomResource):
         __props__.__dict__["preconfigured_alert_ids"] = preconfigured_alert_ids
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["srn"] = srn
         return CockpitAlertManager(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -519,4 +539,12 @@ class CockpitAlertManager(pulumi.CustomResource):
         ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the alert manager.
+        """
+        return pulumi.get(self, "srn")
 

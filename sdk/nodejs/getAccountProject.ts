@@ -48,6 +48,7 @@ export interface GetAccountProjectArgs {
  */
 export interface GetAccountProjectResult {
     readonly createdAt: string;
+    readonly deleteWithResources: boolean;
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.

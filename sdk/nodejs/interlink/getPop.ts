@@ -94,6 +94,10 @@ export interface GetPopResult {
     readonly name: string;
     readonly popId?: string;
     readonly region: string;
+    /**
+     * The Scaleway Resource Name (SRN) of the PoP.
+     */
+    readonly srn: string;
 }
 /**
  * Gets information about an Interlink PoP (Point of Presence).

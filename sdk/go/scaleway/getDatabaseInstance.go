@@ -46,6 +46,7 @@ type LookupDatabaseInstanceResult struct {
 	BackupScheduleFrequency int    `pulumi:"backupScheduleFrequency"`
 	BackupScheduleRetention int    `pulumi:"backupScheduleRetention"`
 	Certificate             string `pulumi:"certificate"`
+	CloneFrom               string `pulumi:"cloneFrom"`
 	DisableBackup           bool   `pulumi:"disableBackup"`
 	EncryptionAtRest        bool   `pulumi:"encryptionAtRest"`
 	EndpointIp              string `pulumi:"endpointIp"`
@@ -131,6 +132,10 @@ func (o LookupDatabaseInstanceResultOutput) BackupScheduleRetention() pulumi.Int
 
 func (o LookupDatabaseInstanceResultOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.Certificate }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseInstanceResultOutput) CloneFrom() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.CloneFrom }).(pulumi.StringOutput)
 }
 
 func (o LookupDatabaseInstanceResultOutput) DisableBackup() pulumi.BoolOutput {
