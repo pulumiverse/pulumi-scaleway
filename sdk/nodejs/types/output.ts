@@ -10148,6 +10148,10 @@ export namespace interlink {
          */
         portalUrl: string;
         /**
+         * The Scaleway Resource Name (SRN) of the partner.
+         */
+        srn: string;
+        /**
          * Last update date.
          */
         updatedAt: string;
@@ -10190,6 +10194,10 @@ export namespace interlink {
          * `region`) The region to list PoPs from.
          */
         region: string;
+        /**
+         * The Scaleway Resource Name (SRN) of the PoP.
+         */
+        srn: string;
     }
 
     export interface LinkPeerBgpConfig {
@@ -13471,6 +13479,10 @@ export namespace observability {
          * The number of days to retain data.
          */
         retentionDays: number;
+        /**
+         * The Scaleway Resource Name (SRN) of the data source.
+         */
+        srn: string;
         /**
          * Indicates whether the data source is synchronized with Grafana.
          */

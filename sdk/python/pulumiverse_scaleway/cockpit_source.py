@@ -114,6 +114,7 @@ class _CockpitSourceState:
                  push_url: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  retention_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  synchronized_with_grafana: pulumi.Input[Optional[_builtins.bool]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -128,6 +129,7 @@ class _CockpitSourceState:
         :param pulumi.Input[_builtins.str] push_url: The URL endpoint used for pushing data to the Cockpit data source.
         :param pulumi.Input[_builtins.str] region: ) The region where the data source is located.
         :param pulumi.Input[_builtins.int] retention_days: The number of days to retain data in the data source. Use the `observability_get_config` data source to read the allowed min, max, and default values for each data source type.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the data source.
         :param pulumi.Input[_builtins.bool] synchronized_with_grafana: Indicates whether the data source is synchronized with Grafana.
         :param pulumi.Input[_builtins.str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         :param pulumi.Input[_builtins.str] updated_at: The date and time the data source was last updated (in RFC 3339 format).
@@ -147,6 +149,8 @@ class _CockpitSourceState:
             pulumi.set(__self__, "region", region)
         if retention_days is not None:
             pulumi.set(__self__, "retention_days", retention_days)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if synchronized_with_grafana is not None:
             pulumi.set(__self__, "synchronized_with_grafana", synchronized_with_grafana)
         if type is not None:
@@ -239,6 +243,18 @@ class _CockpitSourceState:
     @retention_days.setter
     def retention_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retention_days", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the data source.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter(name="synchronizedWithGrafana")
@@ -424,6 +440,7 @@ class CockpitSource(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["origin"] = None
             __props__.__dict__["push_url"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["synchronized_with_grafana"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["url"] = None
@@ -444,6 +461,7 @@ class CockpitSource(pulumi.CustomResource):
             push_url: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             retention_days: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             synchronized_with_grafana: pulumi.Input[Optional[_builtins.bool]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -462,6 +480,7 @@ class CockpitSource(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] push_url: The URL endpoint used for pushing data to the Cockpit data source.
         :param pulumi.Input[_builtins.str] region: ) The region where the data source is located.
         :param pulumi.Input[_builtins.int] retention_days: The number of days to retain data in the data source. Use the `observability_get_config` data source to read the allowed min, max, and default values for each data source type.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the data source.
         :param pulumi.Input[_builtins.bool] synchronized_with_grafana: Indicates whether the data source is synchronized with Grafana.
         :param pulumi.Input[_builtins.str] type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         :param pulumi.Input[_builtins.str] updated_at: The date and time the data source was last updated (in RFC 3339 format).
@@ -478,6 +497,7 @@ class CockpitSource(pulumi.CustomResource):
         __props__.__dict__["push_url"] = push_url
         __props__.__dict__["region"] = region
         __props__.__dict__["retention_days"] = retention_days
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["synchronized_with_grafana"] = synchronized_with_grafana
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
@@ -539,6 +559,14 @@ class CockpitSource(pulumi.CustomResource):
         The number of days to retain data in the data source. Use the `observability_get_config` data source to read the allowed min, max, and default values for each data source type.
         """
         return pulumi.get(self, "retention_days")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the data source.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter(name="synchronizedWithGrafana")

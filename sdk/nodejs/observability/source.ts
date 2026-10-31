@@ -93,6 +93,10 @@ export class Source extends pulumi.CustomResource {
      */
     declare public readonly retentionDays: pulumi.Output<number>;
     /**
+     * The Scaleway Resource Name (SRN) of the data source.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * Indicates whether the data source is synchronized with Grafana.
      */
     declare public /*out*/ readonly synchronizedWithGrafana: pulumi.Output<boolean>;
@@ -129,6 +133,7 @@ export class Source extends pulumi.CustomResource {
             resourceInputs["pushUrl"] = state?.pushUrl;
             resourceInputs["region"] = state?.region;
             resourceInputs["retentionDays"] = state?.retentionDays;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["synchronizedWithGrafana"] = state?.synchronizedWithGrafana;
             resourceInputs["type"] = state?.type;
             resourceInputs["updatedAt"] = state?.updatedAt;
@@ -146,6 +151,7 @@ export class Source extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["origin"] = undefined /*out*/;
             resourceInputs["pushUrl"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["synchronizedWithGrafana"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["url"] = undefined /*out*/;
@@ -189,6 +195,10 @@ export interface SourceState {
      * The number of days to retain data in the data source. Use the `scaleway.observability.getConfig` data source to read the allowed min, max, and default values for each data source type.
      */
     retentionDays?: pulumi.Input<number | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the data source.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether the data source is synchronized with Grafana.
      */

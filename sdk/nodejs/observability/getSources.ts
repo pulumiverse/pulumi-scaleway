@@ -149,6 +149,10 @@ export interface GetSourcesResult {
      */
     readonly sources: outputs.observability.GetSourcesSource[];
     /**
+     * The Scaleway Resource Name (SRN) of the data source.
+     */
+    readonly srn: string;
+    /**
      * Indicates whether the data source is synchronized with Grafana.
      */
     readonly synchronizedWithGrafana: boolean;

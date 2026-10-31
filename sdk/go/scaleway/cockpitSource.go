@@ -82,6 +82,8 @@ type CockpitSource struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The number of days to retain data in the data source. Use the `observability.getConfig` data source to read the allowed min, max, and default values for each data source type.
 	RetentionDays pulumi.IntOutput `pulumi:"retentionDays"`
+	// The Scaleway Resource Name (SRN) of the data source.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana pulumi.BoolOutput `pulumi:"synchronizedWithGrafana"`
 	// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
@@ -139,6 +141,8 @@ type cockpitSourceState struct {
 	Region *string `pulumi:"region"`
 	// The number of days to retain data in the data source. Use the `observability.getConfig` data source to read the allowed min, max, and default values for each data source type.
 	RetentionDays *int `pulumi:"retentionDays"`
+	// The Scaleway Resource Name (SRN) of the data source.
+	Srn *string `pulumi:"srn"`
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana *bool `pulumi:"synchronizedWithGrafana"`
 	// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
@@ -164,6 +168,8 @@ type CockpitSourceState struct {
 	Region pulumi.StringPtrInput
 	// The number of days to retain data in the data source. Use the `observability.getConfig` data source to read the allowed min, max, and default values for each data source type.
 	RetentionDays pulumi.IntPtrInput
+	// The Scaleway Resource Name (SRN) of the data source.
+	Srn pulumi.StringPtrInput
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana pulumi.BoolPtrInput
 	// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
@@ -325,6 +331,11 @@ func (o CockpitSourceOutput) Region() pulumi.StringOutput {
 // The number of days to retain data in the data source. Use the `observability.getConfig` data source to read the allowed min, max, and default values for each data source type.
 func (o CockpitSourceOutput) RetentionDays() pulumi.IntOutput {
 	return o.ApplyT(func(v *CockpitSource) pulumi.IntOutput { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the data source.
+func (o CockpitSourceOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *CockpitSource) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Indicates whether the data source is synchronized with Grafana.

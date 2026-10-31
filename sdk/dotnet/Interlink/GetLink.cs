@@ -298,6 +298,9 @@ namespace Pulumiverse.Scaleway.Interlink
         /// BGP configuration on Scaleway's side.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLinkScwBgpConfigResult> ScwBgpConfigs;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the link.
+        /// </summary>
         public readonly string Srn;
         /// <summary>
         /// Status of the link.

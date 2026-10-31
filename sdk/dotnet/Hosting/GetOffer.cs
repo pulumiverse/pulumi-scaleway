@@ -184,7 +184,7 @@ namespace Pulumiverse.Scaleway.Hosting
         public readonly string BillingOperationPath;
         public readonly string? ControlPanel;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The unique identifier of the option.
         /// </summary>
         public readonly string Id;
         /// <summary>

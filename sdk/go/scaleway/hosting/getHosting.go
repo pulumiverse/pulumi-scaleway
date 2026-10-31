@@ -64,18 +64,19 @@ type LookupHostingArgs struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the hosting is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// `region`) The region in which hosting exists.
+	Region *string `pulumi:"region"`
 	// The hosting id. Only one of `domain` and `webhostingId` should be specified.
 	WebhostingId *string `pulumi:"webhostingId"`
 }
 
 // A collection of values returned by getHosting.
 type LookupHostingResult struct {
-	CpanelUrls []GetHostingCpanelUrl `pulumi:"cpanelUrls"`
-	CreatedAt  string                `pulumi:"createdAt"`
-	DnsStatus  string                `pulumi:"dnsStatus"`
-	Domain     *string               `pulumi:"domain"`
-	Email      string                `pulumi:"email"`
-	// The provider-assigned unique ID for this managed resource.
+	CpanelUrls       []GetHostingCpanelUrl  `pulumi:"cpanelUrls"`
+	CreatedAt        string                 `pulumi:"createdAt"`
+	DnsStatus        string                 `pulumi:"dnsStatus"`
+	Domain           *string                `pulumi:"domain"`
+	Email            string                 `pulumi:"email"`
 	Id               string                 `pulumi:"id"`
 	NameServers      []GetHostingNameServer `pulumi:"nameServers"`
 	OfferId          string                 `pulumi:"offerId"`
@@ -108,6 +109,8 @@ type LookupHostingOutputArgs struct {
 	OrganizationId pulumi.StringPtrInput `pulumi:"organizationId"`
 	// `projectId`) The ID of the project the hosting is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// `region`) The region in which hosting exists.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The hosting id. Only one of `domain` and `webhostingId` should be specified.
 	WebhostingId pulumi.StringPtrInput `pulumi:"webhostingId"`
 }
@@ -151,7 +154,6 @@ func (o LookupHostingResultOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHostingResult) string { return v.Email }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
 func (o LookupHostingResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupHostingResult) string { return v.Id }).(pulumi.StringOutput)
 }

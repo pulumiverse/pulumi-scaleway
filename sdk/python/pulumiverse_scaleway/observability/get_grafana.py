@@ -26,7 +26,7 @@ class GetGrafanaResult:
     """
     A collection of values returned by getGrafana.
     """
-    def __init__(__self__, grafana_url=None, id=None, project_id=None):
+    def __init__(__self__, grafana_url=None, id=None, project_id=None, srn=None):
         if grafana_url and not isinstance(grafana_url, str):
             raise TypeError("Expected argument 'grafana_url' to be a str")
         pulumi.set(__self__, "grafana_url", grafana_url)
@@ -36,6 +36,9 @@ class GetGrafanaResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
 
     @_builtins.property
     @pulumi.getter(name="grafanaUrl")
@@ -58,6 +61,14 @@ class GetGrafanaResult:
     def project_id(self) -> _builtins.str:
         return pulumi.get(self, "project_id")
 
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the Grafana instance.
+        """
+        return pulumi.get(self, "srn")
+
 
 class AwaitableGetGrafanaResult(GetGrafanaResult):
     # pylint: disable=using-constant-test
@@ -67,7 +78,8 @@ class AwaitableGetGrafanaResult(GetGrafanaResult):
         return GetGrafanaResult(
             grafana_url=self.grafana_url,
             id=self.id,
-            project_id=self.project_id)
+            project_id=self.project_id,
+            srn=self.srn)
 
 
 def get_grafana(project_id: Optional[_builtins.str] = None,
@@ -154,7 +166,8 @@ def get_grafana(project_id: Optional[_builtins.str] = None,
     return AwaitableGetGrafanaResult(
         grafana_url=pulumi.get(__ret__, 'grafana_url'),
         id=pulumi.get(__ret__, 'id'),
-        project_id=pulumi.get(__ret__, 'project_id'))
+        project_id=pulumi.get(__ret__, 'project_id'),
+        srn=pulumi.get(__ret__, 'srn'))
 def get_grafana_output(project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGrafanaResult]:
     """
@@ -238,4 +251,5 @@ def get_grafana_output(project_id: pulumi.Input[Optional[Optional[_builtins.str]
     return __ret__.apply(lambda __response__: GetGrafanaResult(
         grafana_url=pulumi.get(__response__, 'grafana_url'),
         id=pulumi.get(__response__, 'id'),
-        project_id=pulumi.get(__response__, 'project_id')))
+        project_id=pulumi.get(__response__, 'project_id'),
+        srn=pulumi.get(__response__, 'srn')))

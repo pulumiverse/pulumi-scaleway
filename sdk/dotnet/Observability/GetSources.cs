@@ -437,6 +437,10 @@ namespace Pulumiverse.Scaleway.Observability
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSourcesSourceResult> Sources;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the data source.
+        /// </summary>
+        public readonly string Srn;
+        /// <summary>
         /// Indicates whether the data source is synchronized with Grafana.
         /// </summary>
         public readonly bool SynchronizedWithGrafana;
@@ -473,6 +477,8 @@ namespace Pulumiverse.Scaleway.Observability
 
             ImmutableArray<Outputs.GetSourcesSourceResult> sources,
 
+            string srn,
+
             bool synchronizedWithGrafana,
 
             string? type,
@@ -490,6 +496,7 @@ namespace Pulumiverse.Scaleway.Observability
             Region = region;
             RetentionDays = retentionDays;
             Sources = sources;
+            Srn = srn;
             SynchronizedWithGrafana = synchronizedWithGrafana;
             Type = type;
             UpdatedAt = updatedAt;

@@ -258,6 +258,9 @@ class GetLinkResult:
     @_builtins.property
     @pulumi.getter
     def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the link.
+        """
         return pulumi.get(self, "srn")
 
     @_builtins.property

@@ -156,6 +156,8 @@ type Exporter struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// ) The region where the exporter is located.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the data export.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// Status of the data export (`creating`, `ready`, `error`).
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Date and time of last update (RFC 3339 format).
@@ -213,6 +215,8 @@ type exporterState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// ) The region where the exporter is located.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the data export.
+	Srn *string `pulumi:"srn"`
 	// Status of the data export (`creating`, `ready`, `error`).
 	Status *string `pulumi:"status"`
 	// Date and time of last update (RFC 3339 format).
@@ -238,6 +242,8 @@ type ExporterState struct {
 	ProjectId pulumi.StringPtrInput
 	// ) The region where the exporter is located.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the data export.
+	Srn pulumi.StringPtrInput
 	// Status of the data export (`creating`, `ready`, `error`).
 	Status pulumi.StringPtrInput
 	// Date and time of last update (RFC 3339 format).
@@ -417,6 +423,11 @@ func (o ExporterOutput) ProjectId() pulumi.StringOutput {
 // ) The region where the exporter is located.
 func (o ExporterOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Exporter) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the data export.
+func (o ExporterOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Exporter) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Status of the data export (`creating`, `ready`, `error`).

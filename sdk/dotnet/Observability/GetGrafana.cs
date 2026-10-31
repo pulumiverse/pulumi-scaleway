@@ -415,6 +415,10 @@ namespace Pulumiverse.Scaleway.Observability
         /// </summary>
         public readonly string Id;
         public readonly string ProjectId;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the Grafana instance.
+        /// </summary>
+        public readonly string Srn;
 
         [OutputConstructor]
         private GetGrafanaResult(
@@ -422,11 +426,14 @@ namespace Pulumiverse.Scaleway.Observability
 
             string id,
 
-            string projectId)
+            string projectId,
+
+            string srn)
         {
             GrafanaUrl = grafanaUrl;
             Id = id;
             ProjectId = projectId;
+            Srn = srn;
         }
     }
 }

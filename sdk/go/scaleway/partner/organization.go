@@ -109,6 +109,8 @@ type Organization struct {
 	PartnerId pulumi.StringOutput `pulumi:"partnerId"`
 	// The phone number of the new organization owner.
 	PhoneNumber pulumi.StringOutput `pulumi:"phoneNumber"`
+	// The Scaleway Resource Name (SRN) of the organization.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The current status of the organization.
 	Status pulumi.StringOutput `pulumi:"status"`
 }
@@ -180,6 +182,8 @@ type organizationState struct {
 	PartnerId *string `pulumi:"partnerId"`
 	// The phone number of the new organization owner.
 	PhoneNumber *string `pulumi:"phoneNumber"`
+	// The Scaleway Resource Name (SRN) of the organization.
+	Srn *string `pulumi:"srn"`
 	// The current status of the organization.
 	Status *string `pulumi:"status"`
 }
@@ -207,6 +211,8 @@ type OrganizationState struct {
 	PartnerId pulumi.StringPtrInput
 	// The phone number of the new organization owner.
 	PhoneNumber pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the organization.
+	Srn pulumi.StringPtrInput
 	// The current status of the organization.
 	Status pulumi.StringPtrInput
 }
@@ -390,6 +396,11 @@ func (o OrganizationOutput) PartnerId() pulumi.StringOutput {
 // The phone number of the new organization owner.
 func (o OrganizationOutput) PhoneNumber() pulumi.StringOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringOutput { return v.PhoneNumber }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the organization.
+func (o OrganizationOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Organization) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The current status of the organization.

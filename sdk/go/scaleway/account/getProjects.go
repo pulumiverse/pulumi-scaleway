@@ -107,7 +107,8 @@ type GetProjectsArgs struct {
 // A collection of values returned by getProjects.
 type GetProjectsResult struct {
 	// (Computed) The date and time when the project was created.
-	CreatedAt string `pulumi:"createdAt"`
+	CreatedAt           string `pulumi:"createdAt"`
+	DeleteWithResources bool   `pulumi:"deleteWithResources"`
 	// (Computed) The description of the project.
 	Description string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
@@ -157,6 +158,10 @@ func (o GetProjectsResultOutput) ToGetProjectsResultOutputWithContext(ctx contex
 // (Computed) The date and time when the project was created.
 func (o GetProjectsResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o GetProjectsResultOutput) DeleteWithResources() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.DeleteWithResources }).(pulumi.BoolOutput)
 }
 
 // (Computed) The description of the project.

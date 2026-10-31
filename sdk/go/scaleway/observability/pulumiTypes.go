@@ -1959,6 +1959,8 @@ type GetSourcesSource struct {
 	Region string `pulumi:"region"`
 	// The number of days to retain data.
 	RetentionDays int `pulumi:"retentionDays"`
+	// The Scaleway Resource Name (SRN) of the data source.
+	Srn string `pulumi:"srn"`
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana bool `pulumi:"synchronizedWithGrafana"`
 	// Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
@@ -1997,6 +1999,8 @@ type GetSourcesSourceArgs struct {
 	Region pulumi.StringInput `pulumi:"region"`
 	// The number of days to retain data.
 	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+	// The Scaleway Resource Name (SRN) of the data source.
+	Srn pulumi.StringInput `pulumi:"srn"`
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana pulumi.BoolInput `pulumi:"synchronizedWithGrafana"`
 	// Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
@@ -2096,6 +2100,11 @@ func (o GetSourcesSourceOutput) Region() pulumi.StringOutput {
 // The number of days to retain data.
 func (o GetSourcesSourceOutput) RetentionDays() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSourcesSource) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the data source.
+func (o GetSourcesSourceOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSourcesSource) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Indicates whether the data source is synchronized with Grafana.

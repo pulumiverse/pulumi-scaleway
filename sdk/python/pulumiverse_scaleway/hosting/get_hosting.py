@@ -123,9 +123,6 @@ class GetHostingResult:
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
         return pulumi.get(self, "id")
 
     @_builtins.property
@@ -242,6 +239,7 @@ class AwaitableGetHostingResult(GetHostingResult):
 def get_hosting(domain: Optional[_builtins.str] = None,
                 organization_id: Optional[_builtins.str] = None,
                 project_id: Optional[_builtins.str] = None,
+                region: Optional[_builtins.str] = None,
                 webhosting_id: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetHostingResult:
     """
@@ -263,12 +261,14 @@ def get_hosting(domain: Optional[_builtins.str] = None,
     :param _builtins.str domain: The hosting domain name. Only one of `domain` and `webhosting_id` should be specified.
     :param _builtins.str organization_id: The ID of the organization the hosting is associated with.
     :param _builtins.str project_id: `project_id`) The ID of the project the hosting is associated with.
+    :param _builtins.str region: `region`) The region in which hosting exists.
     :param _builtins.str webhosting_id: The hosting id. Only one of `domain` and `webhosting_id` should be specified.
     """
     __args__ = dict()
     __args__['domain'] = domain
     __args__['organizationId'] = organization_id
     __args__['projectId'] = project_id
+    __args__['region'] = region
     __args__['webhostingId'] = webhosting_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:hosting/getHosting:getHosting', __args__, opts=opts, typ=GetHostingResult).value
@@ -299,6 +299,7 @@ def get_hosting(domain: Optional[_builtins.str] = None,
 def get_hosting_output(domain: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        organization_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        webhosting_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetHostingResult]:
     """
@@ -320,12 +321,14 @@ def get_hosting_output(domain: pulumi.Input[Optional[Optional[_builtins.str]]] =
     :param _builtins.str domain: The hosting domain name. Only one of `domain` and `webhosting_id` should be specified.
     :param _builtins.str organization_id: The ID of the organization the hosting is associated with.
     :param _builtins.str project_id: `project_id`) The ID of the project the hosting is associated with.
+    :param _builtins.str region: `region`) The region in which hosting exists.
     :param _builtins.str webhosting_id: The hosting id. Only one of `domain` and `webhosting_id` should be specified.
     """
     __args__ = dict()
     __args__['domain'] = domain
     __args__['organizationId'] = organization_id
     __args__['projectId'] = project_id
+    __args__['region'] = region
     __args__['webhostingId'] = webhosting_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:hosting/getHosting:getHosting', __args__, opts=opts, typ=GetHostingResult)

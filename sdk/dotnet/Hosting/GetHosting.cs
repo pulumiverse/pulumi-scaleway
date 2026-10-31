@@ -128,6 +128,12 @@ namespace Pulumiverse.Scaleway.Hosting
         public string? ProjectId { get; set; }
 
         /// <summary>
+        /// `Region`) The region in which hosting exists.
+        /// </summary>
+        [Input("region")]
+        public string? Region { get; set; }
+
+        /// <summary>
         /// The hosting id. Only one of `Domain` and `WebhostingId` should be specified.
         /// </summary>
         [Input("webhostingId")]
@@ -160,6 +166,12 @@ namespace Pulumiverse.Scaleway.Hosting
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
+        /// `Region`) The region in which hosting exists.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// The hosting id. Only one of `Domain` and `WebhostingId` should be specified.
         /// </summary>
         [Input("webhostingId")]
@@ -180,9 +192,6 @@ namespace Pulumiverse.Scaleway.Hosting
         public readonly string DnsStatus;
         public readonly string? Domain;
         public readonly string Email;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetHostingNameServerResult> NameServers;
         public readonly string OfferId;

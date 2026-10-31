@@ -100,6 +100,12 @@ namespace Pulumiverse.Scaleway
         public Output<int> RetentionDays { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the data source.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// Indicates whether the data source is synchronized with Grafana.
         /// </summary>
         [Output("synchronizedWithGrafana")]
@@ -249,6 +255,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("retentionDays")]
         public Input<int>? RetentionDays { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the data source.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// Indicates whether the data source is synchronized with Grafana.
