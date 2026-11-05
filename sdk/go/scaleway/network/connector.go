@@ -46,8 +46,8 @@ import (
 //			}
 //			_, err = network.NewConnector(ctx, "main", &network.ConnectorArgs{
 //				Name:        pulumi.String("my-vpc-connector"),
-//				VpcId:       vpc01.ID().ToIDOutput().ToStringOutput(),
-//				TargetVpcId: vpc02.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:       vpc01.ID(),
+//				TargetVpcId: vpc02.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -86,8 +86,8 @@ import (
 //			}
 //			_, err = network.NewConnector(ctx, "main", &network.ConnectorArgs{
 //				Name:        pulumi.String("my-vpc-connector"),
-//				VpcId:       vpc01.ID().ToIDOutput().ToStringOutput(),
-//				TargetVpcId: vpc02.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:       vpc01.ID(),
+//				TargetVpcId: vpc02.ID(),
 //				Region:      pulumi.String("nl-ams"),
 //			})
 //			if err != nil {
@@ -125,8 +125,8 @@ import (
 //			}
 //			_, err = network.NewConnector(ctx, "main", &network.ConnectorArgs{
 //				Name:        pulumi.String("my-vpc-connector"),
-//				VpcId:       vpc01.ID().ToIDOutput().ToStringOutput(),
-//				TargetVpcId: vpc02.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:       vpc01.ID(),
+//				TargetVpcId: vpc02.ID(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("production"),
 //					pulumi.String("connector"),
@@ -262,6 +262,12 @@ type ConnectorState struct {
 
 func (ConnectorState) ElementType() reflect.Type {
 	return reflect.TypeOf((*connectorState)(nil)).Elem()
+}
+
+// ConnectorExists checks whether an existing Connector resource with the given ID exists.
+func ConnectorExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ConnectorState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:network/connector:Connector", id, state, "", opts...)
 }
 
 type connectorArgs struct {

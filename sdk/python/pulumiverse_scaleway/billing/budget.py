@@ -308,6 +308,22 @@ class Budget(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         return Budget(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            consumption_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["consumptionLimit"] = consumption_limit
+        __props__["createdAt"] = created_at
+        __props__["enabled"] = enabled
+        __props__["organizationId"] = organization_id
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'scaleway:billing/budget:Budget', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="consumptionLimit")
     def consumption_limit(self) -> pulumi.Output[_builtins.int]:

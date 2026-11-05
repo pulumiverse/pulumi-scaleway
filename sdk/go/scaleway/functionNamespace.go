@@ -179,6 +179,12 @@ func (FunctionNamespaceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionNamespaceState)(nil)).Elem()
 }
 
+// FunctionNamespaceExists checks whether an existing FunctionNamespace resource with the given ID exists.
+func FunctionNamespaceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FunctionNamespaceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/functionNamespace:FunctionNamespace", id, state, "", opts...)
+}
+
 type functionNamespaceArgs struct {
 	// The description of the namespace.
 	Description *string `pulumi:"description"`

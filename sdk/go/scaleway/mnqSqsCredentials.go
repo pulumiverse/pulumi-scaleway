@@ -147,6 +147,12 @@ func (MnqSqsCredentialsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mnqSqsCredentialsState)(nil)).Elem()
 }
 
+// MnqSqsCredentialsExists checks whether an existing MnqSqsCredentials resource with the given ID exists.
+func MnqSqsCredentialsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MnqSqsCredentialsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/mnqSqsCredentials:MnqSqsCredentials", id, state, "", opts...)
+}
+
 type mnqSqsCredentialsArgs struct {
 	// The unique name of the SQS credentials.
 	Name *string `pulumi:"name"`

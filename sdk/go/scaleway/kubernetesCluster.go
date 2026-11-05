@@ -41,14 +41,14 @@ import (
 //				Name:                      pulumi.String("tf-cluster"),
 //				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
-//				PrivateNetworkId:          pn.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId:          pn.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
-//				ClusterId: cluster.ID().ToIDOutput().ToStringOutput(),
+//				ClusterId: cluster.ID(),
 //				Version:   cluster.Version,
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
@@ -90,7 +90,7 @@ import (
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform"),
 //				},
-//				PrivateNetworkId:          pn.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId:          pn.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //				AutoscalerConfig: &kubernetes.ClusterAutoscalerConfigArgs{
 //					DisableScaleDown:             pulumi.Bool(false),
@@ -106,7 +106,7 @@ import (
 //				return err
 //			}
 //			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
-//				ClusterId:   cluster.ID().ToIDOutput().ToStringOutput(),
+//				ClusterId:   cluster.ID(),
 //				Version:     cluster.Version,
 //				Name:        pulumi.String("tf-pool"),
 //				NodeType:    pulumi.String("DEV1-M"),
@@ -152,13 +152,13 @@ import (
 //				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
 //				DeleteAdditionalResources: pulumi.Bool(false),
-//				PrivateNetworkId:          pn.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId:          pn.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			pool, err := kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
-//				ClusterId: cluster.ID().ToIDOutput().ToStringOutput(),
+//				ClusterId: cluster.ID(),
 //				Version:   cluster.Version,
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
@@ -240,14 +240,14 @@ import (
 //				Name:                      pulumi.String("tf-cluster"),
 //				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
-//				PrivateNetworkId:          pn.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId:          pn.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			pool, err := kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
-//				ClusterId: cluster.ID().ToIDOutput().ToStringOutput(),
+//				ClusterId: cluster.ID(),
 //				Version:   cluster.Version,
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
@@ -308,7 +308,7 @@ import (
 //				return err
 //			}
 //			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
-//				ClusterId: cluster.ID().ToIDOutput().ToStringOutput(),
+//				ClusterId: cluster.ID(),
 //				Version:   cluster.Version,
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("external"),
@@ -719,6 +719,12 @@ type KubernetesClusterState struct {
 
 func (KubernetesClusterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*kubernetesClusterState)(nil)).Elem()
+}
+
+// KubernetesClusterExists checks whether an existing KubernetesCluster resource with the given ID exists.
+func KubernetesClusterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KubernetesClusterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/kubernetesCluster:KubernetesCluster", id, state, "", opts...)
 }
 
 type kubernetesClusterArgs struct {

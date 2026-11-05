@@ -168,6 +168,12 @@ func (MongoDbSnapshotState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mongoDbSnapshotState)(nil)).Elem()
 }
 
+// MongoDbSnapshotExists checks whether an existing MongoDbSnapshot resource with the given ID exists.
+func MongoDbSnapshotExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MongoDbSnapshotState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/mongoDbSnapshot:MongoDbSnapshot", id, state, "", opts...)
+}
+
 type mongoDbSnapshotArgs struct {
 	// The expiration date of the MongoDB® snapshot in ISO 8601 format (e.g. `2024-12-31T23:59:59Z`).
 	//

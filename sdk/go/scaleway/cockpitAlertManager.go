@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewAlertManager(ctx, "alert_manager", &observability.AlertManagerArgs{
-//				ProjectId: project.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId: project.ID(),
 //				ContactPoints: observability.AlertManagerContactPointArray{
 //					&observability.AlertManagerContactPointArgs{
 //						Email: pulumi.String("alert1@example.com"),
@@ -86,7 +86,7 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewAlertManager(ctx, "alert_manager", &observability.AlertManagerArgs{
-//				ProjectId:           project.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId:           project.ID(),
 //				EnableManagedAlerts: pulumi.Bool(true),
 //				ContactPoints: observability.AlertManagerContactPointArray{
 //					&observability.AlertManagerContactPointArgs{
@@ -196,6 +196,12 @@ type CockpitAlertManagerState struct {
 
 func (CockpitAlertManagerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cockpitAlertManagerState)(nil)).Elem()
+}
+
+// CockpitAlertManagerExists checks whether an existing CockpitAlertManager resource with the given ID exists.
+func CockpitAlertManagerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CockpitAlertManagerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/cockpitAlertManager:CockpitAlertManager", id, state, "", opts...)
 }
 
 type cockpitAlertManagerArgs struct {

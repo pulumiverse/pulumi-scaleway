@@ -556,7 +556,7 @@ class Template(pulumi.CustomResource):
                  server_tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  server_type: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict']]]]] = None,
+                 volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict', 'outputs.TemplateVolume']]]]] = None,
                  windows_rdp_ssh_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -701,7 +701,7 @@ class Template(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] server_tags: A list of tags to apply to the servers created from the template.
         :param pulumi.Input[_builtins.str] server_type: The commercial type of the server defined in the template.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the template.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict']]]] volumes: The list of specs describing the volumes to attach to the servers created using the template.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict', 'outputs.TemplateVolume']]]] volumes: The list of specs describing the volumes to attach to the servers created using the template.
                
                > The `volumes` block contains :
         :param pulumi.Input[_builtins.str] windows_rdp_ssh_key_id: The ID of the IAM SSH key used to encrypt the initial admin password on a Windows server. This will be repeated on all servers created using the template.
@@ -867,7 +867,7 @@ class Template(pulumi.CustomResource):
                  server_tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  server_type: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict']]]]] = None,
+                 volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict', 'outputs.TemplateVolume']]]]] = None,
                  windows_rdp_ssh_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -922,7 +922,7 @@ class Template(pulumi.CustomResource):
             srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
-            volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict']]]]] = None,
+            volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict', 'outputs.TemplateVolume']]]]] = None,
             windows_rdp_ssh_key_id: pulumi.Input[Optional[_builtins.str]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Template':
         """
@@ -946,7 +946,7 @@ class Template(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the Instance template.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the template.
         :param pulumi.Input[_builtins.str] updated_at: The last update timestamp of the Instance template.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict']]]] volumes: The list of specs describing the volumes to attach to the servers created using the template.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict', 'outputs.TemplateVolume']]]] volumes: The list of specs describing the volumes to attach to the servers created using the template.
                
                > The `volumes` block contains :
         :param pulumi.Input[_builtins.str] windows_rdp_ssh_key_id: The ID of the IAM SSH key used to encrypt the initial admin password on a Windows server. This will be repeated on all servers created using the template.
@@ -974,6 +974,46 @@ class Template(pulumi.CustomResource):
         __props__.__dict__["windows_rdp_ssh_key_id"] = windows_rdp_ssh_key_id
         __props__.__dict__["zone"] = zone
         return Template(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            filesystem_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_ipv4_count: pulumi.Input[Optional[_builtins.int]] = None,
+            public_ipv6_count: pulumi.Input[Optional[_builtins.int]] = None,
+            security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            server_tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            server_type: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['TemplateVolumeArgs', 'TemplateVolumeArgsDict', 'outputs.TemplateVolume']]]]] = None,
+            windows_rdp_ssh_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["filesystemIds"] = filesystem_ids
+        __props__["name"] = name
+        __props__["placementGroupId"] = placement_group_id
+        __props__["privateNetworks"] = private_networks
+        __props__["projectId"] = project_id
+        __props__["publicIpv4Count"] = public_ipv4_count
+        __props__["publicIpv6Count"] = public_ipv6_count
+        __props__["securityGroupId"] = security_group_id
+        __props__["serverTags"] = server_tags
+        __props__["serverType"] = server_type
+        __props__["srn"] = srn
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        __props__["volumes"] = volumes
+        __props__["windowsRdpSshKeyId"] = windows_rdp_ssh_key_id
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:instance/template:Template', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

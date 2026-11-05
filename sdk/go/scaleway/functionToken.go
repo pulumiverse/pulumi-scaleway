@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			mainFunction, err := functions.NewFunction(ctx, "main", &functions.FunctionArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //				Runtime:     pulumi.String("go118"),
 //				Handler:     pulumi.String("Handle"),
 //				Privacy:     pulumi.String("private"),
@@ -49,7 +49,7 @@ import (
 //			}
 //			// Namespace Token
 //			_, err = functions.NewToken(ctx, "namespace", &functions.TokenArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //				ExpiresAt:   pulumi.String("2022-10-18T11:35:15+02:00"),
 //			})
 //			if err != nil {
@@ -57,7 +57,7 @@ import (
 //			}
 //			// Function Token
 //			_, err = functions.NewToken(ctx, "function", &functions.TokenArgs{
-//				FunctionId: mainFunction.ID().ToIDOutput().ToStringOutput(),
+//				FunctionId: mainFunction.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -171,6 +171,12 @@ type FunctionTokenState struct {
 
 func (FunctionTokenState) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionTokenState)(nil)).Elem()
+}
+
+// FunctionTokenExists checks whether an existing FunctionToken resource with the given ID exists.
+func FunctionTokenExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FunctionTokenState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/functionToken:FunctionToken", id, state, "", opts...)
 }
 
 type functionTokenArgs struct {

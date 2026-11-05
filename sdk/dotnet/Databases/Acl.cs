@@ -101,11 +101,11 @@ namespace Pulumiverse.Scaleway.Databases
     /// {
     ///     var config = new Config();
     ///     // Map of allowed IPs with descriptions
-    ///     var allowedIps = config.GetObject&lt;Dictionary&lt;string, string&gt;&gt;("allowedIps") ?? 
+    ///     var allowedIps = config.GetObject&lt;Dictionary&lt;string, string&gt;&gt;("allowedIps") ?? new Dictionary&lt;string, object?&gt;
     ///     {
-    ///         { "1.2.3.4/32", "Office IP" },
-    ///         { "10.0.0.0/24", "Internal network" },
-    ///         { "5.6.7.8/32", "Home IP" },
+    ///         ["1.2.3.4/32"] = "Office IP",
+    ///         ["10.0.0.0/24"] = "Internal network",
+    ///         ["5.6.7.8/32"] = "Home IP",
     ///     };
     ///     var main = new Scaleway.Databases.Acl("main", new()
     ///     {

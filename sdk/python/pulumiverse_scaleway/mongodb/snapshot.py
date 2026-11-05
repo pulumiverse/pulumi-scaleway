@@ -440,6 +440,32 @@ class Snapshot(pulumi.CustomResource):
         __props__.__dict__["volume_type"] = volume_type
         return Snapshot(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            size: pulumi.Input[Optional[_builtins.int]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            volume_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["expiresAt"] = expires_at
+        __props__["instanceId"] = instance_id
+        __props__["instanceName"] = instance_name
+        __props__["name"] = name
+        __props__["nodeType"] = node_type
+        __props__["region"] = region
+        __props__["size"] = size
+        __props__["updatedAt"] = updated_at
+        __props__["volumeType"] = volume_type
+        return pulumi.runtime.exists_resource(None, 'scaleway:mongodb/snapshot:Snapshot', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:

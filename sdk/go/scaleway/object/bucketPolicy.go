@@ -157,7 +157,7 @@ import (
 //			}
 //			_, err = iam.NewPolicy(ctx, "policy", &iam.PolicyArgs{
 //				Name:          pulumi.String("object-storage-policy"),
-//				ApplicationId: reading_app.ID().ToIDOutput().ToStringOutput(),
+//				ApplicationId: reading_app.ID(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
@@ -180,7 +180,7 @@ import (
 //				return err
 //			}
 //			_, err = object.NewBucketPolicy(ctx, "policy", &object.BucketPolicyArgs{
-//				Bucket: bucket.ID().ToIDOutput().ToStringOutput(),
+//				Bucket: bucket.ID(),
 //				Policy: pulumi.All(reading_app.ID(), bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
 //					id := _args[0].(pulumi.ID)
 //					name := _args[1].(string)
@@ -449,6 +449,12 @@ type BucketPolicyState struct {
 
 func (BucketPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketPolicyState)(nil)).Elem()
+}
+
+// BucketPolicyExists checks whether an existing BucketPolicy resource with the given ID exists.
+func BucketPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BucketPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:object/bucketPolicy:BucketPolicy", id, state, "", opts...)
 }
 
 type bucketPolicyArgs struct {

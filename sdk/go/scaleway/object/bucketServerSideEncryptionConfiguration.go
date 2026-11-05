@@ -282,6 +282,12 @@ func (BucketServerSideEncryptionConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketServerSideEncryptionConfigurationState)(nil)).Elem()
 }
 
+// BucketServerSideEncryptionConfigurationExists checks whether an existing BucketServerSideEncryptionConfiguration resource with the given ID exists.
+func BucketServerSideEncryptionConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BucketServerSideEncryptionConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration", id, state, "", opts...)
+}
+
 type bucketServerSideEncryptionConfigurationArgs struct {
 	// The bucket's name or regional ID.
 	Bucket string `pulumi:"bucket"`

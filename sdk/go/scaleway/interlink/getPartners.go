@@ -38,7 +38,7 @@ import (
 //			}
 //			// List partners available at specific PoPs
 //			_, err = interlink.GetPartners(ctx, &interlink.GetPartnersArgs{
-//				PopIds: pulumi.StringArray{
+//				PopIds: []string{
 //					main.Id,
 //				},
 //			}, nil)

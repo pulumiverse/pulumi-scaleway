@@ -163,6 +163,12 @@ func (PublicGatewayIpState) ElementType() reflect.Type {
 	return reflect.TypeOf((*publicGatewayIpState)(nil)).Elem()
 }
 
+// PublicGatewayIpExists checks whether an existing PublicGatewayIp resource with the given ID exists.
+func PublicGatewayIpExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PublicGatewayIpState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:network/publicGatewayIp:PublicGatewayIp", id, state, "", opts...)
+}
+
 type publicGatewayIpArgs struct {
 	// `projectId`) The ID of the Project the Public Gateway IP is associated with.
 	ProjectId *string `pulumi:"projectId"`

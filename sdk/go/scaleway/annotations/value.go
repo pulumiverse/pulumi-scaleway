@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			_, err = annotations.NewValue(ctx, "production", &annotations.ValueArgs{
-//				KeyId:       environment.ID().ToIDOutput().ToStringOutput(),
+//				KeyId:       environment.ID(),
 //				Name:        pulumi.String("production"),
 //				Description: pulumi.String("Production environment"),
 //			})
@@ -131,6 +131,12 @@ type ValueState struct {
 
 func (ValueState) ElementType() reflect.Type {
 	return reflect.TypeOf((*valueState)(nil)).Elem()
+}
+
+// ValueExists checks whether an existing Value resource with the given ID exists.
+func ValueExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ValueState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:annotations/value:Value", id, state, "", opts...)
 }
 
 type valueArgs struct {

@@ -41,7 +41,7 @@ import (
 //				return err
 //			}
 //			mainLoadBalancer, err := loadbalancers.NewLoadBalancer(ctx, "main", &loadbalancers.LoadBalancerArgs{
-//				IpId: main.ID().ToIDOutput().ToStringOutput(),
+//				IpId: main.ID(),
 //				Name: pulumi.String("data-test-lb-cert"),
 //				Type: pulumi.String("LB-S"),
 //			})
@@ -49,7 +49,7 @@ import (
 //				return err
 //			}
 //			mainCertificate, err := loadbalancers.NewCertificate(ctx, "main", &loadbalancers.CertificateArgs{
-//				LbId: mainLoadBalancer.ID().ToIDOutput().ToStringOutput(),
+//				LbId: mainLoadBalancer.ID(),
 //				Name: pulumi.String("data-test-lb-cert"),
 //				Letsencrypt: &loadbalancers.CertificateLetsencryptArgs{
 //					CommonName: pulumi.All(std.ReplaceOutput(ctx, std.ReplaceOutputArgs{
@@ -67,11 +67,11 @@ import (
 //				return err
 //			}
 //			_ = loadbalancers.LookupCertificateOutput(ctx, loadbalancers.GetCertificateOutputArgs{
-//				CertificateId: mainCertificate.ID().ToIDOutput().ToStringOutput(),
+//				CertificateId: mainCertificate.ID(),
 //			}, nil)
 //			_ = loadbalancers.LookupCertificateOutput(ctx, loadbalancers.GetCertificateOutputArgs{
 //				Name: mainCertificate.Name,
-//				LbId: mainLoadBalancer.ID().ToIDOutput().ToStringOutput(),
+//				LbId: mainLoadBalancer.ID(),
 //			}, nil)
 //			return nil
 //		})

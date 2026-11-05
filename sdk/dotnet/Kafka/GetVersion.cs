@@ -17,7 +17,6 @@ namespace Pulumiverse.Scaleway.Kafka
         /// 
         /// Refer to the [Kafka documentation](https://www.scaleway.com/en/docs/clusters-for-kafka/) and [API documentation](https://www.scaleway.com/en/developers/api/clusters-for-kafka) for more information.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -62,7 +61,6 @@ namespace Pulumiverse.Scaleway.Kafka
         /// 
         /// Refer to the [Kafka documentation](https://www.scaleway.com/en/docs/clusters-for-kafka/) and [API documentation](https://www.scaleway.com/en/developers/api/clusters-for-kafka) for more information.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -106,7 +104,6 @@ namespace Pulumiverse.Scaleway.Kafka
         /// The `scaleway.kafka.getVersion` data source is used to retrieve information about an available Kafka version.
         /// 
         /// Refer to the [Kafka documentation](https://www.scaleway.com/en/docs/clusters-for-kafka/) and [API documentation](https://www.scaleway.com/en/developers/api/clusters-for-kafka) for more information.
-        /// 
         /// 
         /// ## Example Usage
         /// 

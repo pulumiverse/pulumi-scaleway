@@ -165,6 +165,12 @@ func (InstanceVolumeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceVolumeState)(nil)).Elem()
 }
 
+// InstanceVolumeExists checks whether an existing InstanceVolume resource with the given ID exists.
+func InstanceVolumeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceVolumeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/instanceVolume:InstanceVolume", id, state, "", opts...)
+}
+
 type instanceVolumeArgs struct {
 	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
 	FromSnapshotId *string `pulumi:"fromSnapshotId"`

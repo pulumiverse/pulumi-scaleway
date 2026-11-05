@@ -229,6 +229,12 @@ func (RoutingPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*routingPolicyState)(nil)).Elem()
 }
 
+// RoutingPolicyExists checks whether an existing RoutingPolicy resource with the given ID exists.
+func RoutingPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RoutingPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:interlink/routingPolicy:RoutingPolicy", id, state, "", opts...)
+}
+
 type routingPolicyArgs struct {
 	// Defines whether the routing policy uses IPv6 prefixes. Defaults to `false` (IPv4).
 	IsIpv6 *bool `pulumi:"isIpv6"`

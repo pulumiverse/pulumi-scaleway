@@ -240,6 +240,12 @@ func (PrivateNetworkState) ElementType() reflect.Type {
 	return reflect.TypeOf((*privateNetworkState)(nil)).Elem()
 }
 
+// PrivateNetworkExists checks whether an existing PrivateNetwork resource with the given ID exists.
+func PrivateNetworkExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PrivateNetworkState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:network/privateNetwork:PrivateNetwork", id, state, "", opts...)
+}
+
 type privateNetworkArgs struct {
 	// Defines whether default v4 and v6 routes are propagated for this Private Network.
 	EnableDefaultRoutePropagation *bool `pulumi:"enableDefaultRoutePropagation"`

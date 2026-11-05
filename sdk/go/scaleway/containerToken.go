@@ -39,14 +39,14 @@ import (
 //				return err
 //			}
 //			mainContainer, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Namespace Token
 //			_, err = containers.NewToken(ctx, "namespace", &containers.TokenArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //				ExpiresAt:   pulumi.String("2022-10-18T11:35:15+02:00"),
 //			})
 //			if err != nil {
@@ -54,7 +54,7 @@ import (
 //			}
 //			// Container Token
 //			_, err = containers.NewToken(ctx, "container", &containers.TokenArgs{
-//				ContainerId: mainContainer.ID().ToIDOutput().ToStringOutput(),
+//				ContainerId: mainContainer.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -168,6 +168,12 @@ type ContainerTokenState struct {
 
 func (ContainerTokenState) ElementType() reflect.Type {
 	return reflect.TypeOf((*containerTokenState)(nil)).Elem()
+}
+
+// ContainerTokenExists checks whether an existing ContainerToken resource with the given ID exists.
+func ContainerTokenExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ContainerTokenState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/containerToken:ContainerToken", id, state, "", opts...)
 }
 
 type containerTokenArgs struct {

@@ -39,7 +39,7 @@ import (
 //			_, err = instance.NewServer(ctx, "web", &instance.ServerArgs{
 //				Type:  pulumi.String("DEV1-S"),
 //				Image: pulumi.String("ubuntu_jammy"),
-//				IpId:  publicIp.ID().ToIDOutput().ToStringOutput(),
+//				IpId:  publicIp.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -83,7 +83,7 @@ import (
 //					DeleteOnTermination: pulumi.Bool(false),
 //				},
 //				AdditionalVolumeIds: pulumi.StringArray{
-//					data.ID().ToIDOutput().ToStringOutput(),
+//					data.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -135,11 +135,11 @@ import (
 //				},
 //				RootVolume: &instance.ServerRootVolumeArgs{
 //					VolumeType: pulumi.String("sbs_volume"),
-//					VolumeId:   volume.ID().ToIDOutput().ToStringOutput(),
+//					VolumeId:   volume.ID(),
 //				},
 //				Filesystems: instance.ServerFilesystemArray{
 //					&instance.ServerFilesystemArgs{
-//						FilesystemId: terraformInstanceFilesystem.ID().ToIDOutput().ToStringOutput(),
+//						FilesystemId: terraformInstanceFilesystem.ID(),
 //					},
 //				},
 //			})
@@ -177,7 +177,7 @@ import (
 //					pulumi.String("hello"),
 //					pulumi.String("public"),
 //				},
-//				IpId: ip.ID().ToIDOutput().ToStringOutput(),
+//				IpId: ip.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -233,7 +233,7 @@ import (
 //			_, err = instance.NewServer(ctx, "web", &instance.ServerArgs{
 //				Type:            pulumi.String("DEV1-S"),
 //				Image:           pulumi.String("ubuntu_jammy"),
-//				SecurityGroupId: www.ID().ToIDOutput().ToStringOutput(),
+//				SecurityGroupId: www.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -270,7 +270,7 @@ import (
 //				Type:  pulumi.String("DEV1-S"),
 //				PrivateNetworks: instance.ServerPrivateNetworkArray{
 //					&instance.ServerPrivateNetworkArgs{
-//						PnId: pn01.ID().ToIDOutput().ToStringOutput(),
+//						PnId: pn01.ID(),
 //					},
 //				},
 //			})
@@ -346,7 +346,7 @@ import (
 //			_, err = instance.NewServer(ctx, "from_snapshot", &instance.ServerArgs{
 //				Type: pulumi.String("PRO2-XXS"),
 //				RootVolume: &instance.ServerRootVolumeArgs{
-//					VolumeId:   fromSnapshot.ID().ToIDOutput().ToStringOutput(),
+//					VolumeId:   fromSnapshot.ID(),
 //					VolumeType: pulumi.String("sbs_volume"),
 //				},
 //			})
@@ -722,6 +722,12 @@ type ServerState struct {
 
 func (ServerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serverState)(nil)).Elem()
+}
+
+// ServerExists checks whether an existing Server resource with the given ID exists.
+func ServerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:instance/server:Server", id, state, "", opts...)
 }
 
 type serverArgs struct {

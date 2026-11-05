@@ -53,7 +53,7 @@ import (
 //			}
 //			_, err = databases.NewSnapshot(ctx, "test", &databases.SnapshotArgs{
 //				Name:       pulumi.String("initial-snapshot"),
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				main,
 //			}))
@@ -257,6 +257,12 @@ type SnapshotState struct {
 
 func (SnapshotState) ElementType() reflect.Type {
 	return reflect.TypeOf((*snapshotState)(nil)).Elem()
+}
+
+// SnapshotExists checks whether an existing Snapshot resource with the given ID exists.
+func SnapshotExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SnapshotState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:databases/snapshot:Snapshot", id, state, "", opts...)
 }
 
 type snapshotArgs struct {

@@ -437,6 +437,12 @@ func (ObjectBucketState) ElementType() reflect.Type {
 	return reflect.TypeOf((*objectBucketState)(nil)).Elem()
 }
 
+// ObjectBucketExists checks whether an existing ObjectBucket resource with the given ID exists.
+func ObjectBucketExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ObjectBucketState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/objectBucket:ObjectBucket", id, state, "", opts...)
+}
+
 type objectBucketArgs struct {
 	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//

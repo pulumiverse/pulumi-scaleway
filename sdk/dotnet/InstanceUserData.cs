@@ -34,13 +34,13 @@ namespace Pulumiverse.Scaleway
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     var config = new Config();
-    ///     var userData = config.GetObject&lt;Dictionary&lt;string, dynamic&gt;&gt;("userData") ?? 
+    ///     var userData = config.GetObject&lt;Dictionary&lt;string, dynamic&gt;&gt;("userData") ?? new Dictionary&lt;string, object?&gt;
     ///     {
-    ///         { "cloud-init", @"#cloud-config
+    ///         ["cloud-init"] = @"#cloud-config
     /// apt-update: true
     /// apt-upgrade: true
-    /// " },
-    ///         { "foo", "bar" },
+    /// ",
+    ///         ["foo"] = "bar",
     ///     };
     ///     var mainServer = new Scaleway.Instance.Server("main", new()
     ///     {

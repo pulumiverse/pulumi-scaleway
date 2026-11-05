@@ -236,7 +236,7 @@ class RouteStage(pulumi.CustomResource):
                  backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
                  pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict', 'outputs.RouteStageRule']]]]] = None,
                  waf_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -367,7 +367,7 @@ class RouteStage(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the route stage is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict']]]] rules: List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `waf_stage_id` or `backend_stage_id`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict', 'outputs.RouteStageRule']]]] rules: List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `waf_stage_id` or `backend_stage_id`.
         :param pulumi.Input[_builtins.str] waf_stage_id: The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backend_stage_id`.
         """
         ...
@@ -517,7 +517,7 @@ class RouteStage(pulumi.CustomResource):
                  backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
                  pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict', 'outputs.RouteStageRule']]]]] = None,
                  waf_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -553,7 +553,7 @@ class RouteStage(pulumi.CustomResource):
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
             pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict']]]]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict', 'outputs.RouteStageRule']]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             waf_stage_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'RouteStage':
         """
@@ -567,7 +567,7 @@ class RouteStage(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the route stage.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the route stage is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict']]]] rules: List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `waf_stage_id` or `backend_stage_id`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict', 'outputs.RouteStageRule']]]] rules: List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `waf_stage_id` or `backend_stage_id`.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the route stage.
         :param pulumi.Input[_builtins.str] waf_stage_id: The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backend_stage_id`.
         """
@@ -583,6 +583,26 @@ class RouteStage(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["waf_stage_id"] = waf_stage_id
         return RouteStage(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict', 'outputs.RouteStageRule']]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            waf_stage_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backendStageId"] = backend_stage_id
+        __props__["createdAt"] = created_at
+        __props__["pipelineId"] = pipeline_id
+        __props__["projectId"] = project_id
+        __props__["rules"] = rules
+        __props__["updatedAt"] = updated_at
+        __props__["wafStageId"] = waf_stage_id
+        return pulumi.runtime.exists_resource(None, 'scaleway:edgeservices/routeStage:RouteStage', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="backendStageId")

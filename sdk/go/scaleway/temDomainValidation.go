@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = tem.NewDomainValidation(ctx, "example", &tem.DomainValidationArgs{
-//				DomainId: main.ID().ToIDOutput().ToStringOutput(),
+//				DomainId: main.ID(),
 //				Region:   pulumi.String("fr-par"),
 //				Timeout:  pulumi.Int(300),
 //			})
@@ -122,6 +122,12 @@ type TemDomainValidationState struct {
 
 func (TemDomainValidationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*temDomainValidationState)(nil)).Elem()
+}
+
+// TemDomainValidationExists checks whether an existing TemDomainValidation resource with the given ID exists.
+func TemDomainValidationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TemDomainValidationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/temDomainValidation:TemDomainValidation", id, state, "", opts...)
 }
 
 type temDomainValidationArgs struct {

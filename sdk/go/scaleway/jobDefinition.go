@@ -267,6 +267,12 @@ func (JobDefinitionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*jobDefinitionState)(nil)).Elem()
 }
 
+// JobDefinitionExists checks whether an existing JobDefinition resource with the given ID exists.
+func JobDefinitionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *JobDefinitionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/jobDefinition:JobDefinition", id, state, "", opts...)
+}
+
 type jobDefinitionArgs struct {
 	// The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
 	Args []string `pulumi:"args"`

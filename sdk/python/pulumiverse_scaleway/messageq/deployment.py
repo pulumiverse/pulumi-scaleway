@@ -545,13 +545,13 @@ class Deployment(pulumi.CustomResource):
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
+                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  user_name: pulumi.Input[Optional[_builtins.str]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
-                 volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict']]] = None,
+                 volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict', 'outputs.DeploymentVolume']]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway MessageQ deployments.
@@ -649,7 +649,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Bootstrap password for the MessageQ user in write-only mode. Only one of `password` or `password_wo` should be specified, and `password_wo` is never stored in the Terraform state. Bootstrap credentials are immutable, so changing `password_wo_version` recreates the deployment: use `messageq.User` to rotate a password in place.
         :param pulumi.Input[_builtins.int] password_wo_version: Version of the write-only password. Required with `password_wo`.
-        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration. Can be added, updated, or removed on an existing deployment.
+        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']] private_network: Private network configuration. Can be added, updated, or removed on an existing deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
                
                > **Note:** Without `private_network`, a public endpoint is created. Adding `private_network` to an existing deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. Only the endpoint matching your configuration is reported in `endpoints`; use the [MessageQ API](https://www.scaleway.com/en/developers/api/messageq) or the console to list every endpoint.
@@ -659,7 +659,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the deployment.
         :param pulumi.Input[_builtins.str] user_name: Bootstrap username for the deployment. Prefer `messageq.User` for additional users.
         :param pulumi.Input[_builtins.str] version: MessageQ version to use. Changing this forces recreation of the deployment.
-        :param pulumi.Input[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict']] volume: Volume configuration for the cluster.
+        :param pulumi.Input[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict', 'outputs.DeploymentVolume']] volume: Volume configuration for the cluster.
         """
         ...
     @overload
@@ -775,13 +775,13 @@ class Deployment(pulumi.CustomResource):
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
+                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  user_name: pulumi.Input[Optional[_builtins.str]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
-                 volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict']]] = None,
+                 volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict', 'outputs.DeploymentVolume']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -827,14 +827,14 @@ class Deployment(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
-            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentEndpointArgs', 'DeploymentEndpointArgsDict']]]]] = None,
+            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentEndpointArgs', 'DeploymentEndpointArgsDict', 'outputs.DeploymentEndpoint']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             node_count: pulumi.Input[Optional[_builtins.int]] = None,
             node_type: pulumi.Input[Optional[_builtins.str]] = None,
             password: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-            private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
+            private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
@@ -842,7 +842,7 @@ class Deployment(pulumi.CustomResource):
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             user_name: pulumi.Input[Optional[_builtins.str]] = None,
             version: pulumi.Input[Optional[_builtins.str]] = None,
-            volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict']]] = None) -> 'Deployment':
+            volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict', 'outputs.DeploymentVolume']]] = None) -> 'Deployment':
         """
         Get an existing Deployment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -851,7 +851,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: Date and time of deployment creation (RFC 3339 format).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEndpointArgs', 'DeploymentEndpointArgsDict']]]] endpoints: List of endpoints for accessing the deployment.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEndpointArgs', 'DeploymentEndpointArgsDict', 'outputs.DeploymentEndpoint']]]] endpoints: List of endpoints for accessing the deployment.
         :param pulumi.Input[_builtins.str] name: Name of the MessageQ deployment. If not specified, a random name will be generated.
         :param pulumi.Input[_builtins.int] node_count: Number of nodes in the cluster. Can be updated in-place via the Upgrade API.
         :param pulumi.Input[_builtins.str] node_type: Type of node to use. Changing this forces recreation of the deployment.
@@ -859,7 +859,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Bootstrap password for the MessageQ user in write-only mode. Only one of `password` or `password_wo` should be specified, and `password_wo` is never stored in the Terraform state. Bootstrap credentials are immutable, so changing `password_wo_version` recreates the deployment: use `messageq.User` to rotate a password in place.
         :param pulumi.Input[_builtins.int] password_wo_version: Version of the write-only password. Required with `password_wo`.
-        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration. Can be added, updated, or removed on an existing deployment.
+        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']] private_network: Private network configuration. Can be added, updated, or removed on an existing deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
                
                > **Note:** Without `private_network`, a public endpoint is created. Adding `private_network` to an existing deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. Only the endpoint matching your configuration is reported in `endpoints`; use the [MessageQ API](https://www.scaleway.com/en/developers/api/messageq) or the console to list every endpoint.
@@ -871,7 +871,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] updated_at: Date and time of deployment last update (RFC 3339 format).
         :param pulumi.Input[_builtins.str] user_name: Bootstrap username for the deployment. Prefer `messageq.User` for additional users.
         :param pulumi.Input[_builtins.str] version: MessageQ version to use. Changing this forces recreation of the deployment.
-        :param pulumi.Input[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict']] volume: Volume configuration for the cluster.
+        :param pulumi.Input[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict', 'outputs.DeploymentVolume']] volume: Volume configuration for the cluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -895,6 +895,46 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["version"] = version
         __props__.__dict__["volume"] = volume
         return Deployment(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentEndpointArgs', 'DeploymentEndpointArgsDict', 'outputs.DeploymentEndpoint']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_count: pulumi.Input[Optional[_builtins.int]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict', 'outputs.DeploymentVolume']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["endpoints"] = endpoints
+        __props__["name"] = name
+        __props__["nodeCount"] = node_count
+        __props__["nodeType"] = node_type
+        __props__["password"] = password
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["privateNetwork"] = private_network
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        __props__["userName"] = user_name
+        __props__["version"] = version
+        __props__["volume"] = volume
+        return pulumi.runtime.exists_resource(None, 'scaleway:messageq/deployment:Deployment', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

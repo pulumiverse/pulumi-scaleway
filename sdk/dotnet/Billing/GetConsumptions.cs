@@ -16,6 +16,23 @@ namespace Pulumiverse.Scaleway.Billing
         /// Gets information about your Consumptions.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Find your detailed monthly consumption list
+        ///     var my_consumption = Scaleway.Billing.GetConsumptions.Invoke(new()
+        ///     {
+        ///         OrganizationId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetConsumptionsResult> InvokeAsync(GetConsumptionsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetConsumptionsResult>("scaleway:billing/getConsumptions:getConsumptions", args ?? new GetConsumptionsArgs(), options.WithDefaults());
@@ -24,6 +41,23 @@ namespace Pulumiverse.Scaleway.Billing
         /// Gets information about your Consumptions.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Find your detailed monthly consumption list
+        ///     var my_consumption = Scaleway.Billing.GetConsumptions.Invoke(new()
+        ///     {
+        ///         OrganizationId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetConsumptionsResult> Invoke(GetConsumptionsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetConsumptionsResult>("scaleway:billing/getConsumptions:getConsumptions", args ?? new GetConsumptionsInvokeArgs(), options.WithDefaults());
@@ -32,6 +66,23 @@ namespace Pulumiverse.Scaleway.Billing
         /// Gets information about your Consumptions.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Find your detailed monthly consumption list
+        ///     var my_consumption = Scaleway.Billing.GetConsumptions.Invoke(new()
+        ///     {
+        ///         OrganizationId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetConsumptionsResult> Invoke(GetConsumptionsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetConsumptionsResult>("scaleway:billing/getConsumptions:getConsumptions", args ?? new GetConsumptionsInvokeArgs(), options.WithDefaults());

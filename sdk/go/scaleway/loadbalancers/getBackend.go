@@ -34,7 +34,7 @@ import (
 //				return err
 //			}
 //			mainLoadBalancer, err := loadbalancers.NewLoadBalancer(ctx, "main", &loadbalancers.LoadBalancerArgs{
-//				IpId: main.ID().ToIDOutput().ToStringOutput(),
+//				IpId: main.ID(),
 //				Name: pulumi.String("data-test-lb-backend"),
 //				Type: pulumi.String("LB-S"),
 //			})
@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			mainBackend, err := loadbalancers.NewBackend(ctx, "main", &loadbalancers.BackendArgs{
-//				LbId:            mainLoadBalancer.ID().ToIDOutput().ToStringOutput(),
+//				LbId:            mainLoadBalancer.ID(),
 //				Name:            pulumi.String("backend01"),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
@@ -51,11 +51,11 @@ import (
 //				return err
 //			}
 //			_ = loadbalancers.LookupBackendOutput(ctx, loadbalancers.GetBackendOutputArgs{
-//				BackendId: mainBackend.ID().ToIDOutput().ToStringOutput(),
+//				BackendId: mainBackend.ID(),
 //			}, nil)
 //			_ = loadbalancers.LookupBackendOutput(ctx, loadbalancers.GetBackendOutputArgs{
 //				Name: mainBackend.Name,
-//				LbId: mainLoadBalancer.ID().ToIDOutput().ToStringOutput(),
+//				LbId: mainLoadBalancer.ID(),
 //			}, nil)
 //			return nil
 //		})

@@ -34,7 +34,7 @@ import (
 //				return err
 //			}
 //			_ = network.LookupPublicGatewayIpOutput(ctx, network.GetPublicGatewayIpOutputArgs{
-//				IpId: main.ID().ToIDOutput().ToStringOutput(),
+//				IpId: main.ID(),
 //			}, nil)
 //			return nil
 //		})

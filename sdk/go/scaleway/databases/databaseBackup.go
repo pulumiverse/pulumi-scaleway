@@ -44,14 +44,14 @@ import (
 //				return err
 //			}
 //			mainDatabase, err := databases.NewDatabase(ctx, "main", &databases.DatabaseArgs{
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //				Name:       pulumi.String("database"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = databases.NewDatabaseBackup(ctx, "main", &databases.DatabaseBackupArgs{
-//				InstanceId:   main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId:   main.ID(),
 //				DatabaseName: mainDatabase.Name,
 //			})
 //			if err != nil {
@@ -242,6 +242,12 @@ type DatabaseBackupState struct {
 
 func (DatabaseBackupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseBackupState)(nil)).Elem()
+}
+
+// DatabaseBackupExists checks whether an existing DatabaseBackup resource with the given ID exists.
+func DatabaseBackupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DatabaseBackupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:databases/databaseBackup:DatabaseBackup", id, state, "", opts...)
 }
 
 type databaseBackupArgs struct {

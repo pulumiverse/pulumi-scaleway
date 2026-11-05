@@ -89,7 +89,7 @@ namespace Pulumiverse.Scaleway.S2svpn
     ///         InitiationPolicy = "customer_gateway",
     ///         EnableRoutePropagation = true,
     ///         SecretId = psk.Id,
-    ///         SecretVersion = pskVersion.Revision,
+    ///         SecretVersion = pskVersion.Revision.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         BgpConfigIpv4s = new[]
     ///         {
     ///             new Scaleway.S2svpn.Inputs.ConnectionBgpConfigIpv4Args

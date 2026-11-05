@@ -221,6 +221,12 @@ func (VpcPublicGatewayDhcpState) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpcPublicGatewayDhcpState)(nil)).Elem()
 }
 
+// VpcPublicGatewayDhcpExists checks whether an existing VpcPublicGatewayDhcp resource with the given ID exists.
+func VpcPublicGatewayDhcpExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VpcPublicGatewayDhcpState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp", id, state, "", opts...)
+}
+
 type vpcPublicGatewayDhcpArgs struct {
 	// The IP address of the DHCP server. This will be the gateway's address in the Private Network.
 	Address *string `pulumi:"address"`

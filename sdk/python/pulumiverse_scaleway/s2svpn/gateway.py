@@ -462,7 +462,7 @@ class Gateway(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 public_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict']]]]] = None,
+                 public_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict', 'outputs.GatewayPublicConfig']]]]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -509,7 +509,7 @@ class Gateway(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the VPN gateway. If not provided, it will be randomly generated.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network to attach to the VPN gateway.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the VPN gateway is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict']]]] public_configs: The public endpoint configuration of the VPN gateway. See Public Config below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict', 'outputs.GatewayPublicConfig']]]] public_configs: The public endpoint configuration of the VPN gateway. See Public Config below.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the VPN gateway should be created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags to apply to the VPN gateway.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the VPN gateway should be created.
@@ -575,7 +575,7 @@ class Gateway(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 public_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict']]]]] = None,
+                 public_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict', 'outputs.GatewayPublicConfig']]]]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -627,7 +627,7 @@ class Gateway(pulumi.CustomResource):
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            public_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict']]]]] = None,
+            public_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict', 'outputs.GatewayPublicConfig']]]]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
@@ -650,7 +650,7 @@ class Gateway(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: The Organization ID the VPN gateway is associated with.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network to attach to the VPN gateway.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the VPN gateway is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict']]]] public_configs: The public endpoint configuration of the VPN gateway. See Public Config below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict', 'outputs.GatewayPublicConfig']]]] public_configs: The public endpoint configuration of the VPN gateway. See Public Config below.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the VPN gateway should be created.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the VPN gateway.
         :param pulumi.Input[_builtins.str] status: The status of the VPN gateway.
@@ -679,6 +679,44 @@ class Gateway(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["zone"] = zone
         return Gateway(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            asn: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            gateway_type: pulumi.Input[Optional[_builtins.str]] = None,
+            ipam_private_ipv4_id: pulumi.Input[Optional[_builtins.str]] = None,
+            ipam_private_ipv6_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GatewayPublicConfigArgs', 'GatewayPublicConfigArgsDict', 'outputs.GatewayPublicConfig']]]]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["asn"] = asn
+        __props__["createdAt"] = created_at
+        __props__["gatewayType"] = gateway_type
+        __props__["ipamPrivateIpv4Id"] = ipam_private_ipv4_id
+        __props__["ipamPrivateIpv6Id"] = ipam_private_ipv6_id
+        __props__["name"] = name
+        __props__["organizationId"] = organization_id
+        __props__["privateNetworkId"] = private_network_id
+        __props__["projectId"] = project_id
+        __props__["publicConfigs"] = public_configs
+        __props__["region"] = region
+        __props__["srn"] = srn
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:s2svpn/gateway:Gateway', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

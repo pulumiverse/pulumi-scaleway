@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = containers.NewDomain(ctx, "app", &containers.DomainArgs{
-//				ContainerId: app.ID().ToIDOutput().ToStringOutput(),
+//				ContainerId: app.ID(),
 //				Hostname:    pulumi.String("container.domain.tld"),
 //			})
 //			if err != nil {
@@ -75,7 +75,7 @@ import (
 //			}
 //			app, err := containers.NewContainer(ctx, "app", &containers.ContainerArgs{
 //				Name:        pulumi.String("app"),
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //				Image:       pulumi.String("nginx:latest"),
 //				Port:        pulumi.Int(80),
 //				Privacy:     pulumi.String("public"),
@@ -86,7 +86,7 @@ import (
 //			}
 //			invokeFormat, err := std.Format(ctx, &std.FormatArgs{
 //				Input: "%s.",
-//				Args: pulumi.StringArray{
+//				Args: pulumi.Array{
 //					std.Trimprefix(ctx, std.TrimprefixArgs{
 //						Input:  app.PublicEndpoint,
 //						Prefix: "https://",
@@ -107,7 +107,7 @@ import (
 //				return err
 //			}
 //			_, err = containers.NewDomain(ctx, "app", &containers.DomainArgs{
-//				ContainerId: app.ID().ToIDOutput().ToStringOutput(),
+//				ContainerId: app.ID(),
 //				Hostname: pulumi.All(appRecord.Name, appRecord.DnsZone).ApplyT(func(_args []interface{}) (string, error) {
 //					name := _args[0].(string)
 //					dnsZone := _args[1].(string)
@@ -220,6 +220,12 @@ type DomainState struct {
 
 func (DomainState) ElementType() reflect.Type {
 	return reflect.TypeOf((*domainState)(nil)).Elem()
+}
+
+// DomainExists checks whether an existing Domain resource with the given ID exists.
+func DomainExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DomainState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:containers/domain:Domain", id, state, "", opts...)
 }
 
 type domainArgs struct {

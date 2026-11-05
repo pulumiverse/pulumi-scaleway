@@ -53,7 +53,7 @@ import (
 //			}
 //			_, err = secrets.NewVersion(ctx, "v1", &secrets.VersionArgs{
 //				Description: pulumi.String("version1"),
-//				SecretId:    main.ID().ToIDOutput().ToStringOutput(),
+//				SecretId:    main.ID(),
 //				Data:        pulumi.String("my_new_secret"),
 //			})
 //			if err != nil {
@@ -205,6 +205,12 @@ type VersionState struct {
 
 func (VersionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*versionState)(nil)).Elem()
+}
+
+// VersionExists checks whether an existing Version resource with the given ID exists.
+func VersionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VersionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:secrets/version:Version", id, state, "", opts...)
 }
 
 type versionArgs struct {

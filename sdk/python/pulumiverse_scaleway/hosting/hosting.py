@@ -634,21 +634,21 @@ class Hosting(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cpanel_urls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingCpanelUrlArgs', 'HostingCpanelUrlArgsDict']]]]] = None,
+            cpanel_urls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingCpanelUrlArgs', 'HostingCpanelUrlArgsDict', 'outputs.HostingCpanelUrl']]]]] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
             dns_status: pulumi.Input[Optional[_builtins.str]] = None,
             domain: pulumi.Input[Optional[_builtins.str]] = None,
             email: pulumi.Input[Optional[_builtins.str]] = None,
-            name_servers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingNameServerArgs', 'HostingNameServerArgsDict']]]]] = None,
+            name_servers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingNameServerArgs', 'HostingNameServerArgsDict', 'outputs.HostingNameServer']]]]] = None,
             offer_id: pulumi.Input[Optional[_builtins.str]] = None,
             offer_name: pulumi.Input[Optional[_builtins.str]] = None,
             option_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingOptionArgs', 'HostingOptionArgsDict']]]]] = None,
+            options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingOptionArgs', 'HostingOptionArgsDict', 'outputs.HostingOption']]]]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             platform_hostname: pulumi.Input[Optional[_builtins.str]] = None,
             platform_number: pulumi.Input[Optional[_builtins.int]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            records: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingRecordArgs', 'HostingRecordArgsDict']]]]] = None,
+            records: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingRecordArgs', 'HostingRecordArgsDict', 'outputs.HostingRecord']]]]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -661,21 +661,21 @@ class Hosting(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['HostingCpanelUrlArgs', 'HostingCpanelUrlArgsDict']]]] cpanel_urls: The URL to connect to cPanel Dashboard and to Webmail interface.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['HostingCpanelUrlArgs', 'HostingCpanelUrlArgsDict', 'outputs.HostingCpanelUrl']]]] cpanel_urls: The URL to connect to cPanel Dashboard and to Webmail interface.
         :param pulumi.Input[_builtins.str] created_at: Date and time of hosting's creation (RFC 3339 format).
         :param pulumi.Input[_builtins.str] dns_status: The DNS status of the hosting.
         :param pulumi.Input[_builtins.str] domain: The domain name of the hosting.
         :param pulumi.Input[_builtins.str] email: The contact email of the client for the hosting.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['HostingNameServerArgs', 'HostingNameServerArgsDict']]]] name_servers: List of nameservers associated with the webhosting.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['HostingNameServerArgs', 'HostingNameServerArgsDict', 'outputs.HostingNameServer']]]] name_servers: List of nameservers associated with the webhosting.
         :param pulumi.Input[_builtins.str] offer_id: The ID of the selected offer for the hosting.
         :param pulumi.Input[_builtins.str] offer_name: The name of the active offer.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] option_ids: The IDs of the selected options for the hosting.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['HostingOptionArgs', 'HostingOptionArgsDict']]]] options: The active options of the hosting.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['HostingOptionArgs', 'HostingOptionArgsDict', 'outputs.HostingOption']]]] options: The active options of the hosting.
         :param pulumi.Input[_builtins.str] organization_id: (Deprecated) The organization ID the hosting is associated with.
         :param pulumi.Input[_builtins.str] platform_hostname: The hostname of the host platform.
         :param pulumi.Input[_builtins.int] platform_number: The number of the host platform.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the VPC is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['HostingRecordArgs', 'HostingRecordArgsDict']]]] records: List of DNS records associated with the webhosting.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['HostingRecordArgs', 'HostingRecordArgsDict', 'outputs.HostingRecord']]]] records: List of DNS records associated with the webhosting.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the Hosting.
         :param pulumi.Input[_builtins.str] status: The hosting status.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the hosting.
@@ -707,6 +707,52 @@ class Hosting(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["username"] = username
         return Hosting(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cpanel_urls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingCpanelUrlArgs', 'HostingCpanelUrlArgsDict', 'outputs.HostingCpanelUrl']]]]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_status: pulumi.Input[Optional[_builtins.str]] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            email: pulumi.Input[Optional[_builtins.str]] = None,
+            name_servers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingNameServerArgs', 'HostingNameServerArgsDict', 'outputs.HostingNameServer']]]]] = None,
+            offer_id: pulumi.Input[Optional[_builtins.str]] = None,
+            offer_name: pulumi.Input[Optional[_builtins.str]] = None,
+            option_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingOptionArgs', 'HostingOptionArgsDict', 'outputs.HostingOption']]]]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            platform_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            platform_number: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            records: pulumi.Input[Optional[Sequence[pulumi.Input[Union['HostingRecordArgs', 'HostingRecordArgsDict', 'outputs.HostingRecord']]]]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cpanelUrls"] = cpanel_urls
+        __props__["createdAt"] = created_at
+        __props__["dnsStatus"] = dns_status
+        __props__["domain"] = domain
+        __props__["email"] = email
+        __props__["nameServers"] = name_servers
+        __props__["offerId"] = offer_id
+        __props__["offerName"] = offer_name
+        __props__["optionIds"] = option_ids
+        __props__["options"] = options
+        __props__["organizationId"] = organization_id
+        __props__["platformHostname"] = platform_hostname
+        __props__["platformNumber"] = platform_number
+        __props__["projectId"] = project_id
+        __props__["records"] = records
+        __props__["region"] = region
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'scaleway:hosting/hosting:Hosting', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="cpanelUrls")

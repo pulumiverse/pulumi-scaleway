@@ -170,6 +170,12 @@ func (RunnerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*runnerState)(nil)).Elem()
 }
 
+// RunnerExists checks whether an existing Runner resource with the given ID exists.
+func RunnerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RunnerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:applesilicon/runner:Runner", id, state, "", opts...)
+}
+
 type runnerArgs struct {
 	// The CI/CD provider for the runner. Must be either 'github' or 'gitlab'
 	CiProvider string `pulumi:"ciProvider"`

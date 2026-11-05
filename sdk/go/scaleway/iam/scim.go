@@ -105,6 +105,12 @@ func (ScimState) ElementType() reflect.Type {
 	return reflect.TypeOf((*scimState)(nil)).Elem()
 }
 
+// ScimExists checks whether an existing Scim resource with the given ID exists.
+func ScimExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ScimState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:iam/scim:Scim", id, state, "", opts...)
+}
+
 type scimArgs struct {
 	// The organization ID. If not provided, the default organization configured in the provider is used.
 	OrganizationId *string `pulumi:"organizationId"`

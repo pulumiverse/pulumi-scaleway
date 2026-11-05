@@ -15,7 +15,6 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// <summary>
         /// For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -58,7 +57,6 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// <summary>
         /// For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -100,7 +98,6 @@ namespace Pulumiverse.Scaleway.S2svpn
 
         /// <summary>
         /// For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
-        /// 
         /// 
         /// ## Example Usage
         /// 

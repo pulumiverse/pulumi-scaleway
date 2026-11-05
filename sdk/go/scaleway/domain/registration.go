@@ -307,6 +307,12 @@ func (RegistrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*registrationState)(nil)).Elem()
 }
 
+// RegistrationExists checks whether an existing Registration resource with the given ID exists.
+func RegistrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RegistrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:domain/registration:Registration", id, state, "", opts...)
+}
+
 type registrationArgs struct {
 	// : Enables or disables auto-renewal.
 	AutoRenew *bool `pulumi:"autoRenew"`

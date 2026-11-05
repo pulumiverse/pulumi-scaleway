@@ -170,6 +170,12 @@ func (BucketLockConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketLockConfigurationState)(nil)).Elem()
 }
 
+// BucketLockConfigurationExists checks whether an existing BucketLockConfiguration resource with the given ID exists.
+func BucketLockConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BucketLockConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:object/bucketLockConfiguration:BucketLockConfiguration", id, state, "", opts...)
+}
+
 type bucketLockConfigurationArgs struct {
 	// The name of the bucket, or its Terraform ID.
 	Bucket string `pulumi:"bucket"`

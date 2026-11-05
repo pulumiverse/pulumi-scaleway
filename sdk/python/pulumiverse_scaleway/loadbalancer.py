@@ -617,7 +617,7 @@ class Loadbalancer(pulumi.CustomResource):
                  ip_id: pulumi.Input[Optional[_builtins.str]] = None,
                  ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict', 'outputs.LoadbalancerPrivateNetwork']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  release_ip: pulumi.Input[Optional[_builtins.bool]] = None,
                  ssl_compatibility_level: pulumi.Input[Optional[_builtins.str]] = None,
@@ -734,7 +734,7 @@ class Loadbalancer(pulumi.CustomResource):
                
                > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
         :param pulumi.Input[_builtins.str] name: The name of the Load Balancer.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]] private_networks: List of private network to connect with your load balancer.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict', 'outputs.LoadbalancerPrivateNetwork']]]] private_networks: List of private network to connect with your load balancer.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the Load Balancer is associated with.
         :param pulumi.Input[_builtins.bool] release_ip: The `release_ip` allow the release of the IP address associated with the Load Balancer.
         :param pulumi.Input[_builtins.str] ssl_compatibility_level: Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
@@ -865,7 +865,7 @@ class Loadbalancer(pulumi.CustomResource):
                  ip_id: pulumi.Input[Optional[_builtins.str]] = None,
                  ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict', 'outputs.LoadbalancerPrivateNetwork']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  release_ip: pulumi.Input[Optional[_builtins.bool]] = None,
                  ssl_compatibility_level: pulumi.Input[Optional[_builtins.str]] = None,
@@ -923,8 +923,8 @@ class Loadbalancer(pulumi.CustomResource):
             ipv6_address: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
-            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateIpArgs', 'LoadbalancerPrivateIpArgsDict']]]]] = None,
-            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateIpArgs', 'LoadbalancerPrivateIpArgsDict', 'outputs.LoadbalancerPrivateIp']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict', 'outputs.LoadbalancerPrivateNetwork']]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             release_ip: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -954,8 +954,8 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] ipv6_address: The Load Balancer public IPv6 address.
         :param pulumi.Input[_builtins.str] name: The name of the Load Balancer.
         :param pulumi.Input[_builtins.str] organization_id: The ID of the Organization ID the Load Balancer is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateIpArgs', 'LoadbalancerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]] private_networks: List of private network to connect with your load balancer.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateIpArgs', 'LoadbalancerPrivateIpArgsDict', 'outputs.LoadbalancerPrivateIp']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict', 'outputs.LoadbalancerPrivateNetwork']]]] private_networks: List of private network to connect with your load balancer.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the Load Balancer is associated with.
         :param pulumi.Input[_builtins.str] region: The region of the resource
         :param pulumi.Input[_builtins.bool] release_ip: The `release_ip` allow the release of the IP address associated with the Load Balancer.
@@ -988,6 +988,50 @@ class Loadbalancer(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["zone"] = zone
         return Loadbalancer(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            assign_flexible_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+            assign_flexible_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            external_private_networks: pulumi.Input[Optional[_builtins.bool]] = None,
+            ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ipv6_address: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateIpArgs', 'LoadbalancerPrivateIpArgsDict', 'outputs.LoadbalancerPrivateIp']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict', 'outputs.LoadbalancerPrivateNetwork']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            release_ip: pulumi.Input[Optional[_builtins.bool]] = None,
+            ssl_compatibility_level: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["assignFlexibleIp"] = assign_flexible_ip
+        __props__["assignFlexibleIpv6"] = assign_flexible_ipv6
+        __props__["description"] = description
+        __props__["externalPrivateNetworks"] = external_private_networks
+        __props__["ipAddress"] = ip_address
+        __props__["ipId"] = ip_id
+        __props__["ipIds"] = ip_ids
+        __props__["ipv6Address"] = ipv6_address
+        __props__["name"] = name
+        __props__["organizationId"] = organization_id
+        __props__["privateIps"] = private_ips
+        __props__["privateNetworks"] = private_networks
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["releaseIp"] = release_ip
+        __props__["sslCompatibilityLevel"] = ssl_compatibility_level
+        __props__["tags"] = tags
+        __props__["type"] = type
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/loadbalancer:Loadbalancer', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="assignFlexibleIp")

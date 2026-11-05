@@ -294,6 +294,12 @@ func (InstanceSecurityGroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceSecurityGroupState)(nil)).Elem()
 }
 
+// InstanceSecurityGroupExists checks whether an existing InstanceSecurityGroup resource with the given ID exists.
+func InstanceSecurityGroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceSecurityGroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/instanceSecurityGroup:InstanceSecurityGroup", id, state, "", opts...)
+}
+
 type instanceSecurityGroupArgs struct {
 	// The description of the security group.
 	Description *string `pulumi:"description"`

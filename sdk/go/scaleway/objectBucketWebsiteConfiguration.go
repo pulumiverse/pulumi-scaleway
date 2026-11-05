@@ -110,14 +110,14 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = object.NewBucketPolicy(ctx, "main", &object.BucketPolicyArgs{
-//				Bucket: main.ID().ToIDOutput().ToStringOutput(),
+//				Bucket: main.ID(),
 //				Policy: pulumi.String(json0),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = object.NewBucketWebsiteConfiguration(ctx, "main", &object.BucketWebsiteConfigurationArgs{
-//				Bucket: main.ID().ToIDOutput().ToStringOutput(),
+//				Bucket: main.ID(),
 //				IndexDocument: &object.BucketWebsiteConfigurationIndexDocumentArgs{
 //					Suffix: pulumi.String("index.html"),
 //				},
@@ -249,6 +249,12 @@ type ObjectBucketWebsiteConfigurationState struct {
 
 func (ObjectBucketWebsiteConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*objectBucketWebsiteConfigurationState)(nil)).Elem()
+}
+
+// ObjectBucketWebsiteConfigurationExists checks whether an existing ObjectBucketWebsiteConfiguration resource with the given ID exists.
+func ObjectBucketWebsiteConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ObjectBucketWebsiteConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration", id, state, "", opts...)
 }
 
 type objectBucketWebsiteConfigurationArgs struct {

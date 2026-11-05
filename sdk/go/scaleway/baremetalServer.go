@@ -19,6 +19,59 @@ import (
 //
 // import (
 //
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			//## Basic
+//			mySshKey, err := iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
+//				Name:      pulumi.StringRef("main"),
+//				PublicKey: "ssh XXXXXXXXXXX",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOs, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
+//				Zone:    pulumi.StringRef("fr-par-2"),
+//				Name:    pulumi.StringRef("Ubuntu"),
+//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
+//				Zone: pulumi.StringRef("fr-par-2"),
+//				Name: pulumi.StringRef("EM-I220E-NVME"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
+//				Zone:  pulumi.String("fr-par-2"),
+//				Offer: pulumi.String(myOffer.OfferId),
+//				Os:    pulumi.String(myOs.Id),
+//				SshKeyIds: pulumi.StringArray{
+//					pulumi.String(mySshKey.Id),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
 //	"github.com/pulumi/pulumi-std/sdk/go/std"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
@@ -64,6 +117,245 @@ import (
 //					pulumi.String(mySshKey.Id),
 //				},
 //				CloudInit: pulumi.String(invokeFile.Result),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			//## With custom partitioning
+//			mySshKey, err := iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
+//				Name:      pulumi.StringRef("main"),
+//				PublicKey: "ssh XXXXXXXXXXX",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOs, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
+//				Zone:    pulumi.StringRef("fr-par-2"),
+//				Name:    pulumi.StringRef("Ubuntu"),
+//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
+//				Zone: pulumi.StringRef("fr-par-2"),
+//				Name: pulumi.StringRef("EM-I215E-NVME"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
+//				Zone:  pulumi.String("fr-par-2"),
+//				Offer: pulumi.String(myOffer.OfferId),
+//				Os:    pulumi.String(myOs.OsId),
+//				Partitioning: pulumi.String(`{
+//	  \"disks\": [
+//	    {
+//	      \"device\": \"/dev/nvme0n1\",
+//	      \"partitions\": [
+//	        {
+//	          \"label\": \"uefi\",
+//	          \"number\": 1,
+//	          \"size\": 536870912
+//	        },
+//	        {
+//	          \"label\": \"swap\",
+//	          \"number\": 2,
+//	          \"size\": 4294967296
+//	        },
+//	        {
+//	          \"label\": \"boot\",
+//	          \"number\": 3,
+//	          \"size\": 1073741824
+//	        },
+//	        {
+//	          \"label\": \"root\",
+//	          \"number\": 4,
+//	          \"size\": 1017827045376
+//	        }
+//	      ]
+//	    },
+//	    {
+//	      \"device\": \"/dev/nvme1n1\",
+//	      \"partitions\": [
+//	        {
+//	          \"label\": \"swap\",
+//	          \"number\": 1,
+//	          \"size\": 4294967296
+//	        },
+//	        {
+//	          \"label\": \"boot\",
+//	          \"number\": 2,
+//	          \"size\": 1073741824
+//	        },
+//	        {
+//	          \"label\": \"root\",
+//	          \"number\": 3,
+//	          \"size\": 1017827045376
+//	        }
+//	      ]
+//	    }
+//	  ],
+//	  \"filesystems\": [
+//	    {
+//	      \"device\": \"/dev/nvme0n1p1\",
+//	      \"format\": \"fat32\",
+//	      \"mountpoint\": \"/boot/efi\"
+//	    },
+//	    {
+//	      \"device\": \"/dev/md0\",
+//	      \"format\": \"ext4\",
+//	      \"mountpoint\": \"/boot\"
+//	    },
+//	    {
+//	      \"device\": \"/dev/md1\",
+//	      \"format\": \"ext4\",
+//	      \"mountpoint\": \"/\"
+//	    }
+//	  ],
+//	  \"raids\": [
+//	    {
+//	      \"devices\": [\"/dev/nvme0n1p3\", \"/dev/nvme1n1p2\"],
+//	      \"level\": \"raid_level_1\",
+//	      \"name\": \"/dev/md0\"
+//	    },
+//	    {
+//	      \"devices\": [\"/dev/nvme0n1p4\", \"/dev/nvme1n1p3\"],
+//	      \"level\": \"raid_level_1\",
+//	      \"name\": \"/dev/md1\"
+//	    }
+//	  ],
+//	  \"zfs\": {
+//	    \"pools\": []
+//	  }
+//	}
+//
+// `),
+//
+//				SshKeyIds: pulumi.StringArray{
+//					pulumi.String(mySshKey.Id),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			//## With IPAM IP IDs
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
+//				Name: pulumi.String("vpc_baremetal"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
+//				Name: pulumi.String("private_network_baremetal"),
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
+//					Subnet: pulumi.String("172.16.64.0/22"),
+//				},
+//				VpcId: vpc01.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ip01, err := ipam.NewIp(ctx, "ip01", &ipam.IpArgs{
+//				Address: pulumi.String("172.16.64.7"),
+//				Sources: ipam.IpSourceArray{
+//					&ipam.IpSourceArgs{
+//						PrivateNetworkId: pn01.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mySshKey, err := iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
+//				Name:      pulumi.StringRef("main"),
+//				PublicKey: "ssh XXXXXXXXXXX",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOs, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
+//				Zone:    pulumi.StringRef("fr-par-1"),
+//				Name:    pulumi.StringRef("Ubuntu"),
+//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
+//				Zone: pulumi.StringRef("fr-par-1"),
+//				Name: pulumi.StringRef("EM-A115X-SSD"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			privateNetwork, err := elasticmetal.GetOption(ctx, &elasticmetal.GetOptionArgs{
+//				Zone: pulumi.StringRef("fr-par-1"),
+//				Name: pulumi.StringRef("Private Network"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
+//				Zone:  pulumi.String("fr-par-2"),
+//				Offer: pulumi.String(myOffer.OfferId),
+//				Os:    pulumi.String(myOs.OsId),
+//				SshKeyIds: pulumi.StringArray{
+//					pulumi.String(mySshKey.Id),
+//				},
+//				Options: elasticmetal.ServerOptionArray{
+//					&elasticmetal.ServerOptionArgs{
+//						Id: pulumi.String(privateNetwork.OptionId),
+//					},
+//				},
+//				PrivateNetworks: elasticmetal.ServerPrivateNetworkArray{
+//					&elasticmetal.ServerPrivateNetworkArgs{
+//						Id: pn01.ID(),
+//						IpamIpIds: pulumi.StringArray{
+//							ip01.ID(),
+//						},
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -375,6 +667,12 @@ type BaremetalServerState struct {
 
 func (BaremetalServerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*baremetalServerState)(nil)).Elem()
+}
+
+// BaremetalServerExists checks whether an existing BaremetalServer resource with the given ID exists.
+func BaremetalServerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BaremetalServerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/baremetalServer:BaremetalServer", id, state, "", opts...)
 }
 
 type baremetalServerArgs struct {

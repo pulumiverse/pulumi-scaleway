@@ -201,6 +201,12 @@ func (TlsStageState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tlsStageState)(nil)).Elem()
 }
 
+// TlsStageExists checks whether an existing TlsStage resource with the given ID exists.
+func TlsStageExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TlsStageState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:edgeservices/tlsStage:TlsStage", id, state, "", opts...)
+}
+
 type tlsStageArgs struct {
 	// The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 	BackendStageId *string `pulumi:"backendStageId"`

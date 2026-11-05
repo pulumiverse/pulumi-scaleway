@@ -1015,14 +1015,14 @@ class Server(pulumi.CustomResource):
                  install_config_afterward: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  offer: pulumi.Input[Optional[_builtins.str]] = None,
-                 options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict']]]]] = None,
+                 options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict', 'outputs.ServerOption']]]]] = None,
                  os: pulumi.Input[Optional[_builtins.str]] = None,
                  partitioning: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
-                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict', 'outputs.ServerPrivateIp']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict', 'outputs.ServerPrivateNetwork']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protected: pulumi.Input[Optional[_builtins.bool]] = None,
                  reinstall_on_config_changes: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1037,6 +1037,26 @@ class Server(pulumi.CustomResource):
                  __props__=None):
         """
         ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        ### Basic
+        my_ssh_key = scaleway.iam.get_ssh_key(name="main",
+            public_key="ssh XXXXXXXXXXX")
+        my_os = scaleway.elasticmetal.get_os(zone="fr-par-2",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
+            name="EM-I220E-NVME")
+        my_server = scaleway.elasticmetal.Server("my_server",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.id,
+            ssh_key_ids=[my_ssh_key.id])
+        ```
 
         ```python
         import pulumi
@@ -1057,6 +1077,149 @@ class Server(pulumi.CustomResource):
             os=my_os.os_id,
             ssh_key_ids=[my_ssh_key.id],
             cloud_init=std.file(input="userdata.yaml").result)
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        ### With custom partitioning
+        my_ssh_key = scaleway.iam.get_ssh_key(name="main",
+            public_key="ssh XXXXXXXXXXX")
+        my_os = scaleway.elasticmetal.get_os(zone="fr-par-2",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
+            name="EM-I215E-NVME")
+        my_server = scaleway.elasticmetal.Server("my_server",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            partitioning=\"\"\"{
+          \\"disks\\": [
+            {
+              \\"device\\": \\"/dev/nvme0n1\\",
+              \\"partitions\\": [
+                {
+                  \\"label\\": \\"uefi\\",
+                  \\"number\\": 1,
+                  \\"size\\": 536870912
+                },
+                {
+                  \\"label\\": \\"swap\\",
+                  \\"number\\": 2,
+                  \\"size\\": 4294967296
+                },
+                {
+                  \\"label\\": \\"boot\\",
+                  \\"number\\": 3,
+                  \\"size\\": 1073741824
+                },
+                {
+                  \\"label\\": \\"root\\",
+                  \\"number\\": 4,
+                  \\"size\\": 1017827045376
+                }
+              ]
+            },
+            {
+              \\"device\\": \\"/dev/nvme1n1\\",
+              \\"partitions\\": [
+                {
+                  \\"label\\": \\"swap\\",
+                  \\"number\\": 1,
+                  \\"size\\": 4294967296
+                },
+                {
+                  \\"label\\": \\"boot\\",
+                  \\"number\\": 2,
+                  \\"size\\": 1073741824
+                },
+                {
+                  \\"label\\": \\"root\\",
+                  \\"number\\": 3,
+                  \\"size\\": 1017827045376
+                }
+              ]
+            }
+          ],
+          \\"filesystems\\": [
+            {
+              \\"device\\": \\"/dev/nvme0n1p1\\",
+              \\"format\\": \\"fat32\\",
+              \\"mountpoint\\": \\"/boot/efi\\"
+            },
+            {
+              \\"device\\": \\"/dev/md0\\",
+              \\"format\\": \\"ext4\\",
+              \\"mountpoint\\": \\"/boot\\"
+            },
+            {
+              \\"device\\": \\"/dev/md1\\",
+              \\"format\\": \\"ext4\\",
+              \\"mountpoint\\": \\"/\\"
+            }
+          ],
+          \\"raids\\": [
+            {
+              \\"devices\\": [\\"/dev/nvme0n1p3\\", \\"/dev/nvme1n1p2\\"],
+              \\"level\\": \\"raid_level_1\\",
+              \\"name\\": \\"/dev/md0\\"
+            },
+            {
+              \\"devices\\": [\\"/dev/nvme0n1p4\\", \\"/dev/nvme1n1p3\\"],
+              \\"level\\": \\"raid_level_1\\",
+              \\"name\\": \\"/dev/md1\\"
+            }
+          ],
+          \\"zfs\\": {
+            \\"pools\\": []
+          }
+        }
+        \"\"\",
+            ssh_key_ids=[my_ssh_key.id])
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        ### With IPAM IP IDs
+        vpc01 = scaleway.network.Vpc("vpc01", name="vpc_baremetal")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
+            name="private_network_baremetal",
+            ipv4_subnet={
+                "subnet": "172.16.64.0/22",
+            },
+            vpc_id=vpc01.id)
+        ip01 = scaleway.ipam.Ip("ip01",
+            address="172.16.64.7",
+            sources=[{
+                "private_network_id": pn01.id,
+            }])
+        my_ssh_key = scaleway.iam.get_ssh_key(name="main",
+            public_key="ssh XXXXXXXXXXX")
+        my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
+            name="EM-A115X-SSD")
+        private_network = scaleway.elasticmetal.get_option(zone="fr-par-1",
+            name="Private Network")
+        my_server = scaleway.elasticmetal.Server("my_server",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[my_ssh_key.id],
+            options=[{
+                "id": private_network.option_id,
+            }],
+            private_networks=[{
+                "id": pn01.id,
+                "ipam_ip_ids": [ip01.id],
+            }])
         ```
 
         ## Import
@@ -1080,7 +1243,7 @@ class Server(pulumi.CustomResource):
                
                > **Important:** Updates to `offer` will recreate the server.
                **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict']]]] options: The options to enable on the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict', 'outputs.ServerOption']]]] options: The options to enable on the server.
                > The `options` block supports:
         :param pulumi.Input[_builtins.str] os: The UUID of the os to install on the server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
@@ -1090,8 +1253,8 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password used for the installation in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. May be required depending on used os.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict', 'outputs.ServerPrivateIp']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict', 'outputs.ServerPrivateNetwork']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[_builtins.bool] protected: Set to true to activate server protection option.
         :param pulumi.Input[_builtins.bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
@@ -1118,6 +1281,26 @@ class Server(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        ### Basic
+        my_ssh_key = scaleway.iam.get_ssh_key(name="main",
+            public_key="ssh XXXXXXXXXXX")
+        my_os = scaleway.elasticmetal.get_os(zone="fr-par-2",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
+            name="EM-I220E-NVME")
+        my_server = scaleway.elasticmetal.Server("my_server",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.id,
+            ssh_key_ids=[my_ssh_key.id])
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
         import pulumi_std as std
         import pulumiverse_scaleway as scaleway
 
@@ -1134,6 +1317,149 @@ class Server(pulumi.CustomResource):
             os=my_os.os_id,
             ssh_key_ids=[my_ssh_key.id],
             cloud_init=std.file(input="userdata.yaml").result)
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        ### With custom partitioning
+        my_ssh_key = scaleway.iam.get_ssh_key(name="main",
+            public_key="ssh XXXXXXXXXXX")
+        my_os = scaleway.elasticmetal.get_os(zone="fr-par-2",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
+            name="EM-I215E-NVME")
+        my_server = scaleway.elasticmetal.Server("my_server",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            partitioning=\"\"\"{
+          \\"disks\\": [
+            {
+              \\"device\\": \\"/dev/nvme0n1\\",
+              \\"partitions\\": [
+                {
+                  \\"label\\": \\"uefi\\",
+                  \\"number\\": 1,
+                  \\"size\\": 536870912
+                },
+                {
+                  \\"label\\": \\"swap\\",
+                  \\"number\\": 2,
+                  \\"size\\": 4294967296
+                },
+                {
+                  \\"label\\": \\"boot\\",
+                  \\"number\\": 3,
+                  \\"size\\": 1073741824
+                },
+                {
+                  \\"label\\": \\"root\\",
+                  \\"number\\": 4,
+                  \\"size\\": 1017827045376
+                }
+              ]
+            },
+            {
+              \\"device\\": \\"/dev/nvme1n1\\",
+              \\"partitions\\": [
+                {
+                  \\"label\\": \\"swap\\",
+                  \\"number\\": 1,
+                  \\"size\\": 4294967296
+                },
+                {
+                  \\"label\\": \\"boot\\",
+                  \\"number\\": 2,
+                  \\"size\\": 1073741824
+                },
+                {
+                  \\"label\\": \\"root\\",
+                  \\"number\\": 3,
+                  \\"size\\": 1017827045376
+                }
+              ]
+            }
+          ],
+          \\"filesystems\\": [
+            {
+              \\"device\\": \\"/dev/nvme0n1p1\\",
+              \\"format\\": \\"fat32\\",
+              \\"mountpoint\\": \\"/boot/efi\\"
+            },
+            {
+              \\"device\\": \\"/dev/md0\\",
+              \\"format\\": \\"ext4\\",
+              \\"mountpoint\\": \\"/boot\\"
+            },
+            {
+              \\"device\\": \\"/dev/md1\\",
+              \\"format\\": \\"ext4\\",
+              \\"mountpoint\\": \\"/\\"
+            }
+          ],
+          \\"raids\\": [
+            {
+              \\"devices\\": [\\"/dev/nvme0n1p3\\", \\"/dev/nvme1n1p2\\"],
+              \\"level\\": \\"raid_level_1\\",
+              \\"name\\": \\"/dev/md0\\"
+            },
+            {
+              \\"devices\\": [\\"/dev/nvme0n1p4\\", \\"/dev/nvme1n1p3\\"],
+              \\"level\\": \\"raid_level_1\\",
+              \\"name\\": \\"/dev/md1\\"
+            }
+          ],
+          \\"zfs\\": {
+            \\"pools\\": []
+          }
+        }
+        \"\"\",
+            ssh_key_ids=[my_ssh_key.id])
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        ### With IPAM IP IDs
+        vpc01 = scaleway.network.Vpc("vpc01", name="vpc_baremetal")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
+            name="private_network_baremetal",
+            ipv4_subnet={
+                "subnet": "172.16.64.0/22",
+            },
+            vpc_id=vpc01.id)
+        ip01 = scaleway.ipam.Ip("ip01",
+            address="172.16.64.7",
+            sources=[{
+                "private_network_id": pn01.id,
+            }])
+        my_ssh_key = scaleway.iam.get_ssh_key(name="main",
+            public_key="ssh XXXXXXXXXXX")
+        my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
+            name="EM-A115X-SSD")
+        private_network = scaleway.elasticmetal.get_option(zone="fr-par-1",
+            name="Private Network")
+        my_server = scaleway.elasticmetal.Server("my_server",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[my_ssh_key.id],
+            options=[{
+                "id": private_network.option_id,
+            }],
+            private_networks=[{
+                "id": pn01.id,
+                "ipam_ip_ids": [ip01.id],
+            }])
         ```
 
         ## Import
@@ -1166,14 +1492,14 @@ class Server(pulumi.CustomResource):
                  install_config_afterward: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  offer: pulumi.Input[Optional[_builtins.str]] = None,
-                 options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict']]]]] = None,
+                 options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict', 'outputs.ServerOption']]]]] = None,
                  os: pulumi.Input[Optional[_builtins.str]] = None,
                  partitioning: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
-                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict', 'outputs.ServerPrivateIp']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict', 'outputs.ServerPrivateNetwork']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protected: pulumi.Input[Optional[_builtins.bool]] = None,
                  reinstall_on_config_changes: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1248,14 +1574,14 @@ class Server(pulumi.CustomResource):
             domain: pulumi.Input[Optional[_builtins.str]] = None,
             hostname: pulumi.Input[Optional[_builtins.str]] = None,
             install_config_afterward: pulumi.Input[Optional[_builtins.bool]] = None,
-            ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerIpArgs', 'ServerIpArgsDict']]]]] = None,
-            ipv4s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerIpv4Args', 'ServerIpv4ArgsDict']]]]] = None,
-            ipv6s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerIpv6Args', 'ServerIpv6ArgsDict']]]]] = None,
+            ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerIpArgs', 'ServerIpArgsDict', 'outputs.ServerIp']]]]] = None,
+            ipv4s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerIpv4Args', 'ServerIpv4ArgsDict', 'outputs.ServerIpv4']]]]] = None,
+            ipv6s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerIpv6Args', 'ServerIpv6ArgsDict', 'outputs.ServerIpv6']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             offer: pulumi.Input[Optional[_builtins.str]] = None,
             offer_id: pulumi.Input[Optional[_builtins.str]] = None,
             offer_name: pulumi.Input[Optional[_builtins.str]] = None,
-            options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict']]]]] = None,
+            options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict', 'outputs.ServerOption']]]]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             os: pulumi.Input[Optional[_builtins.str]] = None,
             os_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1263,8 +1589,8 @@ class Server(pulumi.CustomResource):
             password: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
-            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict', 'outputs.ServerPrivateIp']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict', 'outputs.ServerPrivateNetwork']]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             protected: pulumi.Input[Optional[_builtins.bool]] = None,
             reinstall_on_config_changes: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1288,9 +1614,9 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] domain: The domain of the server.
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
         :param pulumi.Input[_builtins.bool] install_config_afterward: If True, this boolean allows to create a server without the install config if you want to provide it later.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerIpArgs', 'ServerIpArgsDict']]]] ips: (List of) The IPs of the server.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerIpv4Args', 'ServerIpv4ArgsDict']]]] ipv4s: (List of) The IPv4 addresses of the server.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerIpv6Args', 'ServerIpv6ArgsDict']]]] ipv6s: (List of) The IPv6 addresses of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerIpArgs', 'ServerIpArgsDict', 'outputs.ServerIp']]]] ips: (List of) The IPs of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerIpv4Args', 'ServerIpv4ArgsDict', 'outputs.ServerIpv4']]]] ipv4s: (List of) The IPv4 addresses of the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerIpv6Args', 'ServerIpv6ArgsDict', 'outputs.ServerIpv6']]]] ipv6s: (List of) The IPv6 addresses of the server.
         :param pulumi.Input[_builtins.str] name: The name of the server.
         :param pulumi.Input[_builtins.str] offer: The offer UUID of the baremetal server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
@@ -1299,7 +1625,7 @@ class Server(pulumi.CustomResource):
                **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         :param pulumi.Input[_builtins.str] offer_id: The ID of the offer.
         :param pulumi.Input[_builtins.str] offer_name: The name of the offer.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict']]]] options: The options to enable on the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict', 'outputs.ServerOption']]]] options: The options to enable on the server.
                > The `options` block supports:
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[_builtins.str] os: The UUID of the os to install on the server.
@@ -1311,8 +1637,8 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password used for the installation in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. May be required depending on used os.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict', 'outputs.ServerPrivateIp']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict', 'outputs.ServerPrivateNetwork']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[_builtins.bool] protected: Set to true to activate server protection option.
         :param pulumi.Input[_builtins.bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
@@ -1365,6 +1691,78 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["user"] = user
         __props__.__dict__["zone"] = zone
         return Server(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            install_config_afterward: pulumi.Input[Optional[_builtins.bool]] = None,
+            ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerIpArgs', 'ServerIpArgsDict', 'outputs.ServerIp']]]]] = None,
+            ipv4s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerIpv4Args', 'ServerIpv4ArgsDict', 'outputs.ServerIpv4']]]]] = None,
+            ipv6s: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerIpv6Args', 'ServerIpv6ArgsDict', 'outputs.ServerIpv6']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            offer: pulumi.Input[Optional[_builtins.str]] = None,
+            offer_id: pulumi.Input[Optional[_builtins.str]] = None,
+            offer_name: pulumi.Input[Optional[_builtins.str]] = None,
+            options: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerOptionArgs', 'ServerOptionArgsDict', 'outputs.ServerOption']]]]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            os: pulumi.Input[Optional[_builtins.str]] = None,
+            os_name: pulumi.Input[Optional[_builtins.str]] = None,
+            partitioning: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict', 'outputs.ServerPrivateIp']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict', 'outputs.ServerPrivateNetwork']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            protected: pulumi.Input[Optional[_builtins.bool]] = None,
+            reinstall_on_config_changes: pulumi.Input[Optional[_builtins.bool]] = None,
+            service_password: pulumi.Input[Optional[_builtins.str]] = None,
+            service_password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            service_password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            service_user: pulumi.Input[Optional[_builtins.str]] = None,
+            ssh_key_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            user: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cloudInit"] = cloud_init
+        __props__["description"] = description
+        __props__["domain"] = domain
+        __props__["hostname"] = hostname
+        __props__["installConfigAfterward"] = install_config_afterward
+        __props__["ips"] = ips
+        __props__["ipv4s"] = ipv4s
+        __props__["ipv6s"] = ipv6s
+        __props__["name"] = name
+        __props__["offer"] = offer
+        __props__["offerId"] = offer_id
+        __props__["offerName"] = offer_name
+        __props__["options"] = options
+        __props__["organizationId"] = organization_id
+        __props__["os"] = os
+        __props__["osName"] = os_name
+        __props__["partitioning"] = partitioning
+        __props__["password"] = password
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["privateIps"] = private_ips
+        __props__["privateNetworks"] = private_networks
+        __props__["projectId"] = project_id
+        __props__["protected"] = protected
+        __props__["reinstallOnConfigChanges"] = reinstall_on_config_changes
+        __props__["servicePassword"] = service_password
+        __props__["servicePasswordWo"] = service_password_wo
+        __props__["servicePasswordWoVersion"] = service_password_wo_version
+        __props__["serviceUser"] = service_user
+        __props__["sshKeyIds"] = ssh_key_ids
+        __props__["tags"] = tags
+        __props__["user"] = user
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:elasticmetal/server:Server', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="cloudInit")

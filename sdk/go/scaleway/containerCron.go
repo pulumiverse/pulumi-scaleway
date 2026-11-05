@@ -43,7 +43,7 @@ import (
 //			}
 //			mainContainer, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				Name:        pulumi.String("my-container-with-cron-tf"),
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -63,7 +63,7 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = containers.NewCron(ctx, "main", &containers.CronArgs{
-//				ContainerId: mainContainer.ID().ToIDOutput().ToStringOutput(),
+//				ContainerId: mainContainer.ID(),
 //				Name:        pulumi.String("my-cron-name"),
 //				Schedule:    pulumi.String("5 4 1 * *"),
 //				Args:        pulumi.String(json0),
@@ -176,6 +176,12 @@ type ContainerCronState struct {
 
 func (ContainerCronState) ElementType() reflect.Type {
 	return reflect.TypeOf((*containerCronState)(nil)).Elem()
+}
+
+// ContainerCronExists checks whether an existing ContainerCron resource with the given ID exists.
+func ContainerCronExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ContainerCronState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/containerCron:ContainerCron", id, state, "", opts...)
 }
 
 type containerCronArgs struct {

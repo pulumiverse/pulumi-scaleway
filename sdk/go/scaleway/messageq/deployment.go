@@ -116,7 +116,7 @@ import (
 //			}
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("my-private-network"),
-//				VpcId: main.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -129,7 +129,7 @@ import (
 //				UserName:  pulumi.String("admin"),
 //				Password:  pulumi.String("ThisIsASecurePassword123!"),
 //				PrivateNetwork: &messageq.DeploymentPrivateNetworkArgs{
-//					PrivateNetworkId: pn.ID().ToIDOutput().ToStringOutput(),
+//					PrivateNetworkId: pn.ID(),
 //				},
 //				Volume: &messageq.DeploymentVolumeArgs{
 //					Type:     pulumi.String("sbs_5k"),
@@ -333,6 +333,12 @@ type DeploymentState struct {
 
 func (DeploymentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*deploymentState)(nil)).Elem()
+}
+
+// DeploymentExists checks whether an existing Deployment resource with the given ID exists.
+func DeploymentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DeploymentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:messageq/deployment:Deployment", id, state, "", opts...)
 }
 
 type deploymentArgs struct {

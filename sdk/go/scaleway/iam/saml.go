@@ -121,6 +121,12 @@ func (SamlState) ElementType() reflect.Type {
 	return reflect.TypeOf((*samlState)(nil)).Elem()
 }
 
+// SamlExists checks whether an existing Saml resource with the given ID exists.
+func SamlExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SamlState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:iam/saml:Saml", id, state, "", opts...)
+}
+
 type samlArgs struct {
 	// The organization ID. If not provided, the default organization ID will be used.
 	OrganizationId *string `pulumi:"organizationId"`

@@ -77,7 +77,7 @@ import (
 //				return err
 //			}
 //			snap, err := block.NewSnapshot(ctx, "snap", &block.SnapshotArgs{
-//				VolumeId: sbs.ID().ToIDOutput().ToStringOutput(),
+//				VolumeId: sbs.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -97,7 +97,7 @@ import (
 //					},
 //					&instance.TemplateVolumeArgs{
 //						VolumeType:     pulumi.String("sbs"),
-//						BaseSnapshotId: snap.ID().ToIDOutput().ToStringOutput(),
+//						BaseSnapshotId: snap.ID(),
 //						SizeInGb:       pulumi.Int(30),
 //						PerfIops:       pulumi.Int(15000),
 //					},
@@ -184,7 +184,7 @@ import (
 //			_, err = instance.NewTemplate(ctx, "main", &instance.TemplateArgs{
 //				Name:               pulumi.String("instance-template-windows"),
 //				ServerType:         pulumi.String("POP2-4C-16G-WIN"),
-//				WindowsRdpSshKeyId: key.ID().ToIDOutput().ToStringOutput(),
+//				WindowsRdpSshKeyId: key.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -227,7 +227,7 @@ import (
 //				return err
 //			}
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
-//				VpcId: vpc.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -242,13 +242,13 @@ import (
 //			_, err = instance.NewTemplate(ctx, "main", &instance.TemplateArgs{
 //				Name:             pulumi.String("instance-template-additional-resources"),
 //				ServerType:       pulumi.String("PRO2-M"),
-//				SecurityGroupId:  sg.ID().ToIDOutput().ToStringOutput(),
-//				PlacementGroupId: pg.ID().ToIDOutput().ToStringOutput(),
+//				SecurityGroupId:  sg.ID(),
+//				PlacementGroupId: pg.ID(),
 //				PrivateNetworks: pulumi.StringArray{
-//					pn.ID().ToIDOutput().ToStringOutput(),
+//					pn.ID(),
 //				},
 //				FilesystemIds: pulumi.StringArray{
-//					fs.ID().ToIDOutput().ToStringOutput(),
+//					fs.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -420,6 +420,12 @@ type TemplateState struct {
 
 func (TemplateState) ElementType() reflect.Type {
 	return reflect.TypeOf((*templateState)(nil)).Elem()
+}
+
+// TemplateExists checks whether an existing Template resource with the given ID exists.
+func TemplateExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TemplateState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:instance/template:Template", id, state, "", opts...)
 }
 
 type templateArgs struct {

@@ -40,7 +40,7 @@ import (
 //				Zone: pulumi.String("nl-ams-1"),
 //			}, nil)
 //			_ = network.LookupPublicGatewayOutput(ctx, network.GetPublicGatewayOutputArgs{
-//				PublicGatewayId: main.ID().ToIDOutput().ToStringOutput(),
+//				PublicGatewayId: main.ID(),
 //			}, nil)
 //			return nil
 //		})

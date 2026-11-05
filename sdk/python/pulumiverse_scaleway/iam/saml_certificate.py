@@ -352,6 +352,26 @@ class SamlCertificate(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return SamlCertificate(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            content: pulumi.Input[Optional[_builtins.str]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            origin: pulumi.Input[Optional[_builtins.str]] = None,
+            saml_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["content"] = content
+        __props__["expiresAt"] = expires_at
+        __props__["organizationId"] = organization_id
+        __props__["origin"] = origin
+        __props__["samlId"] = saml_id
+        __props__["srn"] = srn
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'scaleway:iam/samlCertificate:SamlCertificate', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def content(self) -> pulumi.Output[_builtins.str]:

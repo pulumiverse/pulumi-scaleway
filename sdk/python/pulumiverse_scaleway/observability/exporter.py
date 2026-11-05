@@ -345,12 +345,12 @@ class Exporter(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datadog_destination: pulumi.Input[Optional[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict']]] = None,
+                 datadog_destination: pulumi.Input[Optional[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict', 'outputs.ExporterDatadogDestination']]] = None,
                  datasource_id: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  exported_products: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 otlp_destination: pulumi.Input[Optional[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']]] = None,
+                 otlp_destination: pulumi.Input[Optional[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict', 'outputs.ExporterOtlpDestination']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -424,12 +424,12 @@ class Exporter(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict']] datadog_destination: Datadog destination configuration. Cannot be used with `otlp_destination`.
+        :param pulumi.Input[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict', 'outputs.ExporterDatadogDestination']] datadog_destination: Datadog destination configuration. Cannot be used with `otlp_destination`.
         :param pulumi.Input[_builtins.str] datasource_id: ID of the data source linked to the data export. Use `observability_get_sources` to find available data sources.
         :param pulumi.Input[_builtins.str] description: Description of the data export.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] exported_products: List of Scaleway products to export. Use `["all"]` to export all products. Use `observability_get_products` for valid product names. Defaults to `["all"]`.
         :param pulumi.Input[_builtins.str] name: Name of the data export.
-        :param pulumi.Input[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']] otlp_destination: OTLP destination configuration. Cannot be used with `datadog_destination`.
+        :param pulumi.Input[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict', 'outputs.ExporterOtlpDestination']] otlp_destination: OTLP destination configuration. Cannot be used with `datadog_destination`.
         :param pulumi.Input[_builtins.str] project_id: ) The ID of the Project.
         :param pulumi.Input[_builtins.str] region: ) The region where the exporter is located.
         """
@@ -522,12 +522,12 @@ class Exporter(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 datadog_destination: pulumi.Input[Optional[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict']]] = None,
+                 datadog_destination: pulumi.Input[Optional[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict', 'outputs.ExporterDatadogDestination']]] = None,
                  datasource_id: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  exported_products: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 otlp_destination: pulumi.Input[Optional[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']]] = None,
+                 otlp_destination: pulumi.Input[Optional[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict', 'outputs.ExporterOtlpDestination']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -563,12 +563,12 @@ class Exporter(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
-            datadog_destination: pulumi.Input[Optional[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict']]] = None,
+            datadog_destination: pulumi.Input[Optional[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict', 'outputs.ExporterDatadogDestination']]] = None,
             datasource_id: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             exported_products: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            otlp_destination: pulumi.Input[Optional[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']]] = None,
+            otlp_destination: pulumi.Input[Optional[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict', 'outputs.ExporterOtlpDestination']]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
@@ -581,12 +581,12 @@ class Exporter(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: Date and time of creation (RFC 3339 format).
-        :param pulumi.Input[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict']] datadog_destination: Datadog destination configuration. Cannot be used with `otlp_destination`.
+        :param pulumi.Input[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict', 'outputs.ExporterDatadogDestination']] datadog_destination: Datadog destination configuration. Cannot be used with `otlp_destination`.
         :param pulumi.Input[_builtins.str] datasource_id: ID of the data source linked to the data export. Use `observability_get_sources` to find available data sources.
         :param pulumi.Input[_builtins.str] description: Description of the data export.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] exported_products: List of Scaleway products to export. Use `["all"]` to export all products. Use `observability_get_products` for valid product names. Defaults to `["all"]`.
         :param pulumi.Input[_builtins.str] name: Name of the data export.
-        :param pulumi.Input[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']] otlp_destination: OTLP destination configuration. Cannot be used with `datadog_destination`.
+        :param pulumi.Input[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict', 'outputs.ExporterOtlpDestination']] otlp_destination: OTLP destination configuration. Cannot be used with `datadog_destination`.
         :param pulumi.Input[_builtins.str] project_id: ) The ID of the Project.
         :param pulumi.Input[_builtins.str] region: ) The region where the exporter is located.
         :param pulumi.Input[_builtins.str] status: Status of the data export (`creating`, `ready`, `error`).
@@ -608,6 +608,34 @@ class Exporter(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["updated_at"] = updated_at
         return Exporter(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            datadog_destination: pulumi.Input[Optional[Union['ExporterDatadogDestinationArgs', 'ExporterDatadogDestinationArgsDict', 'outputs.ExporterDatadogDestination']]] = None,
+            datasource_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            exported_products: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            otlp_destination: pulumi.Input[Optional[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict', 'outputs.ExporterOtlpDestination']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["datadogDestination"] = datadog_destination
+        __props__["datasourceId"] = datasource_id
+        __props__["description"] = description
+        __props__["exportedProducts"] = exported_products
+        __props__["name"] = name
+        __props__["otlpDestination"] = otlp_destination
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["status"] = status
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'scaleway:observability/exporter:Exporter', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

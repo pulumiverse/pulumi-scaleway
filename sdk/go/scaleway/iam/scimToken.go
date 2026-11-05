@@ -42,7 +42,7 @@ import (
 //			}
 //			// Create a SCIM token
 //			_, err = iam.NewScimToken(ctx, "main", &iam.ScimTokenArgs{
-//				ScimId:         main.ID().ToIDOutput().ToStringOutput(),
+//				ScimId:         main.ID(),
 //				OrganizationId: pulumi.String("your-organization-id"),
 //			})
 //			if err != nil {
@@ -140,6 +140,12 @@ type ScimTokenState struct {
 
 func (ScimTokenState) ElementType() reflect.Type {
 	return reflect.TypeOf((*scimTokenState)(nil)).Elem()
+}
+
+// ScimTokenExists checks whether an existing ScimToken resource with the given ID exists.
+func ScimTokenExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ScimTokenState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:iam/scimToken:ScimToken", id, state, "", opts...)
 }
 
 type scimTokenArgs struct {

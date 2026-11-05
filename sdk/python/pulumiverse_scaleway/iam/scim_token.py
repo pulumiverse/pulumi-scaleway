@@ -301,6 +301,22 @@ class ScimToken(pulumi.CustomResource):
         __props__.__dict__["scim_id"] = scim_id
         return ScimToken(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bearer_token: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            scim_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["bearerToken"] = bearer_token
+        __props__["createdAt"] = created_at
+        __props__["expiresAt"] = expires_at
+        __props__["organizationId"] = organization_id
+        __props__["scimId"] = scim_id
+        return pulumi.runtime.exists_resource(None, 'scaleway:iam/scimToken:ScimToken', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="bearerToken")
     def bearer_token(self) -> pulumi.Output[_builtins.str]:

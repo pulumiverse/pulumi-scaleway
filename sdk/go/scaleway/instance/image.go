@@ -39,14 +39,14 @@ import (
 //				return err
 //			}
 //			volumeSnapshot, err := instance.NewSnapshot(ctx, "volume_snapshot", &instance.SnapshotArgs{
-//				VolumeId: volume.ID().ToIDOutput().ToStringOutput(),
+//				VolumeId: volume.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = instance.NewImage(ctx, "volume_image", &instance.ImageArgs{
 //				Name:         pulumi.String("image_from_volume"),
-//				RootVolumeId: volumeSnapshot.ID().ToIDOutput().ToStringOutput(),
+//				RootVolumeId: volumeSnapshot.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -86,7 +86,7 @@ import (
 //			}
 //			_, err = instance.NewImage(ctx, "server_image", &instance.ImageArgs{
 //				Name:         pulumi.String("image_from_server"),
-//				RootVolumeId: serverSnapshot.ID().ToIDOutput().ToStringOutput(),
+//				RootVolumeId: serverSnapshot.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -126,7 +126,7 @@ import (
 //				return err
 //			}
 //			volumeSnapshot, err := instance.NewSnapshot(ctx, "volume_snapshot", &instance.SnapshotArgs{
-//				VolumeId: volume.ID().ToIDOutput().ToStringOutput(),
+//				VolumeId: volume.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -139,9 +139,9 @@ import (
 //			}
 //			_, err = instance.NewImage(ctx, "image", &instance.ImageArgs{
 //				Name:         pulumi.String("image_with_extra_volumes"),
-//				RootVolumeId: serverSnapshot.ID().ToIDOutput().ToStringOutput(),
+//				RootVolumeId: serverSnapshot.ID(),
 //				AdditionalVolumeIds: pulumi.StringArray{
-//					volumeSnapshot.ID().ToIDOutput().ToStringOutput(),
+//					volumeSnapshot.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -301,6 +301,12 @@ type ImageState struct {
 
 func (ImageState) ElementType() reflect.Type {
 	return reflect.TypeOf((*imageState)(nil)).Elem()
+}
+
+// ImageExists checks whether an existing Image resource with the given ID exists.
+func ImageExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ImageState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:instance/image:Image", id, state, "", opts...)
 }
 
 type imageArgs struct {

@@ -275,7 +275,7 @@ class User(pulumi.CustomResource):
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict', 'outputs.UserRole']]]]] = None,
                  __props__=None):
         """
         Manages MongoDB users. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-mongodb).
@@ -369,7 +369,7 @@ class User(pulumi.CustomResource):
                The password of the MongoDB® user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]] roles: List of roles assigned to the user. Each role block supports:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict', 'outputs.UserRole']]]] roles: List of roles assigned to the user. Each role block supports:
         """
         ...
     @overload
@@ -481,7 +481,7 @@ class User(pulumi.CustomResource):
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict', 'outputs.UserRole']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -518,7 +518,7 @@ class User(pulumi.CustomResource):
             password_wo: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]]] = None) -> 'User':
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict', 'outputs.UserRole']]]]] = None) -> 'User':
         """
         Get an existing User resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -533,7 +533,7 @@ class User(pulumi.CustomResource):
                The password of the MongoDB® user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]] roles: List of roles assigned to the user. Each role block supports:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict', 'outputs.UserRole']]]] roles: List of roles assigned to the user. Each role block supports:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -547,6 +547,26 @@ class User(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["roles"] = roles
         return User(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict', 'outputs.UserRole']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["instanceId"] = instance_id
+        __props__["name"] = name
+        __props__["password"] = password
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["region"] = region
+        __props__["roles"] = roles
+        return pulumi.runtime.exists_resource(None, 'scaleway:mongodb/user:User', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="instanceId")

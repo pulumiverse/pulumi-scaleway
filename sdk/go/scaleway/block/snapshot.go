@@ -43,7 +43,7 @@ import (
 //			}
 //			_, err = block.NewSnapshot(ctx, "block_snapshot", &block.SnapshotArgs{
 //				Name:     pulumi.String("some-snapshot-name"),
-//				VolumeId: blockVolume.ID().ToIDOutput().ToStringOutput(),
+//				VolumeId: blockVolume.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -264,6 +264,12 @@ type SnapshotState struct {
 
 func (SnapshotState) ElementType() reflect.Type {
 	return reflect.TypeOf((*snapshotState)(nil)).Elem()
+}
+
+// SnapshotExists checks whether an existing Snapshot resource with the given ID exists.
+func SnapshotExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SnapshotState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:block/snapshot:Snapshot", id, state, "", opts...)
 }
 
 type snapshotArgs struct {

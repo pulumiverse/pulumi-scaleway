@@ -17,9 +17,7 @@ namespace Pulumiverse.Scaleway.Interlink
         /// 
         /// A routing policy defines IP prefix filters that control which routes are accepted from and advertised to a peer via BGP on an Interlink connection.
         /// 
-        /// 
         /// For more information, see [the Interlink documentation](https://www.scaleway.com/en/docs/network/interlink/) and [API documentation](https://www.scaleway.com/en/developers/api/interlink/).
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -65,9 +63,7 @@ namespace Pulumiverse.Scaleway.Interlink
         /// 
         /// A routing policy defines IP prefix filters that control which routes are accepted from and advertised to a peer via BGP on an Interlink connection.
         /// 
-        /// 
         /// For more information, see [the Interlink documentation](https://www.scaleway.com/en/docs/network/interlink/) and [API documentation](https://www.scaleway.com/en/developers/api/interlink/).
-        /// 
         /// 
         /// ## Example Usage
         /// 
@@ -113,9 +109,7 @@ namespace Pulumiverse.Scaleway.Interlink
         /// 
         /// A routing policy defines IP prefix filters that control which routes are accepted from and advertised to a peer via BGP on an Interlink connection.
         /// 
-        /// 
         /// For more information, see [the Interlink documentation](https://www.scaleway.com/en/docs/network/interlink/) and [API documentation](https://www.scaleway.com/en/developers/api/interlink/).
-        /// 
         /// 
         /// ## Example Usage
         /// 

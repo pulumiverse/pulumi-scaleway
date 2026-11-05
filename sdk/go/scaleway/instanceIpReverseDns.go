@@ -47,7 +47,7 @@ import (
 //				return err
 //			}
 //			_, err = instance.NewIpReverseDns(ctx, "reverse", &instance.IpReverseDnsArgs{
-//				IpId:    serverIp.ID().ToIDOutput().ToStringOutput(),
+//				IpId:    serverIp.ID(),
 //				Reverse: pulumi.String("www.scaleway.com"),
 //			})
 //			if err != nil {
@@ -134,6 +134,12 @@ type InstanceIpReverseDnsState struct {
 
 func (InstanceIpReverseDnsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIpReverseDnsState)(nil)).Elem()
+}
+
+// InstanceIpReverseDnsExists checks whether an existing InstanceIpReverseDns resource with the given ID exists.
+func InstanceIpReverseDnsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceIpReverseDnsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/instanceIpReverseDns:InstanceIpReverseDns", id, state, "", opts...)
 }
 
 type instanceIpReverseDnsArgs struct {

@@ -265,9 +265,9 @@ class Certificate(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 custom_certificate: pulumi.Input[Optional[Union['CertificateCustomCertificateArgs', 'CertificateCustomCertificateArgsDict']]] = None,
+                 custom_certificate: pulumi.Input[Optional[Union['CertificateCustomCertificateArgs', 'CertificateCustomCertificateArgsDict', 'outputs.CertificateCustomCertificate']]] = None,
                  lb_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 letsencrypt: pulumi.Input[Optional[Union['CertificateLetsencryptArgs', 'CertificateLetsencryptArgsDict']]] = None,
+                 letsencrypt: pulumi.Input[Optional[Union['CertificateLetsencryptArgs', 'CertificateLetsencryptArgsDict', 'outputs.CertificateLetsencrypt']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -311,9 +311,9 @@ class Certificate(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['CertificateCustomCertificateArgs', 'CertificateCustomCertificateArgsDict']] custom_certificate: The custom type certificate type configuration
+        :param pulumi.Input[Union['CertificateCustomCertificateArgs', 'CertificateCustomCertificateArgsDict', 'outputs.CertificateCustomCertificate']] custom_certificate: The custom type certificate type configuration
         :param pulumi.Input[_builtins.str] lb_id: The load-balancer ID
-        :param pulumi.Input[Union['CertificateLetsencryptArgs', 'CertificateLetsencryptArgsDict']] letsencrypt: The Let's Encrypt type certificate configuration
+        :param pulumi.Input[Union['CertificateLetsencryptArgs', 'CertificateLetsencryptArgsDict', 'outputs.CertificateLetsencrypt']] letsencrypt: The Let's Encrypt type certificate configuration
         :param pulumi.Input[_builtins.str] name: The name of the load-balancer certificate
         """
         ...
@@ -376,9 +376,9 @@ class Certificate(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 custom_certificate: pulumi.Input[Optional[Union['CertificateCustomCertificateArgs', 'CertificateCustomCertificateArgsDict']]] = None,
+                 custom_certificate: pulumi.Input[Optional[Union['CertificateCustomCertificateArgs', 'CertificateCustomCertificateArgsDict', 'outputs.CertificateCustomCertificate']]] = None,
                  lb_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 letsencrypt: pulumi.Input[Optional[Union['CertificateLetsencryptArgs', 'CertificateLetsencryptArgsDict']]] = None,
+                 letsencrypt: pulumi.Input[Optional[Union['CertificateLetsencryptArgs', 'CertificateLetsencryptArgsDict', 'outputs.CertificateLetsencrypt']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -414,10 +414,10 @@ class Certificate(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             common_name: pulumi.Input[Optional[_builtins.str]] = None,
-            custom_certificate: pulumi.Input[Optional[Union['CertificateCustomCertificateArgs', 'CertificateCustomCertificateArgsDict']]] = None,
+            custom_certificate: pulumi.Input[Optional[Union['CertificateCustomCertificateArgs', 'CertificateCustomCertificateArgsDict', 'outputs.CertificateCustomCertificate']]] = None,
             fingerprint: pulumi.Input[Optional[_builtins.str]] = None,
             lb_id: pulumi.Input[Optional[_builtins.str]] = None,
-            letsencrypt: pulumi.Input[Optional[Union['CertificateLetsencryptArgs', 'CertificateLetsencryptArgsDict']]] = None,
+            letsencrypt: pulumi.Input[Optional[Union['CertificateLetsencryptArgs', 'CertificateLetsencryptArgsDict', 'outputs.CertificateLetsencrypt']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             not_valid_after: pulumi.Input[Optional[_builtins.str]] = None,
             not_valid_before: pulumi.Input[Optional[_builtins.str]] = None,
@@ -431,10 +431,10 @@ class Certificate(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] common_name: Main domain of the certificate
-        :param pulumi.Input[Union['CertificateCustomCertificateArgs', 'CertificateCustomCertificateArgsDict']] custom_certificate: The custom type certificate type configuration
+        :param pulumi.Input[Union['CertificateCustomCertificateArgs', 'CertificateCustomCertificateArgsDict', 'outputs.CertificateCustomCertificate']] custom_certificate: The custom type certificate type configuration
         :param pulumi.Input[_builtins.str] fingerprint: The identifier (SHA-1) of the certificate
         :param pulumi.Input[_builtins.str] lb_id: The load-balancer ID
-        :param pulumi.Input[Union['CertificateLetsencryptArgs', 'CertificateLetsencryptArgsDict']] letsencrypt: The Let's Encrypt type certificate configuration
+        :param pulumi.Input[Union['CertificateLetsencryptArgs', 'CertificateLetsencryptArgsDict', 'outputs.CertificateLetsencrypt']] letsencrypt: The Let's Encrypt type certificate configuration
         :param pulumi.Input[_builtins.str] name: The name of the load-balancer certificate
         :param pulumi.Input[_builtins.str] not_valid_after: The not valid after validity bound timestamp
         :param pulumi.Input[_builtins.str] not_valid_before: The not valid before validity bound timestamp
@@ -456,6 +456,32 @@ class Certificate(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["subject_alternative_names"] = subject_alternative_names
         return Certificate(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            common_name: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_certificate: pulumi.Input[Optional[Union['CertificateCustomCertificateArgs', 'CertificateCustomCertificateArgsDict', 'outputs.CertificateCustomCertificate']]] = None,
+            fingerprint: pulumi.Input[Optional[_builtins.str]] = None,
+            lb_id: pulumi.Input[Optional[_builtins.str]] = None,
+            letsencrypt: pulumi.Input[Optional[Union['CertificateLetsencryptArgs', 'CertificateLetsencryptArgsDict', 'outputs.CertificateLetsencrypt']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            not_valid_after: pulumi.Input[Optional[_builtins.str]] = None,
+            not_valid_before: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            subject_alternative_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["commonName"] = common_name
+        __props__["customCertificate"] = custom_certificate
+        __props__["fingerprint"] = fingerprint
+        __props__["lbId"] = lb_id
+        __props__["letsencrypt"] = letsencrypt
+        __props__["name"] = name
+        __props__["notValidAfter"] = not_valid_after
+        __props__["notValidBefore"] = not_valid_before
+        __props__["status"] = status
+        __props__["subjectAlternativeNames"] = subject_alternative_names
+        return pulumi.runtime.exists_resource(None, 'scaleway:loadbalancers/certificate:Certificate', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="commonName")

@@ -44,13 +44,13 @@ import (
 //				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
 //				DeleteAdditionalResources: pulumi.Bool(true),
-//				PrivateNetworkId:          aclBasic.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId:          aclBasic.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = kubernetes.NewAcl(ctx, "acl_basic", &kubernetes.AclArgs{
-//				ClusterId: aclBasicCluster.ID().ToIDOutput().ToStringOutput(),
+//				ClusterId: aclBasicCluster.ID(),
 //				AclRules: kubernetes.AclAclRuleArray{
 //					&kubernetes.AclAclRuleArgs{
 //						Ip:          pulumi.String("1.2.3.4/32"),
@@ -94,13 +94,13 @@ import (
 //				Version:                   pulumi.String("1.35.3"),
 //				Cni:                       pulumi.String("cilium"),
 //				DeleteAdditionalResources: pulumi.Bool(true),
-//				PrivateNetworkId:          aclBasic.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId:          aclBasic.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = kubernetes.NewAcl(ctx, "acl_basic", &kubernetes.AclArgs{
-//				ClusterId:   aclBasicCluster.ID().ToIDOutput().ToStringOutput(),
+//				ClusterId:   aclBasicCluster.ID(),
 //				NoIpAllowed: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -206,6 +206,12 @@ type AclState struct {
 
 func (AclState) ElementType() reflect.Type {
 	return reflect.TypeOf((*aclState)(nil)).Elem()
+}
+
+// AclExists checks whether an existing Acl resource with the given ID exists.
+func AclExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AclState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:kubernetes/acl:Acl", id, state, "", opts...)
 }
 
 type aclArgs struct {

@@ -46,7 +46,7 @@ namespace Pulumiverse.Scaleway.Databases
     ///     var replica = new Scaleway.Databases.ReadReplica("replica", new()
     ///     {
     ///         InstanceId = instance.Id,
-    ///         DirectAccess = null,
+    ///         DirectAccess = new() { },
     ///     });
     /// 
     /// });

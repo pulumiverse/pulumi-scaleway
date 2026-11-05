@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			mainFunction, err := functions.NewFunction(ctx, "main", &functions.FunctionArgs{
-//				NamespaceId: mainNamespace.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: mainNamespace.ID(),
 //				Runtime:     pulumi.String("go118"),
 //				Privacy:     pulumi.String("private"),
 //				Handler:     pulumi.String("Handle"),
@@ -48,7 +48,7 @@ import (
 //				return err
 //			}
 //			_, err = functions.NewDomain(ctx, "main", &functions.DomainArgs{
-//				FunctionId: mainFunction.ID().ToIDOutput().ToStringOutput(),
+//				FunctionId: mainFunction.ID(),
 //				Hostname:   pulumi.String("example.com"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				mainFunction,
@@ -161,6 +161,12 @@ type FunctionDomainState struct {
 
 func (FunctionDomainState) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionDomainState)(nil)).Elem()
+}
+
+// FunctionDomainExists checks whether an existing FunctionDomain resource with the given ID exists.
+func FunctionDomainExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FunctionDomainState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/functionDomain:FunctionDomain", id, state, "", opts...)
 }
 
 type functionDomainArgs struct {

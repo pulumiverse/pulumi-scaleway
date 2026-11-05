@@ -46,7 +46,7 @@ import (
 //				return err
 //			}
 //			_, err = network.NewPublicGatewayIpReverseDns(ctx, "main", &network.PublicGatewayIpReverseDnsArgs{
-//				GatewayIpId: main.ID().ToIDOutput().ToStringOutput(),
+//				GatewayIpId: main.ID(),
 //				Reverse:     pulumi.String("tf.example.com"),
 //			})
 //			if err != nil {
@@ -137,6 +137,12 @@ type PublicGatewayIpReverseDnsState struct {
 
 func (PublicGatewayIpReverseDnsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*publicGatewayIpReverseDnsState)(nil)).Elem()
+}
+
+// PublicGatewayIpReverseDnsExists checks whether an existing PublicGatewayIpReverseDns resource with the given ID exists.
+func PublicGatewayIpReverseDnsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PublicGatewayIpReverseDnsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:network/publicGatewayIpReverseDns:PublicGatewayIpReverseDns", id, state, "", opts...)
 }
 
 type publicGatewayIpReverseDnsArgs struct {

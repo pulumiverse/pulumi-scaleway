@@ -38,7 +38,7 @@ import (
 //				return err
 //			}
 //			mainDnsStage, err := edgeservices.NewDnsStage(ctx, "main", &edgeservices.DnsStageArgs{
-//				PipelineId: main.ID().ToIDOutput().ToStringOutput(),
+//				PipelineId: main.ID(),
 //				TlsStageId: pulumi.Any(mainScalewayEdgeServicesTlsStage.Id),
 //				Fqdns: pulumi.StringArray{
 //					pulumi.String("subdomain.example.com"),
@@ -48,8 +48,8 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewHeadStage(ctx, "main", &edgeservices.HeadStageArgs{
-//				PipelineId:  main.ID().ToIDOutput().ToStringOutput(),
-//				HeadStageId: mainDnsStage.ID().ToIDOutput().ToStringOutput(),
+//				PipelineId:  main.ID(),
+//				HeadStageId: mainDnsStage.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -130,6 +130,12 @@ type HeadStageState struct {
 
 func (HeadStageState) ElementType() reflect.Type {
 	return reflect.TypeOf((*headStageState)(nil)).Elem()
+}
+
+// HeadStageExists checks whether an existing HeadStage resource with the given ID exists.
+func HeadStageExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *HeadStageState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:edgeservices/headStage:HeadStage", id, state, "", opts...)
 }
 
 type headStageArgs struct {

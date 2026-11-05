@@ -150,6 +150,12 @@ func (InstancePlacementGroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instancePlacementGroupState)(nil)).Elem()
 }
 
+// InstancePlacementGroupExists checks whether an existing InstancePlacementGroup resource with the given ID exists.
+func InstancePlacementGroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstancePlacementGroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/instancePlacementGroup:InstancePlacementGroup", id, state, "", opts...)
+}
+
 type instancePlacementGroupArgs struct {
 	// The name of the placement group.
 	Name *string `pulumi:"name"`

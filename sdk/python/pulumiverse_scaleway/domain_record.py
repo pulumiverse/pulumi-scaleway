@@ -430,15 +430,15 @@ class DomainRecord(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  data: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_zone: pulumi.Input[Optional[_builtins.str]] = None,
-                 geo_ip: pulumi.Input[Optional[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict']]] = None,
-                 http_service: pulumi.Input[Optional[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict']]] = None,
+                 geo_ip: pulumi.Input[Optional[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict', 'outputs.DomainRecordGeoIp']]] = None,
+                 http_service: pulumi.Input[Optional[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict', 'outputs.DomainRecordHttpService']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
-                 views: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordViewArgs', 'DomainRecordViewArgsDict']]]]] = None,
-                 weighteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict']]]]] = None,
+                 views: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordViewArgs', 'DomainRecordViewArgsDict', 'outputs.DomainRecordView']]]]] = None,
+                 weighteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict', 'outputs.DomainRecordWeighted']]]]] = None,
                  __props__=None):
         """
         The `domain.Record` resource allows you to create and manage DNS records for Scaleway domains.
@@ -640,15 +640,15 @@ class DomainRecord(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         :param pulumi.Input[_builtins.str] dns_zone: The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
-        :param pulumi.Input[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict']] geo_ip: Return record based on client localisation
-        :param pulumi.Input[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict']] http_service: Return record based on client localisation
+        :param pulumi.Input[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict', 'outputs.DomainRecordGeoIp']] geo_ip: Return record based on client localisation
+        :param pulumi.Input[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict', 'outputs.DomainRecordHttpService']] http_service: Return record based on client localisation
         :param pulumi.Input[_builtins.str] name: The name of the record (can be an empty string for a root record).
         :param pulumi.Input[_builtins.int] priority: The priority of the record (mostly used with an `MX` record).
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.int] ttl: Time To Live of the record in seconds.
         :param pulumi.Input[_builtins.str] type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainRecordViewArgs', 'DomainRecordViewArgsDict']]]] views: Return record based on client subnet
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict']]]] weighteds: Return record based on weight
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainRecordViewArgs', 'DomainRecordViewArgsDict', 'outputs.DomainRecordView']]]] views: Return record based on client subnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict', 'outputs.DomainRecordWeighted']]]] weighteds: Return record based on weight
         """
         ...
     @overload
@@ -869,15 +869,15 @@ class DomainRecord(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  data: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_zone: pulumi.Input[Optional[_builtins.str]] = None,
-                 geo_ip: pulumi.Input[Optional[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict']]] = None,
-                 http_service: pulumi.Input[Optional[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict']]] = None,
+                 geo_ip: pulumi.Input[Optional[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict', 'outputs.DomainRecordGeoIp']]] = None,
+                 http_service: pulumi.Input[Optional[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict', 'outputs.DomainRecordHttpService']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
-                 views: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordViewArgs', 'DomainRecordViewArgsDict']]]]] = None,
-                 weighteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict']]]]] = None,
+                 views: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordViewArgs', 'DomainRecordViewArgsDict', 'outputs.DomainRecordView']]]]] = None,
+                 weighteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict', 'outputs.DomainRecordWeighted']]]]] = None,
                  __props__=None):
         pulumi.log.warn("""DomainRecord is deprecated: scaleway.index/domainrecord.DomainRecord has been deprecated in favor of scaleway.domain/record.Record""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -920,16 +920,16 @@ class DomainRecord(pulumi.CustomResource):
             data: pulumi.Input[Optional[_builtins.str]] = None,
             dns_zone: pulumi.Input[Optional[_builtins.str]] = None,
             fqdn: pulumi.Input[Optional[_builtins.str]] = None,
-            geo_ip: pulumi.Input[Optional[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict']]] = None,
-            http_service: pulumi.Input[Optional[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict']]] = None,
+            geo_ip: pulumi.Input[Optional[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict', 'outputs.DomainRecordGeoIp']]] = None,
+            http_service: pulumi.Input[Optional[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict', 'outputs.DomainRecordHttpService']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             root_zone: pulumi.Input[Optional[_builtins.bool]] = None,
             ttl: pulumi.Input[Optional[_builtins.int]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
-            views: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordViewArgs', 'DomainRecordViewArgsDict']]]]] = None,
-            weighteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict']]]]] = None) -> 'DomainRecord':
+            views: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordViewArgs', 'DomainRecordViewArgsDict', 'outputs.DomainRecordView']]]]] = None,
+            weighteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict', 'outputs.DomainRecordWeighted']]]]] = None) -> 'DomainRecord':
         """
         Get an existing DomainRecord resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -940,16 +940,16 @@ class DomainRecord(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] data: The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
         :param pulumi.Input[_builtins.str] dns_zone: The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         :param pulumi.Input[_builtins.str] fqdn: The FQDN of the record.
-        :param pulumi.Input[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict']] geo_ip: Return record based on client localisation
-        :param pulumi.Input[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict']] http_service: Return record based on client localisation
+        :param pulumi.Input[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict', 'outputs.DomainRecordGeoIp']] geo_ip: Return record based on client localisation
+        :param pulumi.Input[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict', 'outputs.DomainRecordHttpService']] http_service: Return record based on client localisation
         :param pulumi.Input[_builtins.str] name: The name of the record (can be an empty string for a root record).
         :param pulumi.Input[_builtins.int] priority: The priority of the record (mostly used with an `MX` record).
         :param pulumi.Input[_builtins.str] project_id: The project_id you want to attach the resource to
         :param pulumi.Input[_builtins.bool] root_zone: Does the DNS zone is the root zone or not
         :param pulumi.Input[_builtins.int] ttl: Time To Live of the record in seconds.
         :param pulumi.Input[_builtins.str] type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainRecordViewArgs', 'DomainRecordViewArgsDict']]]] views: Return record based on client subnet
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict']]]] weighteds: Return record based on weight
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainRecordViewArgs', 'DomainRecordViewArgsDict', 'outputs.DomainRecordView']]]] views: Return record based on client subnet
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict', 'outputs.DomainRecordWeighted']]]] weighteds: Return record based on weight
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -969,6 +969,38 @@ class DomainRecord(pulumi.CustomResource):
         __props__.__dict__["views"] = views
         __props__.__dict__["weighteds"] = weighteds
         return DomainRecord(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            data: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_zone: pulumi.Input[Optional[_builtins.str]] = None,
+            fqdn: pulumi.Input[Optional[_builtins.str]] = None,
+            geo_ip: pulumi.Input[Optional[Union['DomainRecordGeoIpArgs', 'DomainRecordGeoIpArgsDict', 'outputs.DomainRecordGeoIp']]] = None,
+            http_service: pulumi.Input[Optional[Union['DomainRecordHttpServiceArgs', 'DomainRecordHttpServiceArgsDict', 'outputs.DomainRecordHttpService']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            root_zone: pulumi.Input[Optional[_builtins.bool]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            views: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordViewArgs', 'DomainRecordViewArgsDict', 'outputs.DomainRecordView']]]]] = None,
+            weighteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict', 'outputs.DomainRecordWeighted']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["data"] = data
+        __props__["dnsZone"] = dns_zone
+        __props__["fqdn"] = fqdn
+        __props__["geoIp"] = geo_ip
+        __props__["httpService"] = http_service
+        __props__["name"] = name
+        __props__["priority"] = priority
+        __props__["projectId"] = project_id
+        __props__["rootZone"] = root_zone
+        __props__["ttl"] = ttl
+        __props__["type"] = type
+        __props__["views"] = views
+        __props__["weighteds"] = weighteds
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/domainRecord:DomainRecord', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

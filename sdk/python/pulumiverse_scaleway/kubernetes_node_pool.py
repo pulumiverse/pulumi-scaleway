@@ -1126,10 +1126,10 @@ class KubernetesNodePool(pulumi.CustomResource):
                  root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
                  security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size: pulumi.Input[Optional[_builtins.int]] = None,
-                 startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict']]]]] = None,
+                 startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict', 'outputs.KubernetesNodePoolStartupTaint']]]]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]]] = None,
-                 upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict', 'outputs.KubernetesNodePoolTaint']]]]] = None,
+                 upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict', 'outputs.KubernetesNodePoolUpgradePolicy']]] = None,
                  user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1263,12 +1263,12 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] size: The size of the pool.
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict']]]] startup_taints: The list of Kubernetes taints applied at node creation but not reconciled afterward.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict', 'outputs.KubernetesNodePoolStartupTaint']]]] startup_taints: The list of Kubernetes taints applied at node creation but not reconciled afterward.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
                
                > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
-        :param pulumi.Input[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict', 'outputs.KubernetesNodePoolTaint']]]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
+        :param pulumi.Input[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict', 'outputs.KubernetesNodePoolUpgradePolicy']] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] user_data: User data applied and reconciled with the pool, as a map of key to content.
                
                key - The user data key. The cloud-init key is reserved, please use cloud_init attribute instead.
@@ -1411,10 +1411,10 @@ class KubernetesNodePool(pulumi.CustomResource):
                  root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
                  security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size: pulumi.Input[Optional[_builtins.int]] = None,
-                 startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict']]]]] = None,
+                 startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict', 'outputs.KubernetesNodePoolStartupTaint']]]]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]]] = None,
-                 upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']]] = None,
+                 taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict', 'outputs.KubernetesNodePoolTaint']]]]] = None,
+                 upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict', 'outputs.KubernetesNodePoolUpgradePolicy']]] = None,
                  user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
                  wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1489,7 +1489,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             min_size: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             node_type: pulumi.Input[Optional[_builtins.str]] = None,
-            nodes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolNodeArgs', 'KubernetesNodePoolNodeArgsDict']]]]] = None,
+            nodes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolNodeArgs', 'KubernetesNodePoolNodeArgsDict', 'outputs.KubernetesNodePoolNode']]]]] = None,
             placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
             private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
             public_ip_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1499,12 +1499,12 @@ class KubernetesNodePool(pulumi.CustomResource):
             security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
             size: pulumi.Input[Optional[_builtins.int]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
-            startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict']]]]] = None,
+            startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict', 'outputs.KubernetesNodePoolStartupTaint']]]]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]]] = None,
+            taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict', 'outputs.KubernetesNodePoolTaint']]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
-            upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']]] = None,
+            upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict', 'outputs.KubernetesNodePoolUpgradePolicy']]] = None,
             user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             version: pulumi.Input[Optional[_builtins.str]] = None,
             wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1538,7 +1538,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] node_type: The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
                
                > **Important:** Updates to this field will recreate a new resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolNodeArgs', 'KubernetesNodePoolNodeArgsDict']]]] nodes: (List of) The nodes in the default pool.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolNodeArgs', 'KubernetesNodePoolNodeArgsDict', 'outputs.KubernetesNodePoolNode']]]] nodes: (List of) The nodes in the default pool.
         :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
                
                > **Important:** Updates to this field will recreate a new resource.
@@ -1559,14 +1559,14 @@ class KubernetesNodePool(pulumi.CustomResource):
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the node.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict']]]] startup_taints: The list of Kubernetes taints applied at node creation but not reconciled afterward.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict', 'outputs.KubernetesNodePoolStartupTaint']]]] startup_taints: The list of Kubernetes taints applied at node creation but not reconciled afterward.
         :param pulumi.Input[_builtins.str] status: The status of the node.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
                
                > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict', 'outputs.KubernetesNodePoolTaint']]]] taints: The list of Kubernetes taints applied and reconciled on the nodes.
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the pool.
-        :param pulumi.Input[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
+        :param pulumi.Input[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict', 'outputs.KubernetesNodePoolUpgradePolicy']] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] user_data: User data applied and reconciled with the pool, as a map of key to content.
                
                key - The user data key. The cloud-init key is reserved, please use cloud_init attribute instead.
@@ -1620,6 +1620,76 @@ class KubernetesNodePool(pulumi.CustomResource):
         __props__.__dict__["wait_for_pool_ready"] = wait_for_pool_ready
         __props__.__dict__["zone"] = zone
         return KubernetesNodePool(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            autohealing: pulumi.Input[Optional[_builtins.bool]] = None,
+            autoscaling: pulumi.Input[Optional[_builtins.bool]] = None,
+            cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+            container_runtime: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            current_size: pulumi.Input[Optional[_builtins.int]] = None,
+            kubelet_args: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            max_size: pulumi.Input[Optional[_builtins.int]] = None,
+            min_size: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            nodes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolNodeArgs', 'KubernetesNodePoolNodeArgsDict', 'outputs.KubernetesNodePoolNode']]]]] = None,
+            placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_ip_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            root_volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            root_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+            security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            size: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            startup_taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolStartupTaintArgs', 'KubernetesNodePoolStartupTaintArgsDict', 'outputs.KubernetesNodePoolStartupTaint']]]]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            taints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict', 'outputs.KubernetesNodePoolTaint']]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            upgrade_policy: pulumi.Input[Optional[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict', 'outputs.KubernetesNodePoolUpgradePolicy']]] = None,
+            user_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            wait_for_pool_ready: pulumi.Input[Optional[_builtins.bool]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["autohealing"] = autohealing
+        __props__["autoscaling"] = autoscaling
+        __props__["clusterId"] = cluster_id
+        __props__["containerRuntime"] = container_runtime
+        __props__["createdAt"] = created_at
+        __props__["currentSize"] = current_size
+        __props__["kubeletArgs"] = kubelet_args
+        __props__["labels"] = labels
+        __props__["maxSize"] = max_size
+        __props__["minSize"] = min_size
+        __props__["name"] = name
+        __props__["nodeType"] = node_type
+        __props__["nodes"] = nodes
+        __props__["placementGroupId"] = placement_group_id
+        __props__["privateNetworkId"] = private_network_id
+        __props__["publicIpDisabled"] = public_ip_disabled
+        __props__["region"] = region
+        __props__["rootVolumeSizeInGb"] = root_volume_size_in_gb
+        __props__["rootVolumeType"] = root_volume_type
+        __props__["securityGroupId"] = security_group_id
+        __props__["size"] = size
+        __props__["srn"] = srn
+        __props__["startupTaints"] = startup_taints
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["taints"] = taints
+        __props__["updatedAt"] = updated_at
+        __props__["upgradePolicy"] = upgrade_policy
+        __props__["userData"] = user_data
+        __props__["version"] = version
+        __props__["waitForPoolReady"] = wait_for_pool_ready
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/kubernetesNodePool:KubernetesNodePool', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

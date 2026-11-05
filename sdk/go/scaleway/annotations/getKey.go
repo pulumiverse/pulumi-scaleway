@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			_ = annotations.LookupKeyOutput(ctx, annotations.GetKeyOutputArgs{
-//				KeyId: environment.ID().ToIDOutput().ToStringOutput(),
+//				KeyId: environment.ID(),
 //			}, nil)
 //			return nil
 //		})

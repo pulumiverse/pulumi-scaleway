@@ -301,7 +301,7 @@ class Domain(pulumi.CustomResource):
                     type=mailbox_dns_range["value"].dns_type,
                     data=mailbox_dns_range["value"].dns_value)
 
-        main.dns_records.apply(lambda resolved_outputs: create_mailbox_dns({f"{rec.dns_type}-{rec.dns_name}": rec for rec in resolved_outputs['dns_records'] if rec.level == "required"}))
+        main.dns_records.apply(lambda resolved_outputs: create_mailbox_dns({f"{rec.dns_type}-{rec.dns_name}": rec for rec in resolved_outputs if rec.level == "required"}))
         ```
 
         ### Domain in a specific project
@@ -378,7 +378,7 @@ class Domain(pulumi.CustomResource):
                     type=mailbox_dns_range["value"].dns_type,
                     data=mailbox_dns_range["value"].dns_value)
 
-        main.dns_records.apply(lambda resolved_outputs: create_mailbox_dns({f"{rec.dns_type}-{rec.dns_name}": rec for rec in resolved_outputs['dns_records'] if rec.level == "required"}))
+        main.dns_records.apply(lambda resolved_outputs: create_mailbox_dns({f"{rec.dns_type}-{rec.dns_name}": rec for rec in resolved_outputs if rec.level == "required"}))
         ```
 
         ### Domain in a specific project
@@ -450,7 +450,7 @@ class Domain(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
-            dns_records: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainDnsRecordArgs', 'DomainDnsRecordArgsDict']]]]] = None,
+            dns_records: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainDnsRecordArgs', 'DomainDnsRecordArgsDict', 'outputs.DomainDnsRecord']]]]] = None,
             imap_url: pulumi.Input[Optional[_builtins.str]] = None,
             mailbox_total_count: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -468,7 +468,7 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: Date and time of domain creation (RFC 3339 format).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainDnsRecordArgs', 'DomainDnsRecordArgsDict']]]] dns_records: List of DNS records to configure in your DNS zone. Each entry has:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainDnsRecordArgs', 'DomainDnsRecordArgsDict', 'outputs.DomainDnsRecord']]]] dns_records: List of DNS records to configure in your DNS zone. Each entry has:
         :param pulumi.Input[_builtins.str] imap_url: IMAP server URL for configuring email clients.
         :param pulumi.Input[_builtins.int] mailbox_total_count: Number of mailboxes currently provisioned on this domain.
         :param pulumi.Input[_builtins.str] name: Fully qualified domain name (e.g. `mail.example.com`).
@@ -497,6 +497,34 @@ class Domain(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["webmail_url"] = webmail_url
         return Domain(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_records: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainDnsRecordArgs', 'DomainDnsRecordArgsDict', 'outputs.DomainDnsRecord']]]]] = None,
+            imap_url: pulumi.Input[Optional[_builtins.str]] = None,
+            mailbox_total_count: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            pop3_url: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            smtp_url: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            webmail_url: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["dnsRecords"] = dns_records
+        __props__["imapUrl"] = imap_url
+        __props__["mailboxTotalCount"] = mailbox_total_count
+        __props__["name"] = name
+        __props__["pop3Url"] = pop3_url
+        __props__["projectId"] = project_id
+        __props__["smtpUrl"] = smtp_url
+        __props__["status"] = status
+        __props__["updatedAt"] = updated_at
+        __props__["webmailUrl"] = webmail_url
+        return pulumi.runtime.exists_resource(None, 'scaleway:mailbox/domain:Domain', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

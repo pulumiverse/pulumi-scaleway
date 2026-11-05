@@ -75,8 +75,8 @@ import (
 //				return err
 //			}
 //			_, err = instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
-//				ServerId:         base.ID().ToIDOutput().ToStringOutput(),
-//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//				ServerId:         base.ID(),
+//				PrivateNetworkId: pn01.ID(),
 //				Zone:             pn01.Zone,
 //			})
 //			if err != nil {
@@ -115,7 +115,7 @@ import (
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -124,7 +124,7 @@ import (
 //				Address: pulumi.String("172.16.64.7"),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
 //			})
@@ -139,10 +139,10 @@ import (
 //				return err
 //			}
 //			_, err = instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
-//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
-//				ServerId:         server01.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: pn01.ID(),
+//				ServerId:         server01.ID(),
 //				IpamIpIds: pulumi.StringArray{
-//					ip01.ID().ToIDOutput().ToStringOutput(),
+//					ip01.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -290,6 +290,12 @@ type PrivateNicState struct {
 
 func (PrivateNicState) ElementType() reflect.Type {
 	return reflect.TypeOf((*privateNicState)(nil)).Elem()
+}
+
+// PrivateNicExists checks whether an existing PrivateNic resource with the given ID exists.
+func PrivateNicExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PrivateNicState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:instance/privateNic:PrivateNic", id, state, "", opts...)
 }
 
 type privateNicArgs struct {

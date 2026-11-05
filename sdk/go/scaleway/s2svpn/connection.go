@@ -42,7 +42,7 @@ import (
 //			}
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("my-private-network"),
-//				VpcId: vpc.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc.ID(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("10.0.1.0/24"),
 //				},
@@ -53,7 +53,7 @@ import (
 //			gateway, err := s2svpn.NewGateway(ctx, "gateway", &s2svpn.GatewayArgs{
 //				Name:             pulumi.String("my-vpn-gateway"),
 //				GatewayType:      pulumi.String("VGW-S"),
-//				PrivateNetworkId: pn.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: pn.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -85,7 +85,7 @@ import (
 //				return err
 //			}
 //			pskVersion, err := secrets.NewVersion(ctx, "psk", &secrets.VersionArgs{
-//				SecretId: psk.ID().ToIDOutput().ToStringOutput(),
+//				SecretId: psk.ID(),
 //				Data:     pulumi.String("your_s2s_vpn.psk"),
 //			})
 //			if err != nil {
@@ -93,15 +93,15 @@ import (
 //			}
 //			_, err = s2svpn.NewConnection(ctx, "main", &s2svpn.ConnectionArgs{
 //				Name:                   pulumi.String("my-vpn-connection"),
-//				VpnGatewayId:           gateway.ID().ToIDOutput().ToStringOutput(),
-//				CustomerGatewayId:      customerGw.ID().ToIDOutput().ToStringOutput(),
+//				VpnGatewayId:           gateway.ID(),
+//				CustomerGatewayId:      customerGw.ID(),
 //				InitiationPolicy:       pulumi.String("customer_gateway"),
 //				EnableRoutePropagation: pulumi.Bool(true),
-//				SecretId:               psk.ID().ToIDOutput().ToStringOutput(),
+//				SecretId:               psk.ID(),
 //				SecretVersion:          pskVersion.Revision,
 //				BgpConfigIpv4s: s2svpn.ConnectionBgpConfigIpv4Array{
 //					&s2svpn.ConnectionBgpConfigIpv4Args{
-//						RoutingPolicyId: policy.ID().ToIDOutput().ToStringOutput(),
+//						RoutingPolicyId: policy.ID(),
 //						PrivateIp:       pulumi.String("169.254.0.1/30"),
 //						PeerPrivateIp:   pulumi.String("169.254.0.2/30"),
 //					},
@@ -335,6 +335,12 @@ type ConnectionState struct {
 
 func (ConnectionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*connectionState)(nil)).Elem()
+}
+
+// ConnectionExists checks whether an existing Connection resource with the given ID exists.
+func ConnectionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ConnectionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:s2svpn/connection:Connection", id, state, "", opts...)
 }
 
 type connectionArgs struct {

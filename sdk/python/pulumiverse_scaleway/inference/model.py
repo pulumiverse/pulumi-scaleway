@@ -621,7 +621,7 @@ class Model(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             has_eula: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            nodes_supports: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ModelNodesSupportArgs', 'ModelNodesSupportArgsDict']]]]] = None,
+            nodes_supports: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ModelNodesSupportArgs', 'ModelNodesSupportArgsDict', 'outputs.ModelNodesSupport']]]]] = None,
             parameter_size_bits: pulumi.Input[Optional[_builtins.int]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -644,7 +644,7 @@ class Model(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: A textual description of the model (if available).
         :param pulumi.Input[_builtins.bool] has_eula: Whether the model requires end-user license agreement acceptance before use.
         :param pulumi.Input[_builtins.str] name: The name of the model. This must be unique within the project.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ModelNodesSupportArgs', 'ModelNodesSupportArgsDict']]]] nodes_supports: List of supported node types and their quantization options. Each entry contains:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ModelNodesSupportArgs', 'ModelNodesSupportArgsDict', 'outputs.ModelNodesSupport']]]] nodes_supports: List of supported node types and their quantization options. Each entry contains:
         :param pulumi.Input[_builtins.int] parameter_size_bits: Size, in bits, of the model parameters.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
@@ -679,6 +679,44 @@ class Model(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["url"] = url
         return Model(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            has_eula: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nodes_supports: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ModelNodesSupportArgs', 'ModelNodesSupportArgsDict', 'outputs.ModelNodesSupport']]]]] = None,
+            parameter_size_bits: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            secret: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            size_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["description"] = description
+        __props__["hasEula"] = has_eula
+        __props__["name"] = name
+        __props__["nodesSupports"] = nodes_supports
+        __props__["parameterSizeBits"] = parameter_size_bits
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["secret"] = secret
+        __props__["secretWo"] = secret_wo
+        __props__["secretWoVersion"] = secret_wo_version
+        __props__["sizeBytes"] = size_bytes
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        __props__["url"] = url
+        return pulumi.runtime.exists_resource(None, 'scaleway:inference/model:Model', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

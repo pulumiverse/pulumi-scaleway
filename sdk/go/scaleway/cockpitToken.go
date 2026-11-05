@@ -46,7 +46,7 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewToken(ctx, "main", &observability.TokenArgs{
-//				ProjectId: project.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId: project.ID(),
 //				Name:      pulumi.String("my-awesome-token"),
 //			})
 //			if err != nil {
@@ -79,7 +79,7 @@ import (
 //			}
 //			// Create a token that can read metrics and logs but not write
 //			_, err = observability.NewToken(ctx, "main", &observability.TokenArgs{
-//				ProjectId: project.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId: project.ID(),
 //				Name:      pulumi.String("my-awesome-token"),
 //				Scopes: &observability.TokenScopesArgs{
 //					QueryMetrics: pulumi.Bool(true),
@@ -194,6 +194,12 @@ type CockpitTokenState struct {
 
 func (CockpitTokenState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cockpitTokenState)(nil)).Elem()
+}
+
+// CockpitTokenExists checks whether an existing CockpitToken resource with the given ID exists.
+func CockpitTokenExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CockpitTokenState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/cockpitToken:CockpitToken", id, state, "", opts...)
 }
 
 type cockpitTokenArgs struct {

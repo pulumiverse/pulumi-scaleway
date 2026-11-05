@@ -645,6 +645,40 @@ class Mailbox(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         return Mailbox(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            deletion_scheduled_at: pulumi.Input[Optional[_builtins.str]] = None,
+            domain_id: pulumi.Input[Optional[_builtins.str]] = None,
+            email: pulumi.Input[Optional[_builtins.str]] = None,
+            local_part: pulumi.Input[Optional[_builtins.str]] = None,
+            next_subscription_period: pulumi.Input[Optional[_builtins.str]] = None,
+            next_subscription_period_starts_at: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            subscription_period: pulumi.Input[Optional[_builtins.str]] = None,
+            subscription_period_started_at: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["deletionScheduledAt"] = deletion_scheduled_at
+        __props__["domainId"] = domain_id
+        __props__["email"] = email
+        __props__["localPart"] = local_part
+        __props__["nextSubscriptionPeriod"] = next_subscription_period
+        __props__["nextSubscriptionPeriodStartsAt"] = next_subscription_period_starts_at
+        __props__["password"] = password
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["status"] = status
+        __props__["subscriptionPeriod"] = subscription_period
+        __props__["subscriptionPeriodStartedAt"] = subscription_period_started_at
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'scaleway:mailbox/mailbox:Mailbox', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:

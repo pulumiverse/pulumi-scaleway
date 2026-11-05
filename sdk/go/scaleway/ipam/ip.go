@@ -40,7 +40,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -51,7 +51,7 @@ import (
 //			_, err = ipam.NewIp(ctx, "ip01", &ipam.IpArgs{
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
 //			})
@@ -86,7 +86,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -98,7 +98,7 @@ import (
 //				Address: pulumi.String("172.16.32.7"),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
 //			})
@@ -133,7 +133,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //				Ipv6Subnets: network.PrivateNetworkIpv6SubnetArray{
 //					&network.PrivateNetworkIpv6SubnetArgs{
 //						Subnet: pulumi.String("fd46:78ab:30b8:177c::/64"),
@@ -147,7 +147,7 @@ import (
 //				IsIpv6: pulumi.Bool(true),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
 //			})
@@ -182,7 +182,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -194,7 +194,7 @@ import (
 //				Address: pulumi.String("172.16.32.7"),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
 //				CustomResources: ipam.IpCustomResourceArray{
@@ -357,6 +357,12 @@ type IpState struct {
 
 func (IpState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ipState)(nil)).Elem()
+}
+
+// IpExists checks whether an existing Ip resource with the given ID exists.
+func IpExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IpState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:ipam/ip:Ip", id, state, "", opts...)
 }
 
 type ipArgs struct {

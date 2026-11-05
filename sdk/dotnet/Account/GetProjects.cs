@@ -17,7 +17,6 @@ namespace Pulumiverse.Scaleway.Account
         /// 
         /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
         /// 
-        /// 
         /// ## Retrieve a Scaleway Projects
         /// 
         /// The following commands allow you to:
@@ -48,15 +47,16 @@ namespace Pulumiverse.Scaleway.Account
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
+        /// using System.Threading.Tasks;
         /// using Pulumi;
         /// using Scaleway = Pulumiverse.Scaleway;
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
+        /// return await Deployment.RunAsync(async() =&gt; 
         /// {
-        ///     var all = Scaleway.Account.GetProjects.Invoke();
+        ///     var all = await Scaleway.Account.GetProjects.InvokeAsync();
         /// 
         ///     var main = new List&lt;Scaleway.Account.SshKey&gt;();
-        ///     all.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length().Apply(rangeBody =&gt;
+        ///     all.Projects.Length.Apply(rangeBody =&gt;
         ///     {
         ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
@@ -65,7 +65,7 @@ namespace Pulumiverse.Scaleway.Account
         ///             {
         ///                 Name = "main",
         ///                 PublicKey = publicKey,
-        ///                 ProjectId = all.Apply(getProjectsResult =&gt; getProjectsResult.Projects)[range.Value].Id,
+        ///                 ProjectId = all.Projects[range.Value].Id,
         ///             }));
         ///         }
         ///         return 0;
@@ -81,7 +81,6 @@ namespace Pulumiverse.Scaleway.Account
         /// 
         /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
         /// 
-        /// 
         /// ## Retrieve a Scaleway Projects
         /// 
         /// The following commands allow you to:
@@ -112,15 +111,16 @@ namespace Pulumiverse.Scaleway.Account
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
+        /// using System.Threading.Tasks;
         /// using Pulumi;
         /// using Scaleway = Pulumiverse.Scaleway;
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
+        /// return await Deployment.RunAsync(async() =&gt; 
         /// {
-        ///     var all = Scaleway.Account.GetProjects.Invoke();
+        ///     var all = await Scaleway.Account.GetProjects.InvokeAsync();
         /// 
         ///     var main = new List&lt;Scaleway.Account.SshKey&gt;();
-        ///     all.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length().Apply(rangeBody =&gt;
+        ///     all.Projects.Length.Apply(rangeBody =&gt;
         ///     {
         ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
@@ -129,7 +129,7 @@ namespace Pulumiverse.Scaleway.Account
         ///             {
         ///                 Name = "main",
         ///                 PublicKey = publicKey,
-        ///                 ProjectId = all.Apply(getProjectsResult =&gt; getProjectsResult.Projects)[range.Value].Id,
+        ///                 ProjectId = all.Projects[range.Value].Id,
         ///             }));
         ///         }
         ///         return 0;
@@ -145,7 +145,6 @@ namespace Pulumiverse.Scaleway.Account
         /// 
         /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
         /// 
-        /// 
         /// ## Retrieve a Scaleway Projects
         /// 
         /// The following commands allow you to:
@@ -176,15 +175,16 @@ namespace Pulumiverse.Scaleway.Account
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
+        /// using System.Threading.Tasks;
         /// using Pulumi;
         /// using Scaleway = Pulumiverse.Scaleway;
         /// 
-        /// return await Deployment.RunAsync(() =&gt; 
+        /// return await Deployment.RunAsync(async() =&gt; 
         /// {
-        ///     var all = Scaleway.Account.GetProjects.Invoke();
+        ///     var all = await Scaleway.Account.GetProjects.InvokeAsync();
         /// 
         ///     var main = new List&lt;Scaleway.Account.SshKey&gt;();
-        ///     all.Apply(getProjectsResult =&gt; getProjectsResult.Projects).Length().Apply(rangeBody =&gt;
+        ///     all.Projects.Length.Apply(rangeBody =&gt;
         ///     {
         ///         for (var rangeIndex = 0; rangeIndex &lt; rangeBody; rangeIndex++)
         ///         {
@@ -193,7 +193,7 @@ namespace Pulumiverse.Scaleway.Account
         ///             {
         ///                 Name = "main",
         ///                 PublicKey = publicKey,
-        ///                 ProjectId = all.Apply(getProjectsResult =&gt; getProjectsResult.Projects)[range.Value].Id,
+        ///                 ProjectId = all.Projects[range.Value].Id,
         ///             }));
         ///         }
         ///         return 0;

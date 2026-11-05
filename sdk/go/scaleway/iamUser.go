@@ -66,12 +66,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			users := []map[string]string{
-//				{
+//			users := []interface{}{
+//				map[string]string{
 //					"email":    "test@test.com",
 //					"username": "test",
 //				},
-//				{
+//				map[string]string{
 //					"email":    "test2@test.com",
 //					"username": "test2",
 //				},
@@ -81,8 +81,8 @@ import (
 //				key0 := index
 //				val0 := index
 //				__res, err := iam.NewUser(ctx, fmt.Sprintf("users-%v", key0), &iam.UserArgs{
-//					Email:    pulumi.String(users[val0]["email"]),
-//					Username: pulumi.String(users[val0]["username"]),
+//					Email:    users[val0]["email"],
+//					Username: users[val0]["username"],
 //				})
 //				if err != nil {
 //					return err
@@ -304,6 +304,12 @@ type IamUserState struct {
 
 func (IamUserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamUserState)(nil)).Elem()
+}
+
+// IamUserExists checks whether an existing IamUser resource with the given ID exists.
+func IamUserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IamUserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/iamUser:IamUser", id, state, "", opts...)
 }
 
 type iamUserArgs struct {

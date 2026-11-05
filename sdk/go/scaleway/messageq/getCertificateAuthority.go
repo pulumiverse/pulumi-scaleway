@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			_ = messageq.GetCertificateAuthorityOutput(ctx, messageq.GetCertificateAuthorityOutputArgs{
-//				DeploymentId: mainDeployment.ID().ToIDOutput().ToStringOutput(),
+//				DeploymentId: mainDeployment.ID(),
 //			}, nil)
 //			return nil
 //		})

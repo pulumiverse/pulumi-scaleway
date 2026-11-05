@@ -332,6 +332,12 @@ func (FrontendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*frontendState)(nil)).Elem()
 }
 
+// FrontendExists checks whether an existing Frontend resource with the given ID exists.
+func FrontendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FrontendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:loadbalancers/frontend:Frontend", id, state, "", opts...)
+}
+
 type frontendArgs struct {
 	// A list of ACL rules to apply to the Load Balancer frontend. Defined below.
 	Acls []FrontendAcl `pulumi:"acls"`

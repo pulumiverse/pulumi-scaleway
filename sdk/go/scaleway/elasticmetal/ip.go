@@ -144,7 +144,7 @@ import (
 //				return err
 //			}
 //			_, err = elasticmetal.NewIp(ctx, "main", &elasticmetal.IpArgs{
-//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
+//				ServerId: base.ID(),
 //				Zone:     pulumi.String("fr-par-2"),
 //			})
 //			if err != nil {
@@ -289,6 +289,12 @@ type IpState struct {
 
 func (IpState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ipState)(nil)).Elem()
+}
+
+// IpExists checks whether an existing Ip resource with the given ID exists.
+func IpExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IpState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:elasticmetal/ip:Ip", id, state, "", opts...)
 }
 
 type ipArgs struct {

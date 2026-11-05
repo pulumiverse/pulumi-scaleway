@@ -771,10 +771,10 @@ class Instance(pulumi.CustomResource):
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
-                 private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict', 'outputs.InstancePrivateIp']]]]] = None,
+                 private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict', 'outputs.InstancePrivateNetwork']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 public_network: pulumi.Input[Optional[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']]] = None,
+                 public_network: pulumi.Input[Optional[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict', 'outputs.InstancePublicNetwork']]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                  snapshot_schedule_frequency_hours: pulumi.Input[Optional[_builtins.int]] = None,
@@ -828,10 +828,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password of the user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the instance.
-        :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict', 'outputs.InstancePrivateIp']]]] private_ips: The private IPv4 address associated with the instance.
+        :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict', 'outputs.InstancePrivateNetwork']] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
-        :param pulumi.Input[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']] public_network: Public network endpoint configuration (no arguments).
+        :param pulumi.Input[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict', 'outputs.InstancePublicNetwork']] public_network: Public network endpoint configuration (no arguments).
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® instance should be created.
         :param pulumi.Input[_builtins.str] snapshot_id: Snapshot ID to restore the MongoDB® instance from.
         :param pulumi.Input[_builtins.int] snapshot_schedule_frequency_hours: Snapshot schedule frequency in hours.
@@ -907,10 +907,10 @@ class Instance(pulumi.CustomResource):
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
-                 private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict', 'outputs.InstancePrivateIp']]]]] = None,
+                 private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict', 'outputs.InstancePrivateNetwork']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 public_network: pulumi.Input[Optional[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']]] = None,
+                 public_network: pulumi.Input[Optional[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict', 'outputs.InstancePublicNetwork']]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                  snapshot_schedule_frequency_hours: pulumi.Input[Optional[_builtins.int]] = None,
@@ -979,10 +979,10 @@ class Instance(pulumi.CustomResource):
             password: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
-            private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict', 'outputs.InstancePrivateIp']]]]] = None,
+            private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict', 'outputs.InstancePrivateNetwork']]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            public_network: pulumi.Input[Optional[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']]] = None,
+            public_network: pulumi.Input[Optional[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict', 'outputs.InstancePublicNetwork']]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1011,10 +1011,10 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password of the user in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the instance.
-        :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict', 'outputs.InstancePrivateIp']]]] private_ips: The private IPv4 address associated with the instance.
+        :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict', 'outputs.InstancePrivateNetwork']] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
-        :param pulumi.Input[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']] public_network: Public network endpoint configuration (no arguments).
+        :param pulumi.Input[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict', 'outputs.InstancePublicNetwork']] public_network: Public network endpoint configuration (no arguments).
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of engine settings applied to the instance (read-only).
         :param pulumi.Input[_builtins.str] snapshot_id: Snapshot ID to restore the MongoDB® instance from.
@@ -1061,6 +1061,60 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["volume_size_in_gb"] = volume_size_in_gb
         __props__.__dict__["volume_type"] = volume_type
         return Instance(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            is_snapshot_schedule_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_number: pulumi.Input[Optional[_builtins.int]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict', 'outputs.InstancePrivateIp']]]]] = None,
+            private_network: pulumi.Input[Optional[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict', 'outputs.InstancePrivateNetwork']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_network: pulumi.Input[Optional[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict', 'outputs.InstancePublicNetwork']]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            snapshot_schedule_frequency_hours: pulumi.Input[Optional[_builtins.int]] = None,
+            snapshot_schedule_retention_days: pulumi.Input[Optional[_builtins.int]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            tls_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            volume_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["isSnapshotScheduleEnabled"] = is_snapshot_schedule_enabled
+        __props__["name"] = name
+        __props__["nodeNumber"] = node_number
+        __props__["nodeType"] = node_type
+        __props__["password"] = password
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["privateIps"] = private_ips
+        __props__["privateNetwork"] = private_network
+        __props__["projectId"] = project_id
+        __props__["publicNetwork"] = public_network
+        __props__["region"] = region
+        __props__["settings"] = settings
+        __props__["snapshotId"] = snapshot_id
+        __props__["snapshotScheduleFrequencyHours"] = snapshot_schedule_frequency_hours
+        __props__["snapshotScheduleRetentionDays"] = snapshot_schedule_retention_days
+        __props__["tags"] = tags
+        __props__["tlsCertificate"] = tls_certificate
+        __props__["updatedAt"] = updated_at
+        __props__["userName"] = user_name
+        __props__["version"] = version
+        __props__["volumeSizeInGb"] = volume_size_in_gb
+        __props__["volumeType"] = volume_type
+        return pulumi.runtime.exists_resource(None, 'scaleway:mongodb/instance:Instance', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

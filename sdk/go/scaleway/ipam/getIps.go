@@ -68,7 +68,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -85,7 +85,7 @@ import (
 //				ClusterSize: pulumi.Int(3),
 //				PrivateNetworks: redis.ClusterPrivateNetworkArray{
 //					&redis.ClusterPrivateNetworkArgs{
-//						Id: pn01.ID().ToIDOutput().ToStringOutput(),
+//						Id: pn01.ID(),
 //					},
 //				},
 //			})
@@ -95,7 +95,7 @@ import (
 //			_ = ipam.GetIpsOutput(ctx, ipam.GetIpsOutputArgs{
 //				Type: pulumi.String("ipv4"),
 //				Resource: &ipam.GetIpsResourceArgs{
-//					Id:   redis01.ID().ToIDOutput().ToStringOutput(),
+//					Id:   redis01.ID(),
 //					Type: pulumi.String("redis_cluster"),
 //				},
 //			}, nil)

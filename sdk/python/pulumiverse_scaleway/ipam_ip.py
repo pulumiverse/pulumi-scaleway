@@ -387,11 +387,11 @@ class IpamIp(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address: pulumi.Input[Optional[_builtins.str]] = None,
-                 custom_resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict']]]]] = None,
+                 custom_resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict', 'outputs.IpamIpCustomResource']]]]] = None,
                  is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 sources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]]] = None,
+                 sources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict', 'outputs.IpamIpSource']]]]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
@@ -491,11 +491,11 @@ class IpamIp(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the specified source pool.
                > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict']]]] custom_resources: The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict', 'outputs.IpamIpCustomResource']]]] custom_resources: The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the IP.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]] sources: The source in which to book the IP.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict', 'outputs.IpamIpSource']]]] sources: The source in which to book the IP.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the IP.
         """
         ...
@@ -613,11 +613,11 @@ class IpamIp(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  address: pulumi.Input[Optional[_builtins.str]] = None,
-                 custom_resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict']]]]] = None,
+                 custom_resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict', 'outputs.IpamIpCustomResource']]]]] = None,
                  is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 sources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]]] = None,
+                 sources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict', 'outputs.IpamIpSource']]]]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         pulumi.log.warn("""IpamIp is deprecated: scaleway.index/ipamip.IpamIp has been deprecated in favor of scaleway.ipam/ip.Ip""")
@@ -658,13 +658,13 @@ class IpamIp(pulumi.CustomResource):
             address: pulumi.Input[Optional[_builtins.str]] = None,
             address_cidr: pulumi.Input[Optional[_builtins.str]] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
-            custom_resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict']]]]] = None,
+            custom_resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict', 'outputs.IpamIpCustomResource']]]]] = None,
             is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpResourceArgs', 'IpamIpResourceArgsDict']]]]] = None,
-            reverses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpReverseArgs', 'IpamIpReverseArgsDict']]]]] = None,
-            sources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]]] = None,
+            resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpResourceArgs', 'IpamIpResourceArgsDict', 'outputs.IpamIpResource']]]]] = None,
+            reverses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpReverseArgs', 'IpamIpReverseArgsDict', 'outputs.IpamIpReverse']]]]] = None,
+            sources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict', 'outputs.IpamIpSource']]]]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -680,13 +680,13 @@ class IpamIp(pulumi.CustomResource):
                > **Important:** when requesting specific IP addresses, it is best ensure these are created before any other resource in the Private Network. This can be achieved by using `depends_on` relations, or moving the declarations to another Terraform module. Otherwise, other resources may take the requested address first, blocking the whole Terraform setup. Static IPs should be avoided unless necessary, as we cannot guarantee full automation. We recommend to use DNS, or to not request a specific IP.
         :param pulumi.Input[_builtins.str] address_cidr: the IP address in CIDR notation.
         :param pulumi.Input[_builtins.str] created_at: Date and time of IP's creation (RFC 3339 format).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict']]]] custom_resources: The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict', 'outputs.IpamIpCustomResource']]]] custom_resources: The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the IP.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpResourceArgs', 'IpamIpResourceArgsDict']]]] resources: The IP resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpReverseArgs', 'IpamIpReverseArgsDict']]]] reverses: The reverse DNS for this IP.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]] sources: The source in which to book the IP.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpResourceArgs', 'IpamIpResourceArgsDict', 'outputs.IpamIpResource']]]] resources: The IP resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpReverseArgs', 'IpamIpReverseArgsDict', 'outputs.IpamIpReverse']]]] reverses: The reverse DNS for this IP.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict', 'outputs.IpamIpSource']]]] sources: The source in which to book the IP.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the IP.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the IP.
         :param pulumi.Input[_builtins.str] updated_at: Date and time of IP's last update (RFC 3339 format).
@@ -711,6 +711,40 @@ class IpamIp(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["zone"] = zone
         return IpamIp(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            address: pulumi.Input[Optional[_builtins.str]] = None,
+            address_cidr: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict', 'outputs.IpamIpCustomResource']]]]] = None,
+            is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            resources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpResourceArgs', 'IpamIpResourceArgsDict', 'outputs.IpamIpResource']]]]] = None,
+            reverses: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpReverseArgs', 'IpamIpReverseArgsDict', 'outputs.IpamIpReverse']]]]] = None,
+            sources: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict', 'outputs.IpamIpSource']]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["address"] = address
+        __props__["addressCidr"] = address_cidr
+        __props__["createdAt"] = created_at
+        __props__["customResources"] = custom_resources
+        __props__["isIpv6"] = is_ipv6
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["resources"] = resources
+        __props__["reverses"] = reverses
+        __props__["sources"] = sources
+        __props__["srn"] = srn
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/ipamIp:IpamIp', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

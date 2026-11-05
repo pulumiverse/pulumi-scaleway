@@ -69,7 +69,7 @@ import (
 //				return err
 //			}
 //			_, err = iam.NewApiKey(ctx, "main", &iam.ApiKeyArgs{
-//				UserId:      main.ID().ToIDOutput().ToStringOutput(),
+//				UserId:      main.ID(),
 //				Description: pulumi.String("a description"),
 //			})
 //			if err != nil {
@@ -144,7 +144,7 @@ import (
 //			}
 //			_, err = iam.NewApiKey(ctx, "main", &iam.ApiKeyArgs{
 //				ApplicationId: pulumi.Any(mainScalewayIamApplication.Id),
-//				SecretId:      main.ID().ToIDOutput().ToStringOutput(),
+//				SecretId:      main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -298,6 +298,12 @@ type IamApiKeyState struct {
 
 func (IamApiKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamApiKeyState)(nil)).Elem()
+}
+
+// IamApiKeyExists checks whether an existing IamApiKey resource with the given ID exists.
+func IamApiKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IamApiKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/iamApiKey:IamApiKey", id, state, "", opts...)
 }
 
 type iamApiKeyArgs struct {

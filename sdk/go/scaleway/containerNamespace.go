@@ -202,6 +202,12 @@ func (ContainerNamespaceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*containerNamespaceState)(nil)).Elem()
 }
 
+// ContainerNamespaceExists checks whether an existing ContainerNamespace resource with the given ID exists.
+func ContainerNamespaceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ContainerNamespaceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/containerNamespace:ContainerNamespace", id, state, "", opts...)
+}
+
 type containerNamespaceArgs struct {
 	// The description of the namespace.
 	Description *string `pulumi:"description"`

@@ -42,7 +42,7 @@ import (
 //			srv01, err := instance.NewServer(ctx, "srv01", &instance.ServerArgs{
 //				Name: pulumi.String("tf-tests-instance-server-ips"),
 //				IpIds: pulumi.StringArray{
-//					ip01.ID().ToIDOutput().ToStringOutput(),
+//					ip01.ID(),
 //				},
 //				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("PRO2-XXS"),
@@ -53,7 +53,7 @@ import (
 //			}
 //			ipam01 := ipam.LookupIpOutput(ctx, ipam.GetIpOutputArgs{
 //				Resource: &ipam.GetIpResourceArgs{
-//					Id:   srv01.ID().ToIDOutput().ToStringOutput(),
+//					Id:   srv01.ID(),
 //					Type: pulumi.String("instance_server"),
 //				},
 //				Type: pulumi.String("ipv6"),
@@ -177,6 +177,12 @@ type IpReverseDnsState struct {
 
 func (IpReverseDnsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ipReverseDnsState)(nil)).Elem()
+}
+
+// IpReverseDnsExists checks whether an existing IpReverseDns resource with the given ID exists.
+func IpReverseDnsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IpReverseDnsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:ipam/ipReverseDns:IpReverseDns", id, state, "", opts...)
 }
 
 type ipReverseDnsArgs struct {

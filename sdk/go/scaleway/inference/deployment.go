@@ -224,6 +224,12 @@ func (DeploymentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*deploymentState)(nil)).Elem()
 }
 
+// DeploymentExists checks whether an existing Deployment resource with the given ID exists.
+func DeploymentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DeploymentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:inference/deployment:Deployment", id, state, "", opts...)
+}
+
 type deploymentArgs struct {
 	// Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
 	AcceptEula *bool `pulumi:"acceptEula"`

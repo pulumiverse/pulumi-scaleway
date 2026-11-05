@@ -263,11 +263,11 @@ class Acl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 action: pulumi.Input[Optional[Union['AclActionArgs', 'AclActionArgsDict']]] = None,
+                 action: pulumi.Input[Optional[Union['AclActionArgs', 'AclActionArgsDict', 'outputs.AclAction']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
                  index: pulumi.Input[Optional[_builtins.int]] = None,
-                 match: pulumi.Input[Optional[Union['AclMatchArgs', 'AclMatchArgsDict']]] = None,
+                 match: pulumi.Input[Optional[Union['AclMatchArgs', 'AclMatchArgsDict', 'outputs.AclMatch']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -311,11 +311,11 @@ class Acl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['AclActionArgs', 'AclActionArgsDict']] action: Action to undertake when an ACL filter matches.
+        :param pulumi.Input[Union['AclActionArgs', 'AclActionArgsDict', 'outputs.AclAction']] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input[_builtins.str] description: The ACL description.
         :param pulumi.Input[_builtins.str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
         :param pulumi.Input[_builtins.int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
-        :param pulumi.Input[Union['AclMatchArgs', 'AclMatchArgsDict']] match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
+        :param pulumi.Input[Union['AclMatchArgs', 'AclMatchArgsDict', 'outputs.AclMatch']] match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[_builtins.str] name: The ACL name. If not provided it will be randomly generated.
         """
         ...
@@ -378,11 +378,11 @@ class Acl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 action: pulumi.Input[Optional[Union['AclActionArgs', 'AclActionArgsDict']]] = None,
+                 action: pulumi.Input[Optional[Union['AclActionArgs', 'AclActionArgsDict', 'outputs.AclAction']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
                  index: pulumi.Input[Optional[_builtins.int]] = None,
-                 match: pulumi.Input[Optional[Union['AclMatchArgs', 'AclMatchArgsDict']]] = None,
+                 match: pulumi.Input[Optional[Union['AclMatchArgs', 'AclMatchArgsDict', 'outputs.AclMatch']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -419,12 +419,12 @@ class Acl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            action: pulumi.Input[Optional[Union['AclActionArgs', 'AclActionArgsDict']]] = None,
+            action: pulumi.Input[Optional[Union['AclActionArgs', 'AclActionArgsDict', 'outputs.AclAction']]] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
             index: pulumi.Input[Optional[_builtins.int]] = None,
-            match: pulumi.Input[Optional[Union['AclMatchArgs', 'AclMatchArgsDict']]] = None,
+            match: pulumi.Input[Optional[Union['AclMatchArgs', 'AclMatchArgsDict', 'outputs.AclMatch']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'Acl':
         """
@@ -434,12 +434,12 @@ class Acl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['AclActionArgs', 'AclActionArgsDict']] action: Action to undertake when an ACL filter matches.
+        :param pulumi.Input[Union['AclActionArgs', 'AclActionArgsDict', 'outputs.AclAction']] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input[_builtins.str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param pulumi.Input[_builtins.str] description: The ACL description.
         :param pulumi.Input[_builtins.str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
         :param pulumi.Input[_builtins.int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
-        :param pulumi.Input[Union['AclMatchArgs', 'AclMatchArgsDict']] match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
+        :param pulumi.Input[Union['AclMatchArgs', 'AclMatchArgsDict', 'outputs.AclMatch']] match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[_builtins.str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] updated_at: IsDate and time of ACL's update (RFC 3339 format)
         """
@@ -456,6 +456,28 @@ class Acl(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["updated_at"] = updated_at
         return Acl(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            action: pulumi.Input[Optional[Union['AclActionArgs', 'AclActionArgsDict', 'outputs.AclAction']]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            frontend_id: pulumi.Input[Optional[_builtins.str]] = None,
+            index: pulumi.Input[Optional[_builtins.int]] = None,
+            match: pulumi.Input[Optional[Union['AclMatchArgs', 'AclMatchArgsDict', 'outputs.AclMatch']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["action"] = action
+        __props__["createdAt"] = created_at
+        __props__["description"] = description
+        __props__["frontendId"] = frontend_id
+        __props__["index"] = index
+        __props__["match"] = match
+        __props__["name"] = name
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'scaleway:loadbalancers/acl:Acl', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

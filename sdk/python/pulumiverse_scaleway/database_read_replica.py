@@ -218,9 +218,9 @@ class DatabaseReadReplica(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 direct_access: pulumi.Input[Optional[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict']]] = None,
+                 direct_access: pulumi.Input[Optional[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict', 'outputs.DatabaseReadReplicaDirectAccess']]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_network: pulumi.Input[Optional[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict']]] = None,
+                 private_network: pulumi.Input[Optional[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict', 'outputs.DatabaseReadReplicaPrivateNetwork']]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  same_zone: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
@@ -311,11 +311,11 @@ class DatabaseReadReplica(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict']] direct_access: Creates a direct access endpoint to rdb replica.
+        :param pulumi.Input[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict', 'outputs.DatabaseReadReplicaDirectAccess']] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input[_builtins.str] instance_id: UUID of the rdb instance.
                
                > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
-        :param pulumi.Input[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict']] private_network: Create an endpoint in a Private Netork.
+        :param pulumi.Input[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict', 'outputs.DatabaseReadReplicaPrivateNetwork']] private_network: Create an endpoint in a Private Netork.
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the Read Replica should be created.
         :param pulumi.Input[_builtins.bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
@@ -426,9 +426,9 @@ class DatabaseReadReplica(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 direct_access: pulumi.Input[Optional[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict']]] = None,
+                 direct_access: pulumi.Input[Optional[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict', 'outputs.DatabaseReadReplicaDirectAccess']]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_network: pulumi.Input[Optional[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict']]] = None,
+                 private_network: pulumi.Input[Optional[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict', 'outputs.DatabaseReadReplicaPrivateNetwork']]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  same_zone: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
@@ -458,9 +458,9 @@ class DatabaseReadReplica(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            direct_access: pulumi.Input[Optional[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict']]] = None,
+            direct_access: pulumi.Input[Optional[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict', 'outputs.DatabaseReadReplicaDirectAccess']]] = None,
             instance_id: pulumi.Input[Optional[_builtins.str]] = None,
-            private_network: pulumi.Input[Optional[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict']]] = None,
+            private_network: pulumi.Input[Optional[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict', 'outputs.DatabaseReadReplicaPrivateNetwork']]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             same_zone: pulumi.Input[Optional[_builtins.bool]] = None) -> 'DatabaseReadReplica':
         """
@@ -470,11 +470,11 @@ class DatabaseReadReplica(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict']] direct_access: Creates a direct access endpoint to rdb replica.
+        :param pulumi.Input[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict', 'outputs.DatabaseReadReplicaDirectAccess']] direct_access: Creates a direct access endpoint to rdb replica.
         :param pulumi.Input[_builtins.str] instance_id: UUID of the rdb instance.
                
                > **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
-        :param pulumi.Input[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict']] private_network: Create an endpoint in a Private Netork.
+        :param pulumi.Input[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict', 'outputs.DatabaseReadReplicaPrivateNetwork']] private_network: Create an endpoint in a Private Netork.
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the Read Replica should be created.
         :param pulumi.Input[_builtins.bool] same_zone: Defines whether to create the replica in the same availability zone as the main instance nodes or not.
@@ -489,6 +489,22 @@ class DatabaseReadReplica(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["same_zone"] = same_zone
         return DatabaseReadReplica(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            direct_access: pulumi.Input[Optional[Union['DatabaseReadReplicaDirectAccessArgs', 'DatabaseReadReplicaDirectAccessArgsDict', 'outputs.DatabaseReadReplicaDirectAccess']]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network: pulumi.Input[Optional[Union['DatabaseReadReplicaPrivateNetworkArgs', 'DatabaseReadReplicaPrivateNetworkArgsDict', 'outputs.DatabaseReadReplicaPrivateNetwork']]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            same_zone: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["directAccess"] = direct_access
+        __props__["instanceId"] = instance_id
+        __props__["privateNetwork"] = private_network
+        __props__["region"] = region
+        __props__["sameZone"] = same_zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/databaseReadReplica:DatabaseReadReplica', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="directAccess")

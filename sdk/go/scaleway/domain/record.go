@@ -245,7 +245,7 @@ import (
 //					pulumi.String("front"),
 //					pulumi.String("web"),
 //				},
-//				IpId: publicIp.ID().ToIDOutput().ToStringOutput(),
+//				IpId: publicIp.ID(),
 //				RootVolume: &instance.ServerRootVolumeArgs{
 //					SizeInGb: pulumi.Int(20),
 //				},
@@ -437,6 +437,12 @@ type RecordState struct {
 
 func (RecordState) ElementType() reflect.Type {
 	return reflect.TypeOf((*recordState)(nil)).Elem()
+}
+
+// RecordExists checks whether an existing Record resource with the given ID exists.
+func RecordExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RecordState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:domain/record:Record", id, state, "", opts...)
 }
 
 type recordArgs struct {

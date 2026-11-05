@@ -48,7 +48,7 @@ import (
 //			_, err = iam.NewPolicy(ctx, "object_read_only", &iam.PolicyArgs{
 //				Name:          pulumi.String("my policy"),
 //				Description:   pulumi.String("gives app readonly access to object storage in project"),
-//				ApplicationId: app.ID().ToIDOutput().ToStringOutput(),
+//				ApplicationId: app.ID(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
@@ -92,7 +92,7 @@ import (
 //			_, err = iam.NewPolicy(ctx, "object_read_only", &iam.PolicyArgs{
 //				Name:          pulumi.String("my policy"),
 //				Description:   pulumi.String("gives app readonly access to object storage in project"),
-//				ApplicationId: app.ID().ToIDOutput().ToStringOutput(),
+//				ApplicationId: app.ID(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						OrganizationId: app.OrganizationId,
@@ -294,6 +294,12 @@ type IamPolicyState struct {
 
 func (IamPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamPolicyState)(nil)).Elem()
+}
+
+// IamPolicyExists checks whether an existing IamPolicy resource with the given ID exists.
+func IamPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IamPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/iamPolicy:IamPolicy", id, state, "", opts...)
 }
 
 type iamPolicyArgs struct {

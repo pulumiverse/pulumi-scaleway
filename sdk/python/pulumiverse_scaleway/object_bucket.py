@@ -436,15 +436,15 @@ class ObjectBucket(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  acl: pulumi.Input[Optional[_builtins.str]] = None,
-                 cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict']]]]] = None,
+                 cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict', 'outputs.ObjectBucketCorsRule']]]]] = None,
                  force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
-                 lifecycle_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]]] = None,
+                 lifecycle_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict', 'outputs.ObjectBucketLifecycleRule']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 versioning: pulumi.Input[Optional[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict']]] = None,
+                 versioning: pulumi.Input[Optional[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict', 'outputs.ObjectBucketVersioning']]] = None,
                  __props__=None):
         """
         The `object.Bucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
@@ -645,9 +645,9 @@ class ObjectBucket(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
                > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict']]]] cors_rules: List of CORS rules
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict', 'outputs.ObjectBucketCorsRule']]]] cors_rules: List of CORS rules
         :param pulumi.Input[_builtins.bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict', 'outputs.ObjectBucketLifecycleRule']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[_builtins.str] name: The name of the bucket.
         :param pulumi.Input[_builtins.bool] object_lock_enabled: Enables the usage of a
                object.BucketLockConfiguration
@@ -658,7 +658,7 @@ class ObjectBucket(pulumi.CustomResource):
                
                > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
                If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
-        :param pulumi.Input[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict']] versioning: Allow multiple versions of an object in the same bucket
+        :param pulumi.Input[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict', 'outputs.ObjectBucketVersioning']] versioning: Allow multiple versions of an object in the same bucket
         """
         ...
     @overload
@@ -876,15 +876,15 @@ class ObjectBucket(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  acl: pulumi.Input[Optional[_builtins.str]] = None,
-                 cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict']]]]] = None,
+                 cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict', 'outputs.ObjectBucketCorsRule']]]]] = None,
                  force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
-                 lifecycle_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]]] = None,
+                 lifecycle_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict', 'outputs.ObjectBucketLifecycleRule']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 versioning: pulumi.Input[Optional[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict']]] = None,
+                 versioning: pulumi.Input[Optional[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict', 'outputs.ObjectBucketVersioning']]] = None,
                  __props__=None):
         pulumi.log.warn("""ObjectBucket is deprecated: scaleway.index/objectbucket.ObjectBucket has been deprecated in favor of scaleway.object/bucket.Bucket""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -919,16 +919,16 @@ class ObjectBucket(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             acl: pulumi.Input[Optional[_builtins.str]] = None,
             api_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
-            cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict']]]]] = None,
+            cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict', 'outputs.ObjectBucketCorsRule']]]]] = None,
             endpoint: pulumi.Input[Optional[_builtins.str]] = None,
             force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
-            lifecycle_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]]] = None,
+            lifecycle_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict', 'outputs.ObjectBucketLifecycleRule']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            versioning: pulumi.Input[Optional[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict']]] = None) -> 'ObjectBucket':
+            versioning: pulumi.Input[Optional[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict', 'outputs.ObjectBucketVersioning']]] = None) -> 'ObjectBucket':
         """
         Get an existing ObjectBucket resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -940,10 +940,10 @@ class ObjectBucket(pulumi.CustomResource):
                
                > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         :param pulumi.Input[_builtins.str] api_endpoint: API URL of the bucket
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict']]]] cors_rules: List of CORS rules
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict', 'outputs.ObjectBucketCorsRule']]]] cors_rules: List of CORS rules
         :param pulumi.Input[_builtins.str] endpoint: The endpoint URL of the bucket.
         :param pulumi.Input[_builtins.bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict', 'outputs.ObjectBucketLifecycleRule']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[_builtins.str] name: The name of the bucket.
         :param pulumi.Input[_builtins.bool] object_lock_enabled: Enables the usage of a
                object.BucketLockConfiguration
@@ -954,7 +954,7 @@ class ObjectBucket(pulumi.CustomResource):
                
                > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
                If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
-        :param pulumi.Input[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict']] versioning: Allow multiple versions of an object in the same bucket
+        :param pulumi.Input[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict', 'outputs.ObjectBucketVersioning']] versioning: Allow multiple versions of an object in the same bucket
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -973,6 +973,36 @@ class ObjectBucket(pulumi.CustomResource):
         __props__.__dict__["tags"] = tags
         __props__.__dict__["versioning"] = versioning
         return ObjectBucket(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            acl: pulumi.Input[Optional[_builtins.str]] = None,
+            api_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            cors_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict', 'outputs.ObjectBucketCorsRule']]]]] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            force_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+            lifecycle_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict', 'outputs.ObjectBucketLifecycleRule']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            object_lock_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            versioning: pulumi.Input[Optional[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict', 'outputs.ObjectBucketVersioning']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["acl"] = acl
+        __props__["apiEndpoint"] = api_endpoint
+        __props__["corsRules"] = cors_rules
+        __props__["endpoint"] = endpoint
+        __props__["forceDestroy"] = force_destroy
+        __props__["lifecycleRules"] = lifecycle_rules
+        __props__["name"] = name
+        __props__["objectLockEnabled"] = object_lock_enabled
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["tags"] = tags
+        __props__["versioning"] = versioning
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/objectBucket:ObjectBucket', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

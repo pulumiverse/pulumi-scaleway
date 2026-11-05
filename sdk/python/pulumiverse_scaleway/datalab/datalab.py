@@ -474,15 +474,15 @@ class Datalab(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  has_notebook: pulumi.Input[Optional[_builtins.bool]] = None,
-                 main: pulumi.Input[Optional[Union['DatalabMainArgs', 'DatalabMainArgsDict']]] = None,
+                 main: pulumi.Input[Optional[Union['DatalabMainArgs', 'DatalabMainArgsDict', 'outputs.DatalabMain']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  spark_version: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 total_storage: pulumi.Input[Optional[Union['DatalabTotalStorageArgs', 'DatalabTotalStorageArgsDict']]] = None,
-                 worker: pulumi.Input[Optional[Union['DatalabWorkerArgs', 'DatalabWorkerArgsDict']]] = None,
+                 total_storage: pulumi.Input[Optional[Union['DatalabTotalStorageArgs', 'DatalabTotalStorageArgsDict', 'outputs.DatalabTotalStorage']]] = None,
+                 worker: pulumi.Input[Optional[Union['DatalabWorkerArgs', 'DatalabWorkerArgsDict', 'outputs.DatalabWorker']]] = None,
                  __props__=None):
         """
         Manages a Scaleway Datalab instance.
@@ -526,15 +526,15 @@ class Datalab(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: A description for the Datalab instance.
         :param pulumi.Input[_builtins.bool] has_notebook: Whether a JupyterLab notebook is associated with the Datalab.
-        :param pulumi.Input[Union['DatalabMainArgs', 'DatalabMainArgsDict']] main: The Spark main node configuration.
+        :param pulumi.Input[Union['DatalabMainArgs', 'DatalabMainArgsDict', 'outputs.DatalabMain']] main: The Spark main node configuration.
         :param pulumi.Input[_builtins.str] name: The name of the Datalab instance. If not provided, a random name is generated.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network to attach the Datalab to.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The project ID the Datalab belongs to.
         :param pulumi.Input[_builtins.str] region: `region`) The region the Datalab is in. Only `fr-par` is currently supported.
         :param pulumi.Input[_builtins.str] spark_version: The Spark version to use for the Datalab instance. Available versions can be retrieved from `ListClusterVersions`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags associated with the Datalab instance.
-        :param pulumi.Input[Union['DatalabTotalStorageArgs', 'DatalabTotalStorageArgsDict']] total_storage: Persistent volume storage configuration.
-        :param pulumi.Input[Union['DatalabWorkerArgs', 'DatalabWorkerArgsDict']] worker: The Spark worker nodes configuration.
+        :param pulumi.Input[Union['DatalabTotalStorageArgs', 'DatalabTotalStorageArgsDict', 'outputs.DatalabTotalStorage']] total_storage: Persistent volume storage configuration.
+        :param pulumi.Input[Union['DatalabWorkerArgs', 'DatalabWorkerArgsDict', 'outputs.DatalabWorker']] worker: The Spark worker nodes configuration.
         """
         ...
     @overload
@@ -597,15 +597,15 @@ class Datalab(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  has_notebook: pulumi.Input[Optional[_builtins.bool]] = None,
-                 main: pulumi.Input[Optional[Union['DatalabMainArgs', 'DatalabMainArgsDict']]] = None,
+                 main: pulumi.Input[Optional[Union['DatalabMainArgs', 'DatalabMainArgsDict', 'outputs.DatalabMain']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  spark_version: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 total_storage: pulumi.Input[Optional[Union['DatalabTotalStorageArgs', 'DatalabTotalStorageArgsDict']]] = None,
-                 worker: pulumi.Input[Optional[Union['DatalabWorkerArgs', 'DatalabWorkerArgsDict']]] = None,
+                 total_storage: pulumi.Input[Optional[Union['DatalabTotalStorageArgs', 'DatalabTotalStorageArgsDict', 'outputs.DatalabTotalStorage']]] = None,
+                 worker: pulumi.Input[Optional[Union['DatalabWorkerArgs', 'DatalabWorkerArgsDict', 'outputs.DatalabWorker']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -648,7 +648,7 @@ class Datalab(pulumi.CustomResource):
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             has_notebook: pulumi.Input[Optional[_builtins.bool]] = None,
-            main: pulumi.Input[Optional[Union['DatalabMainArgs', 'DatalabMainArgsDict']]] = None,
+            main: pulumi.Input[Optional[Union['DatalabMainArgs', 'DatalabMainArgsDict', 'outputs.DatalabMain']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             notebook_master_url: pulumi.Input[Optional[_builtins.str]] = None,
             notebook_url: pulumi.Input[Optional[_builtins.str]] = None,
@@ -658,9 +658,9 @@ class Datalab(pulumi.CustomResource):
             spark_version: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            total_storage: pulumi.Input[Optional[Union['DatalabTotalStorageArgs', 'DatalabTotalStorageArgsDict']]] = None,
+            total_storage: pulumi.Input[Optional[Union['DatalabTotalStorageArgs', 'DatalabTotalStorageArgsDict', 'outputs.DatalabTotalStorage']]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
-            worker: pulumi.Input[Optional[Union['DatalabWorkerArgs', 'DatalabWorkerArgsDict']]] = None) -> 'Datalab':
+            worker: pulumi.Input[Optional[Union['DatalabWorkerArgs', 'DatalabWorkerArgsDict', 'outputs.DatalabWorker']]] = None) -> 'Datalab':
         """
         Get an existing Datalab resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -671,7 +671,7 @@ class Datalab(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created_at: The creation timestamp of the Datalab instance.
         :param pulumi.Input[_builtins.str] description: A description for the Datalab instance.
         :param pulumi.Input[_builtins.bool] has_notebook: Whether a JupyterLab notebook is associated with the Datalab.
-        :param pulumi.Input[Union['DatalabMainArgs', 'DatalabMainArgsDict']] main: The Spark main node configuration.
+        :param pulumi.Input[Union['DatalabMainArgs', 'DatalabMainArgsDict', 'outputs.DatalabMain']] main: The Spark main node configuration.
         :param pulumi.Input[_builtins.str] name: The name of the Datalab instance. If not provided, a random name is generated.
         :param pulumi.Input[_builtins.str] notebook_master_url: The URL used to reach the cluster from the notebook.
         :param pulumi.Input[_builtins.str] notebook_url: The URL of the JupyterLab notebook, if available.
@@ -681,9 +681,9 @@ class Datalab(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] spark_version: The Spark version to use for the Datalab instance. Available versions can be retrieved from `ListClusterVersions`.
         :param pulumi.Input[_builtins.str] status: The current status of the Datalab instance.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags associated with the Datalab instance.
-        :param pulumi.Input[Union['DatalabTotalStorageArgs', 'DatalabTotalStorageArgsDict']] total_storage: Persistent volume storage configuration.
+        :param pulumi.Input[Union['DatalabTotalStorageArgs', 'DatalabTotalStorageArgsDict', 'outputs.DatalabTotalStorage']] total_storage: Persistent volume storage configuration.
         :param pulumi.Input[_builtins.str] updated_at: The last update timestamp of the Datalab instance.
-        :param pulumi.Input[Union['DatalabWorkerArgs', 'DatalabWorkerArgsDict']] worker: The Spark worker nodes configuration.
+        :param pulumi.Input[Union['DatalabWorkerArgs', 'DatalabWorkerArgsDict', 'outputs.DatalabWorker']] worker: The Spark worker nodes configuration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -706,6 +706,44 @@ class Datalab(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["worker"] = worker
         return Datalab(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            has_notebook: pulumi.Input[Optional[_builtins.bool]] = None,
+            main: pulumi.Input[Optional[Union['DatalabMainArgs', 'DatalabMainArgsDict', 'outputs.DatalabMain']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            notebook_master_url: pulumi.Input[Optional[_builtins.str]] = None,
+            notebook_url: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            spark_version: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            total_storage: pulumi.Input[Optional[Union['DatalabTotalStorageArgs', 'DatalabTotalStorageArgsDict', 'outputs.DatalabTotalStorage']]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            worker: pulumi.Input[Optional[Union['DatalabWorkerArgs', 'DatalabWorkerArgsDict', 'outputs.DatalabWorker']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["description"] = description
+        __props__["hasNotebook"] = has_notebook
+        __props__["main"] = main
+        __props__["name"] = name
+        __props__["notebookMasterUrl"] = notebook_master_url
+        __props__["notebookUrl"] = notebook_url
+        __props__["privateNetworkId"] = private_network_id
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["sparkVersion"] = spark_version
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["totalStorage"] = total_storage
+        __props__["updatedAt"] = updated_at
+        __props__["worker"] = worker
+        return pulumi.runtime.exists_resource(None, 'scaleway:datalab/datalab:Datalab', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

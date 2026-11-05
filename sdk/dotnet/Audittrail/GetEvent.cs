@@ -17,8 +17,6 @@ namespace Pulumiverse.Scaleway.Audittrail
         /// 
         /// Refer to the Audit Trail [documentation](https://www.scaleway.com/en/docs/audit-trail/) and [API documentation](https://www.scaleway.com/en/developers/api/audit-trail/) for more information.
         /// 
-        /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -153,8 +151,6 @@ namespace Pulumiverse.Scaleway.Audittrail
         /// 
         /// Refer to the Audit Trail [documentation](https://www.scaleway.com/en/docs/audit-trail/) and [API documentation](https://www.scaleway.com/en/developers/api/audit-trail/) for more information.
         /// 
-        /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -288,8 +284,6 @@ namespace Pulumiverse.Scaleway.Audittrail
         /// The `scaleway.audittrail.getEvent` data source is used to retrieve information about existing Audit Trail events.
         /// 
         /// Refer to the Audit Trail [documentation](https://www.scaleway.com/en/docs/audit-trail/) and [API documentation](https://www.scaleway.com/en/developers/api/audit-trail/) for more information.
-        /// 
-        /// 
         /// 
         /// ## Example Usage
         /// 

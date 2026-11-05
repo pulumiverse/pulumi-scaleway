@@ -183,6 +183,12 @@ func (NamespaceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*namespaceState)(nil)).Elem()
 }
 
+// NamespaceExists checks whether an existing Namespace resource with the given ID exists.
+func NamespaceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NamespaceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:functions/namespace:Namespace", id, state, "", opts...)
+}
+
 type namespaceArgs struct {
 	// The description of the namespace.
 	Description *string `pulumi:"description"`

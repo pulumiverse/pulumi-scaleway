@@ -198,6 +198,12 @@ func (InstancePolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instancePolicyState)(nil)).Elem()
 }
 
+// InstancePolicyExists checks whether an existing InstancePolicy resource with the given ID exists.
+func InstancePolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstancePolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:autoscaling/instancePolicy:InstancePolicy", id, state, "", opts...)
+}
+
 type instancePolicyArgs struct {
 	// The action to execute when the metric-based condition is met.
 	Action string `pulumi:"action"`

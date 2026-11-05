@@ -180,6 +180,12 @@ func (FunctionTriggerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionTriggerState)(nil)).Elem()
 }
 
+// FunctionTriggerExists checks whether an existing FunctionTrigger resource with the given ID exists.
+func FunctionTriggerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FunctionTriggerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/functionTrigger:FunctionTrigger", id, state, "", opts...)
+}
+
 type functionTriggerArgs struct {
 	// The description of the trigger.
 	Description *string `pulumi:"description"`

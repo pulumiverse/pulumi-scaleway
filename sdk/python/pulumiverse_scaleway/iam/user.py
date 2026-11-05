@@ -925,6 +925,58 @@ class User(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         return User(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            account_root_user_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            deletable: pulumi.Input[Optional[_builtins.bool]] = None,
+            email: pulumi.Input[Optional[_builtins.str]] = None,
+            first_name: pulumi.Input[Optional[_builtins.str]] = None,
+            last_login_at: pulumi.Input[Optional[_builtins.str]] = None,
+            last_name: pulumi.Input[Optional[_builtins.str]] = None,
+            locale: pulumi.Input[Optional[_builtins.str]] = None,
+            locked: pulumi.Input[Optional[_builtins.bool]] = None,
+            mfa: pulumi.Input[Optional[_builtins.bool]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            phone_number: pulumi.Input[Optional[_builtins.str]] = None,
+            send_password_email: pulumi.Input[Optional[_builtins.bool]] = None,
+            send_welcome_email: pulumi.Input[Optional[_builtins.bool]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accountRootUserId"] = account_root_user_id
+        __props__["createdAt"] = created_at
+        __props__["deletable"] = deletable
+        __props__["email"] = email
+        __props__["firstName"] = first_name
+        __props__["lastLoginAt"] = last_login_at
+        __props__["lastName"] = last_name
+        __props__["locale"] = locale
+        __props__["locked"] = locked
+        __props__["mfa"] = mfa
+        __props__["organizationId"] = organization_id
+        __props__["password"] = password
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["phoneNumber"] = phone_number
+        __props__["sendPasswordEmail"] = send_password_email
+        __props__["sendWelcomeEmail"] = send_welcome_email
+        __props__["srn"] = srn
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["type"] = type
+        __props__["updatedAt"] = updated_at
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'scaleway:iam/user:User', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accountRootUserId")
     def account_root_user_id(self) -> pulumi.Output[_builtins.str]:

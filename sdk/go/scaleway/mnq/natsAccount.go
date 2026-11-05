@@ -131,6 +131,12 @@ func (NatsAccountState) ElementType() reflect.Type {
 	return reflect.TypeOf((*natsAccountState)(nil)).Elem()
 }
 
+// NatsAccountExists checks whether an existing NatsAccount resource with the given ID exists.
+func NatsAccountExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NatsAccountState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:mnq/natsAccount:NatsAccount", id, state, "", opts...)
+}
+
 type natsAccountArgs struct {
 	// The unique name of the NATS account.
 	Name *string `pulumi:"name"`

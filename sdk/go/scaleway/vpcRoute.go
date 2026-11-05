@@ -43,7 +43,7 @@ import (
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -57,21 +57,21 @@ import (
 //				return err
 //			}
 //			pnic01, err := instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
-//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
-//				ServerId:         server01.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: pn01.ID(),
+//				ServerId:         server01.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = network.NewRoute(ctx, "rt01", &network.RouteArgs{
-//				VpcId:       vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:       vpc01.ID(),
 //				Description: pulumi.String("tf-route-vpn"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("tf"),
 //					pulumi.String("route"),
 //				},
 //				Destination:       pulumi.String("10.0.0.0/24"),
-//				NexthopResourceId: pnic01.ID().ToIDOutput().ToStringOutput(),
+//				NexthopResourceId: pnic01.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -109,7 +109,7 @@ import (
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -156,7 +156,7 @@ import (
 //				},
 //				PrivateNetworks: elasticmetal.ServerPrivateNetworkArray{
 //					&elasticmetal.ServerPrivateNetworkArgs{
-//						Id: pn01.ID().ToIDOutput().ToStringOutput(),
+//						Id: pn01.ID(),
 //					},
 //				},
 //			})
@@ -164,7 +164,7 @@ import (
 //				return err
 //			}
 //			_, err = network.NewRoute(ctx, "rt01", &network.RouteArgs{
-//				VpcId:       vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:       vpc01.ID(),
 //				Description: pulumi.String("tf-route-vpn"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("tf"),
@@ -212,21 +212,21 @@ import (
 //			}
 //			main, err := network.NewConnector(ctx, "main", &network.ConnectorArgs{
 //				Name:        pulumi.String("tf-conn-route"),
-//				VpcId:       vpc01.ID().ToIDOutput().ToStringOutput(),
-//				TargetVpcId: vpc02.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:       vpc01.ID(),
+//				TargetVpcId: vpc02.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = network.NewRoute(ctx, "rt01", &network.RouteArgs{
-//				VpcId:       vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:       vpc01.ID(),
 //				Description: pulumi.String("tf-route-connector"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("tf"),
 //					pulumi.String("route"),
 //				},
 //				Destination:           pulumi.String("10.0.0.0/24"),
-//				NexthopVpcConnectorId: main.ID().ToIDOutput().ToStringOutput(),
+//				NexthopVpcConnectorId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -357,6 +357,12 @@ type VpcRouteState struct {
 
 func (VpcRouteState) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpcRouteState)(nil)).Elem()
+}
+
+// VpcRouteExists checks whether an existing VpcRoute resource with the given ID exists.
+func VpcRouteExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VpcRouteState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/vpcRoute:VpcRoute", id, state, "", opts...)
 }
 
 type vpcRouteArgs struct {

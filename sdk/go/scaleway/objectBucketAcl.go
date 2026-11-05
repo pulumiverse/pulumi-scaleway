@@ -76,7 +76,7 @@ import (
 //				return err
 //			}
 //			_, err = object.NewBucketAcl(ctx, "main", &object.BucketAclArgs{
-//				Bucket: main.ID().ToIDOutput().ToStringOutput(),
+//				Bucket: main.ID(),
 //				AccessControlPolicy: &object.BucketAclAccessControlPolicyArgs{
 //					Grants: object.BucketAclAccessControlPolicyGrantArray{
 //						&object.BucketAclAccessControlPolicyGrantArgs{
@@ -258,6 +258,12 @@ type ObjectBucketAclState struct {
 
 func (ObjectBucketAclState) ElementType() reflect.Type {
 	return reflect.TypeOf((*objectBucketAclState)(nil)).Elem()
+}
+
+// ObjectBucketAclExists checks whether an existing ObjectBucketAcl resource with the given ID exists.
+func ObjectBucketAclExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ObjectBucketAclState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/objectBucketAcl:ObjectBucketAcl", id, state, "", opts...)
 }
 
 type objectBucketAclArgs struct {

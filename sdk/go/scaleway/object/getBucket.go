@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_ = object.LookupBucketOutput(ctx, object.GetBucketOutputArgs{
-//				Name: main.ID().ToIDOutput().ToStringOutput(),
+//				Name: main.ID(),
 //			}, nil)
 //			return nil
 //		})

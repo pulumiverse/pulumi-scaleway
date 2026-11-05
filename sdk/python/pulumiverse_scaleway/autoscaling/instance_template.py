@@ -516,7 +516,7 @@ class InstanceTemplate(pulumi.CustomResource):
                  public_ips_v6_count: pulumi.Input[Optional[_builtins.int]] = None,
                  security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict']]]]] = None,
+                 volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict', 'outputs.InstanceTemplateVolume']]]]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -572,7 +572,7 @@ class InstanceTemplate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] public_ips_v6_count: The number of flexible IPv6 addresses to attach to the new Instance.
         :param pulumi.Input[_builtins.str] security_group_id: The instance security group ID.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Instance template.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict']]]] volumes: The template of Instance volume.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict', 'outputs.InstanceTemplateVolume']]]] volumes: The template of Instance volume.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the Instance template exists.
         """
         ...
@@ -647,7 +647,7 @@ class InstanceTemplate(pulumi.CustomResource):
                  public_ips_v6_count: pulumi.Input[Optional[_builtins.int]] = None,
                  security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict']]]]] = None,
+                 volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict', 'outputs.InstanceTemplateVolume']]]]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -700,7 +700,7 @@ class InstanceTemplate(pulumi.CustomResource):
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
-            volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict']]]]] = None,
+            volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict', 'outputs.InstanceTemplateVolume']]]]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'InstanceTemplate':
         """
         Get an existing InstanceTemplate resource's state with the given name, id, and optional extra
@@ -723,7 +723,7 @@ class InstanceTemplate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] status: The Instance template status
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Instance template.
         :param pulumi.Input[_builtins.str] updated_at: Date and time of Instance group's last update (RFC 3339 format).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict']]]] volumes: The template of Instance volume.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict', 'outputs.InstanceTemplateVolume']]]] volumes: The template of Instance volume.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the Instance template exists.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -747,6 +747,44 @@ class InstanceTemplate(pulumi.CustomResource):
         __props__.__dict__["volumes"] = volumes
         __props__.__dict__["zone"] = zone
         return InstanceTemplate(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cloud_init: pulumi.Input[Optional[_builtins.str]] = None,
+            commercial_type: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            image_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            placement_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_ips_v4_count: pulumi.Input[Optional[_builtins.int]] = None,
+            public_ips_v6_count: pulumi.Input[Optional[_builtins.int]] = None,
+            security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceTemplateVolumeArgs', 'InstanceTemplateVolumeArgsDict', 'outputs.InstanceTemplateVolume']]]]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cloudInit"] = cloud_init
+        __props__["commercialType"] = commercial_type
+        __props__["createdAt"] = created_at
+        __props__["imageId"] = image_id
+        __props__["name"] = name
+        __props__["placementGroupId"] = placement_group_id
+        __props__["privateNetworkIds"] = private_network_ids
+        __props__["projectId"] = project_id
+        __props__["publicIpsV4Count"] = public_ips_v4_count
+        __props__["publicIpsV6Count"] = public_ips_v6_count
+        __props__["securityGroupId"] = security_group_id
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        __props__["volumes"] = volumes
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:autoscaling/instanceTemplate:InstanceTemplate', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="cloudInit")

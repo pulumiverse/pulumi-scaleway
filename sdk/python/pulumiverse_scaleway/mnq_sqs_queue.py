@@ -527,7 +527,7 @@ class MnqSqsQueue(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: pulumi.Input[Optional[_builtins.str]] = None,
                  content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
-                 dead_letter_queue: pulumi.Input[Optional[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict']]] = None,
+                 dead_letter_queue: pulumi.Input[Optional[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict', 'outputs.MnqSqsQueueDeadLetterQueue']]] = None,
                  fifo_queue: pulumi.Input[Optional[_builtins.bool]] = None,
                  message_max_age: pulumi.Input[Optional[_builtins.int]] = None,
                  message_max_size: pulumi.Input[Optional[_builtins.int]] = None,
@@ -616,7 +616,7 @@ class MnqSqsQueue(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key: The access key of the SQS queue.
         :param pulumi.Input[_builtins.bool] content_based_deduplication: Specifies whether to enable content-based deduplication. Defaults to `false`.
-        :param pulumi.Input[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict']] dead_letter_queue: Configuration for the dead letter queue. See Dead Letter Queue below for details.
+        :param pulumi.Input[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict', 'outputs.MnqSqsQueueDeadLetterQueue']] dead_letter_queue: Configuration for the dead letter queue. See Dead Letter Queue below for details.
         :param pulumi.Input[_builtins.bool] fifo_queue: Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         :param pulumi.Input[_builtins.int] message_max_age: The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
         :param pulumi.Input[_builtins.int] message_max_size: The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
@@ -724,7 +724,7 @@ class MnqSqsQueue(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: pulumi.Input[Optional[_builtins.str]] = None,
                  content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
-                 dead_letter_queue: pulumi.Input[Optional[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict']]] = None,
+                 dead_letter_queue: pulumi.Input[Optional[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict', 'outputs.MnqSqsQueueDeadLetterQueue']]] = None,
                  fifo_queue: pulumi.Input[Optional[_builtins.bool]] = None,
                  message_max_age: pulumi.Input[Optional[_builtins.int]] = None,
                  message_max_size: pulumi.Input[Optional[_builtins.int]] = None,
@@ -781,7 +781,7 @@ class MnqSqsQueue(pulumi.CustomResource):
             access_key: pulumi.Input[Optional[_builtins.str]] = None,
             arn: pulumi.Input[Optional[_builtins.str]] = None,
             content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
-            dead_letter_queue: pulumi.Input[Optional[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict']]] = None,
+            dead_letter_queue: pulumi.Input[Optional[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict', 'outputs.MnqSqsQueueDeadLetterQueue']]] = None,
             fifo_queue: pulumi.Input[Optional[_builtins.bool]] = None,
             message_max_age: pulumi.Input[Optional[_builtins.int]] = None,
             message_max_size: pulumi.Input[Optional[_builtins.int]] = None,
@@ -804,7 +804,7 @@ class MnqSqsQueue(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] access_key: The access key of the SQS queue.
         :param pulumi.Input[_builtins.str] arn: The ARN of the queue
         :param pulumi.Input[_builtins.bool] content_based_deduplication: Specifies whether to enable content-based deduplication. Defaults to `false`.
-        :param pulumi.Input[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict']] dead_letter_queue: Configuration for the dead letter queue. See Dead Letter Queue below for details.
+        :param pulumi.Input[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict', 'outputs.MnqSqsQueueDeadLetterQueue']] dead_letter_queue: Configuration for the dead letter queue. See Dead Letter Queue below for details.
         :param pulumi.Input[_builtins.bool] fifo_queue: Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         :param pulumi.Input[_builtins.int] message_max_age: The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
         :param pulumi.Input[_builtins.int] message_max_size: The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
@@ -839,6 +839,44 @@ class MnqSqsQueue(pulumi.CustomResource):
         __props__.__dict__["url"] = url
         __props__.__dict__["visibility_timeout_seconds"] = visibility_timeout_seconds
         return MnqSqsQueue(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            arn: pulumi.Input[Optional[_builtins.str]] = None,
+            content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
+            dead_letter_queue: pulumi.Input[Optional[Union['MnqSqsQueueDeadLetterQueueArgs', 'MnqSqsQueueDeadLetterQueueArgsDict', 'outputs.MnqSqsQueueDeadLetterQueue']]] = None,
+            fifo_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+            message_max_age: pulumi.Input[Optional[_builtins.int]] = None,
+            message_max_size: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            receive_wait_time_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            sqs_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            visibility_timeout_seconds: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessKey"] = access_key
+        __props__["arn"] = arn
+        __props__["contentBasedDeduplication"] = content_based_deduplication
+        __props__["deadLetterQueue"] = dead_letter_queue
+        __props__["fifoQueue"] = fifo_queue
+        __props__["messageMaxAge"] = message_max_age
+        __props__["messageMaxSize"] = message_max_size
+        __props__["name"] = name
+        __props__["namePrefix"] = name_prefix
+        __props__["projectId"] = project_id
+        __props__["receiveWaitTimeSeconds"] = receive_wait_time_seconds
+        __props__["region"] = region
+        __props__["secretKey"] = secret_key
+        __props__["sqsEndpoint"] = sqs_endpoint
+        __props__["url"] = url
+        __props__["visibilityTimeoutSeconds"] = visibility_timeout_seconds
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/mnqSqsQueue:MnqSqsQueue', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="accessKey")

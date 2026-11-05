@@ -66,7 +66,7 @@ import (
 //			_, err = iam.NewGroup(ctx, "with_app", &iam.GroupArgs{
 //				Name: pulumi.String("iam_group_with_app"),
 //				ApplicationIds: pulumi.StringArray{
-//					app.ID().ToIDOutput().ToStringOutput(),
+//					app.ID(),
 //				},
 //				UserIds: pulumi.StringArray{},
 //			})
@@ -196,6 +196,12 @@ type GroupState struct {
 
 func (GroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupState)(nil)).Elem()
+}
+
+// GroupExists checks whether an existing Group resource with the given ID exists.
+func GroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:iam/group:Group", id, state, "", opts...)
 }
 
 type groupArgs struct {

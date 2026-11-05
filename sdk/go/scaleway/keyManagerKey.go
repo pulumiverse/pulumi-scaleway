@@ -364,6 +364,12 @@ func (KeyManagerKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyManagerKeyState)(nil)).Elem()
 }
 
+// KeyManagerKeyExists checks whether an existing KeyManagerKey resource with the given ID exists.
+func KeyManagerKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KeyManagerKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/keyManagerKey:KeyManagerKey", id, state, "", opts...)
+}
+
 type keyManagerKeyArgs struct {
 	// – The cryptographic algorithm to use. The valid algorithms depend on the `usage` type; see the [Key Manager cryptographic details](https://www.scaleway.com/en/docs/key-manager/reference-content/cryptographic-details-key-manager) for the full list. Valid values:
 	// - For `symmetricEncryption`:

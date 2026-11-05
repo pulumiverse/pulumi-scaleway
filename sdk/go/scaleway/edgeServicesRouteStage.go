@@ -97,7 +97,7 @@ import (
 //				return err
 //			}
 //			apiBackendStage, err := edgeservices.NewBackendStage(ctx, "api", &edgeservices.BackendStageArgs{
-//				PipelineId: main.ID().ToIDOutput().ToStringOutput(),
+//				PipelineId: main.ID(),
 //				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
 //					BucketName:   api.Name,
 //					BucketRegion: pulumi.String("fr-par"),
@@ -107,7 +107,7 @@ import (
 //				return err
 //			}
 //			staticBackendStage, err := edgeservices.NewBackendStage(ctx, "static", &edgeservices.BackendStageArgs{
-//				PipelineId: main.ID().ToIDOutput().ToStringOutput(),
+//				PipelineId: main.ID(),
 //				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
 //					BucketName:   static.Name,
 //					BucketRegion: pulumi.String("fr-par"),
@@ -117,11 +117,11 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewRouteStage(ctx, "main", &edgeservices.RouteStageArgs{
-//				PipelineId:     main.ID().ToIDOutput().ToStringOutput(),
-//				BackendStageId: staticBackendStage.ID().ToIDOutput().ToStringOutput(),
+//				PipelineId:     main.ID(),
+//				BackendStageId: staticBackendStage.ID(),
 //				Rules: edgeservices.RouteStageRuleArray{
 //					&edgeservices.RouteStageRuleArgs{
-//						BackendStageId: apiBackendStage.ID().ToIDOutput().ToStringOutput(),
+//						BackendStageId: apiBackendStage.ID(),
 //						RuleHttpMatch: &edgeservices.RouteStageRuleRuleHttpMatchArgs{
 //							HostFilter: &edgeservices.RouteStageRuleRuleHttpMatchHostFilterArgs{
 //								HostFilterType: pulumi.String("regex"),
@@ -171,7 +171,7 @@ import (
 //				return err
 //			}
 //			static, err := edgeservices.NewBackendStage(ctx, "static", &edgeservices.BackendStageArgs{
-//				PipelineId: main.ID().ToIDOutput().ToStringOutput(),
+//				PipelineId: main.ID(),
 //				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
 //					BucketName:   mainBucket.Name,
 //					BucketRegion: pulumi.String("fr-par"),
@@ -181,8 +181,8 @@ import (
 //				return err
 //			}
 //			api, err := edgeservices.NewWafStage(ctx, "api", &edgeservices.WafStageArgs{
-//				PipelineId:     main.ID().ToIDOutput().ToStringOutput(),
-//				BackendStageId: static.ID().ToIDOutput().ToStringOutput(),
+//				PipelineId:     main.ID(),
+//				BackendStageId: static.ID(),
 //				Mode:           pulumi.String("enable"),
 //				ParanoiaLevel:  pulumi.Int(2),
 //			})
@@ -190,11 +190,11 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewRouteStage(ctx, "main", &edgeservices.RouteStageArgs{
-//				PipelineId:     main.ID().ToIDOutput().ToStringOutput(),
-//				BackendStageId: static.ID().ToIDOutput().ToStringOutput(),
+//				PipelineId:     main.ID(),
+//				BackendStageId: static.ID(),
 //				Rules: edgeservices.RouteStageRuleArray{
 //					&edgeservices.RouteStageRuleArgs{
-//						WafStageId: api.ID().ToIDOutput().ToStringOutput(),
+//						WafStageId: api.ID(),
 //						RuleHttpMatch: &edgeservices.RouteStageRuleRuleHttpMatchArgs{
 //							MethodFilters: pulumi.StringArray{
 //								pulumi.String("get"),
@@ -316,6 +316,12 @@ type EdgeServicesRouteStageState struct {
 
 func (EdgeServicesRouteStageState) ElementType() reflect.Type {
 	return reflect.TypeOf((*edgeServicesRouteStageState)(nil)).Elem()
+}
+
+// EdgeServicesRouteStageExists checks whether an existing EdgeServicesRouteStage resource with the given ID exists.
+func EdgeServicesRouteStageExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EdgeServicesRouteStageState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage", id, state, "", opts...)
 }
 
 type edgeServicesRouteStageArgs struct {

@@ -18,6 +18,48 @@ namespace Pulumiverse.Scaleway
     /// using System.Linq;
     /// using Pulumi;
     /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     //## Basic
+    ///     var mySshKey = Scaleway.Iam.GetSshKey.Invoke(new()
+    ///     {
+    ///         Name = "main",
+    ///         PublicKey = "ssh XXXXXXXXXXX",
+    ///     });
+    /// 
+    ///     var myOs = Scaleway.Elasticmetal.GetOs.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "Ubuntu",
+    ///         Version = "22.04 LTS (Jammy Jellyfish)",
+    ///     });
+    /// 
+    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "EM-I220E-NVME",
+    ///     });
+    /// 
+    ///     var myServer = new Scaleway.Elasticmetal.Server("my_server", new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
+    ///         Os = myOs.Apply(getOsResult =&gt; getOsResult.Id),
+    ///         SshKeyIds = new[]
+    ///         {
+    ///             mySshKey.Apply(getSshKeyResult =&gt; getSshKeyResult.Id),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
     /// using Std = Pulumi.Std;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
@@ -54,6 +96,223 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             Input = "userdata.yaml",
     ///         }).Apply(invoke =&gt; invoke.Result),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     //## With custom partitioning
+    ///     var mySshKey = Scaleway.Iam.GetSshKey.Invoke(new()
+    ///     {
+    ///         Name = "main",
+    ///         PublicKey = "ssh XXXXXXXXXXX",
+    ///     });
+    /// 
+    ///     var myOs = Scaleway.Elasticmetal.GetOs.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "Ubuntu",
+    ///         Version = "22.04 LTS (Jammy Jellyfish)",
+    ///     });
+    /// 
+    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "EM-I215E-NVME",
+    ///     });
+    /// 
+    ///     var myServer = new Scaleway.Elasticmetal.Server("my_server", new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
+    ///         Os = myOs.Apply(getOsResult =&gt; getOsResult.OsId),
+    ///         Partitioning = @"{
+    ///   \""disks\"": [
+    ///     {
+    ///       \""device\"": \""/dev/nvme0n1\"",
+    ///       \""partitions\"": [
+    ///         {
+    ///           \""label\"": \""uefi\"",
+    ///           \""number\"": 1,
+    ///           \""size\"": 536870912
+    ///         },
+    ///         {
+    ///           \""label\"": \""swap\"",
+    ///           \""number\"": 2,
+    ///           \""size\"": 4294967296
+    ///         },
+    ///         {
+    ///           \""label\"": \""boot\"",
+    ///           \""number\"": 3,
+    ///           \""size\"": 1073741824
+    ///         },
+    ///         {
+    ///           \""label\"": \""root\"",
+    ///           \""number\"": 4,
+    ///           \""size\"": 1017827045376
+    ///         }
+    ///       ]
+    ///     },
+    ///     {
+    ///       \""device\"": \""/dev/nvme1n1\"",
+    ///       \""partitions\"": [
+    ///         {
+    ///           \""label\"": \""swap\"",
+    ///           \""number\"": 1,
+    ///           \""size\"": 4294967296
+    ///         },
+    ///         {
+    ///           \""label\"": \""boot\"",
+    ///           \""number\"": 2,
+    ///           \""size\"": 1073741824
+    ///         },
+    ///         {
+    ///           \""label\"": \""root\"",
+    ///           \""number\"": 3,
+    ///           \""size\"": 1017827045376
+    ///         }
+    ///       ]
+    ///     }
+    ///   ],
+    ///   \""filesystems\"": [
+    ///     {
+    ///       \""device\"": \""/dev/nvme0n1p1\"",
+    ///       \""format\"": \""fat32\"",
+    ///       \""mountpoint\"": \""/boot/efi\""
+    ///     },
+    ///     {
+    ///       \""device\"": \""/dev/md0\"",
+    ///       \""format\"": \""ext4\"",
+    ///       \""mountpoint\"": \""/boot\""
+    ///     },
+    ///     {
+    ///       \""device\"": \""/dev/md1\"",
+    ///       \""format\"": \""ext4\"",
+    ///       \""mountpoint\"": \""/\""
+    ///     }
+    ///   ],
+    ///   \""raids\"": [
+    ///     {
+    ///       \""devices\"": [\""/dev/nvme0n1p3\"", \""/dev/nvme1n1p2\""],
+    ///       \""level\"": \""raid_level_1\"",
+    ///       \""name\"": \""/dev/md0\""
+    ///     },
+    ///     {
+    ///       \""devices\"": [\""/dev/nvme0n1p4\"", \""/dev/nvme1n1p3\""],
+    ///       \""level\"": \""raid_level_1\"",
+    ///       \""name\"": \""/dev/md1\""
+    ///     }
+    ///   ],
+    ///   \""zfs\"": {
+    ///     \""pools\"": []
+    ///   }
+    /// }
+    /// ",
+    ///         SshKeyIds = new[]
+    ///         {
+    ///             mySshKey.Apply(getSshKeyResult =&gt; getSshKeyResult.Id),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     //## With IPAM IP IDs
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
+    ///     {
+    ///         Name = "vpc_baremetal",
+    ///     });
+    /// 
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
+    ///     {
+    ///         Name = "private_network_baremetal",
+    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
+    ///         {
+    ///             Subnet = "172.16.64.0/22",
+    ///         },
+    ///         VpcId = vpc01.Id,
+    ///     });
+    /// 
+    ///     var ip01 = new Scaleway.Ipam.Ip("ip01", new()
+    ///     {
+    ///         Address = "172.16.64.7",
+    ///         Sources = new[]
+    ///         {
+    ///             new Scaleway.Ipam.Inputs.IpSourceArgs
+    ///             {
+    ///                 PrivateNetworkId = pn01.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var mySshKey = Scaleway.Iam.GetSshKey.Invoke(new()
+    ///     {
+    ///         Name = "main",
+    ///         PublicKey = "ssh XXXXXXXXXXX",
+    ///     });
+    /// 
+    ///     var myOs = Scaleway.Elasticmetal.GetOs.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         Name = "Ubuntu",
+    ///         Version = "22.04 LTS (Jammy Jellyfish)",
+    ///     });
+    /// 
+    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         Name = "EM-A115X-SSD",
+    ///     });
+    /// 
+    ///     var privateNetwork = Scaleway.Elasticmetal.GetOption.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         Name = "Private Network",
+    ///     });
+    /// 
+    ///     var myServer = new Scaleway.Elasticmetal.Server("my_server", new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
+    ///         Os = myOs.Apply(getOsResult =&gt; getOsResult.OsId),
+    ///         SshKeyIds = new[]
+    ///         {
+    ///             mySshKey.Apply(getSshKeyResult =&gt; getSshKeyResult.Id),
+    ///         },
+    ///         Options = new[]
+    ///         {
+    ///             new Scaleway.Elasticmetal.Inputs.ServerOptionArgs
+    ///             {
+    ///                 Id = privateNetwork.Apply(getOptionResult =&gt; getOptionResult.OptionId),
+    ///             },
+    ///         },
+    ///         PrivateNetworks = new[]
+    ///         {
+    ///             new Scaleway.Elasticmetal.Inputs.ServerPrivateNetworkArgs
+    ///             {
+    ///                 Id = pn01.Id,
+    ///                 IpamIpIds = new[]
+    ///                 {
+    ///                     ip01.Id,
+    ///                 },
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -130,7 +389,7 @@ namespace Pulumiverse.Scaleway
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `Offer` will recreate the server.
-        /// &gt; **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+        /// **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         /// </summary>
         [Output("offer")]
         public Output<string> Offer { get; private set; } = null!;
@@ -368,7 +627,7 @@ namespace Pulumiverse.Scaleway
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `Offer` will recreate the server.
-        /// &gt; **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+        /// **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         /// </summary>
         [Input("offer", required: true)]
         public Input<string> Offer { get; set; } = null!;
@@ -648,7 +907,7 @@ namespace Pulumiverse.Scaleway
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `Offer` will recreate the server.
-        /// &gt; **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+        /// **Important** If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         /// </summary>
         [Input("offer")]
         public Input<string>? Offer { get; set; }

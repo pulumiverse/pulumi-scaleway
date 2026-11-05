@@ -39,14 +39,14 @@ import (
 //				return err
 //			}
 //			mainBudgetAlert, err := billing.NewBudgetAlert(ctx, "main", &billing.BudgetAlertArgs{
-//				BudgetId:  main.ID().ToIDOutput().ToStringOutput(),
+//				BudgetId:  main.ID(),
 //				Threshold: pulumi.Int(80),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = billing.NewBudgetAlertNotification(ctx, "email", &billing.BudgetAlertNotificationArgs{
-//				BudgetAlertId: mainBudgetAlert.ID().ToIDOutput().ToStringOutput(),
+//				BudgetAlertId: mainBudgetAlert.ID(),
 //				EmailAddresses: pulumi.StringArray{
 //					pulumi.String("alerts@example.com"),
 //					pulumi.String("billing@example.com"),
@@ -56,7 +56,7 @@ import (
 //				return err
 //			}
 //			_, err = billing.NewBudgetAlertNotification(ctx, "sms", &billing.BudgetAlertNotificationArgs{
-//				BudgetAlertId: mainBudgetAlert.ID().ToIDOutput().ToStringOutput(),
+//				BudgetAlertId: mainBudgetAlert.ID(),
 //				SmsPhoneNumbers: pulumi.StringArray{
 //					pulumi.String("+33612345678"),
 //				},
@@ -65,7 +65,7 @@ import (
 //				return err
 //			}
 //			_, err = billing.NewBudgetAlertNotification(ctx, "webhook", &billing.BudgetAlertNotificationArgs{
-//				BudgetAlertId: mainBudgetAlert.ID().ToIDOutput().ToStringOutput(),
+//				BudgetAlertId: mainBudgetAlert.ID(),
 //				WebhookUrls: pulumi.StringArray{
 //					pulumi.String("https://example.com/webhook"),
 //				},
@@ -173,6 +173,12 @@ type BudgetAlertNotificationState struct {
 
 func (BudgetAlertNotificationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*budgetAlertNotificationState)(nil)).Elem()
+}
+
+// BudgetAlertNotificationExists checks whether an existing BudgetAlertNotification resource with the given ID exists.
+func BudgetAlertNotificationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BudgetAlertNotificationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:billing/budgetAlertNotification:BudgetAlertNotification", id, state, "", opts...)
 }
 
 type budgetAlertNotificationArgs struct {

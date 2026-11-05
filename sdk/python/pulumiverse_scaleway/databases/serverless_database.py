@@ -556,6 +556,30 @@ class ServerlessDatabase(pulumi.CustomResource):
         __props__.__dict__["version_end_of_life_at"] = version_end_of_life_at
         return ServerlessDatabase(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            max_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+            min_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            version_end_of_life_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["endpoint"] = endpoint
+        __props__["maxCpu"] = max_cpu
+        __props__["minCpu"] = min_cpu
+        __props__["name"] = name
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["srn"] = srn
+        __props__["version"] = version
+        __props__["versionEndOfLifeAt"] = version_end_of_life_at
+        return pulumi.runtime.exists_resource(None, 'scaleway:databases/serverlessDatabase:ServerlessDatabase', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def endpoint(self) -> pulumi.Output[_builtins.str]:

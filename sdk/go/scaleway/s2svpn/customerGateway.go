@@ -100,7 +100,7 @@ import (
 //				Type:  pulumi.String("DEV1-S"),
 //				Image: pulumi.String("ubuntu_jammy"),
 //				IpIds: pulumi.StringArray{
-//					vpnEndpointIp.ID().ToIDOutput().ToStringOutput(),
+//					vpnEndpointIp.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -238,6 +238,12 @@ type CustomerGatewayState struct {
 
 func (CustomerGatewayState) ElementType() reflect.Type {
 	return reflect.TypeOf((*customerGatewayState)(nil)).Elem()
+}
+
+// CustomerGatewayExists checks whether an existing CustomerGateway resource with the given ID exists.
+func CustomerGatewayExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CustomerGatewayState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:s2svpn/customerGateway:CustomerGateway", id, state, "", opts...)
 }
 
 type customerGatewayArgs struct {

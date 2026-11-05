@@ -624,6 +624,38 @@ class ApiKey(pulumi.CustomResource):
         __props__.__dict__["user_id"] = user_id
         return ApiKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            application_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            creation_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            default_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            editable: pulumi.Input[Optional[_builtins.bool]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessKey"] = access_key
+        __props__["applicationId"] = application_id
+        __props__["createdAt"] = created_at
+        __props__["creationIp"] = creation_ip
+        __props__["defaultProjectId"] = default_project_id
+        __props__["description"] = description
+        __props__["editable"] = editable
+        __props__["expiresAt"] = expires_at
+        __props__["secretId"] = secret_id
+        __props__["secretKey"] = secret_key
+        __props__["srn"] = srn
+        __props__["updatedAt"] = updated_at
+        __props__["userId"] = user_id
+        return pulumi.runtime.exists_resource(None, 'scaleway:iam/apiKey:ApiKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Output[_builtins.str]:

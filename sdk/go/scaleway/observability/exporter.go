@@ -248,6 +248,12 @@ func (ExporterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*exporterState)(nil)).Elem()
 }
 
+// ExporterExists checks whether an existing Exporter resource with the given ID exists.
+func ExporterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ExporterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:observability/exporter:Exporter", id, state, "", opts...)
+}
+
 type exporterArgs struct {
 	// Datadog destination configuration. Cannot be used with `otlpDestination`.
 	DatadogDestination *ExporterDatadogDestination `pulumi:"datadogDestination"`

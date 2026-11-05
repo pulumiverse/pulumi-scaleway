@@ -631,7 +631,7 @@ class InstanceImage(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             additional_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            additional_volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceImageAdditionalVolumeArgs', 'InstanceImageAdditionalVolumeArgsDict']]]]] = None,
+            additional_volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceImageAdditionalVolumeArgs', 'InstanceImageAdditionalVolumeArgsDict', 'outputs.InstanceImageAdditionalVolume']]]]] = None,
             architecture: pulumi.Input[Optional[_builtins.str]] = None,
             creation_date: pulumi.Input[Optional[_builtins.str]] = None,
             from_server_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -641,7 +641,7 @@ class InstanceImage(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             public: pulumi.Input[Optional[_builtins.bool]] = None,
             root_volume_id: pulumi.Input[Optional[_builtins.str]] = None,
-            root_volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceImageRootVolumeArgs', 'InstanceImageRootVolumeArgsDict']]]]] = None,
+            root_volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceImageRootVolumeArgs', 'InstanceImageRootVolumeArgsDict', 'outputs.InstanceImageRootVolume']]]]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'InstanceImage':
@@ -653,7 +653,7 @@ class InstanceImage(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceImageAdditionalVolumeArgs', 'InstanceImageAdditionalVolumeArgsDict']]]] additional_volumes: The description of the extra volumes attached to the image.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceImageAdditionalVolumeArgs', 'InstanceImageAdditionalVolumeArgsDict', 'outputs.InstanceImageAdditionalVolume']]]] additional_volumes: The description of the extra volumes attached to the image.
         :param pulumi.Input[_builtins.str] architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
         :param pulumi.Input[_builtins.str] creation_date: Date of the image creation.
         :param pulumi.Input[_builtins.str] from_server_id: ID of the server the image is based on (in case it is a backup).
@@ -663,7 +663,7 @@ class InstanceImage(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: The ID of the project the image is associated with.
         :param pulumi.Input[_builtins.bool] public: Set to `true` if the image is public.
         :param pulumi.Input[_builtins.str] root_volume_id: The ID of the snapshot of the volume to be used as root in the image.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceImageRootVolumeArgs', 'InstanceImageRootVolumeArgsDict']]]] root_volumes: The description of the root volume attached to the image.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceImageRootVolumeArgs', 'InstanceImageRootVolumeArgsDict', 'outputs.InstanceImageRootVolume']]]] root_volumes: The description of the root volume attached to the image.
         :param pulumi.Input[_builtins.str] state: State of the image. Possible values are: `available`, `creating` or `error`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the image.
         :param pulumi.Input[_builtins.str] zone: The zone in which the image should be created.
@@ -688,6 +688,42 @@ class InstanceImage(pulumi.CustomResource):
         __props__.__dict__["tags"] = tags
         __props__.__dict__["zone"] = zone
         return InstanceImage(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            additional_volume_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            additional_volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceImageAdditionalVolumeArgs', 'InstanceImageAdditionalVolumeArgsDict', 'outputs.InstanceImageAdditionalVolume']]]]] = None,
+            architecture: pulumi.Input[Optional[_builtins.str]] = None,
+            creation_date: pulumi.Input[Optional[_builtins.str]] = None,
+            from_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            modification_date: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public: pulumi.Input[Optional[_builtins.bool]] = None,
+            root_volume_id: pulumi.Input[Optional[_builtins.str]] = None,
+            root_volumes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceImageRootVolumeArgs', 'InstanceImageRootVolumeArgsDict', 'outputs.InstanceImageRootVolume']]]]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["additionalVolumeIds"] = additional_volume_ids
+        __props__["additionalVolumes"] = additional_volumes
+        __props__["architecture"] = architecture
+        __props__["creationDate"] = creation_date
+        __props__["fromServerId"] = from_server_id
+        __props__["modificationDate"] = modification_date
+        __props__["name"] = name
+        __props__["organizationId"] = organization_id
+        __props__["projectId"] = project_id
+        __props__["public"] = public
+        __props__["rootVolumeId"] = root_volume_id
+        __props__["rootVolumes"] = root_volumes
+        __props__["state"] = state
+        __props__["tags"] = tags
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/instanceImage:InstanceImage', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="additionalVolumeIds")

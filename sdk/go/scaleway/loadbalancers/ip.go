@@ -180,6 +180,12 @@ func (IpState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ipState)(nil)).Elem()
 }
 
+// IpExists checks whether an existing Ip resource with the given ID exists.
+func IpExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IpState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:loadbalancers/ip:Ip", id, state, "", opts...)
+}
+
 type ipArgs struct {
 	// If true, creates a flexible IP with an IPv6 address.
 	IsIpv6 *bool `pulumi:"isIpv6"`

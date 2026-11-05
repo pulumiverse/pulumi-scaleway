@@ -154,7 +154,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     // When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along
+    ///     // When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` function along
     ///     // with the `registry_sha256` argument to trigger container redeployments when the image is updated.
     ///     // Ideally, you would create the namespace separately.
     ///     // For demonstration purposes, this example assumes the "nginx:latest" image is already available

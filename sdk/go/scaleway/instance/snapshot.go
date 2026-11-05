@@ -71,14 +71,14 @@ import (
 //					VolumeType: pulumi.String("l_ssd"),
 //				},
 //				AdditionalVolumeIds: pulumi.StringArray{
-//					main.ID().ToIDOutput().ToStringOutput(),
+//					main.ID(),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = instance.NewSnapshot(ctx, "main", &instance.SnapshotArgs{
-//				VolumeId: main.ID().ToIDOutput().ToStringOutput(),
+//				VolumeId: main.ID(),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				mainServer,
 //			}))
@@ -259,6 +259,12 @@ type SnapshotState struct {
 
 func (SnapshotState) ElementType() reflect.Type {
 	return reflect.TypeOf((*snapshotState)(nil)).Elem()
+}
+
+// SnapshotExists checks whether an existing Snapshot resource with the given ID exists.
+func SnapshotExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SnapshotState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:instance/snapshot:Snapshot", id, state, "", opts...)
 }
 
 type snapshotArgs struct {

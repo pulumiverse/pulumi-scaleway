@@ -42,14 +42,14 @@ import (
 //				return err
 //			}
 //			mainDatabase, err := databases.NewDatabase(ctx, "main", &databases.DatabaseArgs{
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //				Name:       pulumi.String("database"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			mainUser, err := databases.NewUser(ctx, "main", &databases.UserArgs{
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //				Name:       pulumi.String("my-db-user"),
 //				Password:   pulumi.String("thiZ_is_v&ry_s3cret"),
 //				IsAdmin:    pulumi.Bool(false),
@@ -58,7 +58,7 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewPrivilege(ctx, "main", &databases.PrivilegeArgs{
-//				InstanceId:   main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId:   main.ID(),
 //				UserName:     mainUser.Name,
 //				DatabaseName: mainDatabase.Name,
 //				Permission:   pulumi.String("all"),
@@ -218,6 +218,12 @@ type DatabasePrivilegeState struct {
 
 func (DatabasePrivilegeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*databasePrivilegeState)(nil)).Elem()
+}
+
+// DatabasePrivilegeExists checks whether an existing DatabasePrivilege resource with the given ID exists.
+func DatabasePrivilegeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DatabasePrivilegeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/databasePrivilege:DatabasePrivilege", id, state, "", opts...)
 }
 
 type databasePrivilegeArgs struct {

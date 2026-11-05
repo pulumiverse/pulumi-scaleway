@@ -397,6 +397,26 @@ class BudgetAlertNotification(pulumi.CustomResource):
         __props__.__dict__["webhook_urls"] = webhook_urls
         return BudgetAlertNotification(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            budget_alert_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            sms_phone_numbers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            webhook_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["budgetAlertId"] = budget_alert_id
+        __props__["createdAt"] = created_at
+        __props__["emailAddresses"] = email_addresses
+        __props__["smsPhoneNumbers"] = sms_phone_numbers
+        __props__["type"] = type
+        __props__["updatedAt"] = updated_at
+        __props__["webhookUrls"] = webhook_urls
+        return pulumi.runtime.exists_resource(None, 'scaleway:billing/budgetAlertNotification:BudgetAlertNotification', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="budgetAlertId")
     def budget_alert_id(self) -> pulumi.Output[_builtins.str]:

@@ -18,8 +18,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
         /// 
-        /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -64,8 +62,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
         /// 
-        /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -109,8 +105,6 @@ namespace Pulumiverse.Scaleway
         /// The `scaleway.kubernetes.Cluster` data source is used to retrieve information about a Kubernetes Cluster.
         /// 
         /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
-        /// 
-        /// 
         /// 
         /// ## Example Usage
         /// 

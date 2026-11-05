@@ -519,6 +519,32 @@ class InstanceVolume(pulumi.CustomResource):
         __props__.__dict__["zone"] = zone
         return InstanceVolume(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            from_snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            migrate_to_sbs: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["fromSnapshotId"] = from_snapshot_id
+        __props__["migrateToSbs"] = migrate_to_sbs
+        __props__["name"] = name
+        __props__["organizationId"] = organization_id
+        __props__["projectId"] = project_id
+        __props__["serverId"] = server_id
+        __props__["sizeInGb"] = size_in_gb
+        __props__["tags"] = tags
+        __props__["type"] = type
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/instanceVolume:InstanceVolume', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="fromSnapshotId")
     def from_snapshot_id(self) -> pulumi.Output[Optional[_builtins.str]]:

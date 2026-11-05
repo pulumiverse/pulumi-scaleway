@@ -301,6 +301,12 @@ func (VpcPublicGatewayState) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpcPublicGatewayState)(nil)).Elem()
 }
 
+// VpcPublicGatewayExists checks whether an existing VpcPublicGateway resource with the given ID exists.
+func VpcPublicGatewayExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VpcPublicGatewayState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/vpcPublicGateway:VpcPublicGateway", id, state, "", opts...)
+}
+
 type vpcPublicGatewayArgs struct {
 	// Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
 	AllowedIpRanges []string `pulumi:"allowedIpRanges"`

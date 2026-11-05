@@ -124,15 +124,24 @@ namespace Pulumiverse.Scaleway.Iam
     ///     var usersGetUser = Std.Toset.Invoke(new()
     ///     {
     ///         Input = users,
-    ///     }).Apply(invoke =&gt; );
+    ///     }).Apply(invoke =&gt; .ToDictionary(item =&gt; {
+    ///         var __key = item.Key;
+    ///         return __key.ToString(System.Globalization.CultureInfo.InvariantCulture);
+    ///     }, item =&gt; {
+    ///         var __value = item.Value;
+    ///         return Scaleway.Iam.GetUser.Invoke(new()
+    ///         {
+    ///             Email = __value,
+    ///         });
+    ///     }));
     /// 
     ///     var withUsers = new Scaleway.Iam.Group("with_users", new()
     ///     {
     ///         Name = "developers",
-    ///         UserIds = usersGetUser.Apply(usersGetUser =&gt; (usersGetUser).Values.Select(user =&gt; 
+    ///         UserIds = (usersGetUser).Values.Select(user =&gt; 
     ///         {
     ///             return user.Id;
-    ///         }).ToList()),
+    ///         }).ToList(),
     ///     });
     /// 
     ///     var iamTfStoragePolicy = new Scaleway.Iam.Policy("iam_tf_storage_policy", new()

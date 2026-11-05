@@ -656,9 +656,9 @@ class Deployment(pulumi.CustomResource):
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
+                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]]] = None,
+                 public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict', 'outputs.DeploymentPublicNetwork']]]]] = None,
                  ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  replica_count: pulumi.Input[Optional[_builtins.int]] = None,
@@ -751,9 +751,9 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password for the first user of the deployment in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
-        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]] public_networks: Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict', 'outputs.DeploymentPublicNetwork']]]] public_networks: Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
         :param pulumi.Input[_builtins.int] ram_per_cpu: RAM per CPU in GB.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.int] replica_count: Number of replicas. Can be updated in place via the deployment configuration API.
@@ -864,9 +864,9 @@ class Deployment(pulumi.CustomResource):
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
+                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]]] = None,
+                 public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict', 'outputs.DeploymentPublicNetwork']]]]] = None,
                  ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  replica_count: pulumi.Input[Optional[_builtins.int]] = None,
@@ -934,9 +934,9 @@ class Deployment(pulumi.CustomResource):
             password: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-            private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
+            private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]]] = None,
+            public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict', 'outputs.DeploymentPublicNetwork']]]]] = None,
             ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             replica_count: pulumi.Input[Optional[_builtins.int]] = None,
@@ -963,9 +963,9 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password for the first user of the deployment in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`. Updates are applied via the Users API to the initial user (an administrator when present, otherwise the first user by name).
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
-        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]] public_networks: Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict', 'outputs.DeploymentPublicNetwork']]]] public_networks: Public endpoint configuration. When defined, a public endpoint is created. Omitting this block creates a deployment without a public endpoint.
         :param pulumi.Input[_builtins.int] ram_per_cpu: RAM per CPU in GB.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.int] replica_count: Number of replicas. Can be updated in place via the deployment configuration API.
@@ -1003,6 +1003,54 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["version"] = version
         return Deployment(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cpu_max: pulumi.Input[Optional[_builtins.int]] = None,
+            cpu_min: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            move_factor: pulumi.Input[Optional[_builtins.float]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict', 'outputs.DeploymentPublicNetwork']]]]] = None,
+            ram_per_cpu: pulumi.Input[Optional[_builtins.int]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            replica_count: pulumi.Input[Optional[_builtins.int]] = None,
+            shard_count: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            started: pulumi.Input[Optional[_builtins.bool]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cpuMax"] = cpu_max
+        __props__["cpuMin"] = cpu_min
+        __props__["createdAt"] = created_at
+        __props__["moveFactor"] = move_factor
+        __props__["name"] = name
+        __props__["password"] = password
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["privateNetwork"] = private_network
+        __props__["projectId"] = project_id
+        __props__["publicNetworks"] = public_networks
+        __props__["ramPerCpu"] = ram_per_cpu
+        __props__["region"] = region
+        __props__["replicaCount"] = replica_count
+        __props__["shardCount"] = shard_count
+        __props__["srn"] = srn
+        __props__["started"] = started
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        __props__["version"] = version
+        return pulumi.runtime.exists_resource(None, 'scaleway:datawarehouse/deployment:Deployment', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="cpuMax")

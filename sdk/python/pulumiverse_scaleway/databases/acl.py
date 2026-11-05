@@ -152,7 +152,7 @@ class Acl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]]] = None,
+                 acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict', 'outputs.AclAclRule']]]]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -242,7 +242,7 @@ class Acl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]] acl_rules: A list of ACLs (structure is described below)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict', 'outputs.AclAclRule']]]] acl_rules: A list of ACLs (structure is described below)
                
                > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
@@ -355,7 +355,7 @@ class Acl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]]] = None,
+                 acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict', 'outputs.AclAclRule']]]]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -386,7 +386,7 @@ class Acl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]]] = None,
+            acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict', 'outputs.AclAclRule']]]]] = None,
             instance_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None) -> 'Acl':
         """
@@ -396,7 +396,7 @@ class Acl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]] acl_rules: A list of ACLs (structure is described below)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict', 'outputs.AclAclRule']]]] acl_rules: A list of ACLs (structure is described below)
                
                > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
@@ -412,6 +412,18 @@ class Acl(pulumi.CustomResource):
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["region"] = region
         return Acl(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict', 'outputs.AclAclRule']]]]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["aclRules"] = acl_rules
+        __props__["instanceId"] = instance_id
+        __props__["region"] = region
+        return pulumi.runtime.exists_resource(None, 'scaleway:databases/acl:Acl', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="aclRules")

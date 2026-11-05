@@ -1219,6 +1219,62 @@ class Function(pulumi.CustomResource):
         __props__.__dict__["zip_hash"] = zip_hash
         return Function(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            deploy: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            domain_name: pulumi.Input[Optional[_builtins.str]] = None,
+            environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            handler: pulumi.Input[Optional[_builtins.str]] = None,
+            http_option: pulumi.Input[Optional[_builtins.str]] = None,
+            max_scale: pulumi.Input[Optional[_builtins.int]] = None,
+            memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            min_scale: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            privacy: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            runtime: pulumi.Input[Optional[_builtins.str]] = None,
+            sandbox: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            zip_file: pulumi.Input[Optional[_builtins.str]] = None,
+            zip_hash: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cpuLimit"] = cpu_limit
+        __props__["deploy"] = deploy
+        __props__["description"] = description
+        __props__["domainName"] = domain_name
+        __props__["environmentVariables"] = environment_variables
+        __props__["handler"] = handler
+        __props__["httpOption"] = http_option
+        __props__["maxScale"] = max_scale
+        __props__["memoryLimit"] = memory_limit
+        __props__["minScale"] = min_scale
+        __props__["name"] = name
+        __props__["namespaceId"] = namespace_id
+        __props__["organizationId"] = organization_id
+        __props__["privacy"] = privacy
+        __props__["privateNetworkId"] = private_network_id
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["runtime"] = runtime
+        __props__["sandbox"] = sandbox
+        __props__["secretEnvironmentVariables"] = secret_environment_variables
+        __props__["srn"] = srn
+        __props__["tags"] = tags
+        __props__["timeout"] = timeout
+        __props__["zipFile"] = zip_file
+        __props__["zipHash"] = zip_hash
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/function:Function', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="cpuLimit")
     def cpu_limit(self) -> pulumi.Output[_builtins.int]:

@@ -45,8 +45,8 @@ import (
 //				return err
 //			}
 //			_, err = iam.NewGroupMembership(ctx, "member", &iam.GroupMembershipArgs{
-//				GroupId:       group.ID().ToIDOutput().ToStringOutput(),
-//				ApplicationId: app.ID().ToIDOutput().ToStringOutput(),
+//				GroupId:       group.ID(),
+//				ApplicationId: app.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -140,6 +140,12 @@ type IamGroupMembershipState struct {
 
 func (IamGroupMembershipState) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamGroupMembershipState)(nil)).Elem()
+}
+
+// IamGroupMembershipExists checks whether an existing IamGroupMembership resource with the given ID exists.
+func IamGroupMembershipExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IamGroupMembershipState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/iamGroupMembership:IamGroupMembership", id, state, "", opts...)
 }
 
 type iamGroupMembershipArgs struct {

@@ -594,8 +594,8 @@ class AppleSiliconServer(pulumi.CustomResource):
                  enable_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  os_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateIpArgs', 'AppleSiliconServerPrivateIpArgsDict']]]]] = None,
-                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict']]]]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateIpArgs', 'AppleSiliconServerPrivateIpArgsDict', 'outputs.AppleSiliconServerPrivateIp']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict', 'outputs.AppleSiliconServerPrivateNetwork']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  public_bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
                  runner_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -675,8 +675,8 @@ class AppleSiliconServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[_builtins.str] name: The name of the server.
         :param pulumi.Input[_builtins.str] os_id: The ID of the OS to use for the server.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateIpArgs', 'AppleSiliconServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the server.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateIpArgs', 'AppleSiliconServerPrivateIpArgsDict', 'outputs.AppleSiliconServerPrivateIp']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict', 'outputs.AppleSiliconServerPrivateNetwork']]]] private_networks: The private networks to attach to the server
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.int] public_bandwidth: Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
@@ -779,8 +779,8 @@ class AppleSiliconServer(pulumi.CustomResource):
                  enable_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  os_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateIpArgs', 'AppleSiliconServerPrivateIpArgsDict']]]]] = None,
-                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict']]]]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateIpArgs', 'AppleSiliconServerPrivateIpArgsDict', 'outputs.AppleSiliconServerPrivateIp']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict', 'outputs.AppleSiliconServerPrivateNetwork']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  public_bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
                  runner_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -841,8 +841,8 @@ class AppleSiliconServer(pulumi.CustomResource):
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             os_id: pulumi.Input[Optional[_builtins.str]] = None,
             password: pulumi.Input[Optional[_builtins.str]] = None,
-            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateIpArgs', 'AppleSiliconServerPrivateIpArgsDict']]]]] = None,
-            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict']]]]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateIpArgs', 'AppleSiliconServerPrivateIpArgsDict', 'outputs.AppleSiliconServerPrivateIp']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict', 'outputs.AppleSiliconServerPrivateNetwork']]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             public_bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
             runner_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -870,8 +870,8 @@ class AppleSiliconServer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the server is associated with.
         :param pulumi.Input[_builtins.str] os_id: The ID of the OS to use for the server.
         :param pulumi.Input[_builtins.str] password: The password of the server
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateIpArgs', 'AppleSiliconServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the server.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateIpArgs', 'AppleSiliconServerPrivateIpArgsDict', 'outputs.AppleSiliconServerPrivateIp']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the server.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict', 'outputs.AppleSiliconServerPrivateNetwork']]]] private_networks: The private networks to attach to the server
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.int] public_bandwidth: Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
@@ -915,6 +915,56 @@ class AppleSiliconServer(pulumi.CustomResource):
         __props__.__dict__["vpc_status"] = vpc_status
         __props__.__dict__["zone"] = zone
         return AppleSiliconServer(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            commitment: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            deletable_at: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
+            ip: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            os_id: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateIpArgs', 'AppleSiliconServerPrivateIpArgsDict', 'outputs.AppleSiliconServerPrivateIp']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AppleSiliconServerPrivateNetworkArgs', 'AppleSiliconServerPrivateNetworkArgsDict', 'outputs.AppleSiliconServerPrivateNetwork']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
+            runner_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None,
+            vnc_url: pulumi.Input[Optional[_builtins.str]] = None,
+            vpc_status: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["commitment"] = commitment
+        __props__["createdAt"] = created_at
+        __props__["deletableAt"] = deletable_at
+        __props__["enableVpc"] = enable_vpc
+        __props__["ip"] = ip
+        __props__["name"] = name
+        __props__["organizationId"] = organization_id
+        __props__["osId"] = os_id
+        __props__["password"] = password
+        __props__["privateIps"] = private_ips
+        __props__["privateNetworks"] = private_networks
+        __props__["projectId"] = project_id
+        __props__["publicBandwidth"] = public_bandwidth
+        __props__["runnerIds"] = runner_ids
+        __props__["srn"] = srn
+        __props__["state"] = state
+        __props__["type"] = type
+        __props__["updatedAt"] = updated_at
+        __props__["username"] = username
+        __props__["vncUrl"] = vnc_url
+        __props__["vpcStatus"] = vpc_status
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/appleSiliconServer:AppleSiliconServer', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

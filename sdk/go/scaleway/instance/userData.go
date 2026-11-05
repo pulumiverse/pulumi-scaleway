@@ -58,7 +58,7 @@ import (
 //			}
 //			// User data with a single value
 //			_, err = instance.NewUserData(ctx, "main", &instance.UserDataArgs{
-//				ServerId: mainServer.ID().ToIDOutput().ToStringOutput(),
+//				ServerId: mainServer.ID(),
 //				Key:      pulumi.String("foo"),
 //				Value:    pulumi.String("bar"),
 //			})
@@ -69,7 +69,7 @@ import (
 //			var data []*instance.UserData
 //			for key0, val0 := range userData {
 //				__res, err := instance.NewUserData(ctx, fmt.Sprintf("data-%v", key0), &instance.UserDataArgs{
-//					ServerId: mainServer.ID().ToIDOutput().ToStringOutput(),
+//					ServerId: mainServer.ID(),
 //					Key:      pulumi.String(key0),
 //					Value:    pulumi.Any(val0),
 //				})
@@ -187,6 +187,12 @@ type UserDataState struct {
 
 func (UserDataState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userDataState)(nil)).Elem()
+}
+
+// UserDataExists checks whether an existing UserData resource with the given ID exists.
+func UserDataExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserDataState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:instance/userData:UserData", id, state, "", opts...)
 }
 
 type userDataArgs struct {

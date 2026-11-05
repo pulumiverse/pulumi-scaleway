@@ -69,7 +69,7 @@ namespace Pulumiverse.Scaleway
     ///         NodeType = "DB-DEV-M",
     ///         CloneFrom = source.Id,
     ///         VolumeType = "lssd",
-    ///         LoadBalancer = null,
+    ///         LoadBalancer = new() { },
     ///     });
     /// 
     /// });

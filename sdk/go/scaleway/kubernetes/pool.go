@@ -61,10 +61,10 @@ import (
 //			}
 //			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				Name:             pulumi.String("placement_group"),
-//				ClusterId:        cluster.ID().ToIDOutput().ToStringOutput(),
+//				ClusterId:        cluster.ID(),
 //				Version:          cluster.Version,
 //				NodeType:         pulumi.String("gp1_xs"),
-//				PlacementGroupId: placementGroup.ID().ToIDOutput().ToStringOutput(),
+//				PlacementGroupId: placementGroup.ID(),
 //				Size:             pulumi.Int(1),
 //				Region:           cluster.Region,
 //				Zone:             placementGroup.Zone,
@@ -488,6 +488,12 @@ type PoolState struct {
 
 func (PoolState) ElementType() reflect.Type {
 	return reflect.TypeOf((*poolState)(nil)).Elem()
+}
+
+// PoolExists checks whether an existing Pool resource with the given ID exists.
+func PoolExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PoolState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:kubernetes/pool:Pool", id, state, "", opts...)
 }
 
 type poolArgs struct {

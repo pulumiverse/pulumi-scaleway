@@ -562,6 +562,36 @@ class Organization(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         return Organization(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_id: pulumi.Input[Optional[_builtins.str]] = None,
+            email: pulumi.Input[Optional[_builtins.str]] = None,
+            lock_reason_message: pulumi.Input[Optional[_builtins.str]] = None,
+            locked_at: pulumi.Input[Optional[_builtins.str]] = None,
+            locked_by: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_name: pulumi.Input[Optional[_builtins.str]] = None,
+            owner_firstname: pulumi.Input[Optional[_builtins.str]] = None,
+            owner_lastname: pulumi.Input[Optional[_builtins.str]] = None,
+            partner_id: pulumi.Input[Optional[_builtins.str]] = None,
+            phone_number: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["customerId"] = customer_id
+        __props__["email"] = email
+        __props__["lockReasonMessage"] = lock_reason_message
+        __props__["lockedAt"] = locked_at
+        __props__["lockedBy"] = locked_by
+        __props__["organizationName"] = organization_name
+        __props__["ownerFirstname"] = owner_firstname
+        __props__["ownerLastname"] = owner_lastname
+        __props__["partnerId"] = partner_id
+        __props__["phoneNumber"] = phone_number
+        __props__["status"] = status
+        return pulumi.runtime.exists_resource(None, 'scaleway:partner/organization:Organization', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:

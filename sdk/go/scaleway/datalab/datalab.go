@@ -38,7 +38,7 @@ import (
 //				return err
 //			}
 //			mainPrivateNetwork, err := network.NewPrivateNetwork(ctx, "main", &network.PrivateNetworkArgs{
-//				VpcId:  main.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:  main.ID(),
 //				Region: pulumi.String("fr-par"),
 //			})
 //			if err != nil {
@@ -47,7 +47,7 @@ import (
 //			_, err = datalab.NewDatalab(ctx, "main", &datalab.DatalabArgs{
 //				Name:             pulumi.String("my-datalab"),
 //				SparkVersion:     pulumi.String("4.0.0"),
-//				PrivateNetworkId: mainPrivateNetwork.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: mainPrivateNetwork.ID(),
 //				Region:           pulumi.String("fr-par"),
 //				Main: &datalab.DatalabMainArgs{
 //					NodeType: pulumi.String("DATALAB-SHARED-4C-8G"),
@@ -217,6 +217,12 @@ type DatalabState struct {
 
 func (DatalabState) ElementType() reflect.Type {
 	return reflect.TypeOf((*datalabState)(nil)).Elem()
+}
+
+// DatalabExists checks whether an existing Datalab resource with the given ID exists.
+func DatalabExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DatalabState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:datalab/datalab:Datalab", id, state, "", opts...)
 }
 
 type datalabArgs struct {

@@ -841,6 +841,50 @@ class PublicGateway(pulumi.CustomResource):
         __props__.__dict__["zone"] = zone
         return PublicGateway(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bandwidth: pulumi.Input[Optional[_builtins.int]] = None,
+            bastion_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            bastion_port: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_smtp: pulumi.Input[Optional[_builtins.bool]] = None,
+            ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+            move_to_ipam: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            refresh_ssh_keys: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            upstream_dns_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowedIpRanges"] = allowed_ip_ranges
+        __props__["bandwidth"] = bandwidth
+        __props__["bastionEnabled"] = bastion_enabled
+        __props__["bastionPort"] = bastion_port
+        __props__["createdAt"] = created_at
+        __props__["enableSmtp"] = enable_smtp
+        __props__["ipId"] = ip_id
+        __props__["moveToIpam"] = move_to_ipam
+        __props__["name"] = name
+        __props__["organizationId"] = organization_id
+        __props__["projectId"] = project_id
+        __props__["refreshSshKeys"] = refresh_ssh_keys
+        __props__["srn"] = srn
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["type"] = type
+        __props__["updatedAt"] = updated_at
+        __props__["upstreamDnsServers"] = upstream_dns_servers
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:network/publicGateway:PublicGateway', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowedIpRanges")
     def allowed_ip_ranges(self) -> pulumi.Output[Sequence[_builtins.str]]:

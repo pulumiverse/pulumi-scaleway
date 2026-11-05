@@ -305,6 +305,12 @@ func (PublicGatewayState) ElementType() reflect.Type {
 	return reflect.TypeOf((*publicGatewayState)(nil)).Elem()
 }
 
+// PublicGatewayExists checks whether an existing PublicGateway resource with the given ID exists.
+func PublicGatewayExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PublicGatewayState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:network/publicGateway:PublicGateway", id, state, "", opts...)
+}
+
 type publicGatewayArgs struct {
 	// Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
 	AllowedIpRanges []string `pulumi:"allowedIpRanges"`
