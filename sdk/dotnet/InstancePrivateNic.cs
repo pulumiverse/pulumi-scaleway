@@ -173,16 +173,28 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the server associated with.
+        /// The ID of the security group associated with the private network interface.
+        /// </summary>
+        [Output("securityGroupId")]
+        public Output<string?> SecurityGroupId { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the server associated with the private network interface.
         /// </summary>
         [Output("serverId")]
-        public Output<string> ServerId { get; private set; } = null!;
+        public Output<string?> ServerId { get; private set; } = null!;
 
         /// <summary>
         /// The Scaleway Resource Name (SRN) of the private network interface.
         /// </summary>
         [Output("srn")]
         public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
+        /// The status of the private network interface.
+        /// </summary>
+        [Output("status")]
+        public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
         /// The tags associated with the private NIC.
@@ -293,10 +305,16 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The ID of the server associated with.
+        /// The ID of the security group associated with the private network interface.
         /// </summary>
-        [Input("serverId", required: true)]
-        public Input<string> ServerId { get; set; } = null!;
+        [Input("securityGroupId")]
+        public Input<string>? SecurityGroupId { get; set; }
+
+        /// <summary>
+        /// The ID of the server associated with the private network interface.
+        /// </summary>
+        [Input("serverId")]
+        public Input<string>? ServerId { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
@@ -380,7 +398,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The ID of the server associated with.
+        /// The ID of the security group associated with the private network interface.
+        /// </summary>
+        [Input("securityGroupId")]
+        public Input<string>? SecurityGroupId { get; set; }
+
+        /// <summary>
+        /// The ID of the server associated with the private network interface.
         /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
@@ -390,6 +414,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("srn")]
         public Input<string>? Srn { get; set; }
+
+        /// <summary>
+        /// The status of the private network interface.
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

@@ -147,6 +147,10 @@ export class Exporter extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the data export.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * Status of the data export (`creating`, `ready`, `error`).
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -177,6 +181,7 @@ export class Exporter extends pulumi.CustomResource {
             resourceInputs["otlpDestination"] = state?.otlpDestination;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
             resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
@@ -193,6 +198,7 @@ export class Exporter extends pulumi.CustomResource {
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -241,6 +247,10 @@ export interface ExporterState {
      * ) The region where the exporter is located.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the data export.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * Status of the data export (`creating`, `ready`, `error`).
      */

@@ -27,7 +27,7 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, encryption_at_rest=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, maintenances=None, name=None, node_type=None, organization_id=None, password=None, password_wo=None, password_wo_version=None, private_ips=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, snapshot_id=None, tags=None, upgradable_versions=None, user_name=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, clone_from=None, disable_backup=None, encryption_at_rest=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, maintenances=None, name=None, node_type=None, organization_id=None, password=None, password_wo=None, password_wo_version=None, private_ips=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, snapshot_id=None, tags=None, upgradable_versions=None, user_name=None, volume_size_in_gb=None, volume_type=None):
         if backup_same_region and not isinstance(backup_same_region, bool):
             raise TypeError("Expected argument 'backup_same_region' to be a bool")
         pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -40,6 +40,9 @@ class GetInstanceResult:
         if certificate and not isinstance(certificate, str):
             raise TypeError("Expected argument 'certificate' to be a str")
         pulumi.set(__self__, "certificate", certificate)
+        if clone_from and not isinstance(clone_from, str):
+            raise TypeError("Expected argument 'clone_from' to be a str")
+        pulumi.set(__self__, "clone_from", clone_from)
         if disable_backup and not isinstance(disable_backup, bool):
             raise TypeError("Expected argument 'disable_backup' to be a bool")
         pulumi.set(__self__, "disable_backup", disable_backup)
@@ -150,6 +153,11 @@ class GetInstanceResult:
     @pulumi.getter
     def certificate(self) -> _builtins.str:
         return pulumi.get(self, "certificate")
+
+    @_builtins.property
+    @pulumi.getter(name="cloneFrom")
+    def clone_from(self) -> _builtins.str:
+        return pulumi.get(self, "clone_from")
 
     @_builtins.property
     @pulumi.getter(name="disableBackup")
@@ -315,6 +323,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             backup_schedule_frequency=self.backup_schedule_frequency,
             backup_schedule_retention=self.backup_schedule_retention,
             certificate=self.certificate,
+            clone_from=self.clone_from,
             disable_backup=self.disable_backup,
             encryption_at_rest=self.encryption_at_rest,
             endpoint_ip=self.endpoint_ip,
@@ -378,6 +387,7 @@ def get_instance(instance_id: Optional[_builtins.str] = None,
         backup_schedule_frequency=pulumi.get(__ret__, 'backup_schedule_frequency'),
         backup_schedule_retention=pulumi.get(__ret__, 'backup_schedule_retention'),
         certificate=pulumi.get(__ret__, 'certificate'),
+        clone_from=pulumi.get(__ret__, 'clone_from'),
         disable_backup=pulumi.get(__ret__, 'disable_backup'),
         encryption_at_rest=pulumi.get(__ret__, 'encryption_at_rest'),
         endpoint_ip=pulumi.get(__ret__, 'endpoint_ip'),
@@ -438,6 +448,7 @@ def get_instance_output(instance_id: pulumi.Input[Optional[Optional[_builtins.st
         backup_schedule_frequency=pulumi.get(__response__, 'backup_schedule_frequency'),
         backup_schedule_retention=pulumi.get(__response__, 'backup_schedule_retention'),
         certificate=pulumi.get(__response__, 'certificate'),
+        clone_from=pulumi.get(__response__, 'clone_from'),
         disable_backup=pulumi.get(__response__, 'disable_backup'),
         encryption_at_rest=pulumi.get(__response__, 'encryption_at_rest'),
         endpoint_ip=pulumi.get(__response__, 'endpoint_ip'),

@@ -129,6 +129,8 @@ type CockpitAlertManager struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the alert manager.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 }
 
 // NewCockpitAlertManager registers a new resource with the given unique name, arguments, and options.
@@ -175,6 +177,8 @@ type cockpitAlertManagerState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the alert manager.
+	Srn *string `pulumi:"srn"`
 }
 
 type CockpitAlertManagerState struct {
@@ -192,6 +196,8 @@ type CockpitAlertManagerState struct {
 	ProjectId pulumi.StringPtrInput
 	// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the alert manager.
+	Srn pulumi.StringPtrInput
 }
 
 func (CockpitAlertManagerState) ElementType() reflect.Type {
@@ -346,6 +352,11 @@ func (o CockpitAlertManagerOutput) ProjectId() pulumi.StringOutput {
 // ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 func (o CockpitAlertManagerOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *CockpitAlertManager) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the alert manager.
+func (o CockpitAlertManagerOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *CockpitAlertManager) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 type CockpitAlertManagerArrayOutput struct{ *pulumi.OutputState }

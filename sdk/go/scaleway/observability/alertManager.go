@@ -127,6 +127,8 @@ type AlertManager struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the alert manager.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 }
 
 // NewAlertManager registers a new resource with the given unique name, arguments, and options.
@@ -179,6 +181,8 @@ type alertManagerState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 	Region *string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the alert manager.
+	Srn *string `pulumi:"srn"`
 }
 
 type AlertManagerState struct {
@@ -196,6 +200,8 @@ type AlertManagerState struct {
 	ProjectId pulumi.StringPtrInput
 	// ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 	Region pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the alert manager.
+	Srn pulumi.StringPtrInput
 }
 
 func (AlertManagerState) ElementType() reflect.Type {
@@ -350,6 +356,11 @@ func (o AlertManagerOutput) ProjectId() pulumi.StringOutput {
 // ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
 func (o AlertManagerOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlertManager) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the alert manager.
+func (o AlertManagerOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlertManager) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 type AlertManagerArrayOutput struct{ *pulumi.OutputState }

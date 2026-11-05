@@ -88,8 +88,6 @@ type Webhosting struct {
 	// The active options of the hosting.
 	Options WebhostingOptionArrayOutput `pulumi:"options"`
 	// (Deprecated) The organization ID the hosting is associated with.
-	//
-	// Deprecated: The organizationId field is deprecated and will be removed in the next major version.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// The hostname of the host platform.
 	PlatformHostname pulumi.StringOutput `pulumi:"platformHostname"`
@@ -171,8 +169,6 @@ type webhostingState struct {
 	// The active options of the hosting.
 	Options []WebhostingOption `pulumi:"options"`
 	// (Deprecated) The organization ID the hosting is associated with.
-	//
-	// Deprecated: The organizationId field is deprecated and will be removed in the next major version.
 	OrganizationId *string `pulumi:"organizationId"`
 	// The hostname of the host platform.
 	PlatformHostname *string `pulumi:"platformHostname"`
@@ -216,8 +212,6 @@ type WebhostingState struct {
 	// The active options of the hosting.
 	Options WebhostingOptionArrayInput
 	// (Deprecated) The organization ID the hosting is associated with.
-	//
-	// Deprecated: The organizationId field is deprecated and will be removed in the next major version.
 	OrganizationId pulumi.StringPtrInput
 	// The hostname of the host platform.
 	PlatformHostname pulumi.StringPtrInput
@@ -416,8 +410,6 @@ func (o WebhostingOutput) Options() WebhostingOptionArrayOutput {
 }
 
 // (Deprecated) The organization ID the hosting is associated with.
-//
-// Deprecated: The organizationId field is deprecated and will be removed in the next major version.
 func (o WebhostingOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }

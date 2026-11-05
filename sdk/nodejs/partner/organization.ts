@@ -121,6 +121,10 @@ export class Organization extends pulumi.CustomResource {
      */
     declare public readonly phoneNumber: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the organization.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The current status of the organization.
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
@@ -149,6 +153,7 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["ownerLastname"] = state?.ownerLastname;
             resourceInputs["partnerId"] = state?.partnerId;
             resourceInputs["phoneNumber"] = state?.phoneNumber;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["status"] = state?.status;
         } else {
             const args = argsOrState as OrganizationArgs | undefined;
@@ -178,6 +183,7 @@ export class Organization extends pulumi.CustomResource {
             resourceInputs["lockReasonMessage"] = undefined /*out*/;
             resourceInputs["lockedAt"] = undefined /*out*/;
             resourceInputs["lockedBy"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -233,6 +239,10 @@ export interface OrganizationState {
      * The phone number of the new organization owner.
      */
     phoneNumber?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the organization.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The current status of the organization.
      */

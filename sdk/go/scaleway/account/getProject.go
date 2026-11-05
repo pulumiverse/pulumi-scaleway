@@ -40,8 +40,9 @@ type LookupProjectArgs struct {
 
 // A collection of values returned by getProject.
 type LookupProjectResult struct {
-	CreatedAt   string `pulumi:"createdAt"`
-	Description string `pulumi:"description"`
+	CreatedAt           string `pulumi:"createdAt"`
+	DeleteWithResources bool   `pulumi:"deleteWithResources"`
+	Description         string `pulumi:"description"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string  `pulumi:"id"`
 	Name           *string `pulumi:"name"`
@@ -91,6 +92,10 @@ func (o LookupProjectResultOutput) ToLookupProjectResultOutputWithContext(ctx co
 
 func (o LookupProjectResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupProjectResultOutput) DeleteWithResources() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProjectResult) bool { return v.DeleteWithResources }).(pulumi.BoolOutput)
 }
 
 func (o LookupProjectResultOutput) Description() pulumi.StringOutput {

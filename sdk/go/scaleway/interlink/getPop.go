@@ -105,6 +105,8 @@ type GetPopResult struct {
 	Name    string  `pulumi:"name"`
 	PopId   *string `pulumi:"popId"`
 	Region  string  `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the PoP.
+	Srn string `pulumi:"srn"`
 }
 
 func GetPopOutput(ctx *pulumi.Context, args GetPopOutputArgs, opts ...pulumi.InvokeOption) GetPopResultOutput {
@@ -186,6 +188,11 @@ func (o GetPopResultOutput) PopId() pulumi.StringPtrOutput {
 
 func (o GetPopResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPopResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the PoP.
+func (o GetPopResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPopResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func init() {

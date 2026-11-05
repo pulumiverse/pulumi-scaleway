@@ -15,6 +15,8 @@ import (
 //
 // Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 //
+// By default, destroying a project that still contains resources fails. Set `deleteWithResources` to `true` to delete the project along with all the resources it contains, including resources not managed by Terraform. Deleting a project is permanent and cannot be undone.
+//
 // ## Example Usage
 //
 // ### Create a Scaleway Project
@@ -35,6 +37,35 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := account.NewProject(ctx, "project", &account.ProjectArgs{
 //				Name: pulumi.String("project"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Create a Scaleway Project and delete all its resources on deletion
+//
+// The following command allows you to create a project named `myProject`. Destroying this project will also delete all the resources it contains, including resources not managed by Terraform.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := account.NewProject(ctx, "project", &account.ProjectArgs{
+//				Name:                pulumi.String("my_project"),
+//				DeleteWithResources: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
@@ -96,6 +127,8 @@ type AccountProject struct {
 
 	// The creation time of the Project.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
+	DeleteWithResources pulumi.BoolPtrOutput `pulumi:"deleteWithResources"`
 	// The description of the Project.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The name of the Project.
@@ -140,6 +173,8 @@ func GetAccountProject(ctx *pulumi.Context,
 type accountProjectState struct {
 	// The creation time of the Project.
 	CreatedAt *string `pulumi:"createdAt"`
+	// If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
+	DeleteWithResources *bool `pulumi:"deleteWithResources"`
 	// The description of the Project.
 	Description *string `pulumi:"description"`
 	// The name of the Project.
@@ -155,6 +190,8 @@ type accountProjectState struct {
 type AccountProjectState struct {
 	// The creation time of the Project.
 	CreatedAt pulumi.StringPtrInput
+	// If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
+	DeleteWithResources pulumi.BoolPtrInput
 	// The description of the Project.
 	Description pulumi.StringPtrInput
 	// The name of the Project.
@@ -172,6 +209,8 @@ func (AccountProjectState) ElementType() reflect.Type {
 }
 
 type accountProjectArgs struct {
+	// If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
+	DeleteWithResources *bool `pulumi:"deleteWithResources"`
 	// The description of the Project.
 	Description *string `pulumi:"description"`
 	// The name of the Project.
@@ -182,6 +221,8 @@ type accountProjectArgs struct {
 
 // The set of arguments for constructing a AccountProject resource.
 type AccountProjectArgs struct {
+	// If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
+	DeleteWithResources pulumi.BoolPtrInput
 	// The description of the Project.
 	Description pulumi.StringPtrInput
 	// The name of the Project.
@@ -280,6 +321,11 @@ func (o AccountProjectOutput) ToAccountProjectOutputWithContext(ctx context.Cont
 // The creation time of the Project.
 func (o AccountProjectOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AccountProject) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
+func (o AccountProjectOutput) DeleteWithResources() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *AccountProject) pulumi.BoolPtrOutput { return v.DeleteWithResources }).(pulumi.BoolPtrOutput)
 }
 
 // The description of the Project.

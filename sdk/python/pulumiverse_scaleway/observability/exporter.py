@@ -166,6 +166,7 @@ class _ExporterState:
                  otlp_destination: pulumi.Input[Optional['ExporterOtlpDestinationArgs']] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  status: pulumi.Input[Optional[_builtins.str]] = None,
                  updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -180,6 +181,7 @@ class _ExporterState:
         :param pulumi.Input['ExporterOtlpDestinationArgs'] otlp_destination: OTLP destination configuration. Cannot be used with `datadog_destination`.
         :param pulumi.Input[_builtins.str] project_id: ) The ID of the Project.
         :param pulumi.Input[_builtins.str] region: ) The region where the exporter is located.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the data export.
         :param pulumi.Input[_builtins.str] status: Status of the data export (`creating`, `ready`, `error`).
         :param pulumi.Input[_builtins.str] updated_at: Date and time of last update (RFC 3339 format).
         """
@@ -201,6 +203,8 @@ class _ExporterState:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if updated_at is not None:
@@ -313,6 +317,18 @@ class _ExporterState:
     @region.setter
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the data export.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -550,6 +566,7 @@ class Exporter(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["srn"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(Exporter, __self__).__init__(
@@ -571,6 +588,7 @@ class Exporter(pulumi.CustomResource):
             otlp_destination: pulumi.Input[Optional[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'Exporter':
         """
@@ -589,6 +607,7 @@ class Exporter(pulumi.CustomResource):
         :param pulumi.Input[Union['ExporterOtlpDestinationArgs', 'ExporterOtlpDestinationArgsDict']] otlp_destination: OTLP destination configuration. Cannot be used with `datadog_destination`.
         :param pulumi.Input[_builtins.str] project_id: ) The ID of the Project.
         :param pulumi.Input[_builtins.str] region: ) The region where the exporter is located.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the data export.
         :param pulumi.Input[_builtins.str] status: Status of the data export (`creating`, `ready`, `error`).
         :param pulumi.Input[_builtins.str] updated_at: Date and time of last update (RFC 3339 format).
         """
@@ -605,6 +624,7 @@ class Exporter(pulumi.CustomResource):
         __props__.__dict__["otlp_destination"] = otlp_destination
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         __props__.__dict__["updated_at"] = updated_at
         return Exporter(resource_name, opts=opts, __props__=__props__)
@@ -680,6 +700,14 @@ class Exporter(pulumi.CustomResource):
         ) The region where the exporter is located.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the data export.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

@@ -19,22 +19,38 @@ __all__ = ['ProjectArgs', 'Project']
 @pulumi.input_type
 class ProjectArgs:
     def __init__(__self__, *,
+                 delete_with_resources: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Project resource.
 
+        :param pulumi.Input[_builtins.bool] delete_with_resources: If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
         :param pulumi.Input[_builtins.str] description: The description of the Project.
         :param pulumi.Input[_builtins.str] name: The name of the Project.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
         """
+        if delete_with_resources is not None:
+            pulumi.set(__self__, "delete_with_resources", delete_with_resources)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteWithResources")
+    def delete_with_resources(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
+        """
+        return pulumi.get(self, "delete_with_resources")
+
+    @delete_with_resources.setter
+    def delete_with_resources(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "delete_with_resources", value)
 
     @_builtins.property
     @pulumi.getter
@@ -77,6 +93,7 @@ class ProjectArgs:
 class _ProjectState:
     def __init__(__self__, *,
                  created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_with_resources: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -86,6 +103,7 @@ class _ProjectState:
         Input properties used for looking up and filtering Project resources.
 
         :param pulumi.Input[_builtins.str] created_at: The creation time of the Project.
+        :param pulumi.Input[_builtins.bool] delete_with_resources: If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
         :param pulumi.Input[_builtins.str] description: The description of the Project.
         :param pulumi.Input[_builtins.str] name: The name of the Project.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
@@ -94,6 +112,8 @@ class _ProjectState:
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if delete_with_resources is not None:
+            pulumi.set(__self__, "delete_with_resources", delete_with_resources)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if name is not None:
@@ -116,6 +136,18 @@ class _ProjectState:
     @created_at.setter
     def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deleteWithResources")
+    def delete_with_resources(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
+        """
+        return pulumi.get(self, "delete_with_resources")
+
+    @delete_with_resources.setter
+    def delete_with_resources(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "delete_with_resources", value)
 
     @_builtins.property
     @pulumi.getter
@@ -184,6 +216,7 @@ class Project(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_with_resources: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -192,6 +225,8 @@ class Project(pulumi.CustomResource):
         The `account.Project` resource allows you to create and manage the Projects of a Scaleway Organization.
 
         Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+
+        By default, destroying a project that still contains resources fails. Set `delete_with_resources` to `true` to delete the project along with all the resources it contains, including resources not managed by Terraform. Deleting a project is permanent and cannot be undone.
 
         ## Example Usage
 
@@ -204,6 +239,19 @@ class Project(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         project = scaleway.account.Project("project", name="project")
+        ```
+
+        ### Create a Scaleway Project and delete all its resources on deletion
+
+        The following command allows you to create a project named `my_project`. Destroying this project will also delete all the resources it contains, including resources not managed by Terraform.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        project = scaleway.account.Project("project",
+            name="my_project",
+            delete_with_resources=True)
         ```
 
         ### Use a project in provider configuration
@@ -232,6 +280,7 @@ class Project(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] delete_with_resources: If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
         :param pulumi.Input[_builtins.str] description: The description of the Project.
         :param pulumi.Input[_builtins.str] name: The name of the Project.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
@@ -247,6 +296,8 @@ class Project(pulumi.CustomResource):
 
         Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 
+        By default, destroying a project that still contains resources fails. Set `delete_with_resources` to `true` to delete the project along with all the resources it contains, including resources not managed by Terraform. Deleting a project is permanent and cannot be undone.
+
         ## Example Usage
 
         ### Create a Scaleway Project
@@ -258,6 +309,19 @@ class Project(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         project = scaleway.account.Project("project", name="project")
+        ```
+
+        ### Create a Scaleway Project and delete all its resources on deletion
+
+        The following command allows you to create a project named `my_project`. Destroying this project will also delete all the resources it contains, including resources not managed by Terraform.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        project = scaleway.account.Project("project",
+            name="my_project",
+            delete_with_resources=True)
         ```
 
         ### Use a project in provider configuration
@@ -299,6 +363,7 @@ class Project(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delete_with_resources: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -311,6 +376,7 @@ class Project(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProjectArgs.__new__(ProjectArgs)
 
+            __props__.__dict__["delete_with_resources"] = delete_with_resources
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
             __props__.__dict__["organization_id"] = organization_id
@@ -330,6 +396,7 @@ class Project(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_with_resources: pulumi.Input[Optional[_builtins.bool]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -343,6 +410,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: The creation time of the Project.
+        :param pulumi.Input[_builtins.bool] delete_with_resources: If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
         :param pulumi.Input[_builtins.str] description: The description of the Project.
         :param pulumi.Input[_builtins.str] name: The name of the Project.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
@@ -354,6 +422,7 @@ class Project(pulumi.CustomResource):
         __props__ = _ProjectState.__new__(_ProjectState)
 
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["delete_with_resources"] = delete_with_resources
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
@@ -368,6 +437,14 @@ class Project(pulumi.CustomResource):
         The creation time of the Project.
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteWithResources")
+    def delete_with_resources(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
+        """
+        return pulumi.get(self, "delete_with_resources")
 
     @_builtins.property
     @pulumi.getter

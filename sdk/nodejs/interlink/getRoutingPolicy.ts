@@ -100,6 +100,9 @@ export interface GetRoutingPolicyResult {
     readonly projectId?: string;
     readonly region?: string;
     readonly routingPolicyId?: string;
+    /**
+     * The Scaleway Resource Name (SRN) of the routing policy.
+     */
     readonly srn: string;
     /**
      * The tags associated with the routing policy.

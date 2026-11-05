@@ -27,7 +27,7 @@ class GetDedicatedConnectionResult:
     """
     A collection of values returned by getDedicatedConnection.
     """
-    def __init__(__self__, available_link_bandwidths=None, bandwidth_mbps=None, connection_id=None, created_at=None, demarcation_info=None, id=None, name=None, organization_id=None, pop_id=None, project_id=None, region=None, status=None, tags=None, updated_at=None, vlan_ranges=None):
+    def __init__(__self__, available_link_bandwidths=None, bandwidth_mbps=None, connection_id=None, created_at=None, demarcation_info=None, id=None, name=None, organization_id=None, pop_id=None, project_id=None, region=None, srn=None, status=None, tags=None, updated_at=None, vlan_ranges=None):
         if available_link_bandwidths and not isinstance(available_link_bandwidths, list):
             raise TypeError("Expected argument 'available_link_bandwidths' to be a list")
         pulumi.set(__self__, "available_link_bandwidths", available_link_bandwidths)
@@ -61,6 +61,9 @@ class GetDedicatedConnectionResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -155,6 +158,14 @@ class GetDedicatedConnectionResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the dedicated connection.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def status(self) -> _builtins.str:
         """
         Status of the dedicated connection.
@@ -203,6 +214,7 @@ class AwaitableGetDedicatedConnectionResult(GetDedicatedConnectionResult):
             pop_id=self.pop_id,
             project_id=self.project_id,
             region=self.region,
+            srn=self.srn,
             status=self.status,
             tags=self.tags,
             updated_at=self.updated_at,
@@ -260,6 +272,7 @@ def get_dedicated_connection(connection_id: Optional[_builtins.str] = None,
         pop_id=pulumi.get(__ret__, 'pop_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
+        srn=pulumi.get(__ret__, 'srn'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
@@ -314,6 +327,7 @@ def get_dedicated_connection_output(connection_id: pulumi.Input[Optional[Optiona
         pop_id=pulumi.get(__response__, 'pop_id'),
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),
+        srn=pulumi.get(__response__, 'srn'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
         updated_at=pulumi.get(__response__, 'updated_at'),

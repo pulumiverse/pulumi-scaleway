@@ -204,9 +204,6 @@ class _HostingState:
         if options is not None:
             pulumi.set(__self__, "options", options)
         if organization_id is not None:
-            warnings.warn("""The organization_id field is deprecated and will be removed in the next major version.""", DeprecationWarning)
-            pulumi.log.warn("""organization_id is deprecated: The organization_id field is deprecated and will be removed in the next major version.""")
-        if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
         if platform_hostname is not None:
             pulumi.set(__self__, "platform_hostname", platform_hostname)
@@ -349,7 +346,6 @@ class _HostingState:
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    @_utilities.deprecated("""The organization_id field is deprecated and will be removed in the next major version.""")
     def organization_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (Deprecated) The organization ID the hosting is associated with.
@@ -790,7 +786,6 @@ class Hosting(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="organizationId")
-    @_utilities.deprecated("""The organization_id field is deprecated and will be removed in the next major version.""")
     def organization_id(self) -> pulumi.Output[_builtins.str]:
         """
         (Deprecated) The organization ID the hosting is associated with.

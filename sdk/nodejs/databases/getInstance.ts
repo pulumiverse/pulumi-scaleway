@@ -54,6 +54,7 @@ export interface GetInstanceResult {
     readonly backupScheduleFrequency: number;
     readonly backupScheduleRetention: number;
     readonly certificate: string;
+    readonly cloneFrom: string;
     readonly disableBackup: boolean;
     readonly encryptionAtRest: boolean;
     readonly endpointIp: string;

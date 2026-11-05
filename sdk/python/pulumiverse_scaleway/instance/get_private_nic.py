@@ -27,7 +27,7 @@ class GetPrivateNicResult:
     """
     A collection of values returned by getPrivateNic.
     """
-    def __init__(__self__, id=None, ip_ids=None, ipam_ip_ids=None, mac_address=None, private_ips=None, private_network_id=None, private_nic_id=None, project_id=None, server_id=None, srn=None, tags=None, zone=None):
+    def __init__(__self__, id=None, ip_ids=None, ipam_ip_ids=None, mac_address=None, private_ips=None, private_network_id=None, private_nic_id=None, project_id=None, security_group_id=None, server_id=None, srn=None, status=None, tags=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -52,12 +52,18 @@ class GetPrivateNicResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if security_group_id and not isinstance(security_group_id, str):
+            raise TypeError("Expected argument 'security_group_id' to be a str")
+        pulumi.set(__self__, "security_group_id", security_group_id)
         if server_id and not isinstance(server_id, str):
             raise TypeError("Expected argument 'server_id' to be a str")
         pulumi.set(__self__, "server_id", server_id)
         if srn and not isinstance(srn, str):
             raise TypeError("Expected argument 'srn' to be a str")
         pulumi.set(__self__, "srn", srn)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -109,6 +115,11 @@ class GetPrivateNicResult:
         return pulumi.get(self, "project_id")
 
     @_builtins.property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> _builtins.str:
+        return pulumi.get(self, "security_group_id")
+
+    @_builtins.property
     @pulumi.getter(name="serverId")
     def server_id(self) -> _builtins.str:
         return pulumi.get(self, "server_id")
@@ -117,6 +128,11 @@ class GetPrivateNicResult:
     @pulumi.getter
     def srn(self) -> _builtins.str:
         return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        return pulumi.get(self, "status")
 
     @_builtins.property
     @pulumi.getter
@@ -143,8 +159,10 @@ class AwaitableGetPrivateNicResult(GetPrivateNicResult):
             private_network_id=self.private_network_id,
             private_nic_id=self.private_nic_id,
             project_id=self.project_id,
+            security_group_id=self.security_group_id,
             server_id=self.server_id,
             srn=self.srn,
+            status=self.status,
             tags=self.tags,
             zone=self.zone)
 
@@ -200,8 +218,10 @@ def get_private_nic(private_network_id: Optional[_builtins.str] = None,
         private_network_id=pulumi.get(__ret__, 'private_network_id'),
         private_nic_id=pulumi.get(__ret__, 'private_nic_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        security_group_id=pulumi.get(__ret__, 'security_group_id'),
         server_id=pulumi.get(__ret__, 'server_id'),
         srn=pulumi.get(__ret__, 'srn'),
+        status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
 def get_private_nic_output(private_network_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -254,7 +274,9 @@ def get_private_nic_output(private_network_id: pulumi.Input[Optional[Optional[_b
         private_network_id=pulumi.get(__response__, 'private_network_id'),
         private_nic_id=pulumi.get(__response__, 'private_nic_id'),
         project_id=pulumi.get(__response__, 'project_id'),
+        security_group_id=pulumi.get(__response__, 'security_group_id'),
         server_id=pulumi.get(__response__, 'server_id'),
         srn=pulumi.get(__response__, 'srn'),
+        status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
         zone=pulumi.get(__response__, 'zone')))

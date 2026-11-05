@@ -244,6 +244,7 @@ namespace Pulumiverse.Scaleway.Account
         /// (Computed) The date and time when the project was created.
         /// </summary>
         public readonly string CreatedAt;
+        public readonly bool DeleteWithResources;
         /// <summary>
         /// (Computed) The description of the project.
         /// </summary>
@@ -274,6 +275,8 @@ namespace Pulumiverse.Scaleway.Account
         private GetProjectsResult(
             string createdAt,
 
+            bool deleteWithResources,
+
             string description,
 
             string id,
@@ -289,6 +292,7 @@ namespace Pulumiverse.Scaleway.Account
             string updatedAt)
         {
             CreatedAt = createdAt;
+            DeleteWithResources = deleteWithResources;
             Description = description;
             Id = id;
             Name = name;

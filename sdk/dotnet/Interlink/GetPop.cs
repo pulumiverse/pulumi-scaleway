@@ -239,6 +239,10 @@ namespace Pulumiverse.Scaleway.Interlink
         public readonly string Name;
         public readonly string? PopId;
         public readonly string Region;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the PoP.
+        /// </summary>
+        public readonly string Srn;
 
         [OutputConstructor]
         private GetPopResult(
@@ -260,7 +264,9 @@ namespace Pulumiverse.Scaleway.Interlink
 
             string? popId,
 
-            string region)
+            string region,
+
+            string srn)
         {
             Address = address;
             AvailableLinkBandwidthsMbps = availableLinkBandwidthsMbps;
@@ -272,6 +278,7 @@ namespace Pulumiverse.Scaleway.Interlink
             Name = name;
             PopId = popId;
             Region = region;
+            Srn = srn;
         }
     }
 }

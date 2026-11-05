@@ -28,7 +28,7 @@ class GetCockpitSourceResult:
     """
     A collection of values returned by getCockpitSource.
     """
-    def __init__(__self__, created_at=None, id=None, name=None, origin=None, project_id=None, push_url=None, region=None, retention_days=None, synchronized_with_grafana=None, type=None, updated_at=None, url=None):
+    def __init__(__self__, created_at=None, id=None, name=None, origin=None, project_id=None, push_url=None, region=None, retention_days=None, srn=None, synchronized_with_grafana=None, type=None, updated_at=None, url=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -53,6 +53,9 @@ class GetCockpitSourceResult:
         if retention_days and not isinstance(retention_days, int):
             raise TypeError("Expected argument 'retention_days' to be a int")
         pulumi.set(__self__, "retention_days", retention_days)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if synchronized_with_grafana and not isinstance(synchronized_with_grafana, bool):
             raise TypeError("Expected argument 'synchronized_with_grafana' to be a bool")
         pulumi.set(__self__, "synchronized_with_grafana", synchronized_with_grafana)
@@ -119,6 +122,14 @@ class GetCockpitSourceResult:
         return pulumi.get(self, "retention_days")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the data source.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="synchronizedWithGrafana")
     def synchronized_with_grafana(self) -> _builtins.bool:
         """
@@ -162,6 +173,7 @@ class AwaitableGetCockpitSourceResult(GetCockpitSourceResult):
             push_url=self.push_url,
             region=self.region,
             retention_days=self.retention_days,
+            srn=self.srn,
             synchronized_with_grafana=self.synchronized_with_grafana,
             type=self.type,
             updated_at=self.updated_at,
@@ -234,6 +246,7 @@ def get_cockpit_source(id: Optional[_builtins.str] = None,
         push_url=pulumi.get(__ret__, 'push_url'),
         region=pulumi.get(__ret__, 'region'),
         retention_days=pulumi.get(__ret__, 'retention_days'),
+        srn=pulumi.get(__ret__, 'srn'),
         synchronized_with_grafana=pulumi.get(__ret__, 'synchronized_with_grafana'),
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
@@ -303,6 +316,7 @@ def get_cockpit_source_output(id: pulumi.Input[Optional[Optional[_builtins.str]]
         push_url=pulumi.get(__response__, 'push_url'),
         region=pulumi.get(__response__, 'region'),
         retention_days=pulumi.get(__response__, 'retention_days'),
+        srn=pulumi.get(__response__, 'srn'),
         synchronized_with_grafana=pulumi.get(__response__, 'synchronized_with_grafana'),
         type=pulumi.get(__response__, 'type'),
         updated_at=pulumi.get(__response__, 'updated_at'),

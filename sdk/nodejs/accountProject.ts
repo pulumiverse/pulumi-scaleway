@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
  *
  * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
  *
+ * By default, destroying a project that still contains resources fails. Set `deleteWithResources` to `true` to delete the project along with all the resources it contains, including resources not managed by Terraform. Deleting a project is permanent and cannot be undone.
+ *
  * ## Example Usage
  *
  * ### Create a Scaleway Project
@@ -20,6 +22,20 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const project = new scaleway.account.Project("project", {name: "project"});
+ * ```
+ *
+ * ### Create a Scaleway Project and delete all its resources on deletion
+ *
+ * The following command allows you to create a project named `myProject`. Destroying this project will also delete all the resources it contains, including resources not managed by Terraform.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const project = new scaleway.account.Project("project", {
+ *     name: "my_project",
+ *     deleteWithResources: true,
+ * });
  * ```
  *
  * ### Use a project in provider configuration
@@ -82,6 +98,10 @@ export class AccountProject extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
+     * If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
+     */
+    declare public readonly deleteWithResources: pulumi.Output<boolean | undefined>;
+    /**
      * The description of the Project.
      */
     declare public readonly description: pulumi.Output<string | undefined>;
@@ -119,6 +139,7 @@ export class AccountProject extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as AccountProjectState | undefined;
             resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["deleteWithResources"] = state?.deleteWithResources;
             resourceInputs["description"] = state?.description;
             resourceInputs["name"] = state?.name;
             resourceInputs["organizationId"] = state?.organizationId;
@@ -126,6 +147,7 @@ export class AccountProject extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as AccountProjectArgs | undefined;
+            resourceInputs["deleteWithResources"] = args?.deleteWithResources;
             resourceInputs["description"] = args?.description;
             resourceInputs["name"] = args?.name;
             resourceInputs["organizationId"] = args?.organizationId;
@@ -146,6 +168,10 @@ export interface AccountProjectState {
      * The creation time of the Project.
      */
     createdAt?: pulumi.Input<string | undefined>;
+    /**
+     * If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
+     */
+    deleteWithResources?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the Project.
      */
@@ -172,6 +198,10 @@ export interface AccountProjectState {
  * The set of arguments for constructing a AccountProject resource.
  */
 export interface AccountProjectArgs {
+    /**
+     * If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to `false`.
+     */
+    deleteWithResources?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the Project.
      */

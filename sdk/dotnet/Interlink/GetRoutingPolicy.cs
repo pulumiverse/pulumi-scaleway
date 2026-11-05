@@ -258,6 +258,9 @@ namespace Pulumiverse.Scaleway.Interlink
         public readonly string? ProjectId;
         public readonly string? Region;
         public readonly string? RoutingPolicyId;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the routing policy.
+        /// </summary>
         public readonly string Srn;
         /// <summary>
         /// The tags associated with the routing policy.

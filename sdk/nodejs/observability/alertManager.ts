@@ -134,6 +134,10 @@ export class AlertManager extends pulumi.CustomResource {
      * ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
      */
     declare public readonly region: pulumi.Output<string>;
+    /**
+     * The Scaleway Resource Name (SRN) of the alert manager.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
 
     /**
      * Create a AlertManager resource with the given unique name, arguments, and options.
@@ -154,6 +158,7 @@ export class AlertManager extends pulumi.CustomResource {
             resourceInputs["preconfiguredAlertIds"] = state?.preconfiguredAlertIds;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
+            resourceInputs["srn"] = state?.srn;
         } else {
             const args = argsOrState as AlertManagerArgs | undefined;
             resourceInputs["contactPoints"] = args?.contactPoints;
@@ -162,6 +167,7 @@ export class AlertManager extends pulumi.CustomResource {
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
             resourceInputs["alertManagerUrl"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/cockpitAlertManager:CockpitAlertManager" }] };
@@ -200,6 +206,10 @@ export interface AlertManagerState {
      * ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
      */
     region?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the alert manager.
+     */
+    srn?: pulumi.Input<string | undefined>;
 }
 
 /**

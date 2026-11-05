@@ -51,6 +51,38 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     //## Example Clone
+    ///     var source = new Scaleway.Databases.Instance("source", new()
+    ///     {
+    ///         Name = "test-rdb-source",
+    ///         NodeType = "DB-DEV-S",
+    ///         Engine = "PostgreSQL-15",
+    ///         IsHaCluster = false,
+    ///         DisableBackup = true,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///     });
+    /// 
+    ///     var clone = new Scaleway.Databases.Instance("clone", new()
+    ///     {
+    ///         Name = "test-rdb-clone",
+    ///         NodeType = "DB-DEV-M",
+    ///         CloneFrom = source.Id,
+    ///         VolumeType = "lssd",
+    ///         LoadBalancer = null,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
     ///     //## Example Engine Upgrade
     ///     // Initial creation with PostgreSQL 14
     ///     var main = new Scaleway.Databases.Instance("main", new()
@@ -170,10 +202,28 @@ namespace Pulumiverse.Scaleway
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `NodeType` or upgrade to a larger one. Conflicts with the `Engine` and `SnapshotId` parameters.
+        /// 
+        /// &gt; **Important** Updates to `CloneFrom` will recreate the Database Instance.
+        /// 
+        /// &gt; **Note** `CloneInstance` only accepts `Name` and optional `NodeType`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+        /// 
+        /// &gt; **Note** Same-apply overrides after clone: set `IsHaCluster` or `DisableBackup` explicitly to change HA/backups; `Tags`, `Settings`, `LogsPolicy`, and endpoints (`LoadBalancer` / `PrivateNetwork`) are also applied during Create. If you omit `IsHaCluster` / `DisableBackup`, the source values are kept.
+        /// 
+        /// &gt; **Note** Not applied during clone Create: `VolumeType` (schema default `Lssd` — set it to match a non-`Lssd` source), `VolumeSizeInGb`, and `ProjectId` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+        /// 
+        /// &gt; **Note** When cloning from Local Storage (`Lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+        /// 
+        /// &gt; **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `LoadBalancer {}` block, or omit the block to remove it (same behaviour as `SnapshotId`).
+        /// </summary>
+        [Output("cloneFrom")]
+        public Output<string?> CloneFrom { get; private set; } = null!;
+
+        /// <summary>
         /// Disable automated backup for the database instance
         /// </summary>
         [Output("disableBackup")]
-        public Output<bool?> DisableBackup { get; private set; } = null!;
+        public Output<bool> DisableBackup { get; private set; } = null!;
 
         /// <summary>
         /// Enable or disable encryption at rest for the Database Instance.
@@ -219,7 +269,7 @@ namespace Pulumiverse.Scaleway
         /// &gt; **Important** Updates to `IsHaCluster` will recreate the Database Instance.
         /// </summary>
         [Output("isHaCluster")]
-        public Output<bool?> IsHaCluster { get; private set; } = null!;
+        public Output<bool> IsHaCluster { get; private set; } = null!;
 
         /// <summary>
         /// List of Load Balancer endpoints of the Database Instance.
@@ -320,7 +370,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableDictionary<string, string>> Settings { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `Engine` parameter and backup settings.
+        /// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `Engine` and `CloneFrom` parameters.
         /// </summary>
         [Output("snapshotId")]
         public Output<string?> SnapshotId { get; private set; } = null!;
@@ -428,6 +478,24 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("backupScheduleRetention")]
         public Input<int>? BackupScheduleRetention { get; set; }
+
+        /// <summary>
+        /// The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `NodeType` or upgrade to a larger one. Conflicts with the `Engine` and `SnapshotId` parameters.
+        /// 
+        /// &gt; **Important** Updates to `CloneFrom` will recreate the Database Instance.
+        /// 
+        /// &gt; **Note** `CloneInstance` only accepts `Name` and optional `NodeType`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+        /// 
+        /// &gt; **Note** Same-apply overrides after clone: set `IsHaCluster` or `DisableBackup` explicitly to change HA/backups; `Tags`, `Settings`, `LogsPolicy`, and endpoints (`LoadBalancer` / `PrivateNetwork`) are also applied during Create. If you omit `IsHaCluster` / `DisableBackup`, the source values are kept.
+        /// 
+        /// &gt; **Note** Not applied during clone Create: `VolumeType` (schema default `Lssd` — set it to match a non-`Lssd` source), `VolumeSizeInGb`, and `ProjectId` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+        /// 
+        /// &gt; **Note** When cloning from Local Storage (`Lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+        /// 
+        /// &gt; **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `LoadBalancer {}` block, or omit the block to remove it (same behaviour as `SnapshotId`).
+        /// </summary>
+        [Input("cloneFrom")]
+        public Input<string>? CloneFrom { get; set; }
 
         /// <summary>
         /// Disable automated backup for the database instance
@@ -588,7 +656,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `Engine` parameter and backup settings.
+        /// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `Engine` and `CloneFrom` parameters.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
@@ -658,6 +726,24 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
+
+        /// <summary>
+        /// The ID of an existing Database Instance to clone. The clone includes all databases, users, and permissions, and is fully independent of its parent. You may keep the same `NodeType` or upgrade to a larger one. Conflicts with the `Engine` and `SnapshotId` parameters.
+        /// 
+        /// &gt; **Important** Updates to `CloneFrom` will recreate the Database Instance.
+        /// 
+        /// &gt; **Note** `CloneInstance` only accepts `Name` and optional `NodeType`. Everything else is inherited from the source. We do not `ConflictsWith` inherited attributes so you can still override some of them in the same apply.
+        /// 
+        /// &gt; **Note** Same-apply overrides after clone: set `IsHaCluster` or `DisableBackup` explicitly to change HA/backups; `Tags`, `Settings`, `LogsPolicy`, and endpoints (`LoadBalancer` / `PrivateNetwork`) are also applied during Create. If you omit `IsHaCluster` / `DisableBackup`, the source values are kept.
+        /// 
+        /// &gt; **Note** Not applied during clone Create: `VolumeType` (schema default `Lssd` — set it to match a non-`Lssd` source), `VolumeSizeInGb`, and `ProjectId` (clone stays in the source project). Align these with the source or expect a follow-up plan/Update.
+        /// 
+        /// &gt; **Note** When cloning from Local Storage (`Lssd`) to a Block Storage node type, change the volume type on the source first. See [How to clone a Database Instance](https://www.scaleway.com/en/docs/managed-databases-for-postgresql-and-mysql/how-to/clone-a-database-instance/).
+        /// 
+        /// &gt; **Note** `CloneInstance` always provisions a public load-balancer endpoint. Keep it with an empty `LoadBalancer {}` block, or omit the block to remove it (same behaviour as `SnapshotId`).
+        /// </summary>
+        [Input("cloneFrom")]
+        public Input<string>? CloneFrom { get; set; }
 
         /// <summary>
         /// Disable automated backup for the database instance
@@ -860,7 +946,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `Engine` parameter and backup settings.
+        /// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `Engine` and `CloneFrom` parameters.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }

@@ -74,7 +74,7 @@ type GetOfferResult struct {
 	// The billing operation identifier for the option.
 	BillingOperationPath string  `pulumi:"billingOperationPath"`
 	ControlPanel         *string `pulumi:"controlPanel"`
-	// The provider-assigned unique ID for this managed resource.
+	// The unique identifier of the option.
 	Id string `pulumi:"id"`
 	// The name of the option.
 	Name    *string `pulumi:"name"`
@@ -84,8 +84,6 @@ type GetOfferResult struct {
 	// The offer price.
 	Price string `pulumi:"price"`
 	// (deprecated) The offer product.
-	//
-	// Deprecated: The product field is deprecated. Please use the offer field instead.
 	Products []GetOfferProduct `pulumi:"products"`
 	Region   string            `pulumi:"region"`
 }
@@ -135,7 +133,7 @@ func (o GetOfferResultOutput) ControlPanel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetOfferResult) *string { return v.ControlPanel }).(pulumi.StringPtrOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The unique identifier of the option.
 func (o GetOfferResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOfferResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -160,8 +158,6 @@ func (o GetOfferResultOutput) Price() pulumi.StringOutput {
 }
 
 // (deprecated) The offer product.
-//
-// Deprecated: The product field is deprecated. Please use the offer field instead.
 func (o GetOfferResultOutput) Products() GetOfferProductArrayOutput {
 	return o.ApplyT(func(v GetOfferResult) []GetOfferProduct { return v.Products }).(GetOfferProductArrayOutput)
 }

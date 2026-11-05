@@ -138,6 +138,9 @@ class GetRoutingPolicyResult:
     @_builtins.property
     @pulumi.getter
     def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the routing policy.
+        """
         return pulumi.get(self, "srn")
 
     @_builtins.property
