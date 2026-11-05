@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			_ = databases.GetInstanceLogsDetailsOutput(ctx, databases.GetInstanceLogsDetailsOutputArgs{
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //			}, nil)
 //			return nil
 //		})

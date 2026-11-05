@@ -287,6 +287,18 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
         __props__.__dict__["zone"] = zone
         return VpcPublicGatewayIpReverseDns(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            gateway_ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+            reverse: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["gatewayIpId"] = gateway_ip_id
+        __props__["reverse"] = reverse
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="gatewayIpId")
     def gateway_ip_id(self) -> pulumi.Output[_builtins.str]:

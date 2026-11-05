@@ -508,6 +508,34 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
         __props__.__dict__["wildcard_domain"] = wildcard_domain
         return EdgeServicesDnsStage(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            cache_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            default_fqdn: pulumi.Input[Optional[_builtins.str]] = None,
+            fqdns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            wildcard_domain: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backendStageId"] = backend_stage_id
+        __props__["cacheStageId"] = cache_stage_id
+        __props__["createdAt"] = created_at
+        __props__["defaultFqdn"] = default_fqdn
+        __props__["fqdns"] = fqdns
+        __props__["pipelineId"] = pipeline_id
+        __props__["projectId"] = project_id
+        __props__["tlsStageId"] = tls_stage_id
+        __props__["type"] = type
+        __props__["updatedAt"] = updated_at
+        __props__["wildcardDomain"] = wildcard_domain
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="backendStageId")
     def backend_stage_id(self) -> pulumi.Output[_builtins.str]:

@@ -108,7 +108,7 @@ import (
 //			_, err = iam.NewPolicy(ctx, "db_access", &iam.PolicyArgs{
 //				Name:          pulumi.String("my policy"),
 //				Description:   pulumi.String("gives app access to serverless database in project"),
-//				ApplicationId: app.ID().ToIDOutput().ToStringOutput(),
+//				ApplicationId: app.ID(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
@@ -124,7 +124,7 @@ import (
 //				return err
 //			}
 //			apiKey, err := iam.NewApiKey(ctx, "api_key", &iam.ApiKeyArgs{
-//				ApplicationId: app.ID().ToIDOutput().ToStringOutput(),
+//				ApplicationId: app.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -269,6 +269,12 @@ type ServerlessDatabaseState struct {
 
 func (ServerlessDatabaseState) ElementType() reflect.Type {
 	return reflect.TypeOf((*serverlessDatabaseState)(nil)).Elem()
+}
+
+// ServerlessDatabaseExists checks whether an existing ServerlessDatabase resource with the given ID exists.
+func ServerlessDatabaseExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ServerlessDatabaseState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:databases/serverlessDatabase:ServerlessDatabase", id, state, "", opts...)
 }
 
 type serverlessDatabaseArgs struct {

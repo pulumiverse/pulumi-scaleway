@@ -544,7 +544,7 @@ class KeyManagerKey(pulumi.CustomResource):
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protection_level: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 rotation_policy: pulumi.Input[Optional[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict']]] = None,
+                 rotation_policy: pulumi.Input[Optional[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict', 'outputs.KeyManagerKeyRotationPolicy']]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  unprotected: pulumi.Input[Optional[_builtins.bool]] = None,
                  usage: pulumi.Input[Optional[_builtins.str]] = None,
@@ -661,7 +661,7 @@ class KeyManagerKey(pulumi.CustomResource):
                **Key Usage and Algorithm (both required):**
         :param pulumi.Input[_builtins.str] protection_level: – The protection level of the key. Valid values are:
         :param pulumi.Input[_builtins.str] region: – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
-        :param pulumi.Input[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict']] rotation_policy: – Rotation policy for the key:
+        :param pulumi.Input[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict', 'outputs.KeyManagerKeyRotationPolicy']] rotation_policy: – Rotation policy for the key:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: – A list of tags to assign to the key.
         :param pulumi.Input[_builtins.bool] unprotected: – If `true`, the key can be deleted. Defaults to `false` (protected).
         :param pulumi.Input[_builtins.str] usage: – The usage type of the key. Valid values:
@@ -794,7 +794,7 @@ class KeyManagerKey(pulumi.CustomResource):
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protection_level: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 rotation_policy: pulumi.Input[Optional[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict']]] = None,
+                 rotation_policy: pulumi.Input[Optional[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict', 'outputs.KeyManagerKeyRotationPolicy']]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  unprotected: pulumi.Input[Optional[_builtins.bool]] = None,
                  usage: pulumi.Input[Optional[_builtins.str]] = None,
@@ -853,7 +853,7 @@ class KeyManagerKey(pulumi.CustomResource):
             region: pulumi.Input[Optional[_builtins.str]] = None,
             rotated_at: pulumi.Input[Optional[_builtins.str]] = None,
             rotation_count: pulumi.Input[Optional[_builtins.int]] = None,
-            rotation_policy: pulumi.Input[Optional[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict']]] = None,
+            rotation_policy: pulumi.Input[Optional[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict', 'outputs.KeyManagerKeyRotationPolicy']]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -882,7 +882,7 @@ class KeyManagerKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: – The region in which to create the key (e.g., `fr-par`). If not specified, defaults to the provider configuration.
         :param pulumi.Input[_builtins.str] rotated_at: The date and time when the key was last rotated.
         :param pulumi.Input[_builtins.int] rotation_count: The number of times the key has been rotated.
-        :param pulumi.Input[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict']] rotation_policy: – Rotation policy for the key:
+        :param pulumi.Input[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict', 'outputs.KeyManagerKeyRotationPolicy']] rotation_policy: – Rotation policy for the key:
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the key.
         :param pulumi.Input[_builtins.str] state: The state of the key (e.g., `enabled`).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: – A list of tags to assign to the key.
@@ -914,6 +914,50 @@ class KeyManagerKey(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["usage"] = usage
         return KeyManagerKey(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            locked: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            origin: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            protected: pulumi.Input[Optional[_builtins.bool]] = None,
+            protection_level: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            rotated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_count: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_policy: pulumi.Input[Optional[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict', 'outputs.KeyManagerKeyRotationPolicy']]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            unprotected: pulumi.Input[Optional[_builtins.bool]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            usage: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["algorithm"] = algorithm
+        __props__["createdAt"] = created_at
+        __props__["description"] = description
+        __props__["locked"] = locked
+        __props__["name"] = name
+        __props__["origin"] = origin
+        __props__["projectId"] = project_id
+        __props__["protected"] = protected
+        __props__["protectionLevel"] = protection_level
+        __props__["region"] = region
+        __props__["rotatedAt"] = rotated_at
+        __props__["rotationCount"] = rotation_count
+        __props__["rotationPolicy"] = rotation_policy
+        __props__["srn"] = srn
+        __props__["state"] = state
+        __props__["tags"] = tags
+        __props__["unprotected"] = unprotected
+        __props__["updatedAt"] = updated_at
+        __props__["usage"] = usage
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/keyManagerKey:KeyManagerKey', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

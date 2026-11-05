@@ -30,8 +30,8 @@ namespace Pulumiverse.Scaleway
     ///     {
     ///         Name = "iam_group_basic",
     ///         Description = "basic description",
-    ///         ApplicationIds = new[] {},
-    ///         UserIds = new[] {},
+    ///         ApplicationIds = new() {},
+    ///         UserIds = new() {},
     ///     });
     /// 
     /// });
@@ -56,7 +56,7 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             app.Id,
     ///         },
-    ///         UserIds = new[] {},
+    ///         UserIds = new() {},
     ///     });
     /// 
     /// });
@@ -84,7 +84,7 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var usersGetUser = .ToDictionary(item =&gt; {
     ///         var __key = item.Key;
-    ///         return __key;
+    ///         return __key.ToString(System.Globalization.CultureInfo.InvariantCulture);
     ///     }, item =&gt; {
     ///         var __value = item.Value;
     ///         return Scaleway.Iam.GetUser.Invoke(new()
@@ -96,7 +96,7 @@ namespace Pulumiverse.Scaleway
     ///     var withUsers = new Scaleway.Iam.Group("with_users", new()
     ///     {
     ///         Name = "iam_group_with_app",
-    ///         ApplicationIds = new[] {},
+    ///         ApplicationIds = new() {},
     ///         UserIds = (usersGetUser).Values.Select(user =&gt; 
     ///         {
     ///             return user.Id;

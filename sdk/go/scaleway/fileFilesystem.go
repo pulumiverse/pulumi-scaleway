@@ -174,6 +174,12 @@ func (FileFilesystemState) ElementType() reflect.Type {
 	return reflect.TypeOf((*fileFilesystemState)(nil)).Elem()
 }
 
+// FileFilesystemExists checks whether an existing FileFilesystem resource with the given ID exists.
+func FileFilesystemExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FileFilesystemState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/fileFilesystem:FileFilesystem", id, state, "", opts...)
+}
+
 type fileFilesystemArgs struct {
 	// The name of the filesystem. If not provided, a random name will be generated.
 	Name *string `pulumi:"name"`

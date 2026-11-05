@@ -167,6 +167,12 @@ func (EdgeServicesDnsStageState) ElementType() reflect.Type {
 	return reflect.TypeOf((*edgeServicesDnsStageState)(nil)).Elem()
 }
 
+// EdgeServicesDnsStageExists checks whether an existing EdgeServicesDnsStage resource with the given ID exists.
+func EdgeServicesDnsStageExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EdgeServicesDnsStageState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage", id, state, "", opts...)
+}
+
 type edgeServicesDnsStageArgs struct {
 	// The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	BackendStageId *string `pulumi:"backendStageId"`

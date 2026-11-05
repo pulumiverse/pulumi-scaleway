@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			_, err = elasticmetal.NewIpMacAddress(ctx, "main", &elasticmetal.IpMacAddressArgs{
-//				FlexibleIpId: main.ID().ToIDOutput().ToStringOutput(),
+//				FlexibleIpId: main.ID(),
 //				Type:         pulumi.String("kvm"),
 //			})
 //			if err != nil {
@@ -77,29 +77,29 @@ import (
 //				return err
 //			}
 //			ip01, err := elasticmetal.NewIp(ctx, "ip01", &elasticmetal.IpArgs{
-//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
+//				ServerId: base.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			ip02, err := elasticmetal.NewIp(ctx, "ip02", &elasticmetal.IpArgs{
-//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
+//				ServerId: base.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			ip03, err := elasticmetal.NewIp(ctx, "ip03", &elasticmetal.IpArgs{
-//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
+//				ServerId: base.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = elasticmetal.NewIpMacAddress(ctx, "main", &elasticmetal.IpMacAddressArgs{
-//				FlexibleIpId: ip01.ID().ToIDOutput().ToStringOutput(),
+//				FlexibleIpId: ip01.ID(),
 //				Type:         pulumi.String("kvm"),
 //				FlexibleIpIdsToDuplicates: pulumi.StringArray{
-//					ip02.ID().ToIDOutput().ToStringOutput(),
-//					ip03.ID().ToIDOutput().ToStringOutput(),
+//					ip02.ID(),
+//					ip03.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -223,6 +223,12 @@ type IpMacAddressState struct {
 
 func (IpMacAddressState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ipMacAddressState)(nil)).Elem()
+}
+
+// IpMacAddressExists checks whether an existing IpMacAddress resource with the given ID exists.
+func IpMacAddressExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IpMacAddressState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:elasticmetal/ipMacAddress:IpMacAddress", id, state, "", opts...)
 }
 
 type ipMacAddressArgs struct {

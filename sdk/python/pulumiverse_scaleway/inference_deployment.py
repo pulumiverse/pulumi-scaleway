@@ -547,10 +547,10 @@ class InferenceDeployment(pulumi.CustomResource):
                  model_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPrivateEndpointArgs', 'InferenceDeploymentPrivateEndpointArgsDict']]] = None,
-                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InferenceDeploymentPrivateIpArgs', 'InferenceDeploymentPrivateIpArgsDict']]]]] = None,
+                 private_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPrivateEndpointArgs', 'InferenceDeploymentPrivateEndpointArgsDict', 'outputs.InferenceDeploymentPrivateEndpoint']]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InferenceDeploymentPrivateIpArgs', 'InferenceDeploymentPrivateIpArgsDict', 'outputs.InferenceDeploymentPrivateIp']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 public_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPublicEndpointArgs', 'InferenceDeploymentPublicEndpointArgsDict']]] = None,
+                 public_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPublicEndpointArgs', 'InferenceDeploymentPublicEndpointArgsDict', 'outputs.InferenceDeploymentPublicEndpoint']]] = None,
                  quantization: pulumi.Input[Optional[_builtins.int]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -594,10 +594,10 @@ class InferenceDeployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] model_id: The model id used for the deployment.
         :param pulumi.Input[_builtins.str] name: The deployment name.
         :param pulumi.Input[_builtins.str] node_type: The node type to use for the deployment. Node types can be found using Scaleway's CLI (`scw inference node-type list`)
-        :param pulumi.Input[Union['InferenceDeploymentPrivateEndpointArgs', 'InferenceDeploymentPrivateEndpointArgsDict']] private_endpoint: Configuration of the deployment's private endpoint.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InferenceDeploymentPrivateIpArgs', 'InferenceDeploymentPrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the deployment.
+        :param pulumi.Input[Union['InferenceDeploymentPrivateEndpointArgs', 'InferenceDeploymentPrivateEndpointArgsDict', 'outputs.InferenceDeploymentPrivateEndpoint']] private_endpoint: Configuration of the deployment's private endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InferenceDeploymentPrivateIpArgs', 'InferenceDeploymentPrivateIpArgsDict', 'outputs.InferenceDeploymentPrivateIp']]]] private_ips: The private IPv4 address associated with the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
-        :param pulumi.Input[Union['InferenceDeploymentPublicEndpointArgs', 'InferenceDeploymentPublicEndpointArgsDict']] public_endpoint: Configuration of the deployment's public endpoint.
+        :param pulumi.Input[Union['InferenceDeploymentPublicEndpointArgs', 'InferenceDeploymentPublicEndpointArgsDict', 'outputs.InferenceDeploymentPublicEndpoint']] public_endpoint: Configuration of the deployment's public endpoint.
         :param pulumi.Input[_builtins.int] quantization: The number of bits each model parameter should be quantized to
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the deployment.
@@ -660,10 +660,10 @@ class InferenceDeployment(pulumi.CustomResource):
                  model_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPrivateEndpointArgs', 'InferenceDeploymentPrivateEndpointArgsDict']]] = None,
-                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InferenceDeploymentPrivateIpArgs', 'InferenceDeploymentPrivateIpArgsDict']]]]] = None,
+                 private_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPrivateEndpointArgs', 'InferenceDeploymentPrivateEndpointArgsDict', 'outputs.InferenceDeploymentPrivateEndpoint']]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InferenceDeploymentPrivateIpArgs', 'InferenceDeploymentPrivateIpArgsDict', 'outputs.InferenceDeploymentPrivateIp']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 public_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPublicEndpointArgs', 'InferenceDeploymentPublicEndpointArgsDict']]] = None,
+                 public_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPublicEndpointArgs', 'InferenceDeploymentPublicEndpointArgsDict', 'outputs.InferenceDeploymentPublicEndpoint']]] = None,
                  quantization: pulumi.Input[Optional[_builtins.int]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -717,10 +717,10 @@ class InferenceDeployment(pulumi.CustomResource):
             model_name: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             node_type: pulumi.Input[Optional[_builtins.str]] = None,
-            private_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPrivateEndpointArgs', 'InferenceDeploymentPrivateEndpointArgsDict']]] = None,
-            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InferenceDeploymentPrivateIpArgs', 'InferenceDeploymentPrivateIpArgsDict']]]]] = None,
+            private_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPrivateEndpointArgs', 'InferenceDeploymentPrivateEndpointArgsDict', 'outputs.InferenceDeploymentPrivateEndpoint']]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InferenceDeploymentPrivateIpArgs', 'InferenceDeploymentPrivateIpArgsDict', 'outputs.InferenceDeploymentPrivateIp']]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            public_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPublicEndpointArgs', 'InferenceDeploymentPublicEndpointArgsDict']]] = None,
+            public_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPublicEndpointArgs', 'InferenceDeploymentPublicEndpointArgsDict', 'outputs.InferenceDeploymentPublicEndpoint']]] = None,
             quantization: pulumi.Input[Optional[_builtins.int]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             size: pulumi.Input[Optional[_builtins.int]] = None,
@@ -742,10 +742,10 @@ class InferenceDeployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] model_name: The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
         :param pulumi.Input[_builtins.str] name: The deployment name.
         :param pulumi.Input[_builtins.str] node_type: The node type to use for the deployment. Node types can be found using Scaleway's CLI (`scw inference node-type list`)
-        :param pulumi.Input[Union['InferenceDeploymentPrivateEndpointArgs', 'InferenceDeploymentPrivateEndpointArgsDict']] private_endpoint: Configuration of the deployment's private endpoint.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InferenceDeploymentPrivateIpArgs', 'InferenceDeploymentPrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the deployment.
+        :param pulumi.Input[Union['InferenceDeploymentPrivateEndpointArgs', 'InferenceDeploymentPrivateEndpointArgsDict', 'outputs.InferenceDeploymentPrivateEndpoint']] private_endpoint: Configuration of the deployment's private endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InferenceDeploymentPrivateIpArgs', 'InferenceDeploymentPrivateIpArgsDict', 'outputs.InferenceDeploymentPrivateIp']]]] private_ips: The private IPv4 address associated with the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
-        :param pulumi.Input[Union['InferenceDeploymentPublicEndpointArgs', 'InferenceDeploymentPublicEndpointArgsDict']] public_endpoint: Configuration of the deployment's public endpoint.
+        :param pulumi.Input[Union['InferenceDeploymentPublicEndpointArgs', 'InferenceDeploymentPublicEndpointArgsDict', 'outputs.InferenceDeploymentPublicEndpoint']] public_endpoint: Configuration of the deployment's public endpoint.
         :param pulumi.Input[_builtins.int] quantization: The number of bits each model parameter should be quantized to
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
         :param pulumi.Input[_builtins.int] size: The size of the pool.
@@ -776,6 +776,48 @@ class InferenceDeployment(pulumi.CustomResource):
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         return InferenceDeployment(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accept_eula: pulumi.Input[Optional[_builtins.bool]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            max_size: pulumi.Input[Optional[_builtins.int]] = None,
+            min_size: pulumi.Input[Optional[_builtins.int]] = None,
+            model_id: pulumi.Input[Optional[_builtins.str]] = None,
+            model_name: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPrivateEndpointArgs', 'InferenceDeploymentPrivateEndpointArgsDict', 'outputs.InferenceDeploymentPrivateEndpoint']]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InferenceDeploymentPrivateIpArgs', 'InferenceDeploymentPrivateIpArgsDict', 'outputs.InferenceDeploymentPrivateIp']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_endpoint: pulumi.Input[Optional[Union['InferenceDeploymentPublicEndpointArgs', 'InferenceDeploymentPublicEndpointArgsDict', 'outputs.InferenceDeploymentPublicEndpoint']]] = None,
+            quantization: pulumi.Input[Optional[_builtins.int]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            size: pulumi.Input[Optional[_builtins.int]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["acceptEula"] = accept_eula
+        __props__["createdAt"] = created_at
+        __props__["maxSize"] = max_size
+        __props__["minSize"] = min_size
+        __props__["modelId"] = model_id
+        __props__["modelName"] = model_name
+        __props__["name"] = name
+        __props__["nodeType"] = node_type
+        __props__["privateEndpoint"] = private_endpoint
+        __props__["privateIps"] = private_ips
+        __props__["projectId"] = project_id
+        __props__["publicEndpoint"] = public_endpoint
+        __props__["quantization"] = quantization
+        __props__["region"] = region
+        __props__["size"] = size
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/inferenceDeployment:InferenceDeployment', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="acceptEula")

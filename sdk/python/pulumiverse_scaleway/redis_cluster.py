@@ -780,17 +780,17 @@ class RedisCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict']]]]] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict', 'outputs.RedisClusterAcl']]]]] = None,
                  cluster_size: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]]] = None,
-                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict', 'outputs.RedisClusterPrivateIp']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict', 'outputs.RedisClusterPrivateNetwork']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 public_network: pulumi.Input[Optional[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']]] = None,
+                 public_network: pulumi.Input[Optional[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict', 'outputs.RedisClusterPublicNetwork']]] = None,
                  settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tls_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -841,7 +841,7 @@ class RedisCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict']]]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict', 'outputs.RedisClusterAcl']]]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         :param pulumi.Input[_builtins.int] cluster_size: The number of nodes in the Redis™ cluster.
                
                > **Important:**
@@ -867,12 +867,12 @@ class RedisCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]] private_ips: The list of private IPv4 addresses associated with the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict', 'outputs.RedisClusterPrivateIp']]]] private_ips: The list of private IPv4 addresses associated with the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict', 'outputs.RedisClusterPrivateNetwork']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
                network will be provided. More details on the Private Network section
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Redis™ cluster is
                associated with.
-        :param pulumi.Input[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
+        :param pulumi.Input[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict', 'outputs.RedisClusterPublicNetwork']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
                with scaleway API or CLI
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Redis™ cluster.
@@ -949,17 +949,17 @@ class RedisCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict']]]]] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict', 'outputs.RedisClusterAcl']]]]] = None,
                  cluster_size: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]]] = None,
-                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict', 'outputs.RedisClusterPrivateIp']]]]] = None,
+                 private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict', 'outputs.RedisClusterPrivateNetwork']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 public_network: pulumi.Input[Optional[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']]] = None,
+                 public_network: pulumi.Input[Optional[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict', 'outputs.RedisClusterPublicNetwork']]] = None,
                  settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tls_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1016,7 +1016,7 @@ class RedisCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict']]]]] = None,
+            acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict', 'outputs.RedisClusterAcl']]]]] = None,
             certificate: pulumi.Input[Optional[_builtins.str]] = None,
             cluster_size: pulumi.Input[Optional[_builtins.int]] = None,
             connection_string: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1026,10 +1026,10 @@ class RedisCluster(pulumi.CustomResource):
             password: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]]] = None,
-            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict', 'outputs.RedisClusterPrivateIp']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict', 'outputs.RedisClusterPrivateNetwork']]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            public_network: pulumi.Input[Optional[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']]] = None,
+            public_network: pulumi.Input[Optional[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict', 'outputs.RedisClusterPublicNetwork']]] = None,
             settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1045,7 +1045,7 @@ class RedisCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict']]]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict', 'outputs.RedisClusterAcl']]]] acls: List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
         :param pulumi.Input[_builtins.str] certificate: The PEM of the certificate used by redis, only when `tls_enabled` is true
         :param pulumi.Input[_builtins.int] cluster_size: The number of nodes in the Redis™ cluster.
                
@@ -1074,12 +1074,12 @@ class RedisCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password for the first user of the Redis™ cluster in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]] private_ips: The list of private IPv4 addresses associated with the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict', 'outputs.RedisClusterPrivateIp']]]] private_ips: The list of private IPv4 addresses associated with the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict', 'outputs.RedisClusterPrivateNetwork']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
                network will be provided. More details on the Private Network section
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Redis™ cluster is
                associated with.
-        :param pulumi.Input[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
+        :param pulumi.Input[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict', 'outputs.RedisClusterPublicNetwork']] public_network: (Optional) Public network details. Only one of `private_network` and `public_network` may be set. The `public_network` block exports:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
                with scaleway API or CLI
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the Redis™ cluster.
@@ -1123,6 +1123,56 @@ class RedisCluster(pulumi.CustomResource):
         __props__.__dict__["version"] = version
         __props__.__dict__["zone"] = zone
         return RedisCluster(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterAclArgs', 'RedisClusterAclArgsDict', 'outputs.RedisClusterAcl']]]]] = None,
+            certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_size: pulumi.Input[Optional[_builtins.int]] = None,
+            connection_string: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict', 'outputs.RedisClusterPrivateIp']]]]] = None,
+            private_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict', 'outputs.RedisClusterPrivateNetwork']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_network: pulumi.Input[Optional[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict', 'outputs.RedisClusterPublicNetwork']]] = None,
+            settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            tls_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["acls"] = acls
+        __props__["certificate"] = certificate
+        __props__["clusterSize"] = cluster_size
+        __props__["connectionString"] = connection_string
+        __props__["createdAt"] = created_at
+        __props__["name"] = name
+        __props__["nodeType"] = node_type
+        __props__["password"] = password
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["privateIps"] = private_ips
+        __props__["privateNetworks"] = private_networks
+        __props__["projectId"] = project_id
+        __props__["publicNetwork"] = public_network
+        __props__["settings"] = settings
+        __props__["srn"] = srn
+        __props__["tags"] = tags
+        __props__["tlsEnabled"] = tls_enabled
+        __props__["updatedAt"] = updated_at
+        __props__["userName"] = user_name
+        __props__["version"] = version
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/redisCluster:RedisCluster', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

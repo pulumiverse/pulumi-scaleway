@@ -38,7 +38,7 @@ import (
 //				return err
 //			}
 //			_ = network.LookupPublicGatewayDhcpOutput(ctx, network.GetPublicGatewayDhcpOutputArgs{
-//				DhcpId: main.ID().ToIDOutput().ToStringOutput(),
+//				DhcpId: main.ID(),
 //			}, nil)
 //			return nil
 //		})

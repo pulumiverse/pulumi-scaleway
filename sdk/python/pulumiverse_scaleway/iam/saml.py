@@ -241,7 +241,7 @@ class Saml(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             entity_id: pulumi.Input[Optional[_builtins.str]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
-            service_provider: pulumi.Input[Optional[Union['SamlServiceProviderArgs', 'SamlServiceProviderArgsDict']]] = None,
+            service_provider: pulumi.Input[Optional[Union['SamlServiceProviderArgs', 'SamlServiceProviderArgsDict', 'outputs.SamlServiceProvider']]] = None,
             single_sign_on_url: pulumi.Input[Optional[_builtins.str]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None) -> 'Saml':
@@ -254,7 +254,7 @@ class Saml(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] entity_id: (Computed) The entity ID of the Service Provider.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID. If not provided, the default organization ID will be used.
-        :param pulumi.Input[Union['SamlServiceProviderArgs', 'SamlServiceProviderArgsDict']] service_provider: (Computed) The Service Provider information. It contains:
+        :param pulumi.Input[Union['SamlServiceProviderArgs', 'SamlServiceProviderArgsDict', 'outputs.SamlServiceProvider']] service_provider: (Computed) The Service Provider information. It contains:
         :param pulumi.Input[_builtins.str] single_sign_on_url: (Computed) The single sign-on URL of the SAML Identity Provider.
         :param pulumi.Input[_builtins.str] srn: (Computed) The Scaleway Resource Name (SRN) of the SAML configuration.
         :param pulumi.Input[_builtins.str] status: (Computed) The status of the SAML configuration.
@@ -270,6 +270,24 @@ class Saml(pulumi.CustomResource):
         __props__.__dict__["srn"] = srn
         __props__.__dict__["status"] = status
         return Saml(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            service_provider: pulumi.Input[Optional[Union['SamlServiceProviderArgs', 'SamlServiceProviderArgsDict', 'outputs.SamlServiceProvider']]] = None,
+            single_sign_on_url: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["entityId"] = entity_id
+        __props__["organizationId"] = organization_id
+        __props__["serviceProvider"] = service_provider
+        __props__["singleSignOnUrl"] = single_sign_on_url
+        __props__["srn"] = srn
+        __props__["status"] = status
+        return pulumi.runtime.exists_resource(None, 'scaleway:iam/saml:Saml', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="entityId")

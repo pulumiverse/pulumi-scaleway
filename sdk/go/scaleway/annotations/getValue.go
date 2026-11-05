@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			production, err := annotations.NewValue(ctx, "production", &annotations.ValueArgs{
-//				KeyId:       environment.ID().ToIDOutput().ToStringOutput(),
+//				KeyId:       environment.ID(),
 //				Name:        pulumi.String("production"),
 //				Description: pulumi.String("Production environment"),
 //			})
@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			_ = annotations.LookupValueOutput(ctx, annotations.GetValueOutputArgs{
-//				ValueId: production.ID().ToIDOutput().ToStringOutput(),
+//				ValueId: production.ID(),
 //			}, nil)
 //			return nil
 //		})

@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = object.NewItem(ctx, "some_file", &object.ItemArgs{
-//				Bucket: someBucket.ID().ToIDOutput().ToStringOutput(),
+//				Bucket: someBucket.ID(),
 //				Key:    pulumi.String("object_path"),
 //				File:   pulumi.String("myfile"),
 //				Hash:   pulumi.String(invokeFilemd5.Result),
@@ -231,6 +231,12 @@ type ObjectItemState struct {
 
 func (ObjectItemState) ElementType() reflect.Type {
 	return reflect.TypeOf((*objectItemState)(nil)).Elem()
+}
+
+// ObjectItemExists checks whether an existing ObjectItem resource with the given ID exists.
+func ObjectItemExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ObjectItemState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/objectItem:ObjectItem", id, state, "", opts...)
 }
 
 type objectItemArgs struct {

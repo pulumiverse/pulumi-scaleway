@@ -173,6 +173,12 @@ func (LoadbalancerCertificateState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerCertificateState)(nil)).Elem()
 }
 
+// LoadbalancerCertificateExists checks whether an existing LoadbalancerCertificate resource with the given ID exists.
+func LoadbalancerCertificateExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerCertificateState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/loadbalancerCertificate:LoadbalancerCertificate", id, state, "", opts...)
+}
+
 type loadbalancerCertificateArgs struct {
 	// The custom type certificate type configuration
 	CustomCertificate *LoadbalancerCertificateCustomCertificate `pulumi:"customCertificate"`

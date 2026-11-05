@@ -75,6 +75,17 @@ export class RoutingPolicy extends pulumi.CustomResource {
         return new RoutingPolicy(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing RoutingPolicy resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: RoutingPolicyState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("scaleway:interlink/routingPolicy:RoutingPolicy", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'scaleway:interlink/routingPolicy:RoutingPolicy';
 

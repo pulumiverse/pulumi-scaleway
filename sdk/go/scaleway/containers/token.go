@@ -39,14 +39,14 @@ import (
 //				return err
 //			}
 //			mainContainer, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Namespace Token
 //			_, err = containers.NewToken(ctx, "namespace", &containers.TokenArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //				ExpiresAt:   pulumi.String("2022-10-18T11:35:15+02:00"),
 //			})
 //			if err != nil {
@@ -54,7 +54,7 @@ import (
 //			}
 //			// Container Token
 //			_, err = containers.NewToken(ctx, "container", &containers.TokenArgs{
-//				ContainerId: mainContainer.ID().ToIDOutput().ToStringOutput(),
+//				ContainerId: mainContainer.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -172,6 +172,12 @@ type TokenState struct {
 
 func (TokenState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tokenState)(nil)).Elem()
+}
+
+// TokenExists checks whether an existing Token resource with the given ID exists.
+func TokenExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TokenState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:containers/token:Token", id, state, "", opts...)
 }
 
 type tokenArgs struct {

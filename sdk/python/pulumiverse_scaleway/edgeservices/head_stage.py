@@ -243,6 +243,16 @@ class HeadStage(pulumi.CustomResource):
         __props__.__dict__["pipeline_id"] = pipeline_id
         return HeadStage(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            head_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            pipeline_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["headStageId"] = head_stage_id
+        __props__["pipelineId"] = pipeline_id
+        return pulumi.runtime.exists_resource(None, 'scaleway:edgeservices/headStage:HeadStage', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="headStageId")
     def head_stage_id(self) -> pulumi.Output[_builtins.str]:

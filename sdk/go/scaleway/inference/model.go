@@ -70,7 +70,7 @@ import (
 //			_, err = inference.NewDeployment(ctx, "my_deployment", &inference.DeploymentArgs{
 //				Name:     pulumi.String("test-inference-deployment-basic"),
 //				NodeType: pulumi.String("H100"),
-//				ModelId:  myModel.ID().ToIDOutput().ToStringOutput(),
+//				ModelId:  myModel.ID(),
 //				PublicEndpoint: &inference.DeploymentPublicEndpointArgs{
 //					IsEnabled: pulumi.Bool(true),
 //				},
@@ -275,6 +275,12 @@ type ModelState struct {
 
 func (ModelState) ElementType() reflect.Type {
 	return reflect.TypeOf((*modelState)(nil)).Elem()
+}
+
+// ModelExists checks whether an existing Model resource with the given ID exists.
+func ModelExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ModelState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:inference/model:Model", id, state, "", opts...)
 }
 
 type modelArgs struct {

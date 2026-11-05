@@ -108,7 +108,7 @@ import (
 //			_, err = iam.NewPolicy(ctx, "db_access", &iam.PolicyArgs{
 //				Name:          pulumi.String("my policy"),
 //				Description:   pulumi.String("gives app access to serverless database in project"),
-//				ApplicationId: app.ID().ToIDOutput().ToStringOutput(),
+//				ApplicationId: app.ID(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
@@ -124,7 +124,7 @@ import (
 //				return err
 //			}
 //			apiKey, err := iam.NewApiKey(ctx, "api_key", &iam.ApiKeyArgs{
-//				ApplicationId: app.ID().ToIDOutput().ToStringOutput(),
+//				ApplicationId: app.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -265,6 +265,12 @@ type SdbDatabaseState struct {
 
 func (SdbDatabaseState) ElementType() reflect.Type {
 	return reflect.TypeOf((*sdbDatabaseState)(nil)).Elem()
+}
+
+// SdbDatabaseExists checks whether an existing SdbDatabase resource with the given ID exists.
+func SdbDatabaseExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SdbDatabaseState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/sdbDatabase:SdbDatabase", id, state, "", opts...)
 }
 
 type sdbDatabaseArgs struct {

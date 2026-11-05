@@ -15,7 +15,6 @@ namespace Pulumiverse.Scaleway.Network
         /// <summary>
         /// Gets information about a VPC ACL (Access Control List).
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -60,7 +59,6 @@ namespace Pulumiverse.Scaleway.Network
         /// <summary>
         /// Gets information about a VPC ACL (Access Control List).
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -104,7 +102,6 @@ namespace Pulumiverse.Scaleway.Network
 
         /// <summary>
         /// Gets information about a VPC ACL (Access Control List).
-        /// 
         /// 
         /// ## Example Usage
         /// 

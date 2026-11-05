@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewSource(ctx, "main", &observability.SourceArgs{
-//				ProjectId:     project.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId:     project.ID(),
 //				Name:          pulumi.String("my-data-source"),
 //				Type:          pulumi.String("metrics"),
 //				RetentionDays: pulumi.Int(6),
@@ -180,6 +180,12 @@ type SourceState struct {
 
 func (SourceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*sourceState)(nil)).Elem()
+}
+
+// SourceExists checks whether an existing Source resource with the given ID exists.
+func SourceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SourceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:observability/source:Source", id, state, "", opts...)
 }
 
 type sourceArgs struct {

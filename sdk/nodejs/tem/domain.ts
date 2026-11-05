@@ -98,7 +98,7 @@ import * as utilities from "../utilities";
  * });
  * const smtpHost = new gitlab.ProjectVariable("smtp_host", {
  *     key: "SMTP_HOST",
- *     value: output(myDomain.then(myDomain => myDomain.smtpsHost)).apply(x =>String(x)),
+ *     value: myDomain.then(myDomain => myDomain.smtpsHost),
  * });
  * ```
  *
@@ -122,6 +122,17 @@ export class Domain extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DomainState, opts?: pulumi.CustomResourceOptions): Domain {
         return new Domain(name, <any>state, { ...opts, id: id });
+    }
+
+    /**
+     * Check whether an existing Domain resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: DomainState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("scaleway:tem/domain:Domain", id, <any>state || {}, { ...opts }, undefined);
     }
 
     /** @internal */

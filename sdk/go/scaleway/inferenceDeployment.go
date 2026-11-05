@@ -220,6 +220,12 @@ func (InferenceDeploymentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*inferenceDeploymentState)(nil)).Elem()
 }
 
+// InferenceDeploymentExists checks whether an existing InferenceDeployment resource with the given ID exists.
+func InferenceDeploymentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InferenceDeploymentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/inferenceDeployment:InferenceDeployment", id, state, "", opts...)
+}
+
 type inferenceDeploymentArgs struct {
 	// Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
 	AcceptEula *bool `pulumi:"acceptEula"`

@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewAlertManager(ctx, "alert_manager", &observability.AlertManagerArgs{
-//				ProjectId: project.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId: project.ID(),
 //				ContactPoints: observability.AlertManagerContactPointArray{
 //					&observability.AlertManagerContactPointArgs{
 //						Email: pulumi.String("alert1@example.com"),
@@ -86,7 +86,7 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewAlertManager(ctx, "alert_manager", &observability.AlertManagerArgs{
-//				ProjectId:           project.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId:           project.ID(),
 //				EnableManagedAlerts: pulumi.Bool(true),
 //				ContactPoints: observability.AlertManagerContactPointArray{
 //					&observability.AlertManagerContactPointArgs{
@@ -200,6 +200,12 @@ type AlertManagerState struct {
 
 func (AlertManagerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*alertManagerState)(nil)).Elem()
+}
+
+// AlertManagerExists checks whether an existing AlertManager resource with the given ID exists.
+func AlertManagerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AlertManagerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:observability/alertManager:AlertManager", id, state, "", opts...)
 }
 
 type alertManagerArgs struct {

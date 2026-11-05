@@ -236,6 +236,12 @@ func (VpcPrivateNetworkState) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpcPrivateNetworkState)(nil)).Elem()
 }
 
+// VpcPrivateNetworkExists checks whether an existing VpcPrivateNetwork resource with the given ID exists.
+func VpcPrivateNetworkExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VpcPrivateNetworkState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork", id, state, "", opts...)
+}
+
 type vpcPrivateNetworkArgs struct {
 	// Defines whether default v4 and v6 routes are propagated for this Private Network.
 	EnableDefaultRoutePropagation *bool `pulumi:"enableDefaultRoutePropagation"`

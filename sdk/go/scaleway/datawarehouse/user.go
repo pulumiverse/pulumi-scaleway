@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = datawarehouse.NewUser(ctx, "main", &datawarehouse.UserArgs{
-//				DeploymentId: main.ID().ToIDOutput().ToStringOutput(),
+//				DeploymentId: main.ID(),
 //				Name:         pulumi.String("my_user"),
 //				Password:     pulumi.String("user_password_123"),
 //			})
@@ -84,7 +84,7 @@ import (
 //				return err
 //			}
 //			_, err = datawarehouse.NewUser(ctx, "admin", &datawarehouse.UserArgs{
-//				DeploymentId: main.ID().ToIDOutput().ToStringOutput(),
+//				DeploymentId: main.ID(),
 //				Name:         pulumi.String("admin_user"),
 //				Password:     pulumi.String("admin_password_456"),
 //				IsAdmin:      pulumi.Bool(true),
@@ -196,6 +196,12 @@ type UserState struct {
 
 func (UserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userState)(nil)).Elem()
+}
+
+// UserExists checks whether an existing User resource with the given ID exists.
+func UserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:datawarehouse/user:User", id, state, "", opts...)
 }
 
 type userArgs struct {

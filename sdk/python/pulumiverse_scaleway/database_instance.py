@@ -1143,15 +1143,15 @@ class DatabaseInstance(pulumi.CustomResource):
                  engine: pulumi.Input[Optional[_builtins.str]] = None,
                  init_settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  is_ha_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
-                 load_balancer: pulumi.Input[Optional[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]] = None,
-                 logs_policy: pulumi.Input[Optional[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']]] = None,
+                 load_balancer: pulumi.Input[Optional[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict', 'outputs.DatabaseInstanceLoadBalancer']]] = None,
+                 logs_policy: pulumi.Input[Optional[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict', 'outputs.DatabaseInstanceLogsPolicy']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict']]]]] = None,
-                 private_network: pulumi.Input[Optional[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict']]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict', 'outputs.DatabaseInstancePrivateIp']]]]] = None,
+                 private_network: pulumi.Input[Optional[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict', 'outputs.DatabaseInstancePrivateNetwork']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -1319,8 +1319,8 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']] load_balancer: List of Load Balancer endpoints of the Database Instance.
-        :param pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration for remote logs retention on the Database Instance
+        :param pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict', 'outputs.DatabaseInstanceLoadBalancer']] load_balancer: List of Load Balancer endpoints of the Database Instance.
+        :param pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict', 'outputs.DatabaseInstanceLogsPolicy']] logs_policy: Logs policy configuration for remote logs retention on the Database Instance
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
@@ -1332,8 +1332,8 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password for the first user of the Database Instance in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
-        :param pulumi.Input[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict']] private_network: List of Private Networks endpoints of the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict', 'outputs.DatabaseInstancePrivateIp']]]] private_ips: The private IPv4 address associated with the resource.
+        :param pulumi.Input[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict', 'outputs.DatabaseInstancePrivateNetwork']] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region
@@ -1504,15 +1504,15 @@ class DatabaseInstance(pulumi.CustomResource):
                  engine: pulumi.Input[Optional[_builtins.str]] = None,
                  init_settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  is_ha_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
-                 load_balancer: pulumi.Input[Optional[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]] = None,
-                 logs_policy: pulumi.Input[Optional[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']]] = None,
+                 load_balancer: pulumi.Input[Optional[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict', 'outputs.DatabaseInstanceLoadBalancer']]] = None,
+                 logs_policy: pulumi.Input[Optional[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict', 'outputs.DatabaseInstanceLogsPolicy']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict']]]]] = None,
-                 private_network: pulumi.Input[Optional[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict']]] = None,
+                 private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict', 'outputs.DatabaseInstancePrivateIp']]]]] = None,
+                 private_network: pulumi.Input[Optional[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict', 'outputs.DatabaseInstancePrivateNetwork']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -1590,24 +1590,24 @@ class DatabaseInstance(pulumi.CustomResource):
             engine: pulumi.Input[Optional[_builtins.str]] = None,
             init_settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             is_ha_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
-            load_balancer: pulumi.Input[Optional[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]] = None,
-            logs_policy: pulumi.Input[Optional[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']]] = None,
-            maintenances: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstanceMaintenanceArgs', 'DatabaseInstanceMaintenanceArgsDict']]]]] = None,
+            load_balancer: pulumi.Input[Optional[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict', 'outputs.DatabaseInstanceLoadBalancer']]] = None,
+            logs_policy: pulumi.Input[Optional[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict', 'outputs.DatabaseInstanceLogsPolicy']]] = None,
+            maintenances: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstanceMaintenanceArgs', 'DatabaseInstanceMaintenanceArgsDict', 'outputs.DatabaseInstanceMaintenance']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             node_type: pulumi.Input[Optional[_builtins.str]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             password: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict']]]]] = None,
-            private_network: pulumi.Input[Optional[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict']]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict', 'outputs.DatabaseInstancePrivateIp']]]]] = None,
+            private_network: pulumi.Input[Optional[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict', 'outputs.DatabaseInstancePrivateNetwork']]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            read_replicas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstanceReadReplicaArgs', 'DatabaseInstanceReadReplicaArgsDict']]]]] = None,
+            read_replicas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstanceReadReplicaArgs', 'DatabaseInstanceReadReplicaArgsDict', 'outputs.DatabaseInstanceReadReplica']]]]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            upgradable_versions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstanceUpgradableVersionArgs', 'DatabaseInstanceUpgradableVersionArgsDict']]]]] = None,
+            upgradable_versions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstanceUpgradableVersionArgs', 'DatabaseInstanceUpgradableVersionArgsDict', 'outputs.DatabaseInstanceUpgradableVersion']]]]] = None,
             user_name: pulumi.Input[Optional[_builtins.str]] = None,
             volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
             volume_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'DatabaseInstance':
@@ -1652,9 +1652,9 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']] load_balancer: List of Load Balancer endpoints of the Database Instance.
-        :param pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration for remote logs retention on the Database Instance
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceMaintenanceArgs', 'DatabaseInstanceMaintenanceArgsDict']]]] maintenances: List of scheduled maintenance events on the Database Instance.
+        :param pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict', 'outputs.DatabaseInstanceLoadBalancer']] load_balancer: List of Load Balancer endpoints of the Database Instance.
+        :param pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict', 'outputs.DatabaseInstanceLogsPolicy']] logs_policy: Logs policy configuration for remote logs retention on the Database Instance
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceMaintenanceArgs', 'DatabaseInstanceMaintenanceArgsDict', 'outputs.DatabaseInstanceMaintenance']]]] maintenances: List of scheduled maintenance events on the Database Instance.
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
                
@@ -1667,17 +1667,17 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password for the first user of the Database Instance in write-only mode. Only one of `password` or `password_wo` should be specified. `password_wo` will not be set in the Terraform state. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
-        :param pulumi.Input[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict']] private_network: List of Private Networks endpoints of the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict', 'outputs.DatabaseInstancePrivateIp']]]] private_ips: The private IPv4 address associated with the resource.
+        :param pulumi.Input[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict', 'outputs.DatabaseInstancePrivateNetwork']] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceReadReplicaArgs', 'DatabaseInstanceReadReplicaArgsDict']]]] read_replicas: List of read replicas of the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceReadReplicaArgs', 'DatabaseInstanceReadReplicaArgsDict', 'outputs.DatabaseInstanceReadReplica']]]] read_replicas: List of read replicas of the Database Instance.
         :param pulumi.Input[_builtins.str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of engine settings to be set on a running instance.
         :param pulumi.Input[_builtins.str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` and `clone_from` parameters.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceUpgradableVersionArgs', 'DatabaseInstanceUpgradableVersionArgsDict']]]] upgradable_versions: List of available engine versions for upgrade. Each version contains:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceUpgradableVersionArgs', 'DatabaseInstanceUpgradableVersionArgsDict', 'outputs.DatabaseInstanceUpgradableVersion']]]] upgradable_versions: List of available engine versions for upgrade. Each version contains:
         :param pulumi.Input[_builtins.str] user_name: Identifier for the first user of the Database Instance.
                
                > **Important** Updates to `user_name` will recreate the Database Instance.
@@ -1724,6 +1724,78 @@ class DatabaseInstance(pulumi.CustomResource):
         __props__.__dict__["volume_size_in_gb"] = volume_size_in_gb
         __props__.__dict__["volume_type"] = volume_type
         return DatabaseInstance(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backup_same_region: pulumi.Input[Optional[_builtins.bool]] = None,
+            backup_schedule_frequency: pulumi.Input[Optional[_builtins.int]] = None,
+            backup_schedule_retention: pulumi.Input[Optional[_builtins.int]] = None,
+            certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            clone_from: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+            encryption_at_rest: pulumi.Input[Optional[_builtins.bool]] = None,
+            endpoint_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint_port: pulumi.Input[Optional[_builtins.int]] = None,
+            engine: pulumi.Input[Optional[_builtins.str]] = None,
+            init_settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            is_ha_cluster: pulumi.Input[Optional[_builtins.bool]] = None,
+            load_balancer: pulumi.Input[Optional[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict', 'outputs.DatabaseInstanceLoadBalancer']]] = None,
+            logs_policy: pulumi.Input[Optional[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict', 'outputs.DatabaseInstanceLogsPolicy']]] = None,
+            maintenances: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstanceMaintenanceArgs', 'DatabaseInstanceMaintenanceArgsDict', 'outputs.DatabaseInstanceMaintenance']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            private_ips: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstancePrivateIpArgs', 'DatabaseInstancePrivateIpArgsDict', 'outputs.DatabaseInstancePrivateIp']]]]] = None,
+            private_network: pulumi.Input[Optional[Union['DatabaseInstancePrivateNetworkArgs', 'DatabaseInstancePrivateNetworkArgsDict', 'outputs.DatabaseInstancePrivateNetwork']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            read_replicas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstanceReadReplicaArgs', 'DatabaseInstanceReadReplicaArgsDict', 'outputs.DatabaseInstanceReadReplica']]]]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            settings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            upgradable_versions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseInstanceUpgradableVersionArgs', 'DatabaseInstanceUpgradableVersionArgsDict', 'outputs.DatabaseInstanceUpgradableVersion']]]]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None,
+            volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            volume_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backupSameRegion"] = backup_same_region
+        __props__["backupScheduleFrequency"] = backup_schedule_frequency
+        __props__["backupScheduleRetention"] = backup_schedule_retention
+        __props__["certificate"] = certificate
+        __props__["cloneFrom"] = clone_from
+        __props__["disableBackup"] = disable_backup
+        __props__["encryptionAtRest"] = encryption_at_rest
+        __props__["endpointIp"] = endpoint_ip
+        __props__["endpointPort"] = endpoint_port
+        __props__["engine"] = engine
+        __props__["initSettings"] = init_settings
+        __props__["isHaCluster"] = is_ha_cluster
+        __props__["loadBalancer"] = load_balancer
+        __props__["logsPolicy"] = logs_policy
+        __props__["maintenances"] = maintenances
+        __props__["name"] = name
+        __props__["nodeType"] = node_type
+        __props__["organizationId"] = organization_id
+        __props__["password"] = password
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["privateIps"] = private_ips
+        __props__["privateNetwork"] = private_network
+        __props__["projectId"] = project_id
+        __props__["readReplicas"] = read_replicas
+        __props__["region"] = region
+        __props__["settings"] = settings
+        __props__["snapshotId"] = snapshot_id
+        __props__["tags"] = tags
+        __props__["upgradableVersions"] = upgradable_versions
+        __props__["userName"] = user_name
+        __props__["volumeSizeInGb"] = volume_size_in_gb
+        __props__["volumeType"] = volume_type
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/databaseInstance:DatabaseInstance', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="backupSameRegion")

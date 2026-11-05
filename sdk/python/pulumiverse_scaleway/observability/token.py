@@ -221,7 +221,7 @@ class Token(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 scopes: pulumi.Input[Optional[Union['TokenScopesArgs', 'TokenScopesArgsDict']]] = None,
+                 scopes: pulumi.Input[Optional[Union['TokenScopesArgs', 'TokenScopesArgsDict', 'outputs.TokenScopes']]] = None,
                  __props__=None):
         """
         The `observability.Token` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
@@ -280,7 +280,7 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the token.
         :param pulumi.Input[_builtins.str] project_id: ) The ID of the Project the Cockpit is associated with.
         :param pulumi.Input[_builtins.str] region: ) The region where the Cockpit token is located.
-        :param pulumi.Input[Union['TokenScopesArgs', 'TokenScopesArgsDict']] scopes: Scopes allowed, each with default values:
+        :param pulumi.Input[Union['TokenScopesArgs', 'TokenScopesArgsDict', 'outputs.TokenScopes']] scopes: Scopes allowed, each with default values:
         """
         ...
     @overload
@@ -358,7 +358,7 @@ class Token(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 scopes: pulumi.Input[Optional[Union['TokenScopesArgs', 'TokenScopesArgsDict']]] = None,
+                 scopes: pulumi.Input[Optional[Union['TokenScopesArgs', 'TokenScopesArgsDict', 'outputs.TokenScopes']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -393,7 +393,7 @@ class Token(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            scopes: pulumi.Input[Optional[Union['TokenScopesArgs', 'TokenScopesArgsDict']]] = None,
+            scopes: pulumi.Input[Optional[Union['TokenScopesArgs', 'TokenScopesArgsDict', 'outputs.TokenScopes']]] = None,
             secret_key: pulumi.Input[Optional[_builtins.str]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> 'Token':
         """
@@ -407,7 +407,7 @@ class Token(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the token.
         :param pulumi.Input[_builtins.str] project_id: ) The ID of the Project the Cockpit is associated with.
         :param pulumi.Input[_builtins.str] region: ) The region where the Cockpit token is located.
-        :param pulumi.Input[Union['TokenScopesArgs', 'TokenScopesArgsDict']] scopes: Scopes allowed, each with default values:
+        :param pulumi.Input[Union['TokenScopesArgs', 'TokenScopesArgsDict', 'outputs.TokenScopes']] scopes: Scopes allowed, each with default values:
         :param pulumi.Input[_builtins.str] secret_key: The secret key of the token.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the Cockpit Token (Format ISO 8601)
         """
@@ -423,6 +423,26 @@ class Token(pulumi.CustomResource):
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["updated_at"] = updated_at
         return Token(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            scopes: pulumi.Input[Optional[Union['TokenScopesArgs', 'TokenScopesArgsDict', 'outputs.TokenScopes']]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["name"] = name
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["scopes"] = scopes
+        __props__["secretKey"] = secret_key
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'scaleway:observability/token:Token', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

@@ -540,6 +540,32 @@ class PublicGatewayPatRule(pulumi.CustomResource):
         __props__.__dict__["zone"] = zone
         return PublicGatewayPatRule(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            gateway_id: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_ip: pulumi.Input[Optional[_builtins.str]] = None,
+            private_port: pulumi.Input[Optional[_builtins.int]] = None,
+            protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            public_port: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["gatewayId"] = gateway_id
+        __props__["organizationId"] = organization_id
+        __props__["privateIp"] = private_ip
+        __props__["privatePort"] = private_port
+        __props__["protocol"] = protocol
+        __props__["publicPort"] = public_port
+        __props__["srn"] = srn
+        __props__["updatedAt"] = updated_at
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:network/publicGatewayPatRule:PublicGatewayPatRule', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:

@@ -249,8 +249,8 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
-                 error_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict']]] = None,
-                 index_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict']]] = None,
+                 error_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict', 'outputs.BucketWebsiteConfigurationErrorDocument']]] = None,
+                 index_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict', 'outputs.BucketWebsiteConfigurationIndexDocument']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -333,8 +333,8 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket.
-        :param pulumi.Input[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict']] error_document: The name of the error file for the website detailed below.
-        :param pulumi.Input[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict']] index_document: The name of the index file for the website detailed below.
+        :param pulumi.Input[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict', 'outputs.BucketWebsiteConfigurationErrorDocument']] error_document: The name of the error file for the website detailed below.
+        :param pulumi.Input[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict', 'outputs.BucketWebsiteConfigurationIndexDocument']] index_document: The name of the index file for the website detailed below.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
                
                > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
@@ -440,8 +440,8 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
-                 error_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict']]] = None,
-                 index_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict']]] = None,
+                 error_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict', 'outputs.BucketWebsiteConfigurationErrorDocument']]] = None,
+                 index_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict', 'outputs.BucketWebsiteConfigurationIndexDocument']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -477,8 +477,8 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             bucket: pulumi.Input[Optional[_builtins.str]] = None,
-            error_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict']]] = None,
-            index_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict']]] = None,
+            error_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict', 'outputs.BucketWebsiteConfigurationErrorDocument']]] = None,
+            index_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict', 'outputs.BucketWebsiteConfigurationIndexDocument']]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             website_domain: pulumi.Input[Optional[_builtins.str]] = None,
@@ -491,8 +491,8 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket.
-        :param pulumi.Input[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict']] error_document: The name of the error file for the website detailed below.
-        :param pulumi.Input[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict']] index_document: The name of the index file for the website detailed below.
+        :param pulumi.Input[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict', 'outputs.BucketWebsiteConfigurationErrorDocument']] error_document: The name of the error file for the website detailed below.
+        :param pulumi.Input[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict', 'outputs.BucketWebsiteConfigurationIndexDocument']] index_document: The name of the index file for the website detailed below.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the bucket is associated with.
                
                > **Important:** The `project_id` attribute has a particular behavior with s3 products, because the s3 API is scoped by project.
@@ -514,6 +514,26 @@ class BucketWebsiteConfiguration(pulumi.CustomResource):
         __props__.__dict__["website_domain"] = website_domain
         __props__.__dict__["website_endpoint"] = website_endpoint
         return BucketWebsiteConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            error_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationErrorDocumentArgs', 'BucketWebsiteConfigurationErrorDocumentArgsDict', 'outputs.BucketWebsiteConfigurationErrorDocument']]] = None,
+            index_document: pulumi.Input[Optional[Union['BucketWebsiteConfigurationIndexDocumentArgs', 'BucketWebsiteConfigurationIndexDocumentArgsDict', 'outputs.BucketWebsiteConfigurationIndexDocument']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            website_domain: pulumi.Input[Optional[_builtins.str]] = None,
+            website_endpoint: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["bucket"] = bucket
+        __props__["errorDocument"] = error_document
+        __props__["indexDocument"] = index_document
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["websiteDomain"] = website_domain
+        __props__["websiteEndpoint"] = website_endpoint
+        return pulumi.runtime.exists_resource(None, 'scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

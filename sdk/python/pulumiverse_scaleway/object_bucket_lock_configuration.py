@@ -192,7 +192,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 rule: pulumi.Input[Optional[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']]] = None,
+                 rule: pulumi.Input[Optional[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict', 'outputs.ObjectBucketLockConfigurationRule']]] = None,
                  __props__=None):
         """
         The `object.BucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
@@ -252,7 +252,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
                like object lock configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The region you want to attach the resource to
-        :param pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']] rule: Specifies the object lock rule for the specified object.
+        :param pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict', 'outputs.ObjectBucketLockConfigurationRule']] rule: Specifies the object lock rule for the specified object.
         """
         ...
     @overload
@@ -327,7 +327,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 rule: pulumi.Input[Optional[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']]] = None,
+                 rule: pulumi.Input[Optional[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict', 'outputs.ObjectBucketLockConfigurationRule']]] = None,
                  __props__=None):
         pulumi.log.warn("""ObjectBucketLockConfiguration is deprecated: scaleway.index/objectbucketlockconfiguration.ObjectBucketLockConfiguration has been deprecated in favor of scaleway.object/bucketlockconfiguration.BucketLockConfiguration""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -359,7 +359,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
             bucket: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            rule: pulumi.Input[Optional[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']]] = None) -> 'ObjectBucketLockConfiguration':
+            rule: pulumi.Input[Optional[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict', 'outputs.ObjectBucketLockConfigurationRule']]] = None) -> 'ObjectBucketLockConfiguration':
         """
         Get an existing ObjectBucketLockConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -374,7 +374,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                If you are using a project different from the default one, you have to specify the `project_id` for every child resource of the bucket,
                like object lock configurations. Otherwise, Terraform will try to create the child resource with the default project ID and you will get a 403 error.
         :param pulumi.Input[_builtins.str] region: The region you want to attach the resource to
-        :param pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']] rule: Specifies the object lock rule for the specified object.
+        :param pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict', 'outputs.ObjectBucketLockConfigurationRule']] rule: Specifies the object lock rule for the specified object.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -385,6 +385,20 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["rule"] = rule
         return ObjectBucketLockConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            rule: pulumi.Input[Optional[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict', 'outputs.ObjectBucketLockConfigurationRule']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["bucket"] = bucket
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["rule"] = rule
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

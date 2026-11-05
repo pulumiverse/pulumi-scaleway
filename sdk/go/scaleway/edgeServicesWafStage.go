@@ -187,6 +187,12 @@ func (EdgeServicesWafStageState) ElementType() reflect.Type {
 	return reflect.TypeOf((*edgeServicesWafStageState)(nil)).Elem()
 }
 
+// EdgeServicesWafStageExists checks whether an existing EdgeServicesWafStage resource with the given ID exists.
+func EdgeServicesWafStageExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EdgeServicesWafStageState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/edgeServicesWafStage:EdgeServicesWafStage", id, state, "", opts...)
+}
+
 type edgeServicesWafStageArgs struct {
 	// The ID of the backend stage to forward requests to after the WAF stage.
 	BackendStageId *string `pulumi:"backendStageId"`

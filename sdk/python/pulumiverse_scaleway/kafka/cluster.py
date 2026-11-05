@@ -555,7 +555,7 @@ class Cluster(pulumi.CustomResource):
                  node_amount: pulumi.Input[Optional[_builtins.int]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_network: pulumi.Input[Optional[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict']]] = None,
+                 private_network: pulumi.Input[Optional[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict', 'outputs.ClusterPrivateNetwork']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -675,7 +675,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] node_type: Node type to use for the cluster. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] password: Password for the Kafka user. Required if `user_name` is specified. Changing this forces recreation of the cluster.
-        :param pulumi.Input[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict']] private_network: Private network endpoint information.
+        :param pulumi.Input[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict', 'outputs.ClusterPrivateNetwork']] private_network: Private network endpoint information.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the cluster.
@@ -814,7 +814,7 @@ class Cluster(pulumi.CustomResource):
                  node_amount: pulumi.Input[Optional[_builtins.int]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_network: pulumi.Input[Optional[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict']]] = None,
+                 private_network: pulumi.Input[Optional[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict', 'outputs.ClusterPrivateNetwork']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -878,9 +878,9 @@ class Cluster(pulumi.CustomResource):
             node_amount: pulumi.Input[Optional[_builtins.int]] = None,
             node_type: pulumi.Input[Optional[_builtins.str]] = None,
             password: pulumi.Input[Optional[_builtins.str]] = None,
-            private_network: pulumi.Input[Optional[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict']]] = None,
+            private_network: pulumi.Input[Optional[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict', 'outputs.ClusterPrivateNetwork']]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict']]]]] = None,
+            public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict', 'outputs.ClusterPublicNetwork']]]]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -903,9 +903,9 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] node_amount: Number of nodes in the cluster. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] node_type: Node type to use for the cluster. Changing this forces recreation of the cluster.
         :param pulumi.Input[_builtins.str] password: Password for the Kafka user. Required if `user_name` is specified. Changing this forces recreation of the cluster.
-        :param pulumi.Input[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict']] private_network: Private network endpoint information.
+        :param pulumi.Input[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict', 'outputs.ClusterPrivateNetwork']] private_network: Private network endpoint information.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the cluster is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict']]]] public_networks: Public endpoint information.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict', 'outputs.ClusterPublicNetwork']]]] public_networks: Public endpoint information.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the cluster should be created.
         :param pulumi.Input[_builtins.str] status: The status of the cluster (e.g., "ready", "creating", "configuring").
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the cluster.
@@ -938,6 +938,48 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["volume_size_in_gb"] = volume_size_in_gb
         __props__.__dict__["volume_type"] = volume_type
         return Cluster(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            mono_az_zone: pulumi.Input[Optional[_builtins.str]] = None,
+            multi_az: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_amount: pulumi.Input[Optional[_builtins.int]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network: pulumi.Input[Optional[Union['ClusterPrivateNetworkArgs', 'ClusterPrivateNetworkArgsDict', 'outputs.ClusterPrivateNetwork']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_networks: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterPublicNetworkArgs', 'ClusterPublicNetworkArgsDict', 'outputs.ClusterPublicNetwork']]]]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            volume_size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            volume_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["monoAzZone"] = mono_az_zone
+        __props__["multiAz"] = multi_az
+        __props__["name"] = name
+        __props__["nodeAmount"] = node_amount
+        __props__["nodeType"] = node_type
+        __props__["password"] = password
+        __props__["privateNetwork"] = private_network
+        __props__["projectId"] = project_id
+        __props__["publicNetworks"] = public_networks
+        __props__["region"] = region
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        __props__["userName"] = user_name
+        __props__["version"] = version
+        __props__["volumeSizeInGb"] = volume_size_in_gb
+        __props__["volumeType"] = volume_type
+        return pulumi.runtime.exists_resource(None, 'scaleway:kafka/cluster:Cluster', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

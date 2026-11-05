@@ -40,7 +40,7 @@ import (
 //				return err
 //			}
 //			_, err = iot.NewDevice(ctx, "main", &iot.DeviceArgs{
-//				HubId: main.ID().ToIDOutput().ToStringOutput(),
+//				HubId: main.ID(),
 //				Name:  pulumi.String("test-iot"),
 //			})
 //			if err != nil {
@@ -202,6 +202,12 @@ type IotDeviceState struct {
 
 func (IotDeviceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*iotDeviceState)(nil)).Elem()
+}
+
+// IotDeviceExists checks whether an existing IotDevice resource with the given ID exists.
+func IotDeviceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IotDeviceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/iotDevice:IotDevice", id, state, "", opts...)
 }
 
 type iotDeviceArgs struct {

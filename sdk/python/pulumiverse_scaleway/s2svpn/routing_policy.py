@@ -545,6 +545,34 @@ class RoutingPolicy(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         return RoutingPolicy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            prefix_filter_ins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            prefix_filter_outs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["isIpv6"] = is_ipv6
+        __props__["name"] = name
+        __props__["organizationId"] = organization_id
+        __props__["prefixFilterIns"] = prefix_filter_ins
+        __props__["prefixFilterOuts"] = prefix_filter_outs
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["srn"] = srn
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'scaleway:s2svpn/routingPolicy:RoutingPolicy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[_builtins.str]:

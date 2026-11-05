@@ -468,7 +468,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict']]]]] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict', 'outputs.LoadbalancerFrontendAcl']]]]] = None,
                  backend_id: pulumi.Input[Optional[_builtins.str]] = None,
                  certificate_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  connection_rate_limit: pulumi.Input[Optional[_builtins.int]] = None,
@@ -599,7 +599,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict']]]] acls: A list of ACL rules to apply to the Load Balancer frontend. Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict', 'outputs.LoadbalancerFrontendAcl']]]] acls: A list of ACL rules to apply to the Load Balancer frontend. Defined below.
         :param pulumi.Input[_builtins.str] backend_id: The ID of the Load Balancer backend this frontend is attached to.
                
                > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
@@ -754,7 +754,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict']]]]] = None,
+                 acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict', 'outputs.LoadbalancerFrontendAcl']]]]] = None,
                  backend_id: pulumi.Input[Optional[_builtins.str]] = None,
                  certificate_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  connection_rate_limit: pulumi.Input[Optional[_builtins.int]] = None,
@@ -805,7 +805,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict']]]]] = None,
+            acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict', 'outputs.LoadbalancerFrontendAcl']]]]] = None,
             backend_id: pulumi.Input[Optional[_builtins.str]] = None,
             certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
             certificate_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -826,7 +826,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict']]]] acls: A list of ACL rules to apply to the Load Balancer frontend. Defined below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict', 'outputs.LoadbalancerFrontendAcl']]]] acls: A list of ACL rules to apply to the Load Balancer frontend. Defined below.
         :param pulumi.Input[_builtins.str] backend_id: The ID of the Load Balancer backend this frontend is attached to.
                
                > **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
@@ -865,6 +865,40 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         __props__.__dict__["timeout_client"] = timeout_client
         __props__.__dict__["updated_at"] = updated_at
         return LoadbalancerFrontend(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            acls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LoadbalancerFrontendAclArgs', 'LoadbalancerFrontendAclArgsDict', 'outputs.LoadbalancerFrontendAcl']]]]] = None,
+            backend_id: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate_id: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            connection_rate_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_access_logs: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_http3: pulumi.Input[Optional[_builtins.bool]] = None,
+            external_acls: pulumi.Input[Optional[_builtins.bool]] = None,
+            inbound_port: pulumi.Input[Optional[_builtins.int]] = None,
+            lb_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout_client: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["acls"] = acls
+        __props__["backendId"] = backend_id
+        __props__["certificateId"] = certificate_id
+        __props__["certificateIds"] = certificate_ids
+        __props__["connectionRateLimit"] = connection_rate_limit
+        __props__["createdAt"] = created_at
+        __props__["enableAccessLogs"] = enable_access_logs
+        __props__["enableHttp3"] = enable_http3
+        __props__["externalAcls"] = external_acls
+        __props__["inboundPort"] = inbound_port
+        __props__["lbId"] = lb_id
+        __props__["name"] = name
+        __props__["timeoutClient"] = timeout_client
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/loadbalancerFrontend:LoadbalancerFrontend', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			_, err = functions.NewFunction(ctx, "main", &functions.FunctionArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //				Runtime:     pulumi.String("go124"),
 //				Handler:     pulumi.String("Handle"),
 //				Privacy:     pulumi.String("private"),
@@ -87,7 +87,7 @@ import (
 //				return err
 //			}
 //			_, err = functions.NewFunction(ctx, "main", &functions.FunctionArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //				Description: pulumi.String("function with zip file"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("tag1"),
@@ -142,7 +142,7 @@ import (
 //				return err
 //			}
 //			_, err = iam.NewPolicy(ctx, "access_private_funcs", &iam.PolicyArgs{
-//				ApplicationId: funcAuth.ID().ToIDOutput().ToStringOutput(),
+//				ApplicationId: funcAuth.ID(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
@@ -158,7 +158,7 @@ import (
 //				return err
 //			}
 //			apiKey, err := iam.NewApiKey(ctx, "api_key", &iam.ApiKeyArgs{
-//				ApplicationId: funcAuth.ID().ToIDOutput().ToStringOutput(),
+//				ApplicationId: funcAuth.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -177,7 +177,7 @@ import (
 //				return err
 //			}
 //			privateFunction, err := functions.NewFunction(ctx, "private", &functions.FunctionArgs{
-//				NamespaceId: private.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: private.ID(),
 //				Runtime:     pulumi.String("go124"),
 //				Handler:     pulumi.String("Handle"),
 //				Privacy:     pulumi.String("private"),
@@ -426,6 +426,12 @@ type FunctionState struct {
 
 func (FunctionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionState)(nil)).Elem()
+}
+
+// FunctionExists checks whether an existing Function resource with the given ID exists.
+func FunctionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FunctionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/function:Function", id, state, "", opts...)
 }
 
 type functionArgs struct {

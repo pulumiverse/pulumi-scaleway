@@ -1056,12 +1056,12 @@ class Backend(pulumi.CustomResource):
                  forward_port_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  forward_protocol: pulumi.Input[Optional[_builtins.str]] = None,
                  health_check_delay: pulumi.Input[Optional[_builtins.str]] = None,
-                 health_check_http: pulumi.Input[Optional[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict']]] = None,
-                 health_check_https: pulumi.Input[Optional[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict']]] = None,
+                 health_check_http: pulumi.Input[Optional[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict', 'outputs.BackendHealthCheckHttp']]] = None,
+                 health_check_https: pulumi.Input[Optional[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict', 'outputs.BackendHealthCheckHttps']]] = None,
                  health_check_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
                  health_check_port: pulumi.Input[Optional[_builtins.int]] = None,
                  health_check_send_proxy: pulumi.Input[Optional[_builtins.bool]] = None,
-                 health_check_tcp: pulumi.Input[Optional[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict']]] = None,
+                 health_check_tcp: pulumi.Input[Optional[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict', 'outputs.BackendHealthCheckTcp']]] = None,
                  health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
                  health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
                  host: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1138,12 +1138,12 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] forward_port_algorithm: Load balancing algorithm
         :param pulumi.Input[_builtins.str] forward_protocol: Backend protocol
         :param pulumi.Input[_builtins.str] health_check_delay: Interval between two HC requests
-        :param pulumi.Input[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict']] health_check_http: HTTP Health check
-        :param pulumi.Input[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict']] health_check_https: HTTPS Health check
+        :param pulumi.Input[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict', 'outputs.BackendHealthCheckHttp']] health_check_http: HTTP Health check
+        :param pulumi.Input[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict', 'outputs.BackendHealthCheckHttps']] health_check_https: HTTPS Health check
         :param pulumi.Input[_builtins.int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down
         :param pulumi.Input[_builtins.int] health_check_port: Port the HC requests will be send to. Default to `forward_port`
         :param pulumi.Input[_builtins.bool] health_check_send_proxy: Defines whether proxy protocol should be activated for the health check
-        :param pulumi.Input[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict']] health_check_tcp: TCP Health check
+        :param pulumi.Input[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict', 'outputs.BackendHealthCheckTcp']] health_check_tcp: TCP Health check
         :param pulumi.Input[_builtins.str] health_check_timeout: Timeout before we consider a HC request failed
         :param pulumi.Input[_builtins.str] health_check_transient_delay: Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
         :param pulumi.Input[_builtins.str] host: When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
@@ -1236,12 +1236,12 @@ class Backend(pulumi.CustomResource):
                  forward_port_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  forward_protocol: pulumi.Input[Optional[_builtins.str]] = None,
                  health_check_delay: pulumi.Input[Optional[_builtins.str]] = None,
-                 health_check_http: pulumi.Input[Optional[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict']]] = None,
-                 health_check_https: pulumi.Input[Optional[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict']]] = None,
+                 health_check_http: pulumi.Input[Optional[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict', 'outputs.BackendHealthCheckHttp']]] = None,
+                 health_check_https: pulumi.Input[Optional[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict', 'outputs.BackendHealthCheckHttps']]] = None,
                  health_check_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
                  health_check_port: pulumi.Input[Optional[_builtins.int]] = None,
                  health_check_send_proxy: pulumi.Input[Optional[_builtins.bool]] = None,
-                 health_check_tcp: pulumi.Input[Optional[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict']]] = None,
+                 health_check_tcp: pulumi.Input[Optional[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict', 'outputs.BackendHealthCheckTcp']]] = None,
                  health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
                  health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
                  host: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1325,12 +1325,12 @@ class Backend(pulumi.CustomResource):
             forward_port_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
             forward_protocol: pulumi.Input[Optional[_builtins.str]] = None,
             health_check_delay: pulumi.Input[Optional[_builtins.str]] = None,
-            health_check_http: pulumi.Input[Optional[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict']]] = None,
-            health_check_https: pulumi.Input[Optional[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict']]] = None,
+            health_check_http: pulumi.Input[Optional[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict', 'outputs.BackendHealthCheckHttp']]] = None,
+            health_check_https: pulumi.Input[Optional[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict', 'outputs.BackendHealthCheckHttps']]] = None,
             health_check_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
             health_check_port: pulumi.Input[Optional[_builtins.int]] = None,
             health_check_send_proxy: pulumi.Input[Optional[_builtins.bool]] = None,
-            health_check_tcp: pulumi.Input[Optional[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict']]] = None,
+            health_check_tcp: pulumi.Input[Optional[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict', 'outputs.BackendHealthCheckTcp']]] = None,
             health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
             health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
             host: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1366,12 +1366,12 @@ class Backend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] forward_port_algorithm: Load balancing algorithm
         :param pulumi.Input[_builtins.str] forward_protocol: Backend protocol
         :param pulumi.Input[_builtins.str] health_check_delay: Interval between two HC requests
-        :param pulumi.Input[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict']] health_check_http: HTTP Health check
-        :param pulumi.Input[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict']] health_check_https: HTTPS Health check
+        :param pulumi.Input[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict', 'outputs.BackendHealthCheckHttp']] health_check_http: HTTP Health check
+        :param pulumi.Input[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict', 'outputs.BackendHealthCheckHttps']] health_check_https: HTTPS Health check
         :param pulumi.Input[_builtins.int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down
         :param pulumi.Input[_builtins.int] health_check_port: Port the HC requests will be send to. Default to `forward_port`
         :param pulumi.Input[_builtins.bool] health_check_send_proxy: Defines whether proxy protocol should be activated for the health check
-        :param pulumi.Input[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict']] health_check_tcp: TCP Health check
+        :param pulumi.Input[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict', 'outputs.BackendHealthCheckTcp']] health_check_tcp: TCP Health check
         :param pulumi.Input[_builtins.str] health_check_timeout: Timeout before we consider a HC request failed
         :param pulumi.Input[_builtins.str] health_check_transient_delay: Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
         :param pulumi.Input[_builtins.str] host: When connecting to backend servers, use this value as the HTTP `Host` header or TLS SNI. This allows routing to specific services on the backend server that are configured to respond to particular hostnames
@@ -1429,6 +1429,74 @@ class Backend(pulumi.CustomResource):
         __props__.__dict__["timeout_server"] = timeout_server
         __props__.__dict__["timeout_tunnel"] = timeout_tunnel
         return Backend(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            failover_host: pulumi.Input[Optional[_builtins.str]] = None,
+            forward_port: pulumi.Input[Optional[_builtins.int]] = None,
+            forward_port_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            forward_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            health_check_delay: pulumi.Input[Optional[_builtins.str]] = None,
+            health_check_http: pulumi.Input[Optional[Union['BackendHealthCheckHttpArgs', 'BackendHealthCheckHttpArgsDict', 'outputs.BackendHealthCheckHttp']]] = None,
+            health_check_https: pulumi.Input[Optional[Union['BackendHealthCheckHttpsArgs', 'BackendHealthCheckHttpsArgsDict', 'outputs.BackendHealthCheckHttps']]] = None,
+            health_check_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+            health_check_port: pulumi.Input[Optional[_builtins.int]] = None,
+            health_check_send_proxy: pulumi.Input[Optional[_builtins.bool]] = None,
+            health_check_tcp: pulumi.Input[Optional[Union['BackendHealthCheckTcpArgs', 'BackendHealthCheckTcpArgsDict', 'outputs.BackendHealthCheckTcp']]] = None,
+            health_check_timeout: pulumi.Input[Optional[_builtins.str]] = None,
+            health_check_transient_delay: pulumi.Input[Optional[_builtins.str]] = None,
+            host: pulumi.Input[Optional[_builtins.str]] = None,
+            ignore_ssl_server_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+            lb_id: pulumi.Input[Optional[_builtins.str]] = None,
+            max_connections: pulumi.Input[Optional[_builtins.int]] = None,
+            max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            on_marked_down_action: pulumi.Input[Optional[_builtins.str]] = None,
+            proxy_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            redispatch_attempt_count: pulumi.Input[Optional[_builtins.int]] = None,
+            send_proxy_v2: pulumi.Input[Optional[_builtins.bool]] = None,
+            server_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ssl_bridging: pulumi.Input[Optional[_builtins.bool]] = None,
+            sticky_sessions: pulumi.Input[Optional[_builtins.str]] = None,
+            sticky_sessions_cookie_name: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout_connect: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout_queue: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout_server: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout_tunnel: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["failoverHost"] = failover_host
+        __props__["forwardPort"] = forward_port
+        __props__["forwardPortAlgorithm"] = forward_port_algorithm
+        __props__["forwardProtocol"] = forward_protocol
+        __props__["healthCheckDelay"] = health_check_delay
+        __props__["healthCheckHttp"] = health_check_http
+        __props__["healthCheckHttps"] = health_check_https
+        __props__["healthCheckMaxRetries"] = health_check_max_retries
+        __props__["healthCheckPort"] = health_check_port
+        __props__["healthCheckSendProxy"] = health_check_send_proxy
+        __props__["healthCheckTcp"] = health_check_tcp
+        __props__["healthCheckTimeout"] = health_check_timeout
+        __props__["healthCheckTransientDelay"] = health_check_transient_delay
+        __props__["host"] = host
+        __props__["ignoreSslServerVerify"] = ignore_ssl_server_verify
+        __props__["lbId"] = lb_id
+        __props__["maxConnections"] = max_connections
+        __props__["maxRetries"] = max_retries
+        __props__["name"] = name
+        __props__["onMarkedDownAction"] = on_marked_down_action
+        __props__["proxyProtocol"] = proxy_protocol
+        __props__["redispatchAttemptCount"] = redispatch_attempt_count
+        __props__["sendProxyV2"] = send_proxy_v2
+        __props__["serverIps"] = server_ips
+        __props__["sslBridging"] = ssl_bridging
+        __props__["stickySessions"] = sticky_sessions
+        __props__["stickySessionsCookieName"] = sticky_sessions_cookie_name
+        __props__["timeoutConnect"] = timeout_connect
+        __props__["timeoutQueue"] = timeout_queue
+        __props__["timeoutServer"] = timeout_server
+        __props__["timeoutTunnel"] = timeout_tunnel
+        return pulumi.runtime.exists_resource(None, 'scaleway:loadbalancers/backend:Backend', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="failoverHost")

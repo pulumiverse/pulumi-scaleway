@@ -44,7 +44,7 @@ import (
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -57,8 +57,8 @@ import (
 //				return err
 //			}
 //			_, err = network.NewGatewayNetwork(ctx, "main", &network.GatewayNetworkArgs{
-//				GatewayId:        pg01.ID().ToIDOutput().ToStringOutput(),
-//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//				GatewayId:        pg01.ID(),
+//				PrivateNetworkId: pn01.ID(),
 //				EnableMasquerade: pulumi.Bool(true),
 //				IpamConfigs: network.GatewayNetworkIpamConfigArray{
 //					&network.GatewayNetworkIpamConfigArgs{
@@ -101,7 +101,7 @@ import (
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -110,7 +110,7 @@ import (
 //				Address: pulumi.String("172.16.64.7"),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
 //			})
@@ -125,13 +125,13 @@ import (
 //				return err
 //			}
 //			_, err = network.NewGatewayNetwork(ctx, "main", &network.GatewayNetworkArgs{
-//				GatewayId:        pg01.ID().ToIDOutput().ToStringOutput(),
-//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//				GatewayId:        pg01.ID(),
+//				PrivateNetworkId: pn01.ID(),
 //				EnableMasquerade: pulumi.Bool(true),
 //				IpamConfigs: network.GatewayNetworkIpamConfigArray{
 //					&network.GatewayNetworkIpamConfigArgs{
 //						PushDefaultRoute: pulumi.Bool(true),
-//						IpamIpId:         ip01.ID().ToIDOutput().ToStringOutput(),
+//						IpamIpId:         ip01.ID(),
 //					},
 //				},
 //			})
@@ -327,6 +327,12 @@ type VpcGatewayNetworkState struct {
 
 func (VpcGatewayNetworkState) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpcGatewayNetworkState)(nil)).Elem()
+}
+
+// VpcGatewayNetworkExists checks whether an existing VpcGatewayNetwork resource with the given ID exists.
+func VpcGatewayNetworkExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VpcGatewayNetworkState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork", id, state, "", opts...)
 }
 
 type vpcGatewayNetworkArgs struct {

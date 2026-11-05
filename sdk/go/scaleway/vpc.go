@@ -183,6 +183,12 @@ func (VpcState) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpcState)(nil)).Elem()
 }
 
+// VpcExists checks whether an existing Vpc resource with the given ID exists.
+func VpcExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VpcState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/vpc:Vpc", id, state, "", opts...)
+}
+
 type vpcArgs struct {
 	// Custom routes propagation between Private Networks is always enabled on newly created VPCs and cannot be disabled. It will be removed in a future major version.
 	//

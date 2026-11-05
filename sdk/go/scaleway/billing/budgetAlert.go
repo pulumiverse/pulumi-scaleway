@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = billing.NewBudgetAlert(ctx, "main", &billing.BudgetAlertArgs{
-//				BudgetId:  main.ID().ToIDOutput().ToStringOutput(),
+//				BudgetId:  main.ID(),
 //				Threshold: pulumi.Int(80),
 //			})
 //			if err != nil {
@@ -130,6 +130,12 @@ type BudgetAlertState struct {
 
 func (BudgetAlertState) ElementType() reflect.Type {
 	return reflect.TypeOf((*budgetAlertState)(nil)).Elem()
+}
+
+// BudgetAlertExists checks whether an existing BudgetAlert resource with the given ID exists.
+func BudgetAlertExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BudgetAlertState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:billing/budgetAlert:BudgetAlert", id, state, "", opts...)
 }
 
 type budgetAlertArgs struct {

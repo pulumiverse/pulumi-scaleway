@@ -111,7 +111,7 @@ import (
 //				AccessKey:   mainSqsCredentials.AccessKey,
 //				SecretKey:   mainSqsCredentials.SecretKey,
 //				DeadLetterQueue: &mnq.SqsQueueDeadLetterQueueArgs{
-//					Id:              deadLetter.ID().ToIDOutput().ToStringOutput(),
+//					Id:              deadLetter.ID(),
 //					MaxReceiveCount: pulumi.Int(3),
 //				},
 //			})
@@ -288,6 +288,12 @@ type MnqSqsQueueState struct {
 
 func (MnqSqsQueueState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mnqSqsQueueState)(nil)).Elem()
+}
+
+// MnqSqsQueueExists checks whether an existing MnqSqsQueue resource with the given ID exists.
+func MnqSqsQueueExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MnqSqsQueueState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/mnqSqsQueue:MnqSqsQueue", id, state, "", opts...)
 }
 
 type mnqSqsQueueArgs struct {

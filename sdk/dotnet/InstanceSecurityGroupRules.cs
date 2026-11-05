@@ -118,20 +118,20 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var trusted = new[]
     ///     {
-    ///         
+    ///         new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             { "ipRange", "1.2.3.4/32" },
-    ///             { "port", "80" },
+    ///             ["ipRange"] = "1.2.3.4/32",
+    ///             ["port"] = "80",
     ///         },
-    ///         
+    ///         new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             { "ipRange", "5.6.7.8/32" },
-    ///             { "port", "81" },
+    ///             ["ipRange"] = "5.6.7.8/32",
+    ///             ["port"] = "81",
     ///         },
-    ///         
+    ///         new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             { "ipRange", "9.10.11.12/32" },
-    ///             { "port", "81" },
+    ///             ["ipRange"] = "9.10.11.12/32",
+    ///             ["port"] = "81",
     ///         },
     ///     };
     /// 
@@ -143,7 +143,7 @@ namespace Pulumiverse.Scaleway
     ///             {
     ///                 Action = "accept",
     ///                 IpRange = entry.IpRange,
-    ///                 Port = entry.Port,
+    ///                 Port = int.Parse(entry.Port, System.Globalization.CultureInfo.InvariantCulture),
     ///             };
     ///         }).ToList(),
     ///         SecurityGroupId = main.Id,

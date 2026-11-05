@@ -327,7 +327,7 @@ class InstancePolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  action: pulumi.Input[Optional[_builtins.str]] = None,
                  instance_group_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 metrics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePolicyMetricArgs', 'InstancePolicyMetricArgsDict']]]]] = None,
+                 metrics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePolicyMetricArgs', 'InstancePolicyMetricArgsDict', 'outputs.InstancePolicyMetric']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -391,7 +391,7 @@ class InstancePolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: The action to execute when the metric-based condition is met.
         :param pulumi.Input[_builtins.str] instance_group_id: The ID of the Instance group related to this policy.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePolicyMetricArgs', 'InstancePolicyMetricArgsDict']]]] metrics: Cockpit metric to use when determining whether to trigger a scale up/down action.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePolicyMetricArgs', 'InstancePolicyMetricArgsDict', 'outputs.InstancePolicyMetric']]]] metrics: Cockpit metric to use when determining whether to trigger a scale up/down action.
         :param pulumi.Input[_builtins.str] name: The Instance policy name.
         :param pulumi.Input[_builtins.int] priority: The priority of this policy compared to all other scaling policies. This determines the processing order. The lower the number, the higher the priority.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the Instance policy is associated with.
@@ -474,7 +474,7 @@ class InstancePolicy(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  action: pulumi.Input[Optional[_builtins.str]] = None,
                  instance_group_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 metrics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePolicyMetricArgs', 'InstancePolicyMetricArgsDict']]]]] = None,
+                 metrics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePolicyMetricArgs', 'InstancePolicyMetricArgsDict', 'outputs.InstancePolicyMetric']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  priority: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -521,7 +521,7 @@ class InstancePolicy(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             action: pulumi.Input[Optional[_builtins.str]] = None,
             instance_group_id: pulumi.Input[Optional[_builtins.str]] = None,
-            metrics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePolicyMetricArgs', 'InstancePolicyMetricArgsDict']]]]] = None,
+            metrics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePolicyMetricArgs', 'InstancePolicyMetricArgsDict', 'outputs.InstancePolicyMetric']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             priority: pulumi.Input[Optional[_builtins.int]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -537,7 +537,7 @@ class InstancePolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] action: The action to execute when the metric-based condition is met.
         :param pulumi.Input[_builtins.str] instance_group_id: The ID of the Instance group related to this policy.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePolicyMetricArgs', 'InstancePolicyMetricArgsDict']]]] metrics: Cockpit metric to use when determining whether to trigger a scale up/down action.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePolicyMetricArgs', 'InstancePolicyMetricArgsDict', 'outputs.InstancePolicyMetric']]]] metrics: Cockpit metric to use when determining whether to trigger a scale up/down action.
         :param pulumi.Input[_builtins.str] name: The Instance policy name.
         :param pulumi.Input[_builtins.int] priority: The priority of this policy compared to all other scaling policies. This determines the processing order. The lower the number, the higher the priority.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the Instance policy is associated with.
@@ -559,6 +559,30 @@ class InstancePolicy(pulumi.CustomResource):
         __props__.__dict__["value"] = value
         __props__.__dict__["zone"] = zone
         return InstancePolicy(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            action: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            metrics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstancePolicyMetricArgs', 'InstancePolicyMetricArgsDict', 'outputs.InstancePolicyMetric']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            priority: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            value: pulumi.Input[Optional[_builtins.int]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["action"] = action
+        __props__["instanceGroupId"] = instance_group_id
+        __props__["metrics"] = metrics
+        __props__["name"] = name
+        __props__["priority"] = priority
+        __props__["projectId"] = project_id
+        __props__["type"] = type
+        __props__["value"] = value
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:autoscaling/instancePolicy:InstancePolicy', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

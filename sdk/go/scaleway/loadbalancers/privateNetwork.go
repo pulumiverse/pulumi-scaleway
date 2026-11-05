@@ -41,7 +41,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -53,7 +53,7 @@ import (
 //				Address: pulumi.String("172.16.32.7"),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
 //			})
@@ -68,9 +68,9 @@ import (
 //				return err
 //			}
 //			_, err = loadbalancers.NewPrivateNetwork(ctx, "lbpn01", &loadbalancers.PrivateNetworkArgs{
-//				LbId:             lb01.ID().ToIDOutput().ToStringOutput(),
-//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
-//				IpamIpIds:        ip01.ID().ToIDOutput().ToStringOutput(),
+//				LbId:             lb01.ID(),
+//				PrivateNetworkId: pn01.ID(),
+//				IpamIpIds:        ip01.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -184,6 +184,12 @@ type PrivateNetworkState struct {
 
 func (PrivateNetworkState) ElementType() reflect.Type {
 	return reflect.TypeOf((*privateNetworkState)(nil)).Elem()
+}
+
+// PrivateNetworkExists checks whether an existing PrivateNetwork resource with the given ID exists.
+func PrivateNetworkExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PrivateNetworkState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:loadbalancers/privateNetwork:PrivateNetwork", id, state, "", opts...)
 }
 
 type privateNetworkArgs struct {

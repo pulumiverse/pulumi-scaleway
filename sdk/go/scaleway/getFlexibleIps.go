@@ -52,7 +52,7 @@ import (
 //				return err
 //			}
 //			_, err = elasticmetal.NewIp(ctx, "first", &elasticmetal.IpArgs{
-//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
+//				ServerId: base.ID(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("foo"),
 //					pulumi.String("first"),
@@ -62,7 +62,7 @@ import (
 //				return err
 //			}
 //			_, err = elasticmetal.NewIp(ctx, "second", &elasticmetal.IpArgs{
-//				ServerId: base.ID().ToIDOutput().ToStringOutput(),
+//				ServerId: base.ID(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("foo"),
 //					pulumi.String("second"),
@@ -73,7 +73,7 @@ import (
 //			}
 //			_ = elasticmetal.GetIpsOutput(ctx, elasticmetal.GetIpsOutputArgs{
 //				ServerIds: pulumi.StringArray{
-//					base.ID().ToIDOutput().ToStringOutput(),
+//					base.ID(),
 //				},
 //			}, nil)
 //			return nil

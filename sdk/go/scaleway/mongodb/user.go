@@ -45,7 +45,7 @@ import (
 //				return err
 //			}
 //			_, err = mongodb.NewUser(ctx, "main", &mongodb.UserArgs{
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //				Name:       pulumi.String("my_user"),
 //				Password:   pulumi.String("my_password123"),
 //				Roles: mongodb.UserRoleArray{
@@ -90,7 +90,7 @@ import (
 //				return err
 //			}
 //			_, err = mongodb.NewUser(ctx, "app_user", &mongodb.UserArgs{
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //				Name:       pulumi.String("app_user"),
 //				Password:   pulumi.String("app_password123"),
 //				Roles: mongodb.UserRoleArray{
@@ -108,7 +108,7 @@ import (
 //				return err
 //			}
 //			_, err = mongodb.NewUser(ctx, "admin_user", &mongodb.UserArgs{
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //				Name:       pulumi.String("admin_user"),
 //				Password:   pulumi.String("admin_password123"),
 //				Roles: mongodb.UserRoleArray{
@@ -239,6 +239,12 @@ type UserState struct {
 
 func (UserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userState)(nil)).Elem()
+}
+
+// UserExists checks whether an existing User resource with the given ID exists.
+func UserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:mongodb/user:User", id, state, "", opts...)
 }
 
 type userArgs struct {

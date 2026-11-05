@@ -105,7 +105,7 @@ namespace Pulumiverse.Scaleway.Mailbox
     ///         employees.Add(new Scaleway.Mailbox.Mailbox($"employees-{range.Key}", new()
     ///         {
     ///             DomainId = corp.Id,
-    ///             LocalPart = range.Key,
+    ///             LocalPart = range.Key.ToString(System.Globalization.CultureInfo.InvariantCulture),
     ///             Password = mailboxPassword,
     ///             SubscriptionPeriod = "monthly",
     ///         }));

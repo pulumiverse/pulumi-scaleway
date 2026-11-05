@@ -136,7 +136,7 @@ import (
 //				return err
 //			}
 //			valid, err := tem.NewDomainValidation(ctx, "valid", &tem.DomainValidationArgs{
-//				DomainId: cr01.ID().ToIDOutput().ToStringOutput(),
+//				DomainId: cr01.ID(),
 //				Region:   cr01.Region,
 //				Timeout:  pulumi.Int(3600),
 //			})
@@ -145,7 +145,7 @@ import (
 //			}
 //			_, err = tem.NewWebhook(ctx, "webhook", &tem.WebhookArgs{
 //				Name:     pulumi.String("example-webhook"),
-//				DomainId: cr01.ID().ToIDOutput().ToStringOutput(),
+//				DomainId: cr01.ID(),
 //				EventTypes: pulumi.StringArray{
 //					pulumi.String("email_delivered"),
 //					pulumi.String("email_bounced"),
@@ -282,6 +282,12 @@ type WebhookState struct {
 
 func (WebhookState) ElementType() reflect.Type {
 	return reflect.TypeOf((*webhookState)(nil)).Elem()
+}
+
+// WebhookExists checks whether an existing Webhook resource with the given ID exists.
+func WebhookExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *WebhookState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:tem/webhook:Webhook", id, state, "", opts...)
 }
 
 type webhookArgs struct {

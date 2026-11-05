@@ -391,6 +391,22 @@ class ContainerDomain(pulumi.CustomResource):
         __props__.__dict__["url"] = url
         return ContainerDomain(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            container_id: pulumi.Input[Optional[_builtins.str]] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["containerId"] = container_id
+        __props__["hostname"] = hostname
+        __props__["region"] = region
+        __props__["srn"] = srn
+        __props__["url"] = url
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/containerDomain:ContainerDomain', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="containerId")
     def container_id(self) -> pulumi.Output[_builtins.str]:

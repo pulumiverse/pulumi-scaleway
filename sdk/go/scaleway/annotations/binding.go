@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			production, err := annotations.NewValue(ctx, "production", &annotations.ValueArgs{
-//				KeyId:       environment.ID().ToIDOutput().ToStringOutput(),
+//				KeyId:       environment.ID(),
 //				Name:        pulumi.String("production"),
 //				Description: pulumi.String("Production environment"),
 //			})
@@ -57,7 +57,7 @@ import (
 //			}
 //			_, err = annotations.NewBinding(ctx, "main", &annotations.BindingArgs{
 //				TargetSrn: main.Srn,
-//				ValueId:   production.ID().ToIDOutput().ToStringOutput(),
+//				ValueId:   production.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -147,6 +147,12 @@ type BindingState struct {
 
 func (BindingState) ElementType() reflect.Type {
 	return reflect.TypeOf((*bindingState)(nil)).Elem()
+}
+
+// BindingExists checks whether an existing Binding resource with the given ID exists.
+func BindingExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BindingState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:annotations/binding:Binding", id, state, "", opts...)
 }
 
 type bindingArgs struct {

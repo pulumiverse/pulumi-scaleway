@@ -51,7 +51,7 @@ import (
 //			// Create a version of fooii containing data
 //			_, err = secrets.NewVersion(ctx, "main", &secrets.VersionArgs{
 //				Description: pulumi.String("your description"),
-//				SecretId:    main.ID().ToIDOutput().ToStringOutput(),
+//				SecretId:    main.ID(),
 //				Data:        pulumi.String("your_secret"),
 //			})
 //			if err != nil {
@@ -59,7 +59,7 @@ import (
 //			}
 //			// Retrieve the secret version specified by the secret ID and the desired version
 //			dataBySecretId := secrets.LookupVersionOutput(ctx, secrets.GetVersionOutputArgs{
-//				SecretId: main.ID().ToIDOutput().ToStringOutput(),
+//				SecretId: main.ID(),
 //				Revision: pulumi.String("1"),
 //			}, nil)
 //			// Retrieve the secret version specified by the secret name and the desired version

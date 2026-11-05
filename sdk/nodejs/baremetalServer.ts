@@ -12,6 +12,32 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * //## Basic
+ * const mySshKey = scaleway.iam.getSshKey({
+ *     name: "main",
+ *     publicKey: "ssh XXXXXXXXXXX",
+ * });
+ * const myOs = scaleway.elasticmetal.getOs({
+ *     zone: "fr-par-2",
+ *     name: "Ubuntu",
+ *     version: "22.04 LTS (Jammy Jellyfish)",
+ * });
+ * const myOffer = scaleway.elasticmetal.getOffer({
+ *     zone: "fr-par-2",
+ *     name: "EM-I220E-NVME",
+ * });
+ * const myServer = new scaleway.elasticmetal.Server("my_server", {
+ *     zone: "fr-par-2",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
+ *     os: myOs.then(myOs => myOs.id),
+ *     sshKeyIds: [mySshKey.then(mySshKey => mySshKey.id)],
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
  * import * as std from "@pulumi/std";
  *
  * //## With cloud-init
@@ -38,6 +64,165 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * //## With custom partitioning
+ * const mySshKey = scaleway.iam.getSshKey({
+ *     name: "main",
+ *     publicKey: "ssh XXXXXXXXXXX",
+ * });
+ * const myOs = scaleway.elasticmetal.getOs({
+ *     zone: "fr-par-2",
+ *     name: "Ubuntu",
+ *     version: "22.04 LTS (Jammy Jellyfish)",
+ * });
+ * const myOffer = scaleway.elasticmetal.getOffer({
+ *     zone: "fr-par-2",
+ *     name: "EM-I215E-NVME",
+ * });
+ * const myServer = new scaleway.elasticmetal.Server("my_server", {
+ *     zone: "fr-par-2",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
+ *     os: myOs.then(myOs => myOs.osId),
+ *     partitioning: `{
+ *   \\"disks\\": [
+ *     {
+ *       \\"device\\": \\"/dev/nvme0n1\\",
+ *       \\"partitions\\": [
+ *         {
+ *           \\"label\\": \\"uefi\\",
+ *           \\"number\\": 1,
+ *           \\"size\\": 536870912
+ *         },
+ *         {
+ *           \\"label\\": \\"swap\\",
+ *           \\"number\\": 2,
+ *           \\"size\\": 4294967296
+ *         },
+ *         {
+ *           \\"label\\": \\"boot\\",
+ *           \\"number\\": 3,
+ *           \\"size\\": 1073741824
+ *         },
+ *         {
+ *           \\"label\\": \\"root\\",
+ *           \\"number\\": 4,
+ *           \\"size\\": 1017827045376
+ *         }
+ *       ]
+ *     },
+ *     {
+ *       \\"device\\": \\"/dev/nvme1n1\\",
+ *       \\"partitions\\": [
+ *         {
+ *           \\"label\\": \\"swap\\",
+ *           \\"number\\": 1,
+ *           \\"size\\": 4294967296
+ *         },
+ *         {
+ *           \\"label\\": \\"boot\\",
+ *           \\"number\\": 2,
+ *           \\"size\\": 1073741824
+ *         },
+ *         {
+ *           \\"label\\": \\"root\\",
+ *           \\"number\\": 3,
+ *           \\"size\\": 1017827045376
+ *         }
+ *       ]
+ *     }
+ *   ],
+ *   \\"filesystems\\": [
+ *     {
+ *       \\"device\\": \\"/dev/nvme0n1p1\\",
+ *       \\"format\\": \\"fat32\\",
+ *       \\"mountpoint\\": \\"/boot/efi\\"
+ *     },
+ *     {
+ *       \\"device\\": \\"/dev/md0\\",
+ *       \\"format\\": \\"ext4\\",
+ *       \\"mountpoint\\": \\"/boot\\"
+ *     },
+ *     {
+ *       \\"device\\": \\"/dev/md1\\",
+ *       \\"format\\": \\"ext4\\",
+ *       \\"mountpoint\\": \\"/\\"
+ *     }
+ *   ],
+ *   \\"raids\\": [
+ *     {
+ *       \\"devices\\": [\\"/dev/nvme0n1p3\\", \\"/dev/nvme1n1p2\\"],
+ *       \\"level\\": \\"raid_level_1\\",
+ *       \\"name\\": \\"/dev/md0\\"
+ *     },
+ *     {
+ *       \\"devices\\": [\\"/dev/nvme0n1p4\\", \\"/dev/nvme1n1p3\\"],
+ *       \\"level\\": \\"raid_level_1\\",
+ *       \\"name\\": \\"/dev/md1\\"
+ *     }
+ *   ],
+ *   \\"zfs\\": {
+ *     \\"pools\\": []
+ *   }
+ * }
+ * `,
+ *     sshKeyIds: [mySshKey.then(mySshKey => mySshKey.id)],
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * //## With IPAM IP IDs
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "vpc_baremetal"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
+ *     name: "private_network_baremetal",
+ *     ipv4Subnet: {
+ *         subnet: "172.16.64.0/22",
+ *     },
+ *     vpcId: vpc01.id,
+ * });
+ * const ip01 = new scaleway.ipam.Ip("ip01", {
+ *     address: "172.16.64.7",
+ *     sources: [{
+ *         privateNetworkId: pn01.id,
+ *     }],
+ * });
+ * const mySshKey = scaleway.iam.getSshKey({
+ *     name: "main",
+ *     publicKey: "ssh XXXXXXXXXXX",
+ * });
+ * const myOs = scaleway.elasticmetal.getOs({
+ *     zone: "fr-par-1",
+ *     name: "Ubuntu",
+ *     version: "22.04 LTS (Jammy Jellyfish)",
+ * });
+ * const myOffer = scaleway.elasticmetal.getOffer({
+ *     zone: "fr-par-1",
+ *     name: "EM-A115X-SSD",
+ * });
+ * const privateNetwork = scaleway.elasticmetal.getOption({
+ *     zone: "fr-par-1",
+ *     name: "Private Network",
+ * });
+ * const myServer = new scaleway.elasticmetal.Server("my_server", {
+ *     zone: "fr-par-2",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
+ *     os: myOs.then(myOs => myOs.osId),
+ *     sshKeyIds: [mySshKey.then(mySshKey => mySshKey.id)],
+ *     options: [{
+ *         id: privateNetwork.then(privateNetwork => privateNetwork.optionId),
+ *     }],
+ *     privateNetworks: [{
+ *         id: pn01.id,
+ *         ipamIpIds: [ip01.id],
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Baremetal servers can be imported using the `{zone}/{id}`, e.g.
@@ -61,6 +246,17 @@ export class BaremetalServer extends pulumi.CustomResource {
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BaremetalServerState, opts?: pulumi.CustomResourceOptions): BaremetalServer {
         pulumi.log.warn("BaremetalServer is deprecated: scaleway.index/baremetalserver.BaremetalServer has been deprecated in favor of scaleway.elasticmetal/server.Server")
         return new BaremetalServer(name, <any>state, { ...opts, id: id });
+    }
+
+    /**
+     * Check whether an existing BaremetalServer resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: BaremetalServerState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("scaleway:index/baremetalServer:BaremetalServer", id, <any>state || {}, { ...opts }, undefined);
     }
 
     /** @internal */

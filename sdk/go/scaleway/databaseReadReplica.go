@@ -49,7 +49,7 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewReadReplica(ctx, "replica", &databases.ReadReplicaArgs{
-//				InstanceId:   instance.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId:   instance.ID(),
 //				DirectAccess: &databases.ReadReplicaDirectAccessArgs{},
 //			})
 //			if err != nil {
@@ -93,9 +93,9 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewReadReplica(ctx, "replica", &databases.ReadReplicaArgs{
-//				InstanceId: instance.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: instance.ID(),
 //				PrivateNetwork: &databases.ReadReplicaPrivateNetworkArgs{
-//					PrivateNetworkId: pn.ID().ToIDOutput().ToStringOutput(),
+//					PrivateNetworkId: pn.ID(),
 //					ServiceIp:        pulumi.String("192.168.1.254/24"),
 //				},
 //			})
@@ -140,9 +140,9 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewReadReplica(ctx, "replica", &databases.ReadReplicaArgs{
-//				InstanceId: instance.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: instance.ID(),
 //				PrivateNetwork: &databases.ReadReplicaPrivateNetworkArgs{
-//					PrivateNetworkId: pn.ID().ToIDOutput().ToStringOutput(),
+//					PrivateNetworkId: pn.ID(),
 //					EnableIpam:       pulumi.Bool(true),
 //				},
 //			})
@@ -248,6 +248,12 @@ type DatabaseReadReplicaState struct {
 
 func (DatabaseReadReplicaState) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseReadReplicaState)(nil)).Elem()
+}
+
+// DatabaseReadReplicaExists checks whether an existing DatabaseReadReplica resource with the given ID exists.
+func DatabaseReadReplicaExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DatabaseReadReplicaState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/databaseReadReplica:DatabaseReadReplica", id, state, "", opts...)
 }
 
 type databaseReadReplicaArgs struct {

@@ -42,20 +42,20 @@ import (
 //			}
 //			mainContainer, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				Name:        pulumi.String("test-container-data"),
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Get info by container name
 //			_ = containers.LookupContainerOutput(ctx, containers.GetContainerOutputArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //				Name:        mainContainer.Name,
 //			}, nil)
 //			// Get info by container ID
 //			_ = containers.LookupContainerOutput(ctx, containers.GetContainerOutputArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
-//				ContainerId: mainContainer.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
+//				ContainerId: mainContainer.ID(),
 //			}, nil)
 //			return nil
 //		})

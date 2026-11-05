@@ -159,6 +159,12 @@ func (SshKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*sshKeyState)(nil)).Elem()
 }
 
+// SshKeyExists checks whether an existing SshKey resource with the given ID exists.
+func SshKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SshKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:iam/sshKey:SshKey", id, state, "", opts...)
+}
+
 type sshKeyArgs struct {
 	// The SSH key status.
 	Disabled *bool `pulumi:"disabled"`

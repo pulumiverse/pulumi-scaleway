@@ -351,6 +351,12 @@ func (RedisClusterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*redisClusterState)(nil)).Elem()
 }
 
+// RedisClusterExists checks whether an existing RedisCluster resource with the given ID exists.
+func RedisClusterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RedisClusterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/redisCluster:RedisCluster", id, state, "", opts...)
+}
+
 type redisClusterArgs struct {
 	// List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
 	Acls []RedisClusterAcl `pulumi:"acls"`

@@ -176,6 +176,12 @@ func (LoadbalancerIpState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerIpState)(nil)).Elem()
 }
 
+// LoadbalancerIpExists checks whether an existing LoadbalancerIp resource with the given ID exists.
+func LoadbalancerIpExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerIpState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/loadbalancerIp:LoadbalancerIp", id, state, "", opts...)
+}
+
 type loadbalancerIpArgs struct {
 	// If true, creates a flexible IP with an IPv6 address.
 	IsIpv6 *bool `pulumi:"isIpv6"`

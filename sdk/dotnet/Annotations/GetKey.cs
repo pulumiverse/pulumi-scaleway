@@ -15,8 +15,6 @@ namespace Pulumiverse.Scaleway.Annotations
         /// <summary>
         /// Retrieves information about an existing annotation key using its ID.
         /// 
-        /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -47,8 +45,6 @@ namespace Pulumiverse.Scaleway.Annotations
         /// <summary>
         /// Retrieves information about an existing annotation key using its ID.
         /// 
-        /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -78,8 +74,6 @@ namespace Pulumiverse.Scaleway.Annotations
 
         /// <summary>
         /// Retrieves information about an existing annotation key using its ID.
-        /// 
-        /// 
         /// 
         /// ## Example Usage
         /// 

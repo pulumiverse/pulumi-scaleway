@@ -38,7 +38,7 @@ import (
 //				return err
 //			}
 //			_, err = autoscaling.NewGroup(ctx, "main", &autoscaling.GroupArgs{
-//				TemplateId: main.ID().ToIDOutput().ToStringOutput(),
+//				TemplateId: main.ID(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("tf-examples"),
 //					pulumi.String("scaleway_autoscaling_group"),
@@ -86,7 +86,7 @@ import (
 //				return err
 //			}
 //			_, err = autoscaling.NewGroup(ctx, "main", &autoscaling.GroupArgs{
-//				TemplateId: main.ID().ToIDOutput().ToStringOutput(),
+//				TemplateId: main.ID(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("tf-examples"),
 //					pulumi.String("scaleway_autoscaling_group"),
@@ -133,7 +133,7 @@ import (
 //				return err
 //			}
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
-//				VpcId: vpc.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -146,7 +146,7 @@ import (
 //				return err
 //			}
 //			back0, err := loadbalancers.NewBackend(ctx, "back0", &loadbalancers.BackendArgs{
-//				LbId:            lb.ID().ToIDOutput().ToStringOutput(),
+//				LbId:            lb.ID(),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
 //			})
@@ -154,7 +154,7 @@ import (
 //				return err
 //			}
 //			back1, err := loadbalancers.NewBackend(ctx, "back1", &loadbalancers.BackendArgs{
-//				LbId:            lb.ID().ToIDOutput().ToStringOutput(),
+//				LbId:            lb.ID(),
 //				ForwardProtocol: pulumi.String("tcp"),
 //				ForwardPort:     pulumi.Int(81),
 //			})
@@ -175,23 +175,23 @@ import (
 //			}
 //			// AutoScaling Group
 //			_, err = autoscaling.NewGroup(ctx, "main", &autoscaling.GroupArgs{
-//				TemplateId: main.ID().ToIDOutput().ToStringOutput(),
+//				TemplateId: main.ID(),
 //				ScalingPolicy: &autoscaling.GroupScalingPolicyArgs{
 //					MinimumSize:  pulumi.Int(0),
 //					MaximumSize:  pulumi.Int(25),
 //					MemoryTarget: pulumi.Int(75),
 //				},
 //				LoadBalancerConfiguration: &autoscaling.GroupLoadBalancerConfigurationArgs{
-//					LoadBalancerId: lb.ID().ToIDOutput().ToStringOutput(),
+//					LoadBalancerId: lb.ID(),
 //					Backends: autoscaling.GroupLoadBalancerConfigurationBackendArray{
 //						&autoscaling.GroupLoadBalancerConfigurationBackendArgs{
-//							BackendId:     back0.ID().ToIDOutput().ToStringOutput(),
+//							BackendId:     back0.ID(),
 //							AddressFamily: pulumi.String("ipv6"),
 //						},
 //						&autoscaling.GroupLoadBalancerConfigurationBackendArgs{
-//							BackendId:        back1.ID().ToIDOutput().ToStringOutput(),
+//							BackendId:        back1.ID(),
 //							AddressFamily:    pulumi.String("ipv4"),
-//							PrivateNetworkId: pn.ID().ToIDOutput().ToStringOutput(),
+//							PrivateNetworkId: pn.ID(),
 //						},
 //					},
 //					AutoHealing: &autoscaling.GroupLoadBalancerConfigurationAutoHealingArgs{
@@ -348,6 +348,12 @@ type GroupState struct {
 
 func (GroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupState)(nil)).Elem()
+}
+
+// GroupExists checks whether an existing Group resource with the given ID exists.
+func GroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:autoscaling/group:Group", id, state, "", opts...)
 }
 
 type groupArgs struct {

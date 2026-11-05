@@ -143,6 +143,12 @@ func (BlockedListState) ElementType() reflect.Type {
 	return reflect.TypeOf((*blockedListState)(nil)).Elem()
 }
 
+// BlockedListExists checks whether an existing BlockedList resource with the given ID exists.
+func BlockedListExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BlockedListState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:tem/blockedList:BlockedList", id, state, "", opts...)
+}
+
 type blockedListArgs struct {
 	// The ID of the domain affected by the blocklist. Must be in the format `{region}/{domain_id}`.
 	DomainId string `pulumi:"domainId"`

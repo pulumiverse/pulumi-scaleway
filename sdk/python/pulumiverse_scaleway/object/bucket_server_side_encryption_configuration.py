@@ -175,7 +175,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict', 'outputs.BucketServerSideEncryptionConfigurationRule']]]]] = None,
                  __props__=None):
         """
         The `object.BucketServerSideEncryptionConfiguration` resource allows you to manage server-side encryption configuration for [Scaleway Object Storage](https://www.scaleway.com/en/docs/object-storage/) buckets.
@@ -285,7 +285,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: The ID of the
                project the bucket is associated with.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]] rules: Set of server-side encryption configuration rules
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict', 'outputs.BucketServerSideEncryptionConfigurationRule']]]] rules: Set of server-side encryption configuration rules
         """
         ...
     @overload
@@ -413,7 +413,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict', 'outputs.BucketServerSideEncryptionConfigurationRule']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -444,7 +444,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
             bucket: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]]] = None) -> 'BucketServerSideEncryptionConfiguration':
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict', 'outputs.BucketServerSideEncryptionConfigurationRule']]]]] = None) -> 'BucketServerSideEncryptionConfiguration':
         """
         Get an existing BucketServerSideEncryptionConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -456,7 +456,7 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: The ID of the
                project the bucket is associated with.
         :param pulumi.Input[_builtins.str] region: The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket is located.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict']]]] rules: Set of server-side encryption configuration rules
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict', 'outputs.BucketServerSideEncryptionConfigurationRule']]]] rules: Set of server-side encryption configuration rules
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -467,6 +467,20 @@ class BucketServerSideEncryptionConfiguration(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["rules"] = rules
         return BucketServerSideEncryptionConfiguration(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BucketServerSideEncryptionConfigurationRuleArgs', 'BucketServerSideEncryptionConfigurationRuleArgsDict', 'outputs.BucketServerSideEncryptionConfigurationRule']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["bucket"] = bucket
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["rules"] = rules
+        return pulumi.runtime.exists_resource(None, 'scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

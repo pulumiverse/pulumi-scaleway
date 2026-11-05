@@ -15,8 +15,6 @@ namespace Pulumiverse.Scaleway.Annotations
         /// <summary>
         /// Use this data source to retrieve information about an annotation binding.
         /// 
-        /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -70,8 +68,6 @@ namespace Pulumiverse.Scaleway.Annotations
         /// <summary>
         /// Use this data source to retrieve information about an annotation binding.
         /// 
-        /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ```csharp
@@ -124,8 +120,6 @@ namespace Pulumiverse.Scaleway.Annotations
 
         /// <summary>
         /// Use this data source to retrieve information about an annotation binding.
-        /// 
-        /// 
         /// 
         /// ## Example Usage
         /// 

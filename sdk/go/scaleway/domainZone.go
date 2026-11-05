@@ -160,6 +160,12 @@ func (DomainZoneState) ElementType() reflect.Type {
 	return reflect.TypeOf((*domainZoneState)(nil)).Elem()
 }
 
+// DomainZoneExists checks whether an existing DomainZone resource with the given ID exists.
+func DomainZoneExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DomainZoneState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/domainZone:DomainZone", id, state, "", opts...)
+}
+
 type domainZoneArgs struct {
 	// The main domain where the DNS zone will be created.
 	Domain string `pulumi:"domain"`

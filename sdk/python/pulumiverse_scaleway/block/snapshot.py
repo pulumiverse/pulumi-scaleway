@@ -322,12 +322,12 @@ class Snapshot(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 export: pulumi.Input[Optional[Union['SnapshotExportArgs', 'SnapshotExportArgsDict']]] = None,
-                 import_: pulumi.Input[Optional[Union['SnapshotImportArgs', 'SnapshotImportArgsDict']]] = None,
+                 export: pulumi.Input[Optional[Union['SnapshotExportArgs', 'SnapshotExportArgsDict', 'outputs.SnapshotExport']]] = None,
+                 import_: pulumi.Input[Optional[Union['SnapshotImportArgs', 'SnapshotImportArgsDict', 'outputs.SnapshotImport']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 timeouts: pulumi.Input[Optional[Union['SnapshotTimeoutsArgs', 'SnapshotTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['SnapshotTimeoutsArgs', 'SnapshotTimeoutsArgsDict', 'outputs.SnapshotTimeouts']]] = None,
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -405,12 +405,12 @@ class Snapshot(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['SnapshotExportArgs', 'SnapshotExportArgsDict']] export: Use this block to export the volume as a QCOW file to Object Storage.
-        :param pulumi.Input[Union['SnapshotImportArgs', 'SnapshotImportArgsDict']] import_: Use this block to import a QCOW image from Object Storage to create a volume.
+        :param pulumi.Input[Union['SnapshotExportArgs', 'SnapshotExportArgsDict', 'outputs.SnapshotExport']] export: Use this block to export the volume as a QCOW file to Object Storage.
+        :param pulumi.Input[Union['SnapshotImportArgs', 'SnapshotImportArgsDict', 'outputs.SnapshotImport']] import_: Use this block to import a QCOW image from Object Storage to create a volume.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
-        :param pulumi.Input[Union['SnapshotTimeoutsArgs', 'SnapshotTimeoutsArgsDict']] timeouts: The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+        :param pulumi.Input[Union['SnapshotTimeoutsArgs', 'SnapshotTimeoutsArgsDict', 'outputs.SnapshotTimeouts']] timeouts: The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
                
                The following arguments are specific to the `timeouts` block:
         :param pulumi.Input[_builtins.str] volume_id: The ID of the volume to take a snapshot from.
@@ -509,12 +509,12 @@ class Snapshot(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 export: pulumi.Input[Optional[Union['SnapshotExportArgs', 'SnapshotExportArgsDict']]] = None,
-                 import_: pulumi.Input[Optional[Union['SnapshotImportArgs', 'SnapshotImportArgsDict']]] = None,
+                 export: pulumi.Input[Optional[Union['SnapshotExportArgs', 'SnapshotExportArgsDict', 'outputs.SnapshotExport']]] = None,
+                 import_: pulumi.Input[Optional[Union['SnapshotImportArgs', 'SnapshotImportArgsDict', 'outputs.SnapshotImport']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 timeouts: pulumi.Input[Optional[Union['SnapshotTimeoutsArgs', 'SnapshotTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['SnapshotTimeoutsArgs', 'SnapshotTimeoutsArgsDict', 'outputs.SnapshotTimeouts']]] = None,
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -547,13 +547,13 @@ class Snapshot(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            export: pulumi.Input[Optional[Union['SnapshotExportArgs', 'SnapshotExportArgsDict']]] = None,
-            import_: pulumi.Input[Optional[Union['SnapshotImportArgs', 'SnapshotImportArgsDict']]] = None,
+            export: pulumi.Input[Optional[Union['SnapshotExportArgs', 'SnapshotExportArgsDict', 'outputs.SnapshotExport']]] = None,
+            import_: pulumi.Input[Optional[Union['SnapshotImportArgs', 'SnapshotImportArgsDict', 'outputs.SnapshotImport']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            timeouts: pulumi.Input[Optional[Union['SnapshotTimeoutsArgs', 'SnapshotTimeoutsArgsDict']]] = None,
+            timeouts: pulumi.Input[Optional[Union['SnapshotTimeoutsArgs', 'SnapshotTimeoutsArgsDict', 'outputs.SnapshotTimeouts']]] = None,
             volume_id: pulumi.Input[Optional[_builtins.str]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Snapshot':
         """
@@ -563,13 +563,13 @@ class Snapshot(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['SnapshotExportArgs', 'SnapshotExportArgsDict']] export: Use this block to export the volume as a QCOW file to Object Storage.
-        :param pulumi.Input[Union['SnapshotImportArgs', 'SnapshotImportArgsDict']] import_: Use this block to import a QCOW image from Object Storage to create a volume.
+        :param pulumi.Input[Union['SnapshotExportArgs', 'SnapshotExportArgsDict', 'outputs.SnapshotExport']] export: Use this block to export the volume as a QCOW file to Object Storage.
+        :param pulumi.Input[Union['SnapshotImportArgs', 'SnapshotImportArgsDict', 'outputs.SnapshotImport']] import_: Use this block to import a QCOW image from Object Storage to create a volume.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
-        :param pulumi.Input[Union['SnapshotTimeoutsArgs', 'SnapshotTimeoutsArgsDict']] timeouts: The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
+        :param pulumi.Input[Union['SnapshotTimeoutsArgs', 'SnapshotTimeoutsArgsDict', 'outputs.SnapshotTimeouts']] timeouts: The `timeouts` block allows you to configure how long Terraform waits for certain long-running operations. See the Increase Timeout in pulumi up guide for more details.
                
                The following arguments are specific to the `timeouts` block:
         :param pulumi.Input[_builtins.str] volume_id: The ID of the volume to take a snapshot from.
@@ -589,6 +589,30 @@ class Snapshot(pulumi.CustomResource):
         __props__.__dict__["volume_id"] = volume_id
         __props__.__dict__["zone"] = zone
         return Snapshot(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            export: pulumi.Input[Optional[Union['SnapshotExportArgs', 'SnapshotExportArgsDict', 'outputs.SnapshotExport']]] = None,
+            import_: pulumi.Input[Optional[Union['SnapshotImportArgs', 'SnapshotImportArgsDict', 'outputs.SnapshotImport']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            timeouts: pulumi.Input[Optional[Union['SnapshotTimeoutsArgs', 'SnapshotTimeoutsArgsDict', 'outputs.SnapshotTimeouts']]] = None,
+            volume_id: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["export"] = export
+        __props__["import"] = import_
+        __props__["name"] = name
+        __props__["projectId"] = project_id
+        __props__["srn"] = srn
+        __props__["tags"] = tags
+        __props__["timeouts"] = timeouts
+        __props__["volumeId"] = volume_id
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:block/snapshot:Snapshot', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

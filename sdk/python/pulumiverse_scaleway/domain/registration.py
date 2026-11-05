@@ -333,7 +333,7 @@ class Registration(pulumi.CustomResource):
                  dnssec: pulumi.Input[Optional[_builtins.bool]] = None,
                  domain_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  duration_in_years: pulumi.Input[Optional[_builtins.int]] = None,
-                 owner_contact: pulumi.Input[Optional[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict']]] = None,
+                 owner_contact: pulumi.Input[Optional[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict', 'outputs.RegistrationOwnerContact']]] = None,
                  owner_contact_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -476,7 +476,7 @@ class Registration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] dnssec: : Enables or disables DNSSEC.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] domain_names: : A list of domain names to be registered.
         :param pulumi.Input[_builtins.int] duration_in_years: : The registration period in years.
-        :param pulumi.Input[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict']] owner_contact: : Details of the owner contact.
+        :param pulumi.Input[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict', 'outputs.RegistrationOwnerContact']] owner_contact: : Details of the owner contact.
         :param pulumi.Input[_builtins.str] owner_contact_id: : The ID of an existing owner contact.
         :param pulumi.Input[_builtins.str] project_id: : The Scaleway project ID.
         """
@@ -638,7 +638,7 @@ class Registration(pulumi.CustomResource):
                  dnssec: pulumi.Input[Optional[_builtins.bool]] = None,
                  domain_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  duration_in_years: pulumi.Input[Optional[_builtins.int]] = None,
-                 owner_contact: pulumi.Input[Optional[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict']]] = None,
+                 owner_contact: pulumi.Input[Optional[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict', 'outputs.RegistrationOwnerContact']]] = None,
                  owner_contact_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -673,17 +673,17 @@ class Registration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            administrative_contacts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistrationAdministrativeContactArgs', 'RegistrationAdministrativeContactArgsDict']]]]] = None,
+            administrative_contacts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistrationAdministrativeContactArgs', 'RegistrationAdministrativeContactArgsDict', 'outputs.RegistrationAdministrativeContact']]]]] = None,
             auto_renew: pulumi.Input[Optional[_builtins.bool]] = None,
             dnssec: pulumi.Input[Optional[_builtins.bool]] = None,
             domain_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ds_records: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistrationDsRecordArgs', 'RegistrationDsRecordArgsDict']]]]] = None,
+            ds_records: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistrationDsRecordArgs', 'RegistrationDsRecordArgsDict', 'outputs.RegistrationDsRecord']]]]] = None,
             duration_in_years: pulumi.Input[Optional[_builtins.int]] = None,
-            owner_contact: pulumi.Input[Optional[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict']]] = None,
+            owner_contact: pulumi.Input[Optional[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict', 'outputs.RegistrationOwnerContact']]] = None,
             owner_contact_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             task_id: pulumi.Input[Optional[_builtins.str]] = None,
-            technical_contacts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistrationTechnicalContactArgs', 'RegistrationTechnicalContactArgsDict']]]]] = None) -> 'Registration':
+            technical_contacts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistrationTechnicalContactArgs', 'RegistrationTechnicalContactArgsDict', 'outputs.RegistrationTechnicalContact']]]]] = None) -> 'Registration':
         """
         Get an existing Registration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -691,17 +691,17 @@ class Registration(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RegistrationAdministrativeContactArgs', 'RegistrationAdministrativeContactArgsDict']]]] administrative_contacts: : Administrative contact information.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RegistrationAdministrativeContactArgs', 'RegistrationAdministrativeContactArgsDict', 'outputs.RegistrationAdministrativeContact']]]] administrative_contacts: : Administrative contact information.
         :param pulumi.Input[_builtins.bool] auto_renew: : Enables or disables auto-renewal.
         :param pulumi.Input[_builtins.bool] dnssec: : Enables or disables DNSSEC.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] domain_names: : A list of domain names to be registered.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RegistrationDsRecordArgs', 'RegistrationDsRecordArgsDict']]]] ds_records: DNSSEC DS record configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RegistrationDsRecordArgs', 'RegistrationDsRecordArgsDict', 'outputs.RegistrationDsRecord']]]] ds_records: DNSSEC DS record configuration.
         :param pulumi.Input[_builtins.int] duration_in_years: : The registration period in years.
-        :param pulumi.Input[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict']] owner_contact: : Details of the owner contact.
+        :param pulumi.Input[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict', 'outputs.RegistrationOwnerContact']] owner_contact: : Details of the owner contact.
         :param pulumi.Input[_builtins.str] owner_contact_id: : The ID of an existing owner contact.
         :param pulumi.Input[_builtins.str] project_id: : The Scaleway project ID.
         :param pulumi.Input[_builtins.str] task_id: ID of the task that created the domain. This attribute may be empty when the registration was imported by domain name and the original task has already been archived.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RegistrationTechnicalContactArgs', 'RegistrationTechnicalContactArgsDict']]]] technical_contacts: : Technical contact information.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RegistrationTechnicalContactArgs', 'RegistrationTechnicalContactArgsDict', 'outputs.RegistrationTechnicalContact']]]] technical_contacts: : Technical contact information.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -719,6 +719,34 @@ class Registration(pulumi.CustomResource):
         __props__.__dict__["task_id"] = task_id
         __props__.__dict__["technical_contacts"] = technical_contacts
         return Registration(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            administrative_contacts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistrationAdministrativeContactArgs', 'RegistrationAdministrativeContactArgsDict', 'outputs.RegistrationAdministrativeContact']]]]] = None,
+            auto_renew: pulumi.Input[Optional[_builtins.bool]] = None,
+            dnssec: pulumi.Input[Optional[_builtins.bool]] = None,
+            domain_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ds_records: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistrationDsRecordArgs', 'RegistrationDsRecordArgsDict', 'outputs.RegistrationDsRecord']]]]] = None,
+            duration_in_years: pulumi.Input[Optional[_builtins.int]] = None,
+            owner_contact: pulumi.Input[Optional[Union['RegistrationOwnerContactArgs', 'RegistrationOwnerContactArgsDict', 'outputs.RegistrationOwnerContact']]] = None,
+            owner_contact_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            task_id: pulumi.Input[Optional[_builtins.str]] = None,
+            technical_contacts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['RegistrationTechnicalContactArgs', 'RegistrationTechnicalContactArgsDict', 'outputs.RegistrationTechnicalContact']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["administrativeContacts"] = administrative_contacts
+        __props__["autoRenew"] = auto_renew
+        __props__["dnssec"] = dnssec
+        __props__["domainNames"] = domain_names
+        __props__["dsRecords"] = ds_records
+        __props__["durationInYears"] = duration_in_years
+        __props__["ownerContact"] = owner_contact
+        __props__["ownerContactId"] = owner_contact_id
+        __props__["projectId"] = project_id
+        __props__["taskId"] = task_id
+        __props__["technicalContacts"] = technical_contacts
+        return pulumi.runtime.exists_resource(None, 'scaleway:domain/registration:Registration', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="administrativeContacts")

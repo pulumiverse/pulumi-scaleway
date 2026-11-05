@@ -203,7 +203,7 @@ class SnsCredentials(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 permissions: pulumi.Input[Optional[Union['SnsCredentialsPermissionsArgs', 'SnsCredentialsPermissionsArgsDict']]] = None,
+                 permissions: pulumi.Input[Optional[Union['SnsCredentialsPermissionsArgs', 'SnsCredentialsPermissionsArgsDict', 'outputs.SnsCredentialsPermissions']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -243,7 +243,7 @@ class SnsCredentials(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: The unique name of the SNS credentials.
-        :param pulumi.Input[Union['SnsCredentialsPermissionsArgs', 'SnsCredentialsPermissionsArgsDict']] permissions: . List of permissions associated with these credentials.
+        :param pulumi.Input[Union['SnsCredentialsPermissionsArgs', 'SnsCredentialsPermissionsArgsDict', 'outputs.SnsCredentialsPermissions']] permissions: . List of permissions associated with these credentials.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
         :param pulumi.Input[_builtins.str] region: `region`). The region in which SNS is enabled.
         """
@@ -302,7 +302,7 @@ class SnsCredentials(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 permissions: pulumi.Input[Optional[Union['SnsCredentialsPermissionsArgs', 'SnsCredentialsPermissionsArgsDict']]] = None,
+                 permissions: pulumi.Input[Optional[Union['SnsCredentialsPermissionsArgs', 'SnsCredentialsPermissionsArgsDict', 'outputs.SnsCredentialsPermissions']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -336,7 +336,7 @@ class SnsCredentials(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             access_key: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            permissions: pulumi.Input[Optional[Union['SnsCredentialsPermissionsArgs', 'SnsCredentialsPermissionsArgsDict']]] = None,
+            permissions: pulumi.Input[Optional[Union['SnsCredentialsPermissionsArgs', 'SnsCredentialsPermissionsArgsDict', 'outputs.SnsCredentialsPermissions']]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
             secret_key: pulumi.Input[Optional[_builtins.str]] = None) -> 'SnsCredentials':
@@ -349,7 +349,7 @@ class SnsCredentials(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] access_key: The ID of the key.
         :param pulumi.Input[_builtins.str] name: The unique name of the SNS credentials.
-        :param pulumi.Input[Union['SnsCredentialsPermissionsArgs', 'SnsCredentialsPermissionsArgsDict']] permissions: . List of permissions associated with these credentials.
+        :param pulumi.Input[Union['SnsCredentialsPermissionsArgs', 'SnsCredentialsPermissionsArgsDict', 'outputs.SnsCredentialsPermissions']] permissions: . List of permissions associated with these credentials.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project in which SNS is enabled.
         :param pulumi.Input[_builtins.str] region: `region`). The region in which SNS is enabled.
         :param pulumi.Input[_builtins.str] secret_key: The secret value of the key.
@@ -365,6 +365,24 @@ class SnsCredentials(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["secret_key"] = secret_key
         return SnsCredentials(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            permissions: pulumi.Input[Optional[Union['SnsCredentialsPermissionsArgs', 'SnsCredentialsPermissionsArgsDict', 'outputs.SnsCredentialsPermissions']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessKey"] = access_key
+        __props__["name"] = name
+        __props__["permissions"] = permissions
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["secretKey"] = secret_key
+        return pulumi.runtime.exists_resource(None, 'scaleway:mnq/snsCredentials:SnsCredentials', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="accessKey")

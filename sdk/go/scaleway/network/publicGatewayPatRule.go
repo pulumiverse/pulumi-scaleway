@@ -48,7 +48,7 @@ import (
 //				Name:            pulumi.String("my-server"),
 //				Type:            pulumi.String("PLAY2-NANO"),
 //				Image:           pulumi.String("ubuntu_jammy"),
-//				SecurityGroupId: sg01.ID().ToIDOutput().ToStringOutput(),
+//				SecurityGroupId: sg01.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -60,8 +60,8 @@ import (
 //				return err
 //			}
 //			pnic01, err := instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
-//				ServerId:         srv01.ID().ToIDOutput().ToStringOutput(),
-//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//				ServerId:         srv01.ID(),
+//				PrivateNetworkId: pn01.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -79,15 +79,15 @@ import (
 //			pg01, err := network.NewPublicGateway(ctx, "pg01", &network.PublicGatewayArgs{
 //				Name: pulumi.String("my-pg"),
 //				Type: pulumi.String("VPC-GW-S"),
-//				IpId: ip01.ID().ToIDOutput().ToStringOutput(),
+//				IpId: ip01.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			gn01, err := network.NewGatewayNetwork(ctx, "gn01", &network.GatewayNetworkArgs{
-//				GatewayId:        pg01.ID().ToIDOutput().ToStringOutput(),
-//				PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
-//				DhcpId:           dhcp01.ID().ToIDOutput().ToStringOutput(),
+//				GatewayId:        pg01.ID(),
+//				PrivateNetworkId: pn01.ID(),
+//				DhcpId:           dhcp01.ID(),
 //				CleanupDhcp:      pulumi.Bool(true),
 //				EnableMasquerade: pulumi.Bool(true),
 //			})
@@ -95,7 +95,7 @@ import (
 //				return err
 //			}
 //			rsv01, err := network.NewPublicGatewayDhcpReservation(ctx, "rsv01", &network.PublicGatewayDhcpReservationArgs{
-//				GatewayNetworkId: gn01.ID().ToIDOutput().ToStringOutput(),
+//				GatewayNetworkId: gn01.ID(),
 //				MacAddress:       pnic01.MacAddress,
 //				IpAddress:        pulumi.String("192.168.0.7"),
 //			})
@@ -104,7 +104,7 @@ import (
 //			}
 //			// PAT rule for SSH traffic
 //			_, err = network.NewPublicGatewayPatRule(ctx, "pat01", &network.PublicGatewayPatRuleArgs{
-//				GatewayId:   pg01.ID().ToIDOutput().ToStringOutput(),
+//				GatewayId:   pg01.ID(),
 //				PrivateIp:   rsv01.IpAddress,
 //				PrivatePort: pulumi.Int(22),
 //				PublicPort:  pulumi.Int(2202),
@@ -246,6 +246,12 @@ type PublicGatewayPatRuleState struct {
 
 func (PublicGatewayPatRuleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*publicGatewayPatRuleState)(nil)).Elem()
+}
+
+// PublicGatewayPatRuleExists checks whether an existing PublicGatewayPatRule resource with the given ID exists.
+func PublicGatewayPatRuleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PublicGatewayPatRuleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:network/publicGatewayPatRule:PublicGatewayPatRule", id, state, "", opts...)
 }
 
 type publicGatewayPatRuleArgs struct {

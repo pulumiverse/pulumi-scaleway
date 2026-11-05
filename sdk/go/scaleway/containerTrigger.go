@@ -260,6 +260,12 @@ func (ContainerTriggerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*containerTriggerState)(nil)).Elem()
 }
 
+// ContainerTriggerExists checks whether an existing ContainerTrigger resource with the given ID exists.
+func ContainerTriggerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ContainerTriggerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/containerTrigger:ContainerTrigger", id, state, "", opts...)
+}
+
 type containerTriggerArgs struct {
 	// The unique identifier of the container to create a trigger for.
 	//

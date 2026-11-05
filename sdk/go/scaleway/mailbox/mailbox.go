@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			_, err = mailbox.NewMailbox(ctx, "john", &mailbox.MailboxArgs{
-//				DomainId:           main.ID().ToIDOutput().ToStringOutput(),
+//				DomainId:           main.ID(),
 //				LocalPart:          pulumi.String("john.doe"),
 //				Password:           pulumi.Any(mailboxPassword),
 //				SubscriptionPeriod: pulumi.String("monthly"),
@@ -77,7 +77,7 @@ import (
 //				return err
 //			}
 //			_, err = mailbox.NewMailbox(ctx, "support", &mailbox.MailboxArgs{
-//				DomainId:           main.ID().ToIDOutput().ToStringOutput(),
+//				DomainId:           main.ID(),
 //				LocalPart:          pulumi.String("support"),
 //				PasswordWo:         pulumi.Any(mailboxPassword),
 //				PasswordWoVersion:  pulumi.Int(1),
@@ -124,7 +124,7 @@ import (
 //			var employees []*mailbox.Mailbox
 //			for key0, _ := range mailboxes {
 //				__res, err := mailbox.NewMailbox(ctx, fmt.Sprintf("employees-%v", key0), &mailbox.MailboxArgs{
-//					DomainId:           corp.ID().ToIDOutput().ToStringOutput(),
+//					DomainId:           corp.ID(),
 //					LocalPart:          pulumi.Int(key0),
 //					Password:           pulumi.Any(mailboxPassword),
 //					SubscriptionPeriod: pulumi.String("monthly"),
@@ -297,6 +297,12 @@ type MailboxState struct {
 
 func (MailboxState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mailboxState)(nil)).Elem()
+}
+
+// MailboxExists checks whether an existing Mailbox resource with the given ID exists.
+func MailboxExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MailboxState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:mailbox/mailbox:Mailbox", id, state, "", opts...)
 }
 
 type mailboxArgs struct {

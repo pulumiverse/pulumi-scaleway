@@ -94,7 +94,7 @@ import (
 //				return err
 //			}
 //			main := observability.GetGrafanaOutput(ctx, observability.GetGrafanaOutputArgs{
-//				ProjectId: project.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId: project.ID(),
 //			}, nil)
 //			ctx.Export("grafanaConnectionInfo", pulumi.StringMap{
 //				"url":       main.GrafanaUrl(),

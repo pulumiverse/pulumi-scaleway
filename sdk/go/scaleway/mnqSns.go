@@ -151,6 +151,12 @@ func (MnqSnsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mnqSnsState)(nil)).Elem()
 }
 
+// MnqSnsExists checks whether an existing MnqSns resource with the given ID exists.
+func MnqSnsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MnqSnsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/mnqSns:MnqSns", id, state, "", opts...)
+}
+
 type mnqSnsArgs struct {
 	// `projectId`) The ID of the project in which SNS will be enabled.
 	ProjectId *string `pulumi:"projectId"`

@@ -80,7 +80,7 @@ import (
 //			_, err = databases.NewInstance(ctx, "clone", &databases.InstanceArgs{
 //				Name:         pulumi.String("test-rdb-clone"),
 //				NodeType:     pulumi.String("DB-DEV-M"),
-//				CloneFrom:    source.ID().ToIDOutput().ToStringOutput(),
+//				CloneFrom:    source.ID(),
 //				VolumeType:   pulumi.String("lssd"),
 //				LoadBalancer: &databases.InstanceLoadBalancerArgs{},
 //			})
@@ -576,6 +576,12 @@ type InstanceState struct {
 
 func (InstanceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceState)(nil)).Elem()
+}
+
+// InstanceExists checks whether an existing Instance resource with the given ID exists.
+func InstanceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:databases/instance:Instance", id, state, "", opts...)
 }
 
 type instanceArgs struct {

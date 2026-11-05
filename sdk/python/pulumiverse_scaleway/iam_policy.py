@@ -412,7 +412,7 @@ class IamPolicy(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  no_principal: pulumi.Input[Optional[_builtins.bool]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict', 'outputs.IamPolicyRule']]]]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -528,7 +528,7 @@ class IamPolicy(pulumi.CustomResource):
                
                > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the policy is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict']]]] rules: List of rules in the policy.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict', 'outputs.IamPolicyRule']]]] rules: List of rules in the policy.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the IAM policy.
         :param pulumi.Input[_builtins.str] user_id: ID of the user the policy will be linked to
         """
@@ -661,7 +661,7 @@ class IamPolicy(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  no_principal: pulumi.Input[Optional[_builtins.bool]] = None,
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict', 'outputs.IamPolicyRule']]]]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -707,7 +707,7 @@ class IamPolicy(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             no_principal: pulumi.Input[Optional[_builtins.bool]] = None,
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
-            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict']]]]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict', 'outputs.IamPolicyRule']]]]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -729,7 +729,7 @@ class IamPolicy(pulumi.CustomResource):
                
                > **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the policy is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict']]]] rules: List of rules in the policy.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict', 'outputs.IamPolicyRule']]]] rules: List of rules in the policy.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the policy.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the IAM policy.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the policy.
@@ -753,6 +753,38 @@ class IamPolicy(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["user_id"] = user_id
         return IamPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            application_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            editable: pulumi.Input[Optional[_builtins.bool]] = None,
+            group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            no_principal: pulumi.Input[Optional[_builtins.bool]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['IamPolicyRuleArgs', 'IamPolicyRuleArgsDict', 'outputs.IamPolicyRule']]]]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["applicationId"] = application_id
+        __props__["createdAt"] = created_at
+        __props__["description"] = description
+        __props__["editable"] = editable
+        __props__["groupId"] = group_id
+        __props__["name"] = name
+        __props__["noPrincipal"] = no_principal
+        __props__["organizationId"] = organization_id
+        __props__["rules"] = rules
+        __props__["srn"] = srn
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        __props__["userId"] = user_id
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/iamPolicy:IamPolicy', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="applicationId")

@@ -44,7 +44,7 @@ import (
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
 //				Name:   pulumi.String("my-private-network"),
 //				Region: pulumi.String("fr-par"),
-//				VpcId:  main.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:  main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -59,7 +59,7 @@ import (
 //				UserName:       pulumi.String("admin"),
 //				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
 //				PrivateNetwork: &kafka.ClusterPrivateNetworkArgs{
-//					PnId: pn.ID().ToIDOutput().ToStringOutput(),
+//					PnId: pn.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -96,7 +96,7 @@ import (
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
 //				Name:   pulumi.String("my-private-network"),
 //				Region: pulumi.String("fr-par"),
-//				VpcId:  main.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:  main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -115,7 +115,7 @@ import (
 //					pulumi.String("messaging"),
 //				},
 //				PrivateNetwork: &kafka.ClusterPrivateNetworkArgs{
-//					PnId: pn.ID().ToIDOutput().ToStringOutput(),
+//					PnId: pn.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -152,7 +152,7 @@ import (
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
 //				Name:   pulumi.String("my-private-network"),
 //				Region: pulumi.String("fr-par"),
-//				VpcId:  main.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:  main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -168,7 +168,7 @@ import (
 //				UserName:       pulumi.String("admin"),
 //				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
 //				PrivateNetwork: &kafka.ClusterPrivateNetworkArgs{
-//					PnId: pn.ID().ToIDOutput().ToStringOutput(),
+//					PnId: pn.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -359,6 +359,12 @@ type ClusterState struct {
 
 func (ClusterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*clusterState)(nil)).Elem()
+}
+
+// ClusterExists checks whether an existing Cluster resource with the given ID exists.
+func ClusterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ClusterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:kafka/cluster:Cluster", id, state, "", opts...)
 }
 
 type clusterArgs struct {

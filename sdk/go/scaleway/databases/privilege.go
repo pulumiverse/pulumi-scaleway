@@ -42,14 +42,14 @@ import (
 //				return err
 //			}
 //			mainDatabase, err := databases.NewDatabase(ctx, "main", &databases.DatabaseArgs{
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //				Name:       pulumi.String("database"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			mainUser, err := databases.NewUser(ctx, "main", &databases.UserArgs{
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //				Name:       pulumi.String("my-db-user"),
 //				Password:   pulumi.String("thiZ_is_v&ry_s3cret"),
 //				IsAdmin:    pulumi.Bool(false),
@@ -58,7 +58,7 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewPrivilege(ctx, "main", &databases.PrivilegeArgs{
-//				InstanceId:   main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId:   main.ID(),
 //				UserName:     mainUser.Name,
 //				DatabaseName: mainDatabase.Name,
 //				Permission:   pulumi.String("all"),
@@ -222,6 +222,12 @@ type PrivilegeState struct {
 
 func (PrivilegeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*privilegeState)(nil)).Elem()
+}
+
+// PrivilegeExists checks whether an existing Privilege resource with the given ID exists.
+func PrivilegeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PrivilegeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:databases/privilege:Privilege", id, state, "", opts...)
 }
 
 type privilegeArgs struct {

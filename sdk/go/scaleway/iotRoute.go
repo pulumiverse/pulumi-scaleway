@@ -55,7 +55,7 @@ import (
 //			}
 //			_, err = iot.NewRoute(ctx, "main", &iot.RouteArgs{
 //				Name:  pulumi.String("default"),
-//				HubId: mainHub.ID().ToIDOutput().ToStringOutput(),
+//				HubId: mainHub.ID(),
 //				Topic: pulumi.String("#"),
 //				Database: &iot.RouteDatabaseArgs{
 //					Query: pulumi.String(`INSERT INTO measurements(
@@ -121,7 +121,7 @@ import (
 //			}
 //			_, err = iot.NewRoute(ctx, "main", &iot.RouteArgs{
 //				Name:  pulumi.String("main"),
-//				HubId: mainHub.ID().ToIDOutput().ToStringOutput(),
+//				HubId: mainHub.ID(),
 //				Topic: pulumi.String("#"),
 //				S3: &iot.RouteS3Args{
 //					BucketRegion: mainBucket.Region,
@@ -162,7 +162,7 @@ import (
 //			}
 //			_, err = iot.NewRoute(ctx, "main", &iot.RouteArgs{
 //				Name:  pulumi.String("main"),
-//				HubId: mainHub.ID().ToIDOutput().ToStringOutput(),
+//				HubId: mainHub.ID(),
 //				Topic: pulumi.String("#"),
 //				Rest: &iot.RouteRestArgs{
 //					Verb: pulumi.String("get"),
@@ -286,6 +286,12 @@ type IotRouteState struct {
 
 func (IotRouteState) ElementType() reflect.Type {
 	return reflect.TypeOf((*iotRouteState)(nil)).Elem()
+}
+
+// IotRouteExists checks whether an existing IotRoute resource with the given ID exists.
+func IotRouteExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IotRouteState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/iotRoute:IotRoute", id, state, "", opts...)
 }
 
 type iotRouteArgs struct {

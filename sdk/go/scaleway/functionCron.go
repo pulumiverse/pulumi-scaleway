@@ -42,7 +42,7 @@ import (
 //			}
 //			mainFunction, err := functions.NewFunction(ctx, "main", &functions.FunctionArgs{
 //				Name:        pulumi.String("test-cron"),
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //				Runtime:     pulumi.String("node14"),
 //				Privacy:     pulumi.String("private"),
 //				Handler:     pulumi.String("handler.handle"),
@@ -59,7 +59,7 @@ import (
 //			json0 := string(tmpJSON0)
 //			_, err = functions.NewCron(ctx, "main", &functions.CronArgs{
 //				Name:       pulumi.String("test-cron"),
-//				FunctionId: mainFunction.ID().ToIDOutput().ToStringOutput(),
+//				FunctionId: mainFunction.ID(),
 //				Schedule:   pulumi.String("0 0 * * *"),
 //				Args:       pulumi.String(json0),
 //			})
@@ -74,7 +74,7 @@ import (
 //			}
 //			json1 := string(tmpJSON1)
 //			_, err = functions.NewCron(ctx, "func", &functions.CronArgs{
-//				FunctionId: mainFunction.ID().ToIDOutput().ToStringOutput(),
+//				FunctionId: mainFunction.ID(),
 //				Schedule:   pulumi.String("0 1 * * *"),
 //				Args:       pulumi.String(json1),
 //			})
@@ -192,6 +192,12 @@ type FunctionCronState struct {
 
 func (FunctionCronState) ElementType() reflect.Type {
 	return reflect.TypeOf((*functionCronState)(nil)).Elem()
+}
+
+// FunctionCronExists checks whether an existing FunctionCron resource with the given ID exists.
+func FunctionCronExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FunctionCronState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/functionCron:FunctionCron", id, state, "", opts...)
 }
 
 type functionCronArgs struct {

@@ -68,7 +68,7 @@ import (
 //			}
 //			pn_apple_silicon, err := network.NewPrivateNetwork(ctx, "pn-apple-silicon", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("pn-apple-silicon"),
-//				VpcId: vpc_apple_silicon.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc_apple_silicon.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -79,7 +79,7 @@ import (
 //				EnableVpc: pulumi.Bool(true),
 //				PrivateNetworks: applesilicon.ServerPrivateNetworkArray{
 //					&applesilicon.ServerPrivateNetworkArgs{
-//						Id: pn_apple_silicon.ID().ToIDOutput().ToStringOutput(),
+//						Id: pn_apple_silicon.ID(),
 //					},
 //				},
 //			})
@@ -127,7 +127,7 @@ import (
 //				PublicBandwidth: pulumi.Int(1000000000),
 //				OsId:            pulumi.String(byName.Id),
 //				RunnerIds: pulumi.StringArray{
-//					main.ID().ToIDOutput().ToStringOutput(),
+//					main.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -341,6 +341,12 @@ type AppleSiliconServerState struct {
 
 func (AppleSiliconServerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*appleSiliconServerState)(nil)).Elem()
+}
+
+// AppleSiliconServerExists checks whether an existing AppleSiliconServer resource with the given ID exists.
+func AppleSiliconServerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AppleSiliconServerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/appleSiliconServer:AppleSiliconServer", id, state, "", opts...)
 }
 
 type appleSiliconServerArgs struct {

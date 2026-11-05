@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewDatabase(ctx, "main", &databases.DatabaseArgs{
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //				Name:       pulumi.String("my-new-database"),
 //			})
 //			if err != nil {
@@ -156,6 +156,12 @@ type DatabaseState struct {
 
 func (DatabaseState) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseState)(nil)).Elem()
+}
+
+// DatabaseExists checks whether an existing Database resource with the given ID exists.
+func DatabaseExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DatabaseState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:databases/database:Database", id, state, "", opts...)
 }
 
 type databaseArgs struct {

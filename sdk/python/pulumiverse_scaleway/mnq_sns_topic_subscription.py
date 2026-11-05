@@ -615,6 +615,34 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
         __props__.__dict__["topic_id"] = topic_id
         return MnqSnsTopicSubscription(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            arn: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            redrive_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            sns_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            topic_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            topic_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessKey"] = access_key
+        __props__["arn"] = arn
+        __props__["endpoint"] = endpoint
+        __props__["projectId"] = project_id
+        __props__["protocol"] = protocol
+        __props__["redrivePolicy"] = redrive_policy
+        __props__["region"] = region
+        __props__["secretKey"] = secret_key
+        __props__["snsEndpoint"] = sns_endpoint
+        __props__["topicArn"] = topic_arn
+        __props__["topicId"] = topic_id
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Output[_builtins.str]:

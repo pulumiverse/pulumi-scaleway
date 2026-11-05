@@ -40,7 +40,7 @@ import (
 //			}
 //			_, err = loadbalancers.NewLoadBalancer(ctx, "base", &loadbalancers.LoadBalancerArgs{
 //				IpIds: pulumi.StringArray{
-//					main.ID().ToIDOutput().ToStringOutput(),
+//					main.ID(),
 //				},
 //				Zone: main.Zone,
 //				Type: pulumi.String("LB-S"),
@@ -108,8 +108,8 @@ import (
 //			}
 //			_, err = loadbalancers.NewLoadBalancer(ctx, "main", &loadbalancers.LoadBalancerArgs{
 //				IpIds: pulumi.StringArray{
-//					v4.ID().ToIDOutput().ToStringOutput(),
-//					v6.ID().ToIDOutput().ToStringOutput(),
+//					v4.ID(),
+//					v6.ID(),
 //				},
 //				Name: pulumi.String("ipv6-lb"),
 //				Type: pulumi.String("LB-S"),
@@ -146,7 +146,7 @@ import (
 //				return err
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
@@ -158,7 +158,7 @@ import (
 //				Address: pulumi.String("172.16.32.7"),
 //				Sources: ipam.IpSourceArray{
 //					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
 //			})
@@ -171,14 +171,14 @@ import (
 //			}
 //			_, err = loadbalancers.NewLoadBalancer(ctx, "lb01", &loadbalancers.LoadBalancerArgs{
 //				IpIds: pulumi.StringArray{
-//					v4.ID().ToIDOutput().ToStringOutput(),
+//					v4.ID(),
 //				},
 //				Name: pulumi.String("my-lb"),
 //				Type: pulumi.String("LB-S"),
 //				PrivateNetworks: loadbalancers.LoadBalancerPrivateNetworkArray{
 //					&loadbalancers.LoadBalancerPrivateNetworkArgs{
-//						PrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
-//						IpamIds:          ip01.ID().ToIDOutput().ToStringOutput(),
+//						PrivateNetworkId: pn01.ID(),
+//						IpamIds:          ip01.ID(),
 //					},
 //				},
 //			})
@@ -399,6 +399,12 @@ type LoadBalancerState struct {
 
 func (LoadBalancerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadBalancerState)(nil)).Elem()
+}
+
+// LoadBalancerExists checks whether an existing LoadBalancer resource with the given ID exists.
+func LoadBalancerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadBalancerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:loadbalancers/loadBalancer:LoadBalancer", id, state, "", opts...)
 }
 
 type loadBalancerArgs struct {

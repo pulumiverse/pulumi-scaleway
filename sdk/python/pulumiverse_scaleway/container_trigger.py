@@ -358,13 +358,13 @@ class ContainerTrigger(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  container_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 cron: pulumi.Input[Optional[Union['ContainerTriggerCronArgs', 'ContainerTriggerCronArgsDict']]] = None,
+                 cron: pulumi.Input[Optional[Union['ContainerTriggerCronArgs', 'ContainerTriggerCronArgsDict', 'outputs.ContainerTriggerCron']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 destination_config: pulumi.Input[Optional[Union['ContainerTriggerDestinationConfigArgs', 'ContainerTriggerDestinationConfigArgsDict']]] = None,
+                 destination_config: pulumi.Input[Optional[Union['ContainerTriggerDestinationConfigArgs', 'ContainerTriggerDestinationConfigArgsDict', 'outputs.ContainerTriggerDestinationConfig']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 nats: pulumi.Input[Optional[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict']]] = None,
+                 nats: pulumi.Input[Optional[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict', 'outputs.ContainerTriggerNats']]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 sqs: pulumi.Input[Optional[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']]] = None,
+                 sqs: pulumi.Input[Optional[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict', 'outputs.ContainerTriggerSqs']]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
@@ -455,13 +455,13 @@ class ContainerTrigger(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container to create a trigger for.
                
                > **Important:** Updates to this field will recreate the resource.
-        :param pulumi.Input[Union['ContainerTriggerCronArgs', 'ContainerTriggerCronArgsDict']] cron: The configuration for the cron source of the trigger
+        :param pulumi.Input[Union['ContainerTriggerCronArgs', 'ContainerTriggerCronArgsDict', 'outputs.ContainerTriggerCron']] cron: The configuration for the cron source of the trigger
         :param pulumi.Input[_builtins.str] description: The description of the trigger.
-        :param pulumi.Input[Union['ContainerTriggerDestinationConfigArgs', 'ContainerTriggerDestinationConfigArgsDict']] destination_config: The configuration of the destination to trigger.
+        :param pulumi.Input[Union['ContainerTriggerDestinationConfigArgs', 'ContainerTriggerDestinationConfigArgsDict', 'outputs.ContainerTriggerDestinationConfig']] destination_config: The configuration of the destination to trigger.
         :param pulumi.Input[_builtins.str] name: The unique name of the trigger. If not provided, a random name is generated.
-        :param pulumi.Input[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict']] nats: The configuration for the Scaleway NATS account used by the trigger
+        :param pulumi.Input[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict', 'outputs.ContainerTriggerNats']] nats: The configuration for the Scaleway NATS account used by the trigger
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the namespace is created.
-        :param pulumi.Input[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']] sqs: The configuration of the Scaleway SQS queue used by the trigger
+        :param pulumi.Input[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict', 'outputs.ContainerTriggerSqs']] sqs: The configuration of the Scaleway SQS queue used by the trigger
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the trigger.
         """
         ...
@@ -569,13 +569,13 @@ class ContainerTrigger(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  container_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 cron: pulumi.Input[Optional[Union['ContainerTriggerCronArgs', 'ContainerTriggerCronArgsDict']]] = None,
+                 cron: pulumi.Input[Optional[Union['ContainerTriggerCronArgs', 'ContainerTriggerCronArgsDict', 'outputs.ContainerTriggerCron']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 destination_config: pulumi.Input[Optional[Union['ContainerTriggerDestinationConfigArgs', 'ContainerTriggerDestinationConfigArgsDict']]] = None,
+                 destination_config: pulumi.Input[Optional[Union['ContainerTriggerDestinationConfigArgs', 'ContainerTriggerDestinationConfigArgsDict', 'outputs.ContainerTriggerDestinationConfig']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 nats: pulumi.Input[Optional[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict']]] = None,
+                 nats: pulumi.Input[Optional[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict', 'outputs.ContainerTriggerNats']]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 sqs: pulumi.Input[Optional[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']]] = None,
+                 sqs: pulumi.Input[Optional[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict', 'outputs.ContainerTriggerSqs']]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         pulumi.log.warn("""ContainerTrigger is deprecated: scaleway.index/containertrigger.ContainerTrigger has been deprecated in favor of scaleway.containers/trigger.Trigger""")
@@ -612,13 +612,13 @@ class ContainerTrigger(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             container_id: pulumi.Input[Optional[_builtins.str]] = None,
-            cron: pulumi.Input[Optional[Union['ContainerTriggerCronArgs', 'ContainerTriggerCronArgsDict']]] = None,
+            cron: pulumi.Input[Optional[Union['ContainerTriggerCronArgs', 'ContainerTriggerCronArgsDict', 'outputs.ContainerTriggerCron']]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
-            destination_config: pulumi.Input[Optional[Union['ContainerTriggerDestinationConfigArgs', 'ContainerTriggerDestinationConfigArgsDict']]] = None,
+            destination_config: pulumi.Input[Optional[Union['ContainerTriggerDestinationConfigArgs', 'ContainerTriggerDestinationConfigArgsDict', 'outputs.ContainerTriggerDestinationConfig']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            nats: pulumi.Input[Optional[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict']]] = None,
+            nats: pulumi.Input[Optional[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict', 'outputs.ContainerTriggerNats']]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            sqs: pulumi.Input[Optional[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']]] = None,
+            sqs: pulumi.Input[Optional[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict', 'outputs.ContainerTriggerSqs']]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'ContainerTrigger':
         """
@@ -631,13 +631,13 @@ class ContainerTrigger(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] container_id: The unique identifier of the container to create a trigger for.
                
                > **Important:** Updates to this field will recreate the resource.
-        :param pulumi.Input[Union['ContainerTriggerCronArgs', 'ContainerTriggerCronArgsDict']] cron: The configuration for the cron source of the trigger
+        :param pulumi.Input[Union['ContainerTriggerCronArgs', 'ContainerTriggerCronArgsDict', 'outputs.ContainerTriggerCron']] cron: The configuration for the cron source of the trigger
         :param pulumi.Input[_builtins.str] description: The description of the trigger.
-        :param pulumi.Input[Union['ContainerTriggerDestinationConfigArgs', 'ContainerTriggerDestinationConfigArgsDict']] destination_config: The configuration of the destination to trigger.
+        :param pulumi.Input[Union['ContainerTriggerDestinationConfigArgs', 'ContainerTriggerDestinationConfigArgsDict', 'outputs.ContainerTriggerDestinationConfig']] destination_config: The configuration of the destination to trigger.
         :param pulumi.Input[_builtins.str] name: The unique name of the trigger. If not provided, a random name is generated.
-        :param pulumi.Input[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict']] nats: The configuration for the Scaleway NATS account used by the trigger
+        :param pulumi.Input[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict', 'outputs.ContainerTriggerNats']] nats: The configuration for the Scaleway NATS account used by the trigger
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the namespace is created.
-        :param pulumi.Input[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']] sqs: The configuration of the Scaleway SQS queue used by the trigger
+        :param pulumi.Input[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict', 'outputs.ContainerTriggerSqs']] sqs: The configuration of the Scaleway SQS queue used by the trigger
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the container trigger.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The list of tags associated with the trigger.
         """
@@ -656,6 +656,32 @@ class ContainerTrigger(pulumi.CustomResource):
         __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         return ContainerTrigger(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            container_id: pulumi.Input[Optional[_builtins.str]] = None,
+            cron: pulumi.Input[Optional[Union['ContainerTriggerCronArgs', 'ContainerTriggerCronArgsDict', 'outputs.ContainerTriggerCron']]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            destination_config: pulumi.Input[Optional[Union['ContainerTriggerDestinationConfigArgs', 'ContainerTriggerDestinationConfigArgsDict', 'outputs.ContainerTriggerDestinationConfig']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nats: pulumi.Input[Optional[Union['ContainerTriggerNatsArgs', 'ContainerTriggerNatsArgsDict', 'outputs.ContainerTriggerNats']]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            sqs: pulumi.Input[Optional[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict', 'outputs.ContainerTriggerSqs']]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["containerId"] = container_id
+        __props__["cron"] = cron
+        __props__["description"] = description
+        __props__["destinationConfig"] = destination_config
+        __props__["name"] = name
+        __props__["nats"] = nats
+        __props__["region"] = region
+        __props__["sqs"] = sqs
+        __props__["srn"] = srn
+        __props__["tags"] = tags
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/containerTrigger:ContainerTrigger', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="containerId")

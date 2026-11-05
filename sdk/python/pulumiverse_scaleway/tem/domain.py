@@ -672,7 +672,7 @@ class Domain(pulumi.CustomResource):
             value=output(my_domain.smtps_port).apply(lambda x: str(x)))
         smtp_host = gitlab.ProjectVariable("smtp_host",
             key="SMTP_HOST",
-            value=output(my_domain.smtps_host).apply(lambda x: str(x)))
+            value=my_domain.smtps_host)
         ```
 
         ## Import
@@ -782,7 +782,7 @@ class Domain(pulumi.CustomResource):
             value=output(my_domain.smtps_port).apply(lambda x: str(x)))
         smtp_host = gitlab.ProjectVariable("smtp_host",
             key="SMTP_HOST",
-            value=output(my_domain.smtps_host).apply(lambda x: str(x)))
+            value=my_domain.smtps_host)
         ```
 
         ## Import
@@ -881,7 +881,7 @@ class Domain(pulumi.CustomResource):
             next_check_at: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            reputations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainReputationArgs', 'DomainReputationArgsDict']]]]] = None,
+            reputations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainReputationArgs', 'DomainReputationArgsDict', 'outputs.DomainReputation']]]]] = None,
             revoked_at: pulumi.Input[Optional[_builtins.str]] = None,
             smtp_host: pulumi.Input[Optional[_builtins.str]] = None,
             smtp_port: pulumi.Input[Optional[_builtins.int]] = None,
@@ -919,7 +919,7 @@ class Domain(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[_builtins.str] region: `region`). The region in which the domain should be created.
                > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainReputationArgs', 'DomainReputationArgsDict']]]] reputations: The domain's reputation.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DomainReputationArgs', 'DomainReputationArgsDict', 'outputs.DomainReputation']]]] reputations: The domain's reputation.
         :param pulumi.Input[_builtins.str] revoked_at: The date and time of the revocation of the domain (RFC 3339 format).
         :param pulumi.Input[_builtins.str] smtp_host: The SMTP host to use to send emails.
         :param pulumi.Input[_builtins.int] smtp_port: The SMTP port to use to send emails over TLS.
@@ -965,6 +965,68 @@ class Domain(pulumi.CustomResource):
         __props__.__dict__["spf_value"] = spf_value
         __props__.__dict__["status"] = status
         return Domain(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accept_tos: pulumi.Input[Optional[_builtins.bool]] = None,
+            autoconfig: pulumi.Input[Optional[_builtins.bool]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            dkim_config: pulumi.Input[Optional[_builtins.str]] = None,
+            dkim_name: pulumi.Input[Optional[_builtins.str]] = None,
+            dmarc_config: pulumi.Input[Optional[_builtins.str]] = None,
+            dmarc_name: pulumi.Input[Optional[_builtins.str]] = None,
+            last_error: pulumi.Input[Optional[_builtins.str]] = None,
+            last_valid_at: pulumi.Input[Optional[_builtins.str]] = None,
+            mx_blackhole: pulumi.Input[Optional[_builtins.str]] = None,
+            mx_config: pulumi.Input[Optional[_builtins.str]] = None,
+            mx_priority: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            next_check_at: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            reputations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DomainReputationArgs', 'DomainReputationArgsDict', 'outputs.DomainReputation']]]]] = None,
+            revoked_at: pulumi.Input[Optional[_builtins.str]] = None,
+            smtp_host: pulumi.Input[Optional[_builtins.str]] = None,
+            smtp_port: pulumi.Input[Optional[_builtins.int]] = None,
+            smtp_port_alternative: pulumi.Input[Optional[_builtins.int]] = None,
+            smtp_port_unsecure: pulumi.Input[Optional[_builtins.int]] = None,
+            smtps_auth_user: pulumi.Input[Optional[_builtins.str]] = None,
+            smtps_port: pulumi.Input[Optional[_builtins.int]] = None,
+            smtps_port_alternative: pulumi.Input[Optional[_builtins.int]] = None,
+            spf_config: pulumi.Input[Optional[_builtins.str]] = None,
+            spf_value: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["acceptTos"] = accept_tos
+        __props__["autoconfig"] = autoconfig
+        __props__["createdAt"] = created_at
+        __props__["dkimConfig"] = dkim_config
+        __props__["dkimName"] = dkim_name
+        __props__["dmarcConfig"] = dmarc_config
+        __props__["dmarcName"] = dmarc_name
+        __props__["lastError"] = last_error
+        __props__["lastValidAt"] = last_valid_at
+        __props__["mxBlackhole"] = mx_blackhole
+        __props__["mxConfig"] = mx_config
+        __props__["mxPriority"] = mx_priority
+        __props__["name"] = name
+        __props__["nextCheckAt"] = next_check_at
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["reputations"] = reputations
+        __props__["revokedAt"] = revoked_at
+        __props__["smtpHost"] = smtp_host
+        __props__["smtpPort"] = smtp_port
+        __props__["smtpPortAlternative"] = smtp_port_alternative
+        __props__["smtpPortUnsecure"] = smtp_port_unsecure
+        __props__["smtpsAuthUser"] = smtps_auth_user
+        __props__["smtpsPort"] = smtps_port
+        __props__["smtpsPortAlternative"] = smtps_port_alternative
+        __props__["spfConfig"] = spf_config
+        __props__["spfValue"] = spf_value
+        __props__["status"] = status
+        return pulumi.runtime.exists_resource(None, 'scaleway:tem/domain:Domain', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="acceptTos")

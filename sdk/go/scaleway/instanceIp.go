@@ -144,6 +144,12 @@ func (InstanceIpState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceIpState)(nil)).Elem()
 }
 
+// InstanceIpExists checks whether an existing InstanceIp resource with the given ID exists.
+func InstanceIpExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceIpState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/instanceIp:InstanceIp", id, state, "", opts...)
+}
+
 type instanceIpArgs struct {
 	// `projectId`) The ID of the project the IP is associated with.
 	ProjectId *string `pulumi:"projectId"`

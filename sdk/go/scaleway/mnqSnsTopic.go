@@ -199,6 +199,12 @@ func (MnqSnsTopicState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mnqSnsTopicState)(nil)).Elem()
 }
 
+// MnqSnsTopicExists checks whether an existing MnqSnsTopic resource with the given ID exists.
+func MnqSnsTopicExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MnqSnsTopicState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/mnqSnsTopic:MnqSnsTopic", id, state, "", opts...)
+}
+
 type mnqSnsTopicArgs struct {
 	// The access key of the SNS credentials.
 	AccessKey string `pulumi:"accessKey"`

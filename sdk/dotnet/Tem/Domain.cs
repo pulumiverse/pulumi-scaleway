@@ -136,7 +136,7 @@ namespace Pulumiverse.Scaleway.Tem
     ///     var smtpPort = new GitLab.ProjectVariable("smtp_port", new()
     ///     {
     ///         Key = "SMTP_PORT",
-    ///         Value = myDomain.Apply(getDomainResult =&gt; getDomainResult.SmtpsPort),
+    ///         Value = Output.Create(myDomain.Apply(getDomainResult =&gt; getDomainResult.SmtpsPort)).Apply(x =&gt; x.ToString(System.Globalization.CultureInfo.InvariantCulture)),
     ///     });
     /// 
     ///     var smtpHost = new GitLab.ProjectVariable("smtp_host", new()

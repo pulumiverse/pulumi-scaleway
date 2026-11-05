@@ -10,6 +10,16 @@ import * as utilities from "../utilities";
  * Gets information about your Consumptions.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Find your detailed monthly consumption list
+ * const my_consumption = scaleway.billing.getConsumptions({
+ *     organizationId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+ * });
+ * ```
  */
 export function getConsumptions(args?: GetConsumptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetConsumptionsResult> {
     args = args || {};
@@ -55,6 +65,16 @@ export interface GetConsumptionsResult {
  * Gets information about your Consumptions.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Find your detailed monthly consumption list
+ * const my_consumption = scaleway.billing.getConsumptions({
+ *     organizationId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+ * });
+ * ```
  */
 export function getConsumptionsOutput(args?: GetConsumptionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetConsumptionsResult> {
     args = args || {};

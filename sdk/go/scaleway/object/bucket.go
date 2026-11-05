@@ -441,6 +441,12 @@ func (BucketState) ElementType() reflect.Type {
 	return reflect.TypeOf((*bucketState)(nil)).Elem()
 }
 
+// BucketExists checks whether an existing Bucket resource with the given ID exists.
+func BucketExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BucketState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:object/bucket:Bucket", id, state, "", opts...)
+}
+
 type bucketArgs struct {
 	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//

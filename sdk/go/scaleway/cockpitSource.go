@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			_, err = observability.NewSource(ctx, "main", &observability.SourceArgs{
-//				ProjectId:     project.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId:     project.ID(),
 //				Name:          pulumi.String("my-data-source"),
 //				Type:          pulumi.String("metrics"),
 //				RetentionDays: pulumi.Int(6),
@@ -176,6 +176,12 @@ type CockpitSourceState struct {
 
 func (CockpitSourceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cockpitSourceState)(nil)).Elem()
+}
+
+// CockpitSourceExists checks whether an existing CockpitSource resource with the given ID exists.
+func CockpitSourceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CockpitSourceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/cockpitSource:CockpitSource", id, state, "", opts...)
 }
 
 type cockpitSourceArgs struct {

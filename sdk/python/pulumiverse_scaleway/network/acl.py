@@ -204,7 +204,7 @@ class Acl(pulumi.CustomResource):
                  default_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict', 'outputs.AclRule']]]]] = None,
                  vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -250,7 +250,7 @@ class Acl(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_policy: The action to take for packets which do not match any rules.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the ACL.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict']]]] rules: The list of Network ACL rules.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict', 'outputs.AclRule']]]] rules: The list of Network ACL rules.
         :param pulumi.Input[_builtins.str] vpc_id: The VPC ID the ACL belongs to.
         """
         ...
@@ -315,7 +315,7 @@ class Acl(pulumi.CustomResource):
                  default_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict', 'outputs.AclRule']]]]] = None,
                  vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -346,7 +346,7 @@ class Acl(pulumi.CustomResource):
             default_policy: pulumi.Input[Optional[_builtins.str]] = None,
             is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict']]]]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict', 'outputs.AclRule']]]]] = None,
             vpc_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Acl':
         """
         Get an existing Acl resource's state with the given name, id, and optional extra
@@ -358,7 +358,7 @@ class Acl(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_policy: The action to take for packets which do not match any rules.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the ACL.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict']]]] rules: The list of Network ACL rules.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict', 'outputs.AclRule']]]] rules: The list of Network ACL rules.
         :param pulumi.Input[_builtins.str] vpc_id: The VPC ID the ACL belongs to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -371,6 +371,22 @@ class Acl(pulumi.CustomResource):
         __props__.__dict__["rules"] = rules
         __props__.__dict__["vpc_id"] = vpc_id
         return Acl(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            default_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            is_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclRuleArgs', 'AclRuleArgsDict', 'outputs.AclRule']]]]] = None,
+            vpc_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["defaultPolicy"] = default_policy
+        __props__["isIpv6"] = is_ipv6
+        __props__["region"] = region
+        __props__["rules"] = rules
+        __props__["vpcId"] = vpc_id
+        return pulumi.runtime.exists_resource(None, 'scaleway:network/acl:Acl', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="defaultPolicy")

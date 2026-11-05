@@ -59,7 +59,7 @@ import (
 //				return err
 //			}
 //			_, err = keymanager.NewKeyMaterial(ctx, "main", &keymanager.KeyMaterialArgs{
-//				KeyId:                main.ID().ToIDOutput().ToStringOutput(),
+//				KeyId:                main.ID(),
 //				KeyMaterialWo:        pulumi.String(invokeBase64encode.Result),
 //				KeyMaterialWoVersion: pulumi.Int(1),
 //			})
@@ -122,7 +122,7 @@ import (
 //				return err
 //			}
 //			_, err = keymanager.NewKeyMaterial(ctx, "main", &keymanager.KeyMaterialArgs{
-//				KeyId:                main.ID().ToIDOutput().ToStringOutput(),
+//				KeyId:                main.ID(),
 //				KeyMaterialWo:        pulumi.String(invokeBase64encode.Result),
 //				KeyMaterialWoVersion: pulumi.Int(1),
 //				SaltWo:               pulumi.String(invokeBase64encode1.Result),
@@ -266,6 +266,12 @@ type KeyMaterialState struct {
 
 func (KeyMaterialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyMaterialState)(nil)).Elem()
+}
+
+// KeyMaterialExists checks whether an existing KeyMaterial resource with the given ID exists.
+func KeyMaterialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KeyMaterialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:keymanager/keyMaterial:KeyMaterial", id, state, "", opts...)
 }
 
 type keyMaterialArgs struct {

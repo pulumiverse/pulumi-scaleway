@@ -41,7 +41,7 @@ import (
 //				return err
 //			}
 //			_, err = instance.NewSecurityGroupRules(ctx, "sgrs01", &instance.SecurityGroupRulesArgs{
-//				SecurityGroupId: sg01.ID().ToIDOutput().ToStringOutput(),
+//				SecurityGroupId: sg01.ID(),
 //				InboundRules: instance.SecurityGroupRulesInboundRuleArray{
 //					&instance.SecurityGroupRulesInboundRuleArgs{
 //						Action:  pulumi.String("accept"),
@@ -101,7 +101,7 @@ import (
 //			}
 //			_, err = instance.NewSecurityGroupRules(ctx, "main", &instance.SecurityGroupRulesArgs{
 //				InboundRules:    toPulumiMapArray(forResult0),
-//				SecurityGroupId: main.ID().ToIDOutput().ToStringOutput(),
+//				SecurityGroupId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -144,16 +144,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			trusted := []map[string]string{
-//				{
+//			trusted := []interface{}{
+//				map[string]string{
 //					"ipRange": "1.2.3.4/32",
 //					"port":    "80",
 //				},
-//				{
+//				map[string]string{
 //					"ipRange": "5.6.7.8/32",
 //					"port":    "81",
 //				},
-//				{
+//				map[string]string{
 //					"ipRange": "9.10.11.12/32",
 //					"port":    "81",
 //				},
@@ -168,7 +168,7 @@ import (
 //			}
 //			_, err = instance.NewSecurityGroupRules(ctx, "main", &instance.SecurityGroupRulesArgs{
 //				InboundRules:    toPulumiStringMapArray(forResult0),
-//				SecurityGroupId: main.ID().ToIDOutput().ToStringOutput(),
+//				SecurityGroupId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -259,6 +259,12 @@ type InstanceSecurityGroupRulesState struct {
 
 func (InstanceSecurityGroupRulesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceSecurityGroupRulesState)(nil)).Elem()
+}
+
+// InstanceSecurityGroupRulesExists checks whether an existing InstanceSecurityGroupRules resource with the given ID exists.
+func InstanceSecurityGroupRulesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceSecurityGroupRulesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules", id, state, "", opts...)
 }
 
 type instanceSecurityGroupRulesArgs struct {

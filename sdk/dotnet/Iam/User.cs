@@ -54,15 +54,15 @@ namespace Pulumiverse.Scaleway.Iam
     /// {
     ///     var users = new[]
     ///     {
-    ///         
+    ///         new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             { "email", "test@test.com" },
-    ///             { "username", "test" },
+    ///             ["email"] = "test@test.com",
+    ///             ["username"] = "test",
     ///         },
-    ///         
+    ///         new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             { "email", "test2@test.com" },
-    ///             { "username", "test2" },
+    ///             ["email"] = "test2@test.com",
+    ///             ["username"] = "test2",
     ///         },
     ///     };
     /// 

@@ -103,7 +103,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * // When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along
+ * // When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` function along
  * // with the `registry_sha256` argument to trigger container redeployments when the image is updated.
  * // Ideally, you would create the namespace separately.
  * // For demonstration purposes, this example assumes the "nginx:latest" image is already available
@@ -273,6 +273,17 @@ export class Container extends pulumi.CustomResource {
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ContainerState, opts?: pulumi.CustomResourceOptions): Container {
         return new Container(name, <any>state, { ...opts, id: id });
+    }
+
+    /**
+     * Check whether an existing Container resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: ContainerState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("scaleway:containers/container:Container", id, <any>state || {}, { ...opts }, undefined);
     }
 
     /** @internal */

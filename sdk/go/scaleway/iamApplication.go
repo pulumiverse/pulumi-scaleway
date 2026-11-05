@@ -141,6 +141,12 @@ func (IamApplicationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*iamApplicationState)(nil)).Elem()
 }
 
+// IamApplicationExists checks whether an existing IamApplication resource with the given ID exists.
+func IamApplicationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IamApplicationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/iamApplication:IamApplication", id, state, "", opts...)
+}
+
 type iamApplicationArgs struct {
 	// The description of the iam application.
 	Description *string `pulumi:"description"`

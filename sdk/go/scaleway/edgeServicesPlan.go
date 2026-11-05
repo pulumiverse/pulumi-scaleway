@@ -106,6 +106,12 @@ func (EdgeServicesPlanState) ElementType() reflect.Type {
 	return reflect.TypeOf((*edgeServicesPlanState)(nil)).Elem()
 }
 
+// EdgeServicesPlanExists checks whether an existing EdgeServicesPlan resource with the given ID exists.
+func EdgeServicesPlanExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EdgeServicesPlanState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/edgeServicesPlan:EdgeServicesPlan", id, state, "", opts...)
+}
+
 type edgeServicesPlanArgs struct {
 	// The name of the plan.
 	Name *string `pulumi:"name"`

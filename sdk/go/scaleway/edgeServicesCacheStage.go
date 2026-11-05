@@ -198,6 +198,12 @@ func (EdgeServicesCacheStageState) ElementType() reflect.Type {
 	return reflect.TypeOf((*edgeServicesCacheStageState)(nil)).Elem()
 }
 
+// EdgeServicesCacheStageExists checks whether an existing EdgeServicesCacheStage resource with the given ID exists.
+func EdgeServicesCacheStageExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EdgeServicesCacheStageState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage", id, state, "", opts...)
+}
+
 type edgeServicesCacheStageArgs struct {
 	// The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
 	BackendStageId *string `pulumi:"backendStageId"`

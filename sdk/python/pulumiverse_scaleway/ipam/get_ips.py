@@ -176,7 +176,7 @@ def get_ips(attached: Optional[_builtins.bool] = None,
             private_network_id: Optional[_builtins.str] = None,
             project_id: Optional[_builtins.str] = None,
             region: Optional[_builtins.str] = None,
-            resource: Optional[Union['GetIpsResourceArgs', 'GetIpsResourceArgsDict']] = None,
+            resource: Optional[Union['GetIpsResourceArgs', 'GetIpsResourceArgsDict', 'outputs.GetIpsResourceResult']] = None,
             tags: Optional[Sequence[_builtins.str]] = None,
             type: Optional[_builtins.str] = None,
             zonal: Optional[_builtins.str] = None,
@@ -233,7 +233,7 @@ def get_ips(attached: Optional[_builtins.bool] = None,
     :param _builtins.str private_network_id: The ID of the Private Network to filter for.
     :param _builtins.str project_id: The ID of the Project to filter for.
     :param _builtins.str region: The region to filter for.
-    :param Union['GetIpsResourceArgs', 'GetIpsResourceArgsDict'] resource: Filter for a resource attached to the IP, using resource ID, type or name.
+    :param Union['GetIpsResourceArgs', 'GetIpsResourceArgsDict', 'outputs.GetIpsResourceResult'] resource: Filter for a resource attached to the IP, using resource ID, type or name.
     :param Sequence[_builtins.str] tags: The IP tags to filter for.
     :param _builtins.str type: The type of IP to filter for (`ipv4` or `ipv6`).
     :param _builtins.str zonal: Only IPs that are zonal, and in this zone, will be returned.
@@ -269,7 +269,7 @@ def get_ips_output(attached: pulumi.Input[Optional[Optional[_builtins.bool]]] = 
                    private_network_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                    project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                    region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
-                   resource: pulumi.Input[Optional[Optional[Union['GetIpsResourceArgs', 'GetIpsResourceArgsDict']]]] = None,
+                   resource: pulumi.Input[Optional[Optional[Union['GetIpsResourceArgs', 'GetIpsResourceArgsDict', 'outputs.GetIpsResourceResult']]]] = None,
                    tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                    type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                    zonal: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -326,7 +326,7 @@ def get_ips_output(attached: pulumi.Input[Optional[Optional[_builtins.bool]]] = 
     :param _builtins.str private_network_id: The ID of the Private Network to filter for.
     :param _builtins.str project_id: The ID of the Project to filter for.
     :param _builtins.str region: The region to filter for.
-    :param Union['GetIpsResourceArgs', 'GetIpsResourceArgsDict'] resource: Filter for a resource attached to the IP, using resource ID, type or name.
+    :param Union['GetIpsResourceArgs', 'GetIpsResourceArgsDict', 'outputs.GetIpsResourceResult'] resource: Filter for a resource attached to the IP, using resource ID, type or name.
     :param Sequence[_builtins.str] tags: The IP tags to filter for.
     :param _builtins.str type: The type of IP to filter for (`ipv4` or `ipv6`).
     :param _builtins.str zonal: Only IPs that are zonal, and in this zone, will be returned.

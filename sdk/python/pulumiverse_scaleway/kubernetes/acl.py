@@ -193,7 +193,7 @@ class Acl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]]] = None,
+                 acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict', 'outputs.AclAclRule']]]]] = None,
                  cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                  no_ip_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -262,7 +262,7 @@ class Acl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]] acl_rules: A list of ACLs (structure is described below)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict', 'outputs.AclAclRule']]]] acl_rules: A list of ACLs (structure is described below)
                
                > **Important:** This block cannot be defined if the `no_ip_allowed` field is set to true.
         :param pulumi.Input[_builtins.str] cluster_id: UUID of the cluster. The ID of the cluster is also the ID of the ACL resource, as there can only be one per cluster.
@@ -356,7 +356,7 @@ class Acl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]]] = None,
+                 acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict', 'outputs.AclAclRule']]]]] = None,
                  cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                  no_ip_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -385,7 +385,7 @@ class Acl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]]] = None,
+            acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict', 'outputs.AclAclRule']]]]] = None,
             cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
             no_ip_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None) -> 'Acl':
@@ -396,7 +396,7 @@ class Acl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]] acl_rules: A list of ACLs (structure is described below)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict', 'outputs.AclAclRule']]]] acl_rules: A list of ACLs (structure is described below)
                
                > **Important:** This block cannot be defined if the `no_ip_allowed` field is set to true.
         :param pulumi.Input[_builtins.str] cluster_id: UUID of the cluster. The ID of the cluster is also the ID of the ACL resource, as there can only be one per cluster.
@@ -416,6 +416,20 @@ class Acl(pulumi.CustomResource):
         __props__.__dict__["no_ip_allowed"] = no_ip_allowed
         __props__.__dict__["region"] = region
         return Acl(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            acl_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict', 'outputs.AclAclRule']]]]] = None,
+            cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+            no_ip_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["aclRules"] = acl_rules
+        __props__["clusterId"] = cluster_id
+        __props__["noIpAllowed"] = no_ip_allowed
+        __props__["region"] = region
+        return pulumi.runtime.exists_resource(None, 'scaleway:kubernetes/acl:Acl', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="aclRules")

@@ -88,7 +88,7 @@ import (
 //			}
 //			mainPrivateNetwork, err := network.NewPrivateNetwork(ctx, "main", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("TestAccAutoscalingVPC"),
-//				VpcId: main.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -102,7 +102,7 @@ import (
 //			}
 //			mainSnapshot, err := block.NewSnapshot(ctx, "main", &block.SnapshotArgs{
 //				Name:     pulumi.String("test-ds-block-snapshot-basic"),
-//				VolumeId: mainVolume.ID().ToIDOutput().ToStringOutput(),
+//				VolumeId: mainVolume.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -112,12 +112,12 @@ import (
 //				return err
 //			}
 //			mainLoadBalancer, err := loadbalancers.NewLoadBalancer(ctx, "main", &loadbalancers.LoadBalancerArgs{
-//				IpId: mainIp.ID().ToIDOutput().ToStringOutput(),
+//				IpId: mainIp.ID(),
 //				Name: pulumi.String("test-lb"),
 //				Type: pulumi.String("lb-s"),
 //				PrivateNetworks: loadbalancers.LoadBalancerPrivateNetworkArray{
 //					&loadbalancers.LoadBalancerPrivateNetworkArgs{
-//						PrivateNetworkId: mainPrivateNetwork.ID().ToIDOutput().ToStringOutput(),
+//						PrivateNetworkId: mainPrivateNetwork.ID(),
 //					},
 //				},
 //			})
@@ -125,7 +125,7 @@ import (
 //				return err
 //			}
 //			mainBackend, err := loadbalancers.NewBackend(ctx, "main", &loadbalancers.BackendArgs{
-//				LbId:            mainLoadBalancer.ID().ToIDOutput().ToStringOutput(),
+//				LbId:            mainLoadBalancer.ID(),
 //				ForwardProtocol: pulumi.String("tcp"),
 //				ForwardPort:     pulumi.Int(80),
 //				ProxyProtocol:   pulumi.String("none"),
@@ -146,14 +146,14 @@ import (
 //						VolumeType: pulumi.String("sbs"),
 //						Boot:       pulumi.Bool(true),
 //						FromSnapshot: &autoscaling.InstanceTemplateVolumeFromSnapshotArgs{
-//							SnapshotId: mainSnapshot.ID().ToIDOutput().ToStringOutput(),
+//							SnapshotId: mainSnapshot.ID(),
 //						},
 //						PerfIops: pulumi.Int(5000),
 //					},
 //				},
 //				PublicIpsV4Count: pulumi.Int(1),
 //				PrivateNetworkIds: pulumi.StringArray{
-//					mainPrivateNetwork.ID().ToIDOutput().ToStringOutput(),
+//					mainPrivateNetwork.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -161,7 +161,7 @@ import (
 //			}
 //			mainInstanceGroup, err := autoscaling.NewInstanceGroup(ctx, "main", &autoscaling.InstanceGroupArgs{
 //				Name:       pulumi.String("autoscaling-instance-group-basic"),
-//				TemplateId: mainInstanceTemplate.ID().ToIDOutput().ToStringOutput(),
+//				TemplateId: mainInstanceTemplate.ID(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform-test"),
 //					pulumi.String("instance-group"),
@@ -175,11 +175,11 @@ import (
 //				},
 //				LoadBalancers: autoscaling.InstanceGroupLoadBalancerArray{
 //					&autoscaling.InstanceGroupLoadBalancerArgs{
-//						Id: mainLoadBalancer.ID().ToIDOutput().ToStringOutput(),
+//						Id: mainLoadBalancer.ID(),
 //						BackendIds: pulumi.StringArray{
-//							mainBackend.ID().ToIDOutput().ToStringOutput(),
+//							mainBackend.ID(),
 //						},
-//						PrivateNetworkId: mainPrivateNetwork.ID().ToIDOutput().ToStringOutput(),
+//						PrivateNetworkId: mainPrivateNetwork.ID(),
 //					},
 //				},
 //				DeleteServersOnDestroy: pulumi.Bool(true),
@@ -188,7 +188,7 @@ import (
 //				return err
 //			}
 //			_, err = autoscaling.NewInstancePolicy(ctx, "up", &autoscaling.InstancePolicyArgs{
-//				InstanceGroupId: mainInstanceGroup.ID().ToIDOutput().ToStringOutput(),
+//				InstanceGroupId: mainInstanceGroup.ID(),
 //				Name:            pulumi.String("scale-up-if-cpu-high"),
 //				Action:          pulumi.String("scale_up"),
 //				Type:            pulumi.String("flat_count"),
@@ -209,7 +209,7 @@ import (
 //				return err
 //			}
 //			_, err = autoscaling.NewInstancePolicy(ctx, "down", &autoscaling.InstancePolicyArgs{
-//				InstanceGroupId: mainInstanceGroup.ID().ToIDOutput().ToStringOutput(),
+//				InstanceGroupId: mainInstanceGroup.ID(),
 //				Name:            pulumi.String("scale-down-if-cpu-low"),
 //				Action:          pulumi.String("scale_down"),
 //				Type:            pulumi.String("flat_count"),
@@ -347,6 +347,12 @@ type InstanceGroupState struct {
 
 func (InstanceGroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceGroupState)(nil)).Elem()
+}
+
+// InstanceGroupExists checks whether an existing InstanceGroup resource with the given ID exists.
+func InstanceGroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceGroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:autoscaling/instanceGroup:InstanceGroup", id, state, "", opts...)
 }
 
 type instanceGroupArgs struct {

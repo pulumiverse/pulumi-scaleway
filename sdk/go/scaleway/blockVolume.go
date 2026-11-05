@@ -72,7 +72,7 @@ import (
 //			}
 //			main, err := block.NewSnapshot(ctx, "main", &block.SnapshotArgs{
 //				Name:     pulumi.String("block-volume-from-snapshot"),
-//				VolumeId: base.ID().ToIDOutput().ToStringOutput(),
+//				VolumeId: base.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -80,7 +80,7 @@ import (
 //			_, err = block.NewVolume(ctx, "main", &block.VolumeArgs{
 //				Name:       pulumi.String("block-volume-from-snapshot"),
 //				Iops:       pulumi.Int(5000),
-//				SnapshotId: main.ID().ToIDOutput().ToStringOutput(),
+//				SnapshotId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -199,6 +199,12 @@ type BlockVolumeState struct {
 
 func (BlockVolumeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*blockVolumeState)(nil)).Elem()
+}
+
+// BlockVolumeExists checks whether an existing BlockVolume resource with the given ID exists.
+func BlockVolumeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BlockVolumeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/blockVolume:BlockVolume", id, state, "", opts...)
 }
 
 type blockVolumeArgs struct {

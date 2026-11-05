@@ -41,7 +41,7 @@ import (
 //			}
 //			// Create a SCIM token (or use an existing one)
 //			mainScimToken, err := iam.NewScimToken(ctx, "main", &iam.ScimTokenArgs{
-//				ScimId:         mainScim.ID().ToIDOutput().ToStringOutput(),
+//				ScimId:         mainScim.ID(),
 //				OrganizationId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //			})
 //			if err != nil {
@@ -49,8 +49,8 @@ import (
 //			}
 //			// Get information about the SCIM token
 //			_ = iam.LookupScimTokenOutput(ctx, iam.GetScimTokenOutputArgs{
-//				ScimId:         mainScim.ID().ToIDOutput().ToStringOutput(),
-//				TokenId:        mainScimToken.ID().ToIDOutput().ToStringOutput(),
+//				ScimId:         mainScim.ID(),
+//				TokenId:        mainScimToken.ID(),
 //				OrganizationId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			return nil

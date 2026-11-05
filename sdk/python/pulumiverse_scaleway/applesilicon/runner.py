@@ -467,6 +467,32 @@ class Runner(pulumi.CustomResource):
         __props__.__dict__["zone"] = zone
         return Runner(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ci_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            error_message: pulumi.Input[Optional[_builtins.str]] = None,
+            labels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["ciProvider"] = ci_provider
+        __props__["errorMessage"] = error_message
+        __props__["labels"] = labels
+        __props__["name"] = name
+        __props__["projectId"] = project_id
+        __props__["srn"] = srn
+        __props__["status"] = status
+        __props__["token"] = token
+        __props__["url"] = url
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:applesilicon/runner:Runner', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="ciProvider")
     def ci_provider(self) -> pulumi.Output[_builtins.str]:

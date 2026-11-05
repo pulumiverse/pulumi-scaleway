@@ -401,6 +401,30 @@ class DomainZone(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         return DomainZone(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            domain: pulumi.Input[Optional[_builtins.str]] = None,
+            message: pulumi.Input[Optional[_builtins.str]] = None,
+            ns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ns_defaults: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ns_masters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            subdomain: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["domain"] = domain
+        __props__["message"] = message
+        __props__["ns"] = ns
+        __props__["nsDefaults"] = ns_defaults
+        __props__["nsMasters"] = ns_masters
+        __props__["projectId"] = project_id
+        __props__["status"] = status
+        __props__["subdomain"] = subdomain
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/domainZone:DomainZone', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def domain(self) -> pulumi.Output[_builtins.str]:

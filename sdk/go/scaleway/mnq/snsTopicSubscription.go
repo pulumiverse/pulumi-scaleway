@@ -61,7 +61,7 @@ import (
 //				ProjectId: main.ProjectId,
 //				AccessKey: mainSnsCredentials.AccessKey,
 //				SecretKey: mainSnsCredentials.SecretKey,
-//				TopicId:   topic.ID().ToIDOutput().ToStringOutput(),
+//				TopicId:   topic.ID(),
 //				Protocol:  pulumi.String("http"),
 //				Endpoint:  pulumi.String("http://example.com"),
 //			})
@@ -218,6 +218,12 @@ type SnsTopicSubscriptionState struct {
 
 func (SnsTopicSubscriptionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*snsTopicSubscriptionState)(nil)).Elem()
+}
+
+// SnsTopicSubscriptionExists checks whether an existing SnsTopicSubscription resource with the given ID exists.
+func SnsTopicSubscriptionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SnsTopicSubscriptionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:mnq/snsTopicSubscription:SnsTopicSubscription", id, state, "", opts...)
 }
 
 type snsTopicSubscriptionArgs struct {

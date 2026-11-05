@@ -53,7 +53,7 @@ import (
 //				Zone:  pulumi.String("fr-par-1"),
 //				PrivateNetworks: instance.ServerPrivateNetworkArray{
 //					&instance.ServerPrivateNetworkArgs{
-//						PnId: main.ID().ToIDOutput().ToStringOutput(),
+//						PnId: main.ID(),
 //					},
 //				},
 //			})
@@ -73,15 +73,15 @@ import (
 //			mainPublicGateway, err := network.NewPublicGateway(ctx, "main", &network.PublicGatewayArgs{
 //				Name: pulumi.String("foobar"),
 //				Type: pulumi.String("VPC-GW-S"),
-//				IpId: mainPublicGatewayIp.ID().ToIDOutput().ToStringOutput(),
+//				IpId: mainPublicGatewayIp.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			mainGatewayNetwork, err := network.NewGatewayNetwork(ctx, "main", &network.GatewayNetworkArgs{
-//				GatewayId:        mainPublicGateway.ID().ToIDOutput().ToStringOutput(),
-//				PrivateNetworkId: main.ID().ToIDOutput().ToStringOutput(),
-//				DhcpId:           mainPublicGatewayDhcp.ID().ToIDOutput().ToStringOutput(),
+//				GatewayId:        mainPublicGateway.ID(),
+//				PrivateNetworkId: main.ID(),
+//				DhcpId:           mainPublicGatewayDhcp.ID(),
 //				CleanupDhcp:      pulumi.Bool(true),
 //				EnableMasquerade: pulumi.Bool(true),
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -92,7 +92,7 @@ import (
 //				return err
 //			}
 //			_, err = network.NewPublicGatewayDhcpReservation(ctx, "main", &network.PublicGatewayDhcpReservationArgs{
-//				GatewayNetworkId: mainGatewayNetwork.ID().ToIDOutput().ToStringOutput(),
+//				GatewayNetworkId: mainGatewayNetwork.ID(),
 //				MacAddress: mainServer.PrivateNetworks.ApplyT(func(privateNetworks []instance.ServerPrivateNetwork) (*string, error) {
 //					return privateNetworks[0].MacAddress, nil
 //				}).(pulumi.StringPtrOutput),
@@ -219,6 +219,12 @@ type PublicGatewayDhcpReservationState struct {
 
 func (PublicGatewayDhcpReservationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*publicGatewayDhcpReservationState)(nil)).Elem()
+}
+
+// PublicGatewayDhcpReservationExists checks whether an existing PublicGatewayDhcpReservation resource with the given ID exists.
+func PublicGatewayDhcpReservationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PublicGatewayDhcpReservationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:network/publicGatewayDhcpReservation:PublicGatewayDhcpReservation", id, state, "", opts...)
 }
 
 type publicGatewayDhcpReservationArgs struct {

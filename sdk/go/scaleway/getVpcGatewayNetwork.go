@@ -38,7 +38,7 @@ import (
 //				return err
 //			}
 //			_ = network.LookupGatewayNetworkOutput(ctx, network.GetGatewayNetworkOutputArgs{
-//				GatewayNetworkId: main.ID().ToIDOutput().ToStringOutput(),
+//				GatewayNetworkId: main.ID(),
 //			}, nil)
 //			_, err = network.LookupGatewayNetwork(ctx, &network.LookupGatewayNetworkArgs{
 //				GatewayId:        pulumi.StringRef(pg01.Id),

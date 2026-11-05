@@ -431,6 +431,12 @@ func (TemDomainState) ElementType() reflect.Type {
 	return reflect.TypeOf((*temDomainState)(nil)).Elem()
 }
 
+// TemDomainExists checks whether an existing TemDomain resource with the given ID exists.
+func TemDomainExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TemDomainState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/temDomain:TemDomain", id, state, "", opts...)
+}
+
 type temDomainArgs struct {
 	// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
 	// > **Important:** This attribute must be set to `true`.

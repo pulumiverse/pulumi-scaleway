@@ -352,10 +352,10 @@ class Group(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 load_balancer_configuration: pulumi.Input[Optional[Union['GroupLoadBalancerConfigurationArgs', 'GroupLoadBalancerConfigurationArgsDict']]] = None,
+                 load_balancer_configuration: pulumi.Input[Optional[Union['GroupLoadBalancerConfigurationArgs', 'GroupLoadBalancerConfigurationArgsDict', 'outputs.GroupLoadBalancerConfiguration']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 scaling_policy: pulumi.Input[Optional[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict']]] = None,
+                 scaling_policy: pulumi.Input[Optional[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict', 'outputs.GroupScalingPolicy']]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template_id: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -481,14 +481,14 @@ class Group(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['GroupLoadBalancerConfigurationArgs', 'GroupLoadBalancerConfigurationArgsDict']] load_balancer_configuration: The load balancer configuration.
+        :param pulumi.Input[Union['GroupLoadBalancerConfigurationArgs', 'GroupLoadBalancerConfigurationArgsDict', 'outputs.GroupLoadBalancerConfiguration']] load_balancer_configuration: The load balancer configuration.
                
                > **Important:** Due to current limitations, this block cannot be unset. To remove it once it has been set, the resource needs to be recreated.
                
                > The `load_balancer_configuration` block contains:
         :param pulumi.Input[_builtins.str] name: The name of the AutoScaling Group. If not set, a name will be generated.
         :param pulumi.Input[_builtins.str] project_id: The ID of the project the AutoScaling Group is associated with.
-        :param pulumi.Input[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict']] scaling_policy: The scaling policy configuration.
+        :param pulumi.Input[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict', 'outputs.GroupScalingPolicy']] scaling_policy: The scaling policy configuration.
                
                > The `scaling_policy` block contains:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the AutoScaling Group.
@@ -635,10 +635,10 @@ class Group(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 load_balancer_configuration: pulumi.Input[Optional[Union['GroupLoadBalancerConfigurationArgs', 'GroupLoadBalancerConfigurationArgsDict']]] = None,
+                 load_balancer_configuration: pulumi.Input[Optional[Union['GroupLoadBalancerConfigurationArgs', 'GroupLoadBalancerConfigurationArgsDict', 'outputs.GroupLoadBalancerConfiguration']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 scaling_policy: pulumi.Input[Optional[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict']]] = None,
+                 scaling_policy: pulumi.Input[Optional[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict', 'outputs.GroupScalingPolicy']]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template_id: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
@@ -677,10 +677,10 @@ class Group(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
-            load_balancer_configuration: pulumi.Input[Optional[Union['GroupLoadBalancerConfigurationArgs', 'GroupLoadBalancerConfigurationArgsDict']]] = None,
+            load_balancer_configuration: pulumi.Input[Optional[Union['GroupLoadBalancerConfigurationArgs', 'GroupLoadBalancerConfigurationArgsDict', 'outputs.GroupLoadBalancerConfiguration']]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            scaling_policy: pulumi.Input[Optional[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict']]] = None,
+            scaling_policy: pulumi.Input[Optional[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict', 'outputs.GroupScalingPolicy']]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -695,14 +695,14 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: The creation timestamp of the AutoScaling Group.
-        :param pulumi.Input[Union['GroupLoadBalancerConfigurationArgs', 'GroupLoadBalancerConfigurationArgsDict']] load_balancer_configuration: The load balancer configuration.
+        :param pulumi.Input[Union['GroupLoadBalancerConfigurationArgs', 'GroupLoadBalancerConfigurationArgsDict', 'outputs.GroupLoadBalancerConfiguration']] load_balancer_configuration: The load balancer configuration.
                
                > **Important:** Due to current limitations, this block cannot be unset. To remove it once it has been set, the resource needs to be recreated.
                
                > The `load_balancer_configuration` block contains:
         :param pulumi.Input[_builtins.str] name: The name of the AutoScaling Group. If not set, a name will be generated.
         :param pulumi.Input[_builtins.str] project_id: The ID of the project the AutoScaling Group is associated with.
-        :param pulumi.Input[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict']] scaling_policy: The scaling policy configuration.
+        :param pulumi.Input[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict', 'outputs.GroupScalingPolicy']] scaling_policy: The scaling policy configuration.
                
                > The `scaling_policy` block contains:
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the AutoScaling Group.
@@ -728,6 +728,34 @@ class Group(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["zone"] = zone
         return Group(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            load_balancer_configuration: pulumi.Input[Optional[Union['GroupLoadBalancerConfigurationArgs', 'GroupLoadBalancerConfigurationArgsDict', 'outputs.GroupLoadBalancerConfiguration']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            scaling_policy: pulumi.Input[Optional[Union['GroupScalingPolicyArgs', 'GroupScalingPolicyArgsDict', 'outputs.GroupScalingPolicy']]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            template_id: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["loadBalancerConfiguration"] = load_balancer_configuration
+        __props__["name"] = name
+        __props__["projectId"] = project_id
+        __props__["scalingPolicy"] = scaling_policy
+        __props__["srn"] = srn
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["templateId"] = template_id
+        __props__["updatedAt"] = updated_at
+        __props__["zone"] = zone
+        return pulumi.runtime.exists_resource(None, 'scaleway:autoscaling/group:Group', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

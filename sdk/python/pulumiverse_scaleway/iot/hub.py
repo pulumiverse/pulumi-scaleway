@@ -749,6 +749,50 @@ class Hub(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         return Hub(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            connected_device_count: pulumi.Input[Optional[_builtins.int]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            device_auto_provisioning: pulumi.Input[Optional[_builtins.bool]] = None,
+            device_count: pulumi.Input[Optional[_builtins.int]] = None,
+            disable_events: pulumi.Input[Optional[_builtins.bool]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            events_topic_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            hub_ca: pulumi.Input[Optional[_builtins.str]] = None,
+            hub_ca_challenge: pulumi.Input[Optional[_builtins.str]] = None,
+            mqtt_ca: pulumi.Input[Optional[_builtins.str]] = None,
+            mqtt_ca_url: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            product_plan: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["connectedDeviceCount"] = connected_device_count
+        __props__["createdAt"] = created_at
+        __props__["deviceAutoProvisioning"] = device_auto_provisioning
+        __props__["deviceCount"] = device_count
+        __props__["disableEvents"] = disable_events
+        __props__["enabled"] = enabled
+        __props__["endpoint"] = endpoint
+        __props__["eventsTopicPrefix"] = events_topic_prefix
+        __props__["hubCa"] = hub_ca
+        __props__["hubCaChallenge"] = hub_ca_challenge
+        __props__["mqttCa"] = mqtt_ca
+        __props__["mqttCaUrl"] = mqtt_ca_url
+        __props__["name"] = name
+        __props__["organizationId"] = organization_id
+        __props__["productPlan"] = product_plan
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["status"] = status
+        __props__["updatedAt"] = updated_at
+        return pulumi.runtime.exists_resource(None, 'scaleway:iot/hub:Hub', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="connectedDeviceCount")
     def connected_device_count(self) -> pulumi.Output[_builtins.int]:

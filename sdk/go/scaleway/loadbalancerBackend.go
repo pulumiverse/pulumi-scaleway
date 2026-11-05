@@ -342,6 +342,12 @@ func (LoadbalancerBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerBackendState)(nil)).Elem()
 }
 
+// LoadbalancerBackendExists checks whether an existing LoadbalancerBackend resource with the given ID exists.
+func LoadbalancerBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/loadbalancerBackend:LoadbalancerBackend", id, state, "", opts...)
+}
+
 type loadbalancerBackendArgs struct {
 	// Scaleway S3 bucket website to be served in case all backend servers are down
 	//

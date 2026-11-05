@@ -189,7 +189,7 @@ def get_ip(attached: Optional[_builtins.bool] = None,
            private_network_id: Optional[_builtins.str] = None,
            project_id: Optional[_builtins.str] = None,
            region: Optional[_builtins.str] = None,
-           resource: Optional[Union['GetIpResourceArgs', 'GetIpResourceArgsDict']] = None,
+           resource: Optional[Union['GetIpResourceArgs', 'GetIpResourceArgsDict', 'outputs.GetIpResourceResult']] = None,
            tags: Optional[Sequence[_builtins.str]] = None,
            type: Optional[_builtins.str] = None,
            zonal: Optional[_builtins.str] = None,
@@ -269,7 +269,7 @@ def get_ip(attached: Optional[_builtins.bool] = None,
     :param _builtins.str private_network_id: The ID of the Private Network the IP belongs to. Cannot be used with `ipam_ip_id`.
     :param _builtins.str project_id: `project_id`) The ID of the Project the IP is associated with.
     :param _builtins.str region: `region`) The region in which the IP exists.
-    :param Union['GetIpResourceArgs', 'GetIpResourceArgsDict'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
+    :param Union['GetIpResourceArgs', 'GetIpResourceArgsDict', 'outputs.GetIpResourceResult'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
            If specified, `type` is required, and at least one of `id` or `name` must be set.
     :param Sequence[_builtins.str] tags: The tags associated with the IP. Cannot be used with `ipam_ip_id`.
            As datasource only returns one IP, the search with given tags must return only one result.
@@ -312,7 +312,7 @@ def get_ip_output(attached: pulumi.Input[Optional[Optional[_builtins.bool]]] = N
                   private_network_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                   project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                   region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
-                  resource: pulumi.Input[Optional[Optional[Union['GetIpResourceArgs', 'GetIpResourceArgsDict']]]] = None,
+                  resource: pulumi.Input[Optional[Optional[Union['GetIpResourceArgs', 'GetIpResourceArgsDict', 'outputs.GetIpResourceResult']]]] = None,
                   tags: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                   type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                   zonal: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -392,7 +392,7 @@ def get_ip_output(attached: pulumi.Input[Optional[Optional[_builtins.bool]]] = N
     :param _builtins.str private_network_id: The ID of the Private Network the IP belongs to. Cannot be used with `ipam_ip_id`.
     :param _builtins.str project_id: `project_id`) The ID of the Project the IP is associated with.
     :param _builtins.str region: `region`) The region in which the IP exists.
-    :param Union['GetIpResourceArgs', 'GetIpResourceArgsDict'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
+    :param Union['GetIpResourceArgs', 'GetIpResourceArgsDict', 'outputs.GetIpResourceResult'] resource: Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
            If specified, `type` is required, and at least one of `id` or `name` must be set.
     :param Sequence[_builtins.str] tags: The tags associated with the IP. Cannot be used with `ipam_ip_id`.
            As datasource only returns one IP, the search with given tags must return only one result.

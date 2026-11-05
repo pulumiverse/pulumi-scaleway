@@ -62,7 +62,7 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewUser(ctx, "db_admin", &databases.UserArgs{
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //				Name:       pulumi.String("devtools"),
 //				Password:   dbPassword.Result,
 //				IsAdmin:    pulumi.Bool(true),
@@ -222,6 +222,12 @@ type DatabaseUserState struct {
 
 func (DatabaseUserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseUserState)(nil)).Elem()
+}
+
+// DatabaseUserExists checks whether an existing DatabaseUser resource with the given ID exists.
+func DatabaseUserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DatabaseUserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/databaseUser:DatabaseUser", id, state, "", opts...)
 }
 
 type databaseUserArgs struct {

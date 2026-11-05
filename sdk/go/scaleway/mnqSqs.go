@@ -150,6 +150,12 @@ func (MnqSqsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mnqSqsState)(nil)).Elem()
 }
 
+// MnqSqsExists checks whether an existing MnqSqs resource with the given ID exists.
+func MnqSqsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MnqSqsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/mnqSqs:MnqSqs", id, state, "", opts...)
+}
+
 type mnqSqsArgs struct {
 	// `projectId`) The ID of the Project in which SQS will be enabled.
 	ProjectId *string `pulumi:"projectId"`

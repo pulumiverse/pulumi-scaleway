@@ -350,7 +350,7 @@ type SnapshotTimeouts struct {
 	// 		}
 	// 		_, err = block.NewSnapshot(ctx, "block_snapshot", &block.SnapshotArgs{
 	// 			Name:     pulumi.String("some-snapshot-name"),
-	// 			VolumeId: blockVolume.ID().ToIDOutput().ToStringOutput(),
+	// 			VolumeId: blockVolume.ID(),
 	// 			Timeouts: &block.SnapshotTimeoutsArgs{
 	// 				Create: pulumi.String("10m"),
 	// 				Read:   pulumi.String("10m"),
@@ -406,7 +406,7 @@ type SnapshotTimeoutsArgs struct {
 	// 		}
 	// 		_, err = block.NewSnapshot(ctx, "block_snapshot", &block.SnapshotArgs{
 	// 			Name:     pulumi.String("some-snapshot-name"),
-	// 			VolumeId: blockVolume.ID().ToIDOutput().ToStringOutput(),
+	// 			VolumeId: blockVolume.ID(),
 	// 			Timeouts: &block.SnapshotTimeoutsArgs{
 	// 				Create: pulumi.String("10m"),
 	// 				Read:   pulumi.String("10m"),
@@ -532,7 +532,7 @@ func (o SnapshotTimeoutsOutput) Create() pulumi.StringPtrOutput {
 //			}
 //			_, err = block.NewSnapshot(ctx, "block_snapshot", &block.SnapshotArgs{
 //				Name:     pulumi.String("some-snapshot-name"),
-//				VolumeId: blockVolume.ID().ToIDOutput().ToStringOutput(),
+//				VolumeId: blockVolume.ID(),
 //				Timeouts: &block.SnapshotTimeoutsArgs{
 //					Create: pulumi.String("10m"),
 //					Read:   pulumi.String("10m"),
@@ -618,7 +618,7 @@ func (o SnapshotTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
 //			}
 //			_, err = block.NewSnapshot(ctx, "block_snapshot", &block.SnapshotArgs{
 //				Name:     pulumi.String("some-snapshot-name"),
-//				VolumeId: blockVolume.ID().ToIDOutput().ToStringOutput(),
+//				VolumeId: blockVolume.ID(),
 //				Timeouts: &block.SnapshotTimeoutsArgs{
 //					Create: pulumi.String("10m"),
 //					Read:   pulumi.String("10m"),

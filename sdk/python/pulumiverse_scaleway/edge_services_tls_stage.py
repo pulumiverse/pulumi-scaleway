@@ -356,7 +356,7 @@ class EdgeServicesTlsStage(pulumi.CustomResource):
                  pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  route_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesTlsStageSecretArgs', 'EdgeServicesTlsStageSecretArgsDict']]]]] = None,
+                 secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesTlsStageSecretArgs', 'EdgeServicesTlsStageSecretArgsDict', 'outputs.EdgeServicesTlsStageSecret']]]]] = None,
                  waf_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -406,7 +406,7 @@ class EdgeServicesTlsStage(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the TLS stage is associated with.
         :param pulumi.Input[_builtins.str] route_stage_id: The route stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesTlsStageSecretArgs', 'EdgeServicesTlsStageSecretArgsDict']]]] secrets: The TLS secrets.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesTlsStageSecretArgs', 'EdgeServicesTlsStageSecretArgsDict', 'outputs.EdgeServicesTlsStageSecret']]]] secrets: The TLS secrets.
         :param pulumi.Input[_builtins.str] waf_stage_id: The WAF stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         """
         ...
@@ -475,7 +475,7 @@ class EdgeServicesTlsStage(pulumi.CustomResource):
                  pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  route_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesTlsStageSecretArgs', 'EdgeServicesTlsStageSecretArgsDict']]]]] = None,
+                 secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesTlsStageSecretArgs', 'EdgeServicesTlsStageSecretArgsDict', 'outputs.EdgeServicesTlsStageSecret']]]]] = None,
                  waf_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         pulumi.log.warn("""EdgeServicesTlsStage is deprecated: scaleway.index/edgeservicestlsstage.EdgeServicesTlsStage has been deprecated in favor of scaleway.edgeservices/tlsstage.TlsStage""")
@@ -518,7 +518,7 @@ class EdgeServicesTlsStage(pulumi.CustomResource):
             pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             route_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
-            secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesTlsStageSecretArgs', 'EdgeServicesTlsStageSecretArgsDict']]]]] = None,
+            secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesTlsStageSecretArgs', 'EdgeServicesTlsStageSecretArgsDict', 'outputs.EdgeServicesTlsStageSecret']]]]] = None,
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             waf_stage_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'EdgeServicesTlsStage':
         """
@@ -536,7 +536,7 @@ class EdgeServicesTlsStage(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the TLS stage is associated with.
         :param pulumi.Input[_builtins.str] route_stage_id: The route stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesTlsStageSecretArgs', 'EdgeServicesTlsStageSecretArgsDict']]]] secrets: The TLS secrets.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesTlsStageSecretArgs', 'EdgeServicesTlsStageSecretArgsDict', 'outputs.EdgeServicesTlsStageSecret']]]] secrets: The TLS secrets.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the TLS stage.
         :param pulumi.Input[_builtins.str] waf_stage_id: The WAF stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         """
@@ -556,6 +556,34 @@ class EdgeServicesTlsStage(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["waf_stage_id"] = waf_stage_id
         return EdgeServicesTlsStage(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            cache_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate_expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_certificate: pulumi.Input[Optional[_builtins.bool]] = None,
+            pipeline_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            route_stage_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['EdgeServicesTlsStageSecretArgs', 'EdgeServicesTlsStageSecretArgsDict', 'outputs.EdgeServicesTlsStageSecret']]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            waf_stage_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backendStageId"] = backend_stage_id
+        __props__["cacheStageId"] = cache_stage_id
+        __props__["certificateExpiresAt"] = certificate_expires_at
+        __props__["createdAt"] = created_at
+        __props__["managedCertificate"] = managed_certificate
+        __props__["pipelineId"] = pipeline_id
+        __props__["projectId"] = project_id
+        __props__["routeStageId"] = route_stage_id
+        __props__["secrets"] = secrets
+        __props__["updatedAt"] = updated_at
+        __props__["wafStageId"] = waf_stage_id
+        return pulumi.runtime.exists_resource(None, 'scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="backendStageId")

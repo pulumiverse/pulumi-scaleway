@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewAcl(ctx, "main", &databases.AclArgs{
-//				InstanceId: main.ID().ToIDOutput().ToStringOutput(),
+//				InstanceId: main.ID(),
 //				AclRules: databases.AclAclRuleArray{
 //					&databases.AclAclRuleArgs{
 //						Ip:          pulumi.String("1.2.3.4/32"),
@@ -250,6 +250,12 @@ type DatabaseAclState struct {
 
 func (DatabaseAclState) ElementType() reflect.Type {
 	return reflect.TypeOf((*databaseAclState)(nil)).Elem()
+}
+
+// DatabaseAclExists checks whether an existing DatabaseAcl resource with the given ID exists.
+func DatabaseAclExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DatabaseAclState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/databaseAcl:DatabaseAcl", id, state, "", opts...)
 }
 
 type databaseAclArgs struct {

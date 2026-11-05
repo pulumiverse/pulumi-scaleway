@@ -571,6 +571,34 @@ class SnsTopic(pulumi.CustomResource):
         __props__.__dict__["sns_endpoint"] = sns_endpoint
         return SnsTopic(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            arn: pulumi.Input[Optional[_builtins.str]] = None,
+            content_based_deduplication: pulumi.Input[Optional[_builtins.bool]] = None,
+            fifo_topic: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            owner: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            sns_endpoint: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessKey"] = access_key
+        __props__["arn"] = arn
+        __props__["contentBasedDeduplication"] = content_based_deduplication
+        __props__["fifoTopic"] = fifo_topic
+        __props__["name"] = name
+        __props__["namePrefix"] = name_prefix
+        __props__["owner"] = owner
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["secretKey"] = secret_key
+        __props__["snsEndpoint"] = sns_endpoint
+        return pulumi.runtime.exists_resource(None, 'scaleway:mnq/snsTopic:SnsTopic', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Output[_builtins.str]:

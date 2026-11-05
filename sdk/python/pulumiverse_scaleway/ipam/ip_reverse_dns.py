@@ -357,6 +357,20 @@ class IpReverseDns(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         return IpReverseDns(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            address: pulumi.Input[Optional[_builtins.str]] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            ipam_ip_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["address"] = address
+        __props__["hostname"] = hostname
+        __props__["ipamIpId"] = ipam_ip_id
+        __props__["region"] = region
+        return pulumi.runtime.exists_resource(None, 'scaleway:ipam/ipReverseDns:IpReverseDns', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def address(self) -> pulumi.Output[_builtins.str]:

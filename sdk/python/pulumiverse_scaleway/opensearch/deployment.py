@@ -533,13 +533,13 @@ class Deployment(pulumi.CustomResource):
                  node_count: pulumi.Input[Optional[_builtins.int]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
+                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  user_name: pulumi.Input[Optional[_builtins.str]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
-                 volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict']]] = None,
+                 volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict', 'outputs.DeploymentVolume']]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway OpenSearch deployments.
@@ -667,7 +667,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] node_count: Number of nodes in the cluster. Changing this value upgrades the deployment **in place** (no recreation, no data loss).
         :param pulumi.Input[_builtins.str] node_type: Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] password: Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
-        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
+        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']] private_network: Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
                
                > **Note:** Without `private_network`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `private_network` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `public_dashboard_url`). Adding `private_network` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `endpoints` lists every endpoint returned by the API.
@@ -677,7 +677,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the deployment.
         :param pulumi.Input[_builtins.str] user_name: Username for the deployment. If not specified, the default username will be used. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] version: OpenSearch version to use (e.g., "2.0"). Changing this forces recreation of the deployment.
-        :param pulumi.Input[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict']] volume: Volume configuration for the cluster.
+        :param pulumi.Input[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict', 'outputs.DeploymentVolume']] volume: Volume configuration for the cluster.
         """
         ...
     @overload
@@ -824,13 +824,13 @@ class Deployment(pulumi.CustomResource):
                  node_count: pulumi.Input[Optional[_builtins.int]] = None,
                  node_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
-                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
+                 private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  user_name: pulumi.Input[Optional[_builtins.str]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None,
-                 volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict']]] = None,
+                 volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict', 'outputs.DeploymentVolume']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -874,13 +874,13 @@ class Deployment(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
-            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentEndpointArgs', 'DeploymentEndpointArgsDict']]]]] = None,
+            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentEndpointArgs', 'DeploymentEndpointArgsDict', 'outputs.DeploymentEndpoint']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             node_amount: pulumi.Input[Optional[_builtins.int]] = None,
             node_count: pulumi.Input[Optional[_builtins.int]] = None,
             node_type: pulumi.Input[Optional[_builtins.str]] = None,
             password: pulumi.Input[Optional[_builtins.str]] = None,
-            private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
+            private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             public_dashboard_url: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -889,7 +889,7 @@ class Deployment(pulumi.CustomResource):
             updated_at: pulumi.Input[Optional[_builtins.str]] = None,
             user_name: pulumi.Input[Optional[_builtins.str]] = None,
             version: pulumi.Input[Optional[_builtins.str]] = None,
-            volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict']]] = None) -> 'Deployment':
+            volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict', 'outputs.DeploymentVolume']]] = None) -> 'Deployment':
         """
         Get an existing Deployment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -898,13 +898,13 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: Date and time of deployment creation (RFC 3339 format).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEndpointArgs', 'DeploymentEndpointArgsDict']]]] endpoints: List of all endpoints returned by the API for accessing the deployment (public and private).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentEndpointArgs', 'DeploymentEndpointArgsDict', 'outputs.DeploymentEndpoint']]]] endpoints: List of all endpoints returned by the API for accessing the deployment (public and private).
         :param pulumi.Input[_builtins.str] name: Name of the OpenSearch deployment. If not specified, a random name will be generated.
         :param pulumi.Input[_builtins.int] node_amount: Use `node_count` instead. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.int] node_count: Number of nodes in the cluster. Changing this value upgrades the deployment **in place** (no recreation, no data loss).
         :param pulumi.Input[_builtins.str] node_type: Type of node to use (e.g., "SEARCHDB-SHARED-2C-8G", "SEARCHDB-DEDICATED-2C-8G"). Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] password: Password for the OpenSearch user. Must be at least 12 characters long. If not specified, you will need to reset the password through the API or console. Changing this forces recreation of the deployment.
-        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
+        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']] private_network: Private network configuration for the OpenSearch API endpoint. Can be added, updated, or removed on an existing deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
                
                > **Note:** Without `private_network`, a public endpoint is created for both the OpenSearch API and Dashboards. Creating with `private_network` exposes the API on the private network; OpenSearch Dashboards may still be reachable on a public URL (see `public_dashboard_url`). Adding `private_network` to an **existing** deployment attaches a private endpoint but **does not remove the public one**, so the deployment stays reachable publicly. `endpoints` lists every endpoint returned by the API.
@@ -917,7 +917,7 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] updated_at: Date and time of deployment last update (RFC 3339 format).
         :param pulumi.Input[_builtins.str] user_name: Username for the deployment. If not specified, the default username will be used. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] version: OpenSearch version to use (e.g., "2.0"). Changing this forces recreation of the deployment.
-        :param pulumi.Input[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict']] volume: Volume configuration for the cluster.
+        :param pulumi.Input[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict', 'outputs.DeploymentVolume']] volume: Volume configuration for the cluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -941,6 +941,46 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["version"] = version
         __props__.__dict__["volume"] = volume
         return Deployment(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DeploymentEndpointArgs', 'DeploymentEndpointArgsDict', 'outputs.DeploymentEndpoint']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_amount: pulumi.Input[Optional[_builtins.int]] = None,
+            node_count: pulumi.Input[Optional[_builtins.int]] = None,
+            node_type: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            private_network: pulumi.Input[Optional[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict', 'outputs.DeploymentPrivateNetwork']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            public_dashboard_url: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            updated_at: pulumi.Input[Optional[_builtins.str]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None,
+            volume: pulumi.Input[Optional[Union['DeploymentVolumeArgs', 'DeploymentVolumeArgsDict', 'outputs.DeploymentVolume']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["createdAt"] = created_at
+        __props__["endpoints"] = endpoints
+        __props__["name"] = name
+        __props__["nodeAmount"] = node_amount
+        __props__["nodeCount"] = node_count
+        __props__["nodeType"] = node_type
+        __props__["password"] = password
+        __props__["privateNetwork"] = private_network
+        __props__["projectId"] = project_id
+        __props__["publicDashboardUrl"] = public_dashboard_url
+        __props__["region"] = region
+        __props__["status"] = status
+        __props__["tags"] = tags
+        __props__["updatedAt"] = updated_at
+        __props__["userName"] = user_name
+        __props__["version"] = version
+        __props__["volume"] = volume
+        return pulumi.runtime.exists_resource(None, 'scaleway:opensearch/deployment:Deployment', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="createdAt")

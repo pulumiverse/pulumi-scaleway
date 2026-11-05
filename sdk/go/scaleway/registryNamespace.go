@@ -145,6 +145,12 @@ func (RegistryNamespaceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*registryNamespaceState)(nil)).Elem()
 }
 
+// RegistryNamespaceExists checks whether an existing RegistryNamespace resource with the given ID exists.
+func RegistryNamespaceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RegistryNamespaceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/registryNamespace:RegistryNamespace", id, state, "", opts...)
+}
+
 type registryNamespaceArgs struct {
 	// The description of the namespace.
 	Description *string `pulumi:"description"`

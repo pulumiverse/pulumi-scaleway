@@ -85,10 +85,10 @@ namespace Pulumiverse.Scaleway.Observability
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["grafanaConnectionInfo"] = 
+        ///         ["grafanaConnectionInfo"] = new Dictionary&lt;string, object?&gt;
         ///         {
-        ///             { "url", main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl) },
-        ///             { "projectId", main.Apply(getGrafanaResult =&gt; getGrafanaResult.ProjectId) },
+        ///             ["url"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl),
+        ///             ["projectId"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.ProjectId),
         ///         },
         ///     };
         /// });
@@ -205,10 +205,10 @@ namespace Pulumiverse.Scaleway.Observability
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["grafanaConnectionInfo"] = 
+        ///         ["grafanaConnectionInfo"] = new Dictionary&lt;string, object?&gt;
         ///         {
-        ///             { "url", main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl) },
-        ///             { "projectId", main.Apply(getGrafanaResult =&gt; getGrafanaResult.ProjectId) },
+        ///             ["url"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl),
+        ///             ["projectId"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.ProjectId),
         ///         },
         ///     };
         /// });
@@ -325,10 +325,10 @@ namespace Pulumiverse.Scaleway.Observability
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["grafanaConnectionInfo"] = 
+        ///         ["grafanaConnectionInfo"] = new Dictionary&lt;string, object?&gt;
         ///         {
-        ///             { "url", main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl) },
-        ///             { "projectId", main.Apply(getGrafanaResult =&gt; getGrafanaResult.ProjectId) },
+        ///             ["url"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.GrafanaUrl),
+        ///             ["projectId"] = main.Apply(getGrafanaResult =&gt; getGrafanaResult.ProjectId),
         ///         },
         ///     };
         /// });

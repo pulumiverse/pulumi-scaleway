@@ -124,7 +124,7 @@ import (
 //			}
 //			_, err = mailbox.NewDomain(ctx, "project_domain", &mailbox.DomainArgs{
 //				Name:      pulumi.String("mail.example.com"),
-//				ProjectId: mailProject.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId: mailProject.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -256,6 +256,12 @@ type DomainState struct {
 
 func (DomainState) ElementType() reflect.Type {
 	return reflect.TypeOf((*domainState)(nil)).Elem()
+}
+
+// DomainExists checks whether an existing Domain resource with the given ID exists.
+func DomainExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DomainState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:mailbox/domain:Domain", id, state, "", opts...)
 }
 
 type domainArgs struct {

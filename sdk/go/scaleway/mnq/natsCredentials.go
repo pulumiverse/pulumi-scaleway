@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_, err = mnq.NewNatsCredentials(ctx, "main", &mnq.NatsCredentialsArgs{
-//				AccountId: main.ID().ToIDOutput().ToStringOutput(),
+//				AccountId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -139,6 +139,12 @@ type NatsCredentialsState struct {
 
 func (NatsCredentialsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*natsCredentialsState)(nil)).Elem()
+}
+
+// NatsCredentialsExists checks whether an existing NatsCredentials resource with the given ID exists.
+func NatsCredentialsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NatsCredentialsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:mnq/natsCredentials:NatsCredentials", id, state, "", opts...)
 }
 
 type natsCredentialsArgs struct {

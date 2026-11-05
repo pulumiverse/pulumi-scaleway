@@ -171,6 +171,12 @@ func (AccountProjectState) ElementType() reflect.Type {
 	return reflect.TypeOf((*accountProjectState)(nil)).Elem()
 }
 
+// AccountProjectExists checks whether an existing AccountProject resource with the given ID exists.
+func AccountProjectExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AccountProjectState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/accountProject:AccountProject", id, state, "", opts...)
+}
+
 type accountProjectArgs struct {
 	// The description of the Project.
 	Description *string `pulumi:"description"`

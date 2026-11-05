@@ -280,6 +280,12 @@ func (MongoDbInstanceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mongoDbInstanceState)(nil)).Elem()
 }
 
+// MongoDbInstanceExists checks whether an existing MongoDbInstance resource with the given ID exists.
+func MongoDbInstanceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MongoDbInstanceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/mongoDbInstance:MongoDbInstance", id, state, "", opts...)
+}
+
 type mongoDbInstanceArgs struct {
 	// Whether automatic snapshot scheduling is enabled.
 	IsSnapshotScheduleEnabled *bool `pulumi:"isSnapshotScheduleEnabled"`

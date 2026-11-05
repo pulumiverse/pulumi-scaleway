@@ -45,7 +45,7 @@ import (
 //					pulumi.String("tag1"),
 //					pulumi.String("tag2"),
 //				},
-//				NamespaceId:      main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId:      main.ID(),
 //				Image:            pulumi.String("nginx:latest"),
 //				Port:             pulumi.Int(80),
 //				CpuLimit:         pulumi.Int(1024),
@@ -99,7 +99,7 @@ import (
 //				return err
 //			}
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
-//				VpcId: vpc.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -109,10 +109,10 @@ import (
 //				return err
 //			}
 //			_, err = containers.NewContainer(ctx, "with_pn", &containers.ContainerArgs{
-//				NamespaceId:      withPn.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId:      withPn.ID(),
 //				Name:             pulumi.String("container-with-private-network"),
 //				Image:            pulumi.String("my-image:latest"),
-//				PrivateNetworkId: pn.ID().ToIDOutput().ToStringOutput(),
+//				PrivateNetworkId: pn.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -162,7 +162,7 @@ import (
 //			}
 //			_, err = containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				Name:           pulumi.String("my-container"),
-//				NamespaceId:    mainNamespace.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId:    mainNamespace.ID(),
 //				Image:          pulumi.Sprintf("%v/%v:%v", main.Endpoint, mainGetImage.Name, mainGetImage.Tags[0]),
 //				Port:           pulumi.Int(80),
 //				RegistrySha256: pulumi.String(invokeTimestamp.Result),
@@ -193,7 +193,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			// When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along
+//			// When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` function along
 //			// with the `registry_sha256` argument to trigger container redeployments when the image is updated.
 //			// Ideally, you would create the namespace separately.
 //			// For demonstration purposes, this example assumes the "nginx:latest" image is already available
@@ -205,7 +205,7 @@ import (
 //				return err
 //			}
 //			nginx := registry.GetImageOutput(ctx, registry.GetImageOutputArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //				Name:        pulumi.String("nginx"),
 //			}, nil)
 //			nginxLatest := registry.GetImageTagOutput(ctx, registry.GetImageTagOutputArgs{
@@ -220,7 +220,7 @@ import (
 //			}
 //			_, err = containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				Name:        pulumi.String("nginx-latest"),
-//				NamespaceId: mainNamespace.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: mainNamespace.ID(),
 //				Image: pulumi.All(nginx, nginxLatest).ApplyT(func(_args []interface{}) (string, error) {
 //					nginx := _args[0].(registry.GetImageResult)
 //					nginxLatest := _args[1].(registry.GetImageTagResult)
@@ -269,7 +269,7 @@ import (
 //				return err
 //			}
 //			_, err = iam.NewPolicy(ctx, "access_private_containers", &iam.PolicyArgs{
-//				ApplicationId: containerAuth.ID().ToIDOutput().ToStringOutput(),
+//				ApplicationId: containerAuth.ID(),
 //				Rules: iam.PolicyRuleArray{
 //					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
@@ -285,7 +285,7 @@ import (
 //				return err
 //			}
 //			apiKey, err := iam.NewApiKey(ctx, "api_key", &iam.ApiKeyArgs{
-//				ApplicationId: containerAuth.ID().ToIDOutput().ToStringOutput(),
+//				ApplicationId: containerAuth.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -298,7 +298,7 @@ import (
 //				return err
 //			}
 //			privateContainer, err := containers.NewContainer(ctx, "private", &containers.ContainerArgs{
-//				NamespaceId: private.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: private.ID(),
 //				Image:       pulumi.String("rg.fr-par.scw.cloud/my-registry-ns/my-image:latest"),
 //				Privacy:     pulumi.String("private"),
 //			})
@@ -837,6 +837,12 @@ type ContainerState struct {
 
 func (ContainerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*containerState)(nil)).Elem()
+}
+
+// ContainerExists checks whether an existing Container resource with the given ID exists.
+func ContainerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ContainerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/container:Container", id, state, "", opts...)
 }
 
 type containerArgs struct {

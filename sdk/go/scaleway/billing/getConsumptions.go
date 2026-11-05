@@ -14,6 +14,31 @@ import (
 // Gets information about your Consumptions.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/billing"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Find your detailed monthly consumption list
+//			_, err := billing.GetConsumptions(ctx, &billing.GetConsumptionsArgs{
+//				OrganizationId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetConsumptions(ctx *pulumi.Context, args *GetConsumptionsArgs, opts ...pulumi.InvokeOption) (*GetConsumptionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetConsumptionsResult

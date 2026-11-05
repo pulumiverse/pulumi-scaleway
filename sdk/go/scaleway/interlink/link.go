@@ -99,7 +99,7 @@ import (
 //				PopId:         pulumi.String(pop.Id),
 //				PartnerId:     pulumi.String(partner.Id),
 //				BandwidthMbps: pulumi.Int(50),
-//				VpcId:         vpc.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:         vpc.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -313,6 +313,12 @@ type LinkState struct {
 
 func (LinkState) ElementType() reflect.Type {
 	return reflect.TypeOf((*linkState)(nil)).Elem()
+}
+
+// LinkExists checks whether an existing Link resource with the given ID exists.
+func LinkExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LinkState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:interlink/link:Link", id, state, "", opts...)
 }
 
 type linkArgs struct {

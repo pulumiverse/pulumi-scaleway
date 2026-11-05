@@ -47,7 +47,7 @@ import (
 //			}
 //			_, err = iot.NewNetwork(ctx, "main", &iot.NetworkArgs{
 //				Name:  pulumi.String("main"),
-//				HubId: mainHub.ID().ToIDOutput().ToStringOutput(),
+//				HubId: mainHub.ID(),
 //				Type:  pulumi.String("sigfox"),
 //			})
 //			if err != nil {
@@ -172,6 +172,12 @@ type NetworkState struct {
 
 func (NetworkState) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkState)(nil)).Elem()
+}
+
+// NetworkExists checks whether an existing Network resource with the given ID exists.
+func NetworkExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NetworkState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:iot/network:Network", id, state, "", opts...)
 }
 
 type networkArgs struct {

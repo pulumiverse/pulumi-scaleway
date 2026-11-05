@@ -40,15 +40,15 @@ import (
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("my-private-network"),
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = network.NewIngressRule(ctx, "main", &network.IngressRuleArgs{
-//				VpcId:                   vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:                   vpc01.ID(),
 //				Source:                  pulumi.String("10.0.0.0/24"),
-//				NexthopPrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//				NexthopPrivateNetworkId: pn01.ID(),
 //				NexthopResourceIp:       pulumi.String("10.0.0.10"),
 //				Description:             pulumi.String("Allow ingress traffic from 10.0.0.0/24"),
 //			})
@@ -82,16 +82,16 @@ import (
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name:   pulumi.String("my-private-network"),
-//				VpcId:  vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:  vpc01.ID(),
 //				Region: pulumi.String("nl-ams"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = network.NewIngressRule(ctx, "main", &network.IngressRuleArgs{
-//				VpcId:                   vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:                   vpc01.ID(),
 //				Source:                  pulumi.String("10.0.0.0/24"),
-//				NexthopPrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//				NexthopPrivateNetworkId: pn01.ID(),
 //				NexthopResourceIp:       pulumi.String("10.0.0.10"),
 //				Region:                  pulumi.String("nl-ams"),
 //			})
@@ -124,15 +124,15 @@ import (
 //			}
 //			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name:  pulumi.String("my-private-network"),
-//				VpcId: vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc01.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = network.NewIngressRule(ctx, "main", &network.IngressRuleArgs{
-//				VpcId:                   vpc01.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:                   vpc01.ID(),
 //				Source:                  pulumi.String("10.0.0.0/24"),
-//				NexthopPrivateNetworkId: pn01.ID().ToIDOutput().ToStringOutput(),
+//				NexthopPrivateNetworkId: pn01.ID(),
 //				NexthopResourceIp:       pulumi.String("10.0.0.10"),
 //				Description:             pulumi.String("Allow ingress traffic from 10.0.0.0/24"),
 //				Tags: pulumi.StringArray{
@@ -276,6 +276,12 @@ type IngressRuleState struct {
 
 func (IngressRuleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ingressRuleState)(nil)).Elem()
+}
+
+// IngressRuleExists checks whether an existing IngressRule resource with the given ID exists.
+func IngressRuleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IngressRuleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:network/ingressRule:IngressRule", id, state, "", opts...)
 }
 
 type ingressRuleArgs struct {

@@ -573,6 +573,32 @@ class KeyMaterial(pulumi.CustomResource):
         __props__.__dict__["salt_wo_version"] = salt_wo_version
         return KeyMaterial(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            key_material: pulumi.Input[Optional[_builtins.str]] = None,
+            key_material_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            key_material_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            key_state: pulumi.Input[Optional[_builtins.str]] = None,
+            origin: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            salt: pulumi.Input[Optional[_builtins.str]] = None,
+            salt_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            salt_wo_version: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["keyId"] = key_id
+        __props__["keyMaterial"] = key_material
+        __props__["keyMaterialWo"] = key_material_wo
+        __props__["keyMaterialWoVersion"] = key_material_wo_version
+        __props__["keyState"] = key_state
+        __props__["origin"] = origin
+        __props__["region"] = region
+        __props__["salt"] = salt
+        __props__["saltWo"] = salt_wo
+        __props__["saltWoVersion"] = salt_wo_version
+        return pulumi.runtime.exists_resource(None, 'scaleway:keymanager/keyMaterial:KeyMaterial', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="keyId")
     def key_id(self) -> pulumi.Output[_builtins.str]:

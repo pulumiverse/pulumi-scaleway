@@ -561,7 +561,7 @@ class Definition(pulumi.CustomResource):
                  args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  command: pulumi.Input[Optional[_builtins.str]] = None,
                  cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
-                 cron: pulumi.Input[Optional[Union['DefinitionCronArgs', 'DefinitionCronArgsDict']]] = None,
+                 cron: pulumi.Input[Optional[Union['DefinitionCronArgs', 'DefinitionCronArgsDict', 'outputs.DefinitionCron']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  env: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  image_uri: pulumi.Input[Optional[_builtins.str]] = None,
@@ -570,8 +570,8 @@ class Definition(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 retry_policy: pulumi.Input[Optional[Union['DefinitionRetryPolicyArgs', 'DefinitionRetryPolicyArgsDict']]] = None,
-                 secret_references: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict']]]]] = None,
+                 retry_policy: pulumi.Input[Optional[Union['DefinitionRetryPolicyArgs', 'DefinitionRetryPolicyArgsDict', 'outputs.DefinitionRetryPolicy']]] = None,
+                 secret_references: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict', 'outputs.DefinitionSecretReference']]]]] = None,
                  startup_commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -646,7 +646,7 @@ class Definition(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
         :param pulumi.Input[_builtins.str] command: The command that will be run in the container if specified.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container running the job.
-        :param pulumi.Input[Union['DefinitionCronArgs', 'DefinitionCronArgsDict']] cron: The cron configuration
+        :param pulumi.Input[Union['DefinitionCronArgs', 'DefinitionCronArgsDict', 'outputs.DefinitionCron']] cron: The cron configuration
         :param pulumi.Input[_builtins.str] description: The description of the job
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] env: The environment variables of the container.
         :param pulumi.Input[_builtins.str] image_uri: The uri of the container image that will be used for the job run.
@@ -655,8 +655,8 @@ class Definition(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the job.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the Job.
-        :param pulumi.Input[Union['DefinitionRetryPolicyArgs', 'DefinitionRetryPolicyArgsDict']] retry_policy: Defines a retry policy for the job.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict']]]] secret_references: A reference to a secret stored in Secret Manager.
+        :param pulumi.Input[Union['DefinitionRetryPolicyArgs', 'DefinitionRetryPolicyArgsDict', 'outputs.DefinitionRetryPolicy']] retry_policy: Defines a retry policy for the job.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict', 'outputs.DefinitionSecretReference']]]] secret_references: A reference to a secret stored in Secret Manager.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] startup_commands: The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
         :param pulumi.Input[_builtins.str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
         """
@@ -750,7 +750,7 @@ class Definition(pulumi.CustomResource):
                  args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  command: pulumi.Input[Optional[_builtins.str]] = None,
                  cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
-                 cron: pulumi.Input[Optional[Union['DefinitionCronArgs', 'DefinitionCronArgsDict']]] = None,
+                 cron: pulumi.Input[Optional[Union['DefinitionCronArgs', 'DefinitionCronArgsDict', 'outputs.DefinitionCron']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  env: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  image_uri: pulumi.Input[Optional[_builtins.str]] = None,
@@ -759,8 +759,8 @@ class Definition(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 retry_policy: pulumi.Input[Optional[Union['DefinitionRetryPolicyArgs', 'DefinitionRetryPolicyArgsDict']]] = None,
-                 secret_references: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict']]]]] = None,
+                 retry_policy: pulumi.Input[Optional[Union['DefinitionRetryPolicyArgs', 'DefinitionRetryPolicyArgsDict', 'outputs.DefinitionRetryPolicy']]] = None,
+                 secret_references: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict', 'outputs.DefinitionSecretReference']]]]] = None,
                  startup_commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -811,7 +811,7 @@ class Definition(pulumi.CustomResource):
             args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             command: pulumi.Input[Optional[_builtins.str]] = None,
             cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
-            cron: pulumi.Input[Optional[Union['DefinitionCronArgs', 'DefinitionCronArgsDict']]] = None,
+            cron: pulumi.Input[Optional[Union['DefinitionCronArgs', 'DefinitionCronArgsDict', 'outputs.DefinitionCron']]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             env: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             image_uri: pulumi.Input[Optional[_builtins.str]] = None,
@@ -820,8 +820,8 @@ class Definition(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            retry_policy: pulumi.Input[Optional[Union['DefinitionRetryPolicyArgs', 'DefinitionRetryPolicyArgsDict']]] = None,
-            secret_references: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict']]]]] = None,
+            retry_policy: pulumi.Input[Optional[Union['DefinitionRetryPolicyArgs', 'DefinitionRetryPolicyArgsDict', 'outputs.DefinitionRetryPolicy']]] = None,
+            secret_references: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict', 'outputs.DefinitionSecretReference']]]]] = None,
             startup_commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             timeout: pulumi.Input[Optional[_builtins.str]] = None) -> 'Definition':
         """
@@ -834,7 +834,7 @@ class Definition(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
         :param pulumi.Input[_builtins.str] command: The command that will be run in the container if specified.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container running the job.
-        :param pulumi.Input[Union['DefinitionCronArgs', 'DefinitionCronArgsDict']] cron: The cron configuration
+        :param pulumi.Input[Union['DefinitionCronArgs', 'DefinitionCronArgsDict', 'outputs.DefinitionCron']] cron: The cron configuration
         :param pulumi.Input[_builtins.str] description: The description of the job
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] env: The environment variables of the container.
         :param pulumi.Input[_builtins.str] image_uri: The uri of the container image that will be used for the job run.
@@ -843,8 +843,8 @@ class Definition(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the job.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the Job.
-        :param pulumi.Input[Union['DefinitionRetryPolicyArgs', 'DefinitionRetryPolicyArgsDict']] retry_policy: Defines a retry policy for the job.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict']]]] secret_references: A reference to a secret stored in Secret Manager.
+        :param pulumi.Input[Union['DefinitionRetryPolicyArgs', 'DefinitionRetryPolicyArgsDict', 'outputs.DefinitionRetryPolicy']] retry_policy: Defines a retry policy for the job.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict', 'outputs.DefinitionSecretReference']]]] secret_references: A reference to a secret stored in Secret Manager.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] startup_commands: The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
         :param pulumi.Input[_builtins.str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
         """
@@ -869,6 +869,44 @@ class Definition(pulumi.CustomResource):
         __props__.__dict__["startup_commands"] = startup_commands
         __props__.__dict__["timeout"] = timeout
         return Definition(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            command: pulumi.Input[Optional[_builtins.str]] = None,
+            cpu_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            cron: pulumi.Input[Optional[Union['DefinitionCronArgs', 'DefinitionCronArgsDict', 'outputs.DefinitionCron']]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            env: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            image_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            local_storage_capacity: pulumi.Input[Optional[_builtins.int]] = None,
+            memory_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            retry_policy: pulumi.Input[Optional[Union['DefinitionRetryPolicyArgs', 'DefinitionRetryPolicyArgsDict', 'outputs.DefinitionRetryPolicy']]] = None,
+            secret_references: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict', 'outputs.DefinitionSecretReference']]]]] = None,
+            startup_commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            timeout: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["args"] = args
+        __props__["command"] = command
+        __props__["cpuLimit"] = cpu_limit
+        __props__["cron"] = cron
+        __props__["description"] = description
+        __props__["env"] = env
+        __props__["imageUri"] = image_uri
+        __props__["localStorageCapacity"] = local_storage_capacity
+        __props__["memoryLimit"] = memory_limit
+        __props__["name"] = name
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["retryPolicy"] = retry_policy
+        __props__["secretReferences"] = secret_references
+        __props__["startupCommands"] = startup_commands
+        __props__["timeout"] = timeout
+        return pulumi.runtime.exists_resource(None, 'scaleway:job/definition:Definition', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter

@@ -47,7 +47,7 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
-//				PipelineId: mainPipeline.ID().ToIDOutput().ToStringOutput(),
+//				PipelineId: mainPipeline.ID(),
 //				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
 //					BucketName:   main.Name,
 //					BucketRegion: pulumi.String("fr-par"),
@@ -88,7 +88,7 @@ import (
 //				return err
 //			}
 //			_, err = loadbalancers.NewFrontend(ctx, "main", &loadbalancers.FrontendArgs{
-//				LbId:        main.ID().ToIDOutput().ToStringOutput(),
+//				LbId:        main.ID(),
 //				BackendId:   pulumi.Any(mainScalewayLbBackend.Id),
 //				Name:        pulumi.String("frontend01"),
 //				InboundPort: pulumi.Int(443),
@@ -106,11 +106,11 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
-//				PipelineId: mainPipeline.ID().ToIDOutput().ToStringOutput(),
+//				PipelineId: mainPipeline.ID(),
 //				LbBackendConfigs: edgeservices.BackendStageLbBackendConfigArray{
 //					&edgeservices.BackendStageLbBackendConfigArgs{
 //						LbConfig: &edgeservices.BackendStageLbBackendConfigLbConfigArgs{
-//							Id:         main.ID().ToIDOutput().ToStringOutput(),
+//							Id:         main.ID(),
 //							FrontendId: pulumi.Any(id),
 //							IsSsl:      pulumi.Bool(true),
 //							Zone:       pulumi.String("fr-par-1"),
@@ -149,7 +149,7 @@ import (
 //				return err
 //			}
 //			mainContainer, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //				Name:        pulumi.String("my-container"),
 //				Image:       pulumi.String("nginx:1.29.4-alpine"),
 //				Port:        pulumi.Int(80),
@@ -164,9 +164,9 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
-//				PipelineId: mainPipeline.ID().ToIDOutput().ToStringOutput(),
+//				PipelineId: mainPipeline.ID(),
 //				ContainerBackendConfig: &edgeservices.BackendStageContainerBackendConfigArgs{
-//					ContainerId: mainContainer.ID().ToIDOutput().ToStringOutput(),
+//					ContainerId: mainContainer.ID(),
 //					Region:      pulumi.String("fr-par"),
 //				},
 //			})
@@ -201,7 +201,7 @@ import (
 //				return err
 //			}
 //			mainFunction, err := functions.NewFunction(ctx, "main", &functions.FunctionArgs{
-//				NamespaceId: main.ID().ToIDOutput().ToStringOutput(),
+//				NamespaceId: main.ID(),
 //				Name:        pulumi.String("my-function"),
 //				Runtime:     pulumi.String("node20"),
 //				Privacy:     pulumi.String("private"),
@@ -217,9 +217,9 @@ import (
 //				return err
 //			}
 //			_, err = edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
-//				PipelineId: mainPipeline.ID().ToIDOutput().ToStringOutput(),
+//				PipelineId: mainPipeline.ID(),
 //				FunctionBackendConfig: &edgeservices.BackendStageFunctionBackendConfigArgs{
-//					FunctionId: mainFunction.ID().ToIDOutput().ToStringOutput(),
+//					FunctionId: mainFunction.ID(),
 //					Region:     pulumi.String("fr-par"),
 //				},
 //			})
@@ -340,6 +340,12 @@ type EdgeServicesBackendStageState struct {
 
 func (EdgeServicesBackendStageState) ElementType() reflect.Type {
 	return reflect.TypeOf((*edgeServicesBackendStageState)(nil)).Elem()
+}
+
+// EdgeServicesBackendStageExists checks whether an existing EdgeServicesBackendStage resource with the given ID exists.
+func EdgeServicesBackendStageExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EdgeServicesBackendStageState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage", id, state, "", opts...)
 }
 
 type edgeServicesBackendStageArgs struct {

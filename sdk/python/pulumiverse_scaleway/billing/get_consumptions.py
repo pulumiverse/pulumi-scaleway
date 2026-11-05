@@ -102,6 +102,14 @@ def get_consumptions(project_id: Optional[_builtins.str] = None,
 
     ## Example Usage
 
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Find your detailed monthly consumption list
+    my_consumption = scaleway.billing.get_consumptions(organization_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+    ```
+
 
     :param _builtins.str project_id: `project_id`) The ID of the project the consumption list is associated with.
     """
@@ -122,6 +130,14 @@ def get_consumptions_output(project_id: pulumi.Input[Optional[Optional[_builtins
     Gets information about your Consumptions.
 
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Find your detailed monthly consumption list
+    my_consumption = scaleway.billing.get_consumptions(organization_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+    ```
 
 
     :param _builtins.str project_id: `project_id`) The ID of the project the consumption list is associated with.

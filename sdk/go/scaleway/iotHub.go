@@ -227,6 +227,12 @@ func (IotHubState) ElementType() reflect.Type {
 	return reflect.TypeOf((*iotHubState)(nil)).Elem()
 }
 
+// IotHubExists checks whether an existing IotHub resource with the given ID exists.
+func IotHubExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IotHubState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/iotHub:IotHub", id, state, "", opts...)
+}
+
 type iotHubArgs struct {
 	// Wether to enable the device auto provisioning or not
 	DeviceAutoProvisioning *bool `pulumi:"deviceAutoProvisioning"`

@@ -77,7 +77,7 @@ import (
 //			// Find server private IPv4 using private-nic id
 //			_ = ipam.LookupIpOutput(ctx, ipam.GetIpOutputArgs{
 //				Resource: &ipam.GetIpResourceArgs{
-//					Id:   nic.ID().ToIDOutput().ToStringOutput(),
+//					Id:   nic.ID(),
 //					Type: pulumi.String("instance_private_nic"),
 //				},
 //				Type: pulumi.String("ipv4"),
@@ -118,7 +118,7 @@ import (
 //				UserName:      pulumi.String("my_initial_user"),
 //				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
 //				PrivateNetwork: &databases.InstancePrivateNetworkArgs{
-//					PnId: pn.ID().ToIDOutput().ToStringOutput(),
+//					PnId: pn.ID(),
 //				},
 //			})
 //			if err != nil {

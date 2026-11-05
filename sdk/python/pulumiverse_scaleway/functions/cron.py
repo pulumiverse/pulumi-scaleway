@@ -434,6 +434,26 @@ class Cron(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         return Cron(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            args: pulumi.Input[Optional[_builtins.str]] = None,
+            function_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["args"] = args
+        __props__["functionId"] = function_id
+        __props__["name"] = name
+        __props__["region"] = region
+        __props__["schedule"] = schedule
+        __props__["srn"] = srn
+        __props__["status"] = status
+        return pulumi.runtime.exists_resource(None, 'scaleway:functions/cron:Cron', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def args(self) -> pulumi.Output[_builtins.str]:

@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			production, err := annotations.NewValue(ctx, "production", &annotations.ValueArgs{
-//				KeyId:       environment.ID().ToIDOutput().ToStringOutput(),
+//				KeyId:       environment.ID(),
 //				Name:        pulumi.String("production"),
 //				Description: pulumi.String("Production environment"),
 //			})
@@ -56,13 +56,13 @@ import (
 //			}
 //			mainBinding, err := annotations.NewBinding(ctx, "main", &annotations.BindingArgs{
 //				TargetSrn: mainKey.Srn,
-//				ValueId:   production.ID().ToIDOutput().ToStringOutput(),
+//				ValueId:   production.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_ = annotations.LookupBindingOutput(ctx, annotations.GetBindingOutputArgs{
-//				BindingId: mainBinding.ID().ToIDOutput().ToStringOutput(),
+//				BindingId: mainBinding.ID(),
 //			}, nil)
 //			return nil
 //		})

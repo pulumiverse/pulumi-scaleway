@@ -212,6 +212,12 @@ func (InstanceTemplateState) ElementType() reflect.Type {
 	return reflect.TypeOf((*instanceTemplateState)(nil)).Elem()
 }
 
+// InstanceTemplateExists checks whether an existing InstanceTemplate resource with the given ID exists.
+func InstanceTemplateExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *InstanceTemplateState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:autoscaling/instanceTemplate:InstanceTemplate", id, state, "", opts...)
+}
+
 type instanceTemplateArgs struct {
 	// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercialType` template.
 	CloudInit *string `pulumi:"cloudInit"`

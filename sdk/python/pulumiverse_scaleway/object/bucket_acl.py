@@ -249,7 +249,7 @@ class BucketAcl(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_control_policy: pulumi.Input[Optional[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict']]] = None,
+                 access_control_policy: pulumi.Input[Optional[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict', 'outputs.BucketAclAccessControlPolicy']]] = None,
                  acl: pulumi.Input[Optional[_builtins.str]] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
                  expected_bucket_owner: pulumi.Input[Optional[_builtins.str]] = None,
@@ -370,7 +370,7 @@ class BucketAcl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
+        :param pulumi.Input[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict', 'outputs.BucketAclAccessControlPolicy']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[_builtins.str] acl: The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] expected_bucket_owner: The project ID of the expected bucket owner.
@@ -514,7 +514,7 @@ class BucketAcl(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_control_policy: pulumi.Input[Optional[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict']]] = None,
+                 access_control_policy: pulumi.Input[Optional[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict', 'outputs.BucketAclAccessControlPolicy']]] = None,
                  acl: pulumi.Input[Optional[_builtins.str]] = None,
                  bucket: pulumi.Input[Optional[_builtins.str]] = None,
                  expected_bucket_owner: pulumi.Input[Optional[_builtins.str]] = None,
@@ -549,7 +549,7 @@ class BucketAcl(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_control_policy: pulumi.Input[Optional[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict']]] = None,
+            access_control_policy: pulumi.Input[Optional[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict', 'outputs.BucketAclAccessControlPolicy']]] = None,
             acl: pulumi.Input[Optional[_builtins.str]] = None,
             bucket: pulumi.Input[Optional[_builtins.str]] = None,
             expected_bucket_owner: pulumi.Input[Optional[_builtins.str]] = None,
@@ -562,7 +562,7 @@ class BucketAcl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
+        :param pulumi.Input[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict', 'outputs.BucketAclAccessControlPolicy']] access_control_policy: A configuration block that sets the ACL permissions for an object per grantee documented below.
         :param pulumi.Input[_builtins.str] acl: The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
         :param pulumi.Input[_builtins.str] bucket: The name of the bucket, or its Terraform ID.
         :param pulumi.Input[_builtins.str] expected_bucket_owner: The project ID of the expected bucket owner.
@@ -584,6 +584,24 @@ class BucketAcl(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         return BucketAcl(resource_name, opts=opts, __props__=__props__)
+
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_control_policy: pulumi.Input[Optional[Union['BucketAclAccessControlPolicyArgs', 'BucketAclAccessControlPolicyArgsDict', 'outputs.BucketAclAccessControlPolicy']]] = None,
+            acl: pulumi.Input[Optional[_builtins.str]] = None,
+            bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            expected_bucket_owner: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessControlPolicy"] = access_control_policy
+        __props__["acl"] = acl
+        __props__["bucket"] = bucket
+        __props__["expectedBucketOwner"] = expected_bucket_owner
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        return pulumi.runtime.exists_resource(None, 'scaleway:object/bucketAcl:BucketAcl', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
     @pulumi.getter(name="accessControlPolicy")

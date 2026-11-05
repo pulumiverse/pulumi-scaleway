@@ -167,6 +167,12 @@ func (LoadbalancerAclState) ElementType() reflect.Type {
 	return reflect.TypeOf((*loadbalancerAclState)(nil)).Elem()
 }
 
+// LoadbalancerAclExists checks whether an existing LoadbalancerAcl resource with the given ID exists.
+func LoadbalancerAclExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LoadbalancerAclState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/loadbalancerAcl:LoadbalancerAcl", id, state, "", opts...)
+}
+
 type loadbalancerAclArgs struct {
 	// Action to undertake when an ACL filter matches.
 	Action LoadbalancerAclAction `pulumi:"action"`

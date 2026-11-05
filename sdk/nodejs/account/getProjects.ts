@@ -35,17 +35,19 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const all = scaleway.account.getProjects({});
- * const main: scaleway.account.SshKey[] = [];
- * all.then(all => all.projects).length.apply(rangeBody => {
- *     for (let range = 0; range < rangeBody; range++) {
- *         main.push(new scaleway.account.SshKey(`main-${range}`, {
- *             name: "main",
- *             publicKey: publicKey,
- *             projectId: all.then(all => all.projects[range].id),
- *         }));
- *     }
- * });
+ * export = async () => {
+ *     const all = await scaleway.account.getProjects({});
+ *     const main: scaleway.account.SshKey[] = [];
+ * all.projects.length.apply(rangeBody => {
+ *         for (let range = 0; range < rangeBody; range++) {
+ *             main.push(new scaleway.account.SshKey(`main-${range}`, {
+ *                 name: "main",
+ *                 publicKey: publicKey,
+ *                 projectId: all.projects[range].id,
+ *             }));
+ *         }
+ *     });
+ * }
  * ```
  */
 export function getProjects(args?: GetProjectsArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectsResult> {
@@ -130,17 +132,19 @@ export interface GetProjectsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const all = scaleway.account.getProjects({});
- * const main: scaleway.account.SshKey[] = [];
- * all.then(all => all.projects).length.apply(rangeBody => {
- *     for (let range = 0; range < rangeBody; range++) {
- *         main.push(new scaleway.account.SshKey(`main-${range}`, {
- *             name: "main",
- *             publicKey: publicKey,
- *             projectId: all.then(all => all.projects[range].id),
- *         }));
- *     }
- * });
+ * export = async () => {
+ *     const all = await scaleway.account.getProjects({});
+ *     const main: scaleway.account.SshKey[] = [];
+ * all.projects.length.apply(rangeBody => {
+ *         for (let range = 0; range < rangeBody; range++) {
+ *             main.push(new scaleway.account.SshKey(`main-${range}`, {
+ *                 name: "main",
+ *                 publicKey: publicKey,
+ *                 projectId: all.projects[range].id,
+ *             }));
+ *         }
+ *     });
+ * }
  * ```
  */
 export function getProjectsOutput(args?: GetProjectsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectsResult> {

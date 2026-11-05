@@ -243,6 +243,12 @@ func (WebhostingState) ElementType() reflect.Type {
 	return reflect.TypeOf((*webhostingState)(nil)).Elem()
 }
 
+// WebhostingExists checks whether an existing Webhosting resource with the given ID exists.
+func WebhostingExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *WebhostingState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("scaleway:index/webhosting:Webhosting", id, state, "", opts...)
+}
+
 type webhostingArgs struct {
 	// The domain name of the hosting.
 	Domain string `pulumi:"domain"`
