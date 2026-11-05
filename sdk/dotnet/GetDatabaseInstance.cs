@@ -115,6 +115,7 @@ namespace Pulumiverse.Scaleway
         public readonly int BackupScheduleFrequency;
         public readonly int BackupScheduleRetention;
         public readonly string Certificate;
+        public readonly string CloneFrom;
         public readonly bool DisableBackup;
         public readonly bool EncryptionAtRest;
         public readonly string EndpointIp;
@@ -158,6 +159,8 @@ namespace Pulumiverse.Scaleway
             int backupScheduleRetention,
 
             string certificate,
+
+            string cloneFrom,
 
             bool disableBackup,
 
@@ -223,6 +226,7 @@ namespace Pulumiverse.Scaleway
             BackupScheduleFrequency = backupScheduleFrequency;
             BackupScheduleRetention = backupScheduleRetention;
             Certificate = certificate;
+            CloneFrom = cloneFrom;
             DisableBackup = disableBackup;
             EncryptionAtRest = encryptionAtRest;
             EndpointIp = endpointIp;

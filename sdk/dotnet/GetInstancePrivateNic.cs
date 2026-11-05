@@ -244,8 +244,10 @@ namespace Pulumiverse.Scaleway
         public readonly string? PrivateNetworkId;
         public readonly string? PrivateNicId;
         public readonly string ProjectId;
+        public readonly string SecurityGroupId;
         public readonly string ServerId;
         public readonly string Srn;
+        public readonly string Status;
         public readonly ImmutableArray<string> Tags;
         public readonly string? Zone;
 
@@ -267,9 +269,13 @@ namespace Pulumiverse.Scaleway
 
             string projectId,
 
+            string securityGroupId,
+
             string serverId,
 
             string srn,
+
+            string status,
 
             ImmutableArray<string> tags,
 
@@ -283,8 +289,10 @@ namespace Pulumiverse.Scaleway
             PrivateNetworkId = privateNetworkId;
             PrivateNicId = privateNicId;
             ProjectId = projectId;
+            SecurityGroupId = securityGroupId;
             ServerId = serverId;
             Srn = srn;
+            Status = status;
             Tags = tags;
             Zone = zone;
         }
