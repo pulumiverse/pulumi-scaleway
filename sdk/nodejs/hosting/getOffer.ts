@@ -69,7 +69,7 @@ export interface GetOfferResult {
     readonly billingOperationPath: string;
     readonly controlPanel?: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The unique identifier of the option.
      */
     readonly id: string;
     /**
@@ -87,8 +87,6 @@ export interface GetOfferResult {
     readonly price: string;
     /**
      * (deprecated) The offer product.
-     *
-     * @deprecated The product field is deprecated. Please use the offer field instead.
      */
     readonly products: outputs.hosting.GetOfferProduct[];
     readonly region: string;

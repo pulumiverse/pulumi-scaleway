@@ -27,10 +27,13 @@ class GetProjectsResult:
     """
     A collection of values returned by getProjects.
     """
-    def __init__(__self__, created_at=None, description=None, id=None, name=None, organization_id=None, projects=None, srn=None, updated_at=None):
+    def __init__(__self__, created_at=None, delete_with_resources=None, description=None, id=None, name=None, organization_id=None, projects=None, srn=None, updated_at=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if delete_with_resources and not isinstance(delete_with_resources, bool):
+            raise TypeError("Expected argument 'delete_with_resources' to be a bool")
+        pulumi.set(__self__, "delete_with_resources", delete_with_resources)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -60,6 +63,11 @@ class GetProjectsResult:
         (Computed) The date and time when the project was created.
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="deleteWithResources")
+    def delete_with_resources(self) -> _builtins.bool:
+        return pulumi.get(self, "delete_with_resources")
 
     @_builtins.property
     @pulumi.getter
@@ -122,6 +130,7 @@ class AwaitableGetProjectsResult(GetProjectsResult):
             yield self
         return GetProjectsResult(
             created_at=self.created_at,
+            delete_with_resources=self.delete_with_resources,
             description=self.description,
             id=self.id,
             name=self.name,
@@ -185,6 +194,7 @@ def get_projects(organization_id: Optional[_builtins.str] = None,
 
     return AwaitableGetProjectsResult(
         created_at=pulumi.get(__ret__, 'created_at'),
+        delete_with_resources=pulumi.get(__ret__, 'delete_with_resources'),
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
@@ -245,6 +255,7 @@ def get_projects_output(organization_id: pulumi.Input[Optional[Optional[_builtin
     __ret__ = pulumi.runtime.invoke_output('scaleway:account/getProjects:getProjects', __args__, opts=opts, typ=GetProjectsResult)
     return __ret__.apply(lambda __response__: GetProjectsResult(
         created_at=pulumi.get(__response__, 'created_at'),
+        delete_with_resources=pulumi.get(__response__, 'delete_with_resources'),
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),

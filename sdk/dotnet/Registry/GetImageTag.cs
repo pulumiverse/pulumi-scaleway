@@ -35,7 +35,7 @@ namespace Pulumiverse.Scaleway.Registry
     public sealed class GetImageTagArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of the registry image.
+        /// The ID of the registry image the tag belongs to.
         /// </summary>
         [Input("imageId", required: true)]
         public string ImageId { get; set; } = null!;
@@ -73,7 +73,7 @@ namespace Pulumiverse.Scaleway.Registry
     public sealed class GetImageTagInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The ID of the registry image.
+        /// The ID of the registry image the tag belongs to.
         /// </summary>
         [Input("imageId", required: true)]
         public Input<string> ImageId { get; set; } = null!;

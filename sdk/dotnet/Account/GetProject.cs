@@ -103,6 +103,7 @@ namespace Pulumiverse.Scaleway.Account
     public sealed class GetProjectResult
     {
         public readonly string CreatedAt;
+        public readonly bool DeleteWithResources;
         public readonly string Description;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -117,6 +118,8 @@ namespace Pulumiverse.Scaleway.Account
         [OutputConstructor]
         private GetProjectResult(
             string createdAt,
+
+            bool deleteWithResources,
 
             string description,
 
@@ -133,6 +136,7 @@ namespace Pulumiverse.Scaleway.Account
             string updatedAt)
         {
             CreatedAt = createdAt;
+            DeleteWithResources = deleteWithResources;
             Description = description;
             Id = id;
             Name = name;

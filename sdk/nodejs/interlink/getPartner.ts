@@ -87,6 +87,10 @@ export interface GetPartnerResult {
     readonly portalUrl: string;
     readonly region: string;
     /**
+     * The Scaleway Resource Name (SRN) of the partner.
+     */
+    readonly srn: string;
+    /**
      * Last update date of the partner.
      */
     readonly updatedAt: string;

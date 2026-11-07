@@ -101,6 +101,8 @@ type GetPartnerResult struct {
 	// URL of the partner's portal.
 	PortalUrl string `pulumi:"portalUrl"`
 	Region    string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the partner.
+	Srn string `pulumi:"srn"`
 	// Last update date of the partner.
 	UpdatedAt string `pulumi:"updatedAt"`
 }
@@ -174,6 +176,11 @@ func (o GetPartnerResultOutput) PortalUrl() pulumi.StringOutput {
 
 func (o GetPartnerResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPartnerResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the partner.
+func (o GetPartnerResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPartnerResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Last update date of the partner.

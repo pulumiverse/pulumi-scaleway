@@ -110,7 +110,8 @@ type LookupRoutingPolicyResult struct {
 	ProjectId        *string  `pulumi:"projectId"`
 	Region           *string  `pulumi:"region"`
 	RoutingPolicyId  *string  `pulumi:"routingPolicyId"`
-	Srn              string   `pulumi:"srn"`
+	// The Scaleway Resource Name (SRN) of the routing policy.
+	Srn string `pulumi:"srn"`
 	// The tags associated with the routing policy.
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the routing policy.
@@ -201,6 +202,7 @@ func (o LookupRoutingPolicyResultOutput) RoutingPolicyId() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v LookupRoutingPolicyResult) *string { return v.RoutingPolicyId }).(pulumi.StringPtrOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the routing policy.
 func (o LookupRoutingPolicyResultOutput) Srn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRoutingPolicyResult) string { return v.Srn }).(pulumi.StringOutput)
 }

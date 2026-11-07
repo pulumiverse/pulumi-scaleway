@@ -192,6 +192,8 @@ type GetSourcesResult struct {
 	RetentionDays int `pulumi:"retentionDays"`
 	// List of cockpit sources.
 	Sources []GetSourcesSource `pulumi:"sources"`
+	// The Scaleway Resource Name (SRN) of the data source.
+	Srn string `pulumi:"srn"`
 	// Indicates whether the data source is synchronized with Grafana.
 	SynchronizedWithGrafana bool `pulumi:"synchronizedWithGrafana"`
 	// The type of the datasource.
@@ -283,6 +285,11 @@ func (o GetSourcesResultOutput) RetentionDays() pulumi.IntOutput {
 // List of cockpit sources.
 func (o GetSourcesResultOutput) Sources() GetSourcesSourceArrayOutput {
 	return o.ApplyT(func(v GetSourcesResult) []GetSourcesSource { return v.Sources }).(GetSourcesSourceArrayOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the data source.
+func (o GetSourcesResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSourcesResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Indicates whether the data source is synchronized with Grafana.

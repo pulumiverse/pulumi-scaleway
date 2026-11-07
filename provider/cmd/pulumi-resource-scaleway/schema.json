@@ -16312,6 +16312,10 @@
                     "type": "string",
                     "description": "URL of the partner's portal.\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the partner.\n"
+                },
                 "updatedAt": {
                     "type": "string",
                     "description": "Last update date.\n"
@@ -16325,6 +16329,7 @@
                 "logoUrl",
                 "name",
                 "portalUrl",
+                "srn",
                 "updatedAt"
             ],
             "language": {
@@ -16373,6 +16378,10 @@
                 "region": {
                     "type": "string",
                     "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region to list PoPs from.\n"
+                },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the PoP.\n"
                 }
             },
             "type": "object",
@@ -16385,7 +16394,8 @@
                 "id",
                 "logoUrl",
                 "name",
-                "region"
+                "region",
+                "srn"
             ],
             "language": {
                 "nodejs": {
@@ -21537,6 +21547,10 @@
                     "type": "integer",
                     "description": "The number of days to retain data.\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the data source.\n"
+                },
                 "synchronizedWithGrafana": {
                     "type": "boolean",
                     "description": "Indicates whether the data source is synchronized with Grafana.\n"
@@ -21564,6 +21578,7 @@
                 "pushUrl",
                 "region",
                 "retentionDays",
+                "srn",
                 "synchronizedWithGrafana",
                 "type",
                 "updatedAt",
@@ -22789,11 +22804,15 @@
     },
     "resources": {
         "scaleway:account/project:Project": {
-            "description": "The \u003cspan pulumi-lang-nodejs=\"`scaleway.account.Project`\" pulumi-lang-dotnet=\"`scaleway.account.Project`\" pulumi-lang-go=\"`account.Project`\" pulumi-lang-python=\"`account.Project`\" pulumi-lang-yaml=\"`scaleway.account.Project`\" pulumi-lang-java=\"`scaleway.account.Project`\" pulumi-lang-hcl=\"`scaleway_account_project`\"\u003e`scaleway.account.Project`\u003c/span\u003e resource allows you to create and manage the Projects of a Scaleway Organization.\n\nRefer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.\n\n\n## Example Usage\n\n### Create a Scaleway Project\n\nThe following command allows you to create a project named \u003cspan pulumi-lang-nodejs=\"`project`\" pulumi-lang-dotnet=\"`Project`\" pulumi-lang-go=\"`project`\" pulumi-lang-python=\"`project`\" pulumi-lang-yaml=\"`project`\" pulumi-lang-java=\"`project`\" pulumi-lang-hcl=\"`project`\"\u003e`project`\u003c/span\u003e.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst project = new scaleway.account.Project(\"project\", {name: \"project\"});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nproject = scaleway.account.Project(\"project\", name=\"project\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.Account.Project(\"project\", new()\n    {\n        Name = \"project\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := account.NewProject(ctx, \"project\", \u0026account.ProjectArgs{\n\t\t\tName: pulumi.String(\"project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_account_project\" \"project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name = \"project\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.account.Project;\nimport com.pulumi.scaleway.account.ProjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"project\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:account:Project\n    properties:\n      name: project\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Use a project in provider configuration\n\nIf you want to use as default a project created in terraform you can use a temporary provider alias.\nThis project can then be used to configure your default provider.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst project = new scaleway.account.Project(\"project\", {name: \"my_project\"});\nconst server = new scaleway.instance.Server(\"server\", {\n    image: \"ubuntu_jammy\",\n    type: \"PRO2-XXS\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nproject = scaleway.account.Project(\"project\", name=\"my_project\")\nserver = scaleway.instance.Server(\"server\",\n    image=\"ubuntu_jammy\",\n    type=\"PRO2-XXS\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.Account.Project(\"project\", new()\n    {\n        Name = \"my_project\",\n    });\n\n    var server = new Scaleway.Instance.Server(\"server\", new()\n    {\n        Image = \"ubuntu_jammy\",\n        Type = \"PRO2-XXS\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := account.NewProject(ctx, \"project\", \u0026account.ProjectArgs{\n\t\t\tName: pulumi.String(\"my_project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = instance.NewServer(ctx, \"server\", \u0026instance.ServerArgs{\n\t\t\tImage: pulumi.String(\"ubuntu_jammy\"),\n\t\t\tType:  pulumi.String(\"PRO2-XXS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_account_project\" \"project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name = \"my_project\"\n}\nresource \"scaleway_instance_server\" \"server\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  image = \"ubuntu_jammy\"\n  type  = \"PRO2-XXS\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.account.Project;\nimport com.pulumi.scaleway.account.ProjectArgs;\nimport com.pulumi.scaleway.instance.Server;\nimport com.pulumi.scaleway.instance.ServerArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"my_project\")\n            .build());\n\n        var server = new Server(\"server\", ServerArgs.builder()\n            .image(\"ubuntu_jammy\")\n            .type(\"PRO2-XXS\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:account:Project\n    properties:\n      name: my_project\n  server:\n    type: scaleway:instance:Server\n    properties:\n      image: ubuntu_jammy\n      type: PRO2-XXS\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e argument, as shown below:\n\n```sh\n$ pulumi import scaleway:account/project:Project project 11111111-1111-1111-1111-111111111111\n```\n\n",
+            "description": "The \u003cspan pulumi-lang-nodejs=\"`scaleway.account.Project`\" pulumi-lang-dotnet=\"`scaleway.account.Project`\" pulumi-lang-go=\"`account.Project`\" pulumi-lang-python=\"`account.Project`\" pulumi-lang-yaml=\"`scaleway.account.Project`\" pulumi-lang-java=\"`scaleway.account.Project`\" pulumi-lang-hcl=\"`scaleway_account_project`\"\u003e`scaleway.account.Project`\u003c/span\u003e resource allows you to create and manage the Projects of a Scaleway Organization.\n\nRefer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.\n\nBy default, destroying a project that still contains resources fails. Set \u003cspan pulumi-lang-nodejs=\"`deleteWithResources`\" pulumi-lang-dotnet=\"`DeleteWithResources`\" pulumi-lang-go=\"`deleteWithResources`\" pulumi-lang-python=\"`delete_with_resources`\" pulumi-lang-yaml=\"`deleteWithResources`\" pulumi-lang-java=\"`deleteWithResources`\" pulumi-lang-hcl=\"`delete_with_resources`\"\u003e`deleteWithResources`\u003c/span\u003e to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\" pulumi-lang-hcl=\"`true`\"\u003e`true`\u003c/span\u003e to delete the project along with all the resources it contains, including resources not managed by Terraform. Deleting a project is permanent and cannot be undone.\n\n\n## Example Usage\n\n### Create a Scaleway Project\n\nThe following command allows you to create a project named \u003cspan pulumi-lang-nodejs=\"`project`\" pulumi-lang-dotnet=\"`Project`\" pulumi-lang-go=\"`project`\" pulumi-lang-python=\"`project`\" pulumi-lang-yaml=\"`project`\" pulumi-lang-java=\"`project`\" pulumi-lang-hcl=\"`project`\"\u003e`project`\u003c/span\u003e.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst project = new scaleway.account.Project(\"project\", {name: \"project\"});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nproject = scaleway.account.Project(\"project\", name=\"project\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.Account.Project(\"project\", new()\n    {\n        Name = \"project\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := account.NewProject(ctx, \"project\", \u0026account.ProjectArgs{\n\t\t\tName: pulumi.String(\"project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_account_project\" \"project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name = \"project\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.account.Project;\nimport com.pulumi.scaleway.account.ProjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"project\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:account:Project\n    properties:\n      name: project\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Create a Scaleway Project and delete all its resources on deletion\n\nThe following command allows you to create a project named \u003cspan pulumi-lang-nodejs=\"`myProject`\" pulumi-lang-dotnet=\"`MyProject`\" pulumi-lang-go=\"`myProject`\" pulumi-lang-python=\"`my_project`\" pulumi-lang-yaml=\"`myProject`\" pulumi-lang-java=\"`myProject`\" pulumi-lang-hcl=\"`my_project`\"\u003e`myProject`\u003c/span\u003e. Destroying this project will also delete all the resources it contains, including resources not managed by Terraform.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst project = new scaleway.account.Project(\"project\", {\n    name: \"my_project\",\n    deleteWithResources: true,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nproject = scaleway.account.Project(\"project\",\n    name=\"my_project\",\n    delete_with_resources=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.Account.Project(\"project\", new()\n    {\n        Name = \"my_project\",\n        DeleteWithResources = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := account.NewProject(ctx, \"project\", \u0026account.ProjectArgs{\n\t\t\tName:                pulumi.String(\"my_project\"),\n\t\t\tDeleteWithResources: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_account_project\" \"project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name                  = \"my_project\"\n  delete_with_resources = true\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.account.Project;\nimport com.pulumi.scaleway.account.ProjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"my_project\")\n            .deleteWithResources(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:account:Project\n    properties:\n      name: my_project\n      deleteWithResources: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Use a project in provider configuration\n\nIf you want to use as default a project created in terraform you can use a temporary provider alias.\nThis project can then be used to configure your default provider.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst project = new scaleway.account.Project(\"project\", {name: \"my_project\"});\nconst server = new scaleway.instance.Server(\"server\", {\n    image: \"ubuntu_jammy\",\n    type: \"PRO2-XXS\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nproject = scaleway.account.Project(\"project\", name=\"my_project\")\nserver = scaleway.instance.Server(\"server\",\n    image=\"ubuntu_jammy\",\n    type=\"PRO2-XXS\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.Account.Project(\"project\", new()\n    {\n        Name = \"my_project\",\n    });\n\n    var server = new Scaleway.Instance.Server(\"server\", new()\n    {\n        Image = \"ubuntu_jammy\",\n        Type = \"PRO2-XXS\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := account.NewProject(ctx, \"project\", \u0026account.ProjectArgs{\n\t\t\tName: pulumi.String(\"my_project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = instance.NewServer(ctx, \"server\", \u0026instance.ServerArgs{\n\t\t\tImage: pulumi.String(\"ubuntu_jammy\"),\n\t\t\tType:  pulumi.String(\"PRO2-XXS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_account_project\" \"project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name = \"my_project\"\n}\nresource \"scaleway_instance_server\" \"server\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  image = \"ubuntu_jammy\"\n  type  = \"PRO2-XXS\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.account.Project;\nimport com.pulumi.scaleway.account.ProjectArgs;\nimport com.pulumi.scaleway.instance.Server;\nimport com.pulumi.scaleway.instance.ServerArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"my_project\")\n            .build());\n\n        var server = new Server(\"server\", ServerArgs.builder()\n            .image(\"ubuntu_jammy\")\n            .type(\"PRO2-XXS\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:account:Project\n    properties:\n      name: my_project\n  server:\n    type: scaleway:instance:Server\n    properties:\n      image: ubuntu_jammy\n      type: PRO2-XXS\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e argument, as shown below:\n\n```sh\n$ pulumi import scaleway:account/project:Project project 11111111-1111-1111-1111-111111111111\n```\n\n",
             "properties": {
                 "createdAt": {
                     "type": "string",
                     "description": "The creation time of the Project.\n"
+                },
+                "deleteWithResources": {
+                    "type": "boolean",
+                    "description": "If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
                 },
                 "description": {
                     "type": "string",
@@ -22824,6 +22843,10 @@
                 "updatedAt"
             ],
             "inputProperties": {
+                "deleteWithResources": {
+                    "type": "boolean",
+                    "description": "If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
+                },
                 "description": {
                     "type": "string",
                     "description": "The description of the Project.\n"
@@ -22844,6 +22867,10 @@
                     "createdAt": {
                         "type": "string",
                         "description": "The creation time of the Project.\n"
+                    },
+                    "deleteWithResources": {
+                        "type": "boolean",
+                        "description": "If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
                     },
                     "description": {
                         "type": "string",
@@ -31953,8 +31980,7 @@
                 },
                 "organizationId": {
                     "type": "string",
-                    "description": "(Deprecated) The organization ID the hosting is associated with.\n",
-                    "deprecationMessage": "The\u003cspan pulumi-lang-nodejs=\" organizationId \" pulumi-lang-dotnet=\" OrganizationId \" pulumi-lang-go=\" organizationId \" pulumi-lang-python=\" organization_id \" pulumi-lang-yaml=\" organizationId \" pulumi-lang-java=\" organizationId \" pulumi-lang-hcl=\" organization_id \"\u003e organizationId \u003c/span\u003efield is deprecated and will be removed in the next major version."
+                    "description": "(Deprecated) The organization ID the hosting is associated with.\n"
                 },
                 "platformHostname": {
                     "type": "string",
@@ -32042,13 +32068,11 @@
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the VPC is associated with.\n",
-                    "willReplaceOnChanges": true
+                    "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the VPC is associated with.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region of the Hosting.\n",
-                    "willReplaceOnChanges": true
+                    "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region of the Hosting.\n"
                 },
                 "tags": {
                     "type": "array",
@@ -32120,8 +32144,7 @@
                     },
                     "organizationId": {
                         "type": "string",
-                        "description": "(Deprecated) The organization ID the hosting is associated with.\n",
-                        "deprecationMessage": "The\u003cspan pulumi-lang-nodejs=\" organizationId \" pulumi-lang-dotnet=\" OrganizationId \" pulumi-lang-go=\" organizationId \" pulumi-lang-python=\" organization_id \" pulumi-lang-yaml=\" organizationId \" pulumi-lang-java=\" organizationId \" pulumi-lang-hcl=\" organization_id \"\u003e organizationId \u003c/span\u003efield is deprecated and will be removed in the next major version."
+                        "description": "(Deprecated) The organization ID the hosting is associated with.\n"
                     },
                     "platformHostname": {
                         "type": "string",
@@ -32133,8 +32156,7 @@
                     },
                     "projectId": {
                         "type": "string",
-                        "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the VPC is associated with.\n",
-                        "willReplaceOnChanges": true
+                        "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the VPC is associated with.\n"
                     },
                     "records": {
                         "type": "array",
@@ -32145,8 +32167,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region of the Hosting.\n",
-                        "willReplaceOnChanges": true
+                        "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region of the Hosting.\n"
                     },
                     "status": {
                         "type": "string",
@@ -33761,11 +33782,15 @@
             ]
         },
         "scaleway:index/accountProject:AccountProject": {
-            "description": "The \u003cspan pulumi-lang-nodejs=\"`scaleway.account.Project`\" pulumi-lang-dotnet=\"`scaleway.account.Project`\" pulumi-lang-go=\"`account.Project`\" pulumi-lang-python=\"`account.Project`\" pulumi-lang-yaml=\"`scaleway.account.Project`\" pulumi-lang-java=\"`scaleway.account.Project`\" pulumi-lang-hcl=\"`scaleway_account_project`\"\u003e`scaleway.account.Project`\u003c/span\u003e resource allows you to create and manage the Projects of a Scaleway Organization.\n\nRefer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.\n\n\n## Example Usage\n\n### Create a Scaleway Project\n\nThe following command allows you to create a project named \u003cspan pulumi-lang-nodejs=\"`project`\" pulumi-lang-dotnet=\"`Project`\" pulumi-lang-go=\"`project`\" pulumi-lang-python=\"`project`\" pulumi-lang-yaml=\"`project`\" pulumi-lang-java=\"`project`\" pulumi-lang-hcl=\"`project`\"\u003e`project`\u003c/span\u003e.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst project = new scaleway.account.Project(\"project\", {name: \"project\"});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nproject = scaleway.account.Project(\"project\", name=\"project\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.Account.Project(\"project\", new()\n    {\n        Name = \"project\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := account.NewProject(ctx, \"project\", \u0026account.ProjectArgs{\n\t\t\tName: pulumi.String(\"project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_account_project\" \"project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name = \"project\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.account.Project;\nimport com.pulumi.scaleway.account.ProjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"project\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:account:Project\n    properties:\n      name: project\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Use a project in provider configuration\n\nIf you want to use as default a project created in terraform you can use a temporary provider alias.\nThis project can then be used to configure your default provider.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst project = new scaleway.account.Project(\"project\", {name: \"my_project\"});\nconst server = new scaleway.instance.Server(\"server\", {\n    image: \"ubuntu_jammy\",\n    type: \"PRO2-XXS\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nproject = scaleway.account.Project(\"project\", name=\"my_project\")\nserver = scaleway.instance.Server(\"server\",\n    image=\"ubuntu_jammy\",\n    type=\"PRO2-XXS\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.Account.Project(\"project\", new()\n    {\n        Name = \"my_project\",\n    });\n\n    var server = new Scaleway.Instance.Server(\"server\", new()\n    {\n        Image = \"ubuntu_jammy\",\n        Type = \"PRO2-XXS\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := account.NewProject(ctx, \"project\", \u0026account.ProjectArgs{\n\t\t\tName: pulumi.String(\"my_project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = instance.NewServer(ctx, \"server\", \u0026instance.ServerArgs{\n\t\t\tImage: pulumi.String(\"ubuntu_jammy\"),\n\t\t\tType:  pulumi.String(\"PRO2-XXS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_account_project\" \"project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name = \"my_project\"\n}\nresource \"scaleway_instance_server\" \"server\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  image = \"ubuntu_jammy\"\n  type  = \"PRO2-XXS\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.account.Project;\nimport com.pulumi.scaleway.account.ProjectArgs;\nimport com.pulumi.scaleway.instance.Server;\nimport com.pulumi.scaleway.instance.ServerArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"my_project\")\n            .build());\n\n        var server = new Server(\"server\", ServerArgs.builder()\n            .image(\"ubuntu_jammy\")\n            .type(\"PRO2-XXS\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:account:Project\n    properties:\n      name: my_project\n  server:\n    type: scaleway:instance:Server\n    properties:\n      image: ubuntu_jammy\n      type: PRO2-XXS\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e argument, as shown below:\n\n```sh\n$ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111\n```\n\n",
+            "description": "The \u003cspan pulumi-lang-nodejs=\"`scaleway.account.Project`\" pulumi-lang-dotnet=\"`scaleway.account.Project`\" pulumi-lang-go=\"`account.Project`\" pulumi-lang-python=\"`account.Project`\" pulumi-lang-yaml=\"`scaleway.account.Project`\" pulumi-lang-java=\"`scaleway.account.Project`\" pulumi-lang-hcl=\"`scaleway_account_project`\"\u003e`scaleway.account.Project`\u003c/span\u003e resource allows you to create and manage the Projects of a Scaleway Organization.\n\nRefer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.\n\nBy default, destroying a project that still contains resources fails. Set \u003cspan pulumi-lang-nodejs=\"`deleteWithResources`\" pulumi-lang-dotnet=\"`DeleteWithResources`\" pulumi-lang-go=\"`deleteWithResources`\" pulumi-lang-python=\"`delete_with_resources`\" pulumi-lang-yaml=\"`deleteWithResources`\" pulumi-lang-java=\"`deleteWithResources`\" pulumi-lang-hcl=\"`delete_with_resources`\"\u003e`deleteWithResources`\u003c/span\u003e to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\" pulumi-lang-hcl=\"`true`\"\u003e`true`\u003c/span\u003e to delete the project along with all the resources it contains, including resources not managed by Terraform. Deleting a project is permanent and cannot be undone.\n\n\n## Example Usage\n\n### Create a Scaleway Project\n\nThe following command allows you to create a project named \u003cspan pulumi-lang-nodejs=\"`project`\" pulumi-lang-dotnet=\"`Project`\" pulumi-lang-go=\"`project`\" pulumi-lang-python=\"`project`\" pulumi-lang-yaml=\"`project`\" pulumi-lang-java=\"`project`\" pulumi-lang-hcl=\"`project`\"\u003e`project`\u003c/span\u003e.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst project = new scaleway.account.Project(\"project\", {name: \"project\"});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nproject = scaleway.account.Project(\"project\", name=\"project\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.Account.Project(\"project\", new()\n    {\n        Name = \"project\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := account.NewProject(ctx, \"project\", \u0026account.ProjectArgs{\n\t\t\tName: pulumi.String(\"project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_account_project\" \"project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name = \"project\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.account.Project;\nimport com.pulumi.scaleway.account.ProjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"project\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:account:Project\n    properties:\n      name: project\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Create a Scaleway Project and delete all its resources on deletion\n\nThe following command allows you to create a project named \u003cspan pulumi-lang-nodejs=\"`myProject`\" pulumi-lang-dotnet=\"`MyProject`\" pulumi-lang-go=\"`myProject`\" pulumi-lang-python=\"`my_project`\" pulumi-lang-yaml=\"`myProject`\" pulumi-lang-java=\"`myProject`\" pulumi-lang-hcl=\"`my_project`\"\u003e`myProject`\u003c/span\u003e. Destroying this project will also delete all the resources it contains, including resources not managed by Terraform.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst project = new scaleway.account.Project(\"project\", {\n    name: \"my_project\",\n    deleteWithResources: true,\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nproject = scaleway.account.Project(\"project\",\n    name=\"my_project\",\n    delete_with_resources=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.Account.Project(\"project\", new()\n    {\n        Name = \"my_project\",\n        DeleteWithResources = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := account.NewProject(ctx, \"project\", \u0026account.ProjectArgs{\n\t\t\tName:                pulumi.String(\"my_project\"),\n\t\t\tDeleteWithResources: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_account_project\" \"project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name                  = \"my_project\"\n  delete_with_resources = true\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.account.Project;\nimport com.pulumi.scaleway.account.ProjectArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"my_project\")\n            .deleteWithResources(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:account:Project\n    properties:\n      name: my_project\n      deleteWithResources: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Use a project in provider configuration\n\nIf you want to use as default a project created in terraform you can use a temporary provider alias.\nThis project can then be used to configure your default provider.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as scaleway from \"@pulumiverse/scaleway\";\n\nconst project = new scaleway.account.Project(\"project\", {name: \"my_project\"});\nconst server = new scaleway.instance.Server(\"server\", {\n    image: \"ubuntu_jammy\",\n    type: \"PRO2-XXS\",\n});\n```\n```python\nimport pulumi\nimport pulumiverse_scaleway as scaleway\n\nproject = scaleway.account.Project(\"project\", name=\"my_project\")\nserver = scaleway.instance.Server(\"server\",\n    image=\"ubuntu_jammy\",\n    type=\"PRO2-XXS\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Scaleway = Pulumiverse.Scaleway;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var project = new Scaleway.Account.Project(\"project\", new()\n    {\n        Name = \"my_project\",\n    });\n\n    var server = new Scaleway.Instance.Server(\"server\", new()\n    {\n        Image = \"ubuntu_jammy\",\n        Type = \"PRO2-XXS\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account\"\n\t\"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := account.NewProject(ctx, \"project\", \u0026account.ProjectArgs{\n\t\t\tName: pulumi.String(\"my_project\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = instance.NewServer(ctx, \"server\", \u0026instance.ServerArgs{\n\t\t\tImage: pulumi.String(\"ubuntu_jammy\"),\n\t\t\tType:  pulumi.String(\"PRO2-XXS\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    scaleway = {\n      source = \"pulumi/scaleway\"\n    }\n  }\n}\n\nresource \"scaleway_account_project\" \"project\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  name = \"my_project\"\n}\nresource \"scaleway_instance_server\" \"server\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  image = \"ubuntu_jammy\"\n  type  = \"PRO2-XXS\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.scaleway.account.Project;\nimport com.pulumi.scaleway.account.ProjectArgs;\nimport com.pulumi.scaleway.instance.Server;\nimport com.pulumi.scaleway.instance.ServerArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var project = new Project(\"project\", ProjectArgs.builder()\n            .name(\"my_project\")\n            .build());\n\n        var server = new Server(\"server\", ServerArgs.builder()\n            .image(\"ubuntu_jammy\")\n            .type(\"PRO2-XXS\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  project:\n    type: scaleway:account:Project\n    properties:\n      name: my_project\n  server:\n    type: scaleway:instance:Server\n    properties:\n      image: ubuntu_jammy\n      type: PRO2-XXS\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nProjects can be imported using the \u003cspan pulumi-lang-nodejs=\"`id`\" pulumi-lang-dotnet=\"`Id`\" pulumi-lang-go=\"`id`\" pulumi-lang-python=\"`id`\" pulumi-lang-yaml=\"`id`\" pulumi-lang-java=\"`id`\" pulumi-lang-hcl=\"`id`\"\u003e`id`\u003c/span\u003e argument, as shown below:\n\n```sh\n$ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111\n```\n\n",
             "properties": {
                 "createdAt": {
                     "type": "string",
                     "description": "The creation time of the Project.\n"
+                },
+                "deleteWithResources": {
+                    "type": "boolean",
+                    "description": "If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
                 },
                 "description": {
                     "type": "string",
@@ -33796,6 +33821,10 @@
                 "updatedAt"
             ],
             "inputProperties": {
+                "deleteWithResources": {
+                    "type": "boolean",
+                    "description": "If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
+                },
                 "description": {
                     "type": "string",
                     "description": "The description of the Project.\n"
@@ -33816,6 +33845,10 @@
                     "createdAt": {
                         "type": "string",
                         "description": "The creation time of the Project.\n"
+                    },
+                    "deleteWithResources": {
+                        "type": "boolean",
+                        "description": "If true, deleting the project also deletes all the resources it contains, including resources not managed by Terraform. Defaults to \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e.\n"
                     },
                     "description": {
                         "type": "string",
@@ -35044,13 +35077,18 @@
                 "region": {
                     "type": "string",
                     "description": ") The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.\n"
+                },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the alert manager.\n"
                 }
             },
             "required": [
                 "alertManagerUrl",
                 "enableManagedAlerts",
                 "projectId",
-                "region"
+                "region",
+                "srn"
             ],
             "inputProperties": {
                 "contactPoints": {
@@ -35118,6 +35156,10 @@
                         "type": "string",
                         "description": ") The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the alert manager.\n"
                     }
                 },
                 "type": "object"
@@ -35155,6 +35197,10 @@
                     "type": "integer",
                     "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type.\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the data source.\n"
+                },
                 "synchronizedWithGrafana": {
                     "type": "boolean",
                     "description": "Indicates whether the data source is synchronized with Grafana.\n"
@@ -35180,6 +35226,7 @@
                 "pushUrl",
                 "region",
                 "retentionDays",
+                "srn",
                 "synchronizedWithGrafana",
                 "updatedAt",
                 "url"
@@ -35246,6 +35293,10 @@
                     "retentionDays": {
                         "type": "integer",
                         "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type.\n"
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the data source.\n"
                     },
                     "synchronizedWithGrafana": {
                         "type": "boolean",
@@ -53064,8 +53115,7 @@
                 },
                 "organizationId": {
                     "type": "string",
-                    "description": "(Deprecated) The organization ID the hosting is associated with.\n",
-                    "deprecationMessage": "The\u003cspan pulumi-lang-nodejs=\" organizationId \" pulumi-lang-dotnet=\" OrganizationId \" pulumi-lang-go=\" organizationId \" pulumi-lang-python=\" organization_id \" pulumi-lang-yaml=\" organizationId \" pulumi-lang-java=\" organizationId \" pulumi-lang-hcl=\" organization_id \"\u003e organizationId \u003c/span\u003efield is deprecated and will be removed in the next major version."
+                    "description": "(Deprecated) The organization ID the hosting is associated with.\n"
                 },
                 "platformHostname": {
                     "type": "string",
@@ -53153,13 +53203,11 @@
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the VPC is associated with.\n",
-                    "willReplaceOnChanges": true
+                    "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the VPC is associated with.\n"
                 },
                 "region": {
                     "type": "string",
-                    "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region of the Hosting.\n",
-                    "willReplaceOnChanges": true
+                    "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region of the Hosting.\n"
                 },
                 "tags": {
                     "type": "array",
@@ -53231,8 +53279,7 @@
                     },
                     "organizationId": {
                         "type": "string",
-                        "description": "(Deprecated) The organization ID the hosting is associated with.\n",
-                        "deprecationMessage": "The\u003cspan pulumi-lang-nodejs=\" organizationId \" pulumi-lang-dotnet=\" OrganizationId \" pulumi-lang-go=\" organizationId \" pulumi-lang-python=\" organization_id \" pulumi-lang-yaml=\" organizationId \" pulumi-lang-java=\" organizationId \" pulumi-lang-hcl=\" organization_id \"\u003e organizationId \u003c/span\u003efield is deprecated and will be removed in the next major version."
+                        "description": "(Deprecated) The organization ID the hosting is associated with.\n"
                     },
                     "platformHostname": {
                         "type": "string",
@@ -53244,8 +53291,7 @@
                     },
                     "projectId": {
                         "type": "string",
-                        "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the VPC is associated with.\n",
-                        "willReplaceOnChanges": true
+                        "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the VPC is associated with.\n"
                     },
                     "records": {
                         "type": "array",
@@ -53256,8 +53302,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region of the Hosting.\n",
-                        "willReplaceOnChanges": true
+                        "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region of the Hosting.\n"
                     },
                     "status": {
                         "type": "string",
@@ -66890,13 +66935,18 @@
                 "region": {
                     "type": "string",
                     "description": ") The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.\n"
+                },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the alert manager.\n"
                 }
             },
             "required": [
                 "alertManagerUrl",
                 "enableManagedAlerts",
                 "projectId",
-                "region"
+                "region",
+                "srn"
             ],
             "inputProperties": {
                 "contactPoints": {
@@ -66964,6 +67014,10 @@
                         "type": "string",
                         "description": ") The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the alert manager.\n"
                     }
                 },
                 "type": "object"
@@ -67016,6 +67070,10 @@
                     "type": "string",
                     "description": ") The region where the exporter is located.\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the data export.\n"
+                },
                 "status": {
                     "type": "string",
                     "description": "Status of the data export (\u003cspan pulumi-lang-nodejs=\"`creating`\" pulumi-lang-dotnet=\"`Creating`\" pulumi-lang-go=\"`creating`\" pulumi-lang-python=\"`creating`\" pulumi-lang-yaml=\"`creating`\" pulumi-lang-java=\"`creating`\" pulumi-lang-hcl=\"`creating`\"\u003e`creating`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`ready`\" pulumi-lang-dotnet=\"`Ready`\" pulumi-lang-go=\"`ready`\" pulumi-lang-python=\"`ready`\" pulumi-lang-yaml=\"`ready`\" pulumi-lang-java=\"`ready`\" pulumi-lang-hcl=\"`ready`\"\u003e`ready`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`error`\" pulumi-lang-dotnet=\"`Error`\" pulumi-lang-go=\"`error`\" pulumi-lang-python=\"`error`\" pulumi-lang-yaml=\"`error`\" pulumi-lang-java=\"`error`\" pulumi-lang-hcl=\"`error`\"\u003e`error`\u003c/span\u003e).\n"
@@ -67031,6 +67089,7 @@
                 "name",
                 "projectId",
                 "region",
+                "srn",
                 "status",
                 "updatedAt"
             ],
@@ -67120,6 +67179,10 @@
                         "description": ") The region where the exporter is located.\n",
                         "willReplaceOnChanges": true
                     },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the data export.\n"
+                    },
                     "status": {
                         "type": "string",
                         "description": "Status of the data export (\u003cspan pulumi-lang-nodejs=\"`creating`\" pulumi-lang-dotnet=\"`Creating`\" pulumi-lang-go=\"`creating`\" pulumi-lang-python=\"`creating`\" pulumi-lang-yaml=\"`creating`\" pulumi-lang-java=\"`creating`\" pulumi-lang-hcl=\"`creating`\"\u003e`creating`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`ready`\" pulumi-lang-dotnet=\"`Ready`\" pulumi-lang-go=\"`ready`\" pulumi-lang-python=\"`ready`\" pulumi-lang-yaml=\"`ready`\" pulumi-lang-java=\"`ready`\" pulumi-lang-hcl=\"`ready`\"\u003e`ready`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`error`\" pulumi-lang-dotnet=\"`Error`\" pulumi-lang-go=\"`error`\" pulumi-lang-python=\"`error`\" pulumi-lang-yaml=\"`error`\" pulumi-lang-java=\"`error`\" pulumi-lang-hcl=\"`error`\"\u003e`error`\u003c/span\u003e).\n"
@@ -67163,6 +67226,10 @@
                     "type": "integer",
                     "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type.\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the data source.\n"
+                },
                 "synchronizedWithGrafana": {
                     "type": "boolean",
                     "description": "Indicates whether the data source is synchronized with Grafana.\n"
@@ -67188,6 +67255,7 @@
                 "pushUrl",
                 "region",
                 "retentionDays",
+                "srn",
                 "synchronizedWithGrafana",
                 "updatedAt",
                 "url"
@@ -67254,6 +67322,10 @@
                     "retentionDays": {
                         "type": "integer",
                         "description": "The number of days to retain data in the data source. Use the \u003cspan pulumi-lang-nodejs=\"`scaleway.observability.getConfig`\" pulumi-lang-dotnet=\"`scaleway.observability.getConfig`\" pulumi-lang-go=\"`observability.getConfig`\" pulumi-lang-python=\"`observability_get_config`\" pulumi-lang-yaml=\"`scaleway.observability.getConfig`\" pulumi-lang-java=\"`scaleway.observability.getConfig`\" pulumi-lang-hcl=\"`data.scaleway_cockpit_config`\"\u003e`scaleway.observability.getConfig`\u003c/span\u003e data source to read the allowed min, max, and default values for each data source type.\n"
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the data source.\n"
                     },
                     "synchronizedWithGrafana": {
                         "type": "boolean",
@@ -67828,6 +67900,10 @@
                     "type": "string",
                     "description": "The phone number of the new organization owner.\n"
                 },
+                "srn": {
+                    "type": "string",
+                    "description": "The Scaleway Resource Name (SRN) of the organization.\n"
+                },
                 "status": {
                     "type": "string",
                     "description": "The current status of the organization.\n"
@@ -67845,6 +67921,7 @@
                 "ownerLastname",
                 "partnerId",
                 "phoneNumber",
+                "srn",
                 "status"
             ],
             "inputProperties": {
@@ -67930,6 +68007,10 @@
                     "phoneNumber": {
                         "type": "string",
                         "description": "The phone number of the new organization owner.\n"
+                    },
+                    "srn": {
+                        "type": "string",
+                        "description": "The Scaleway Resource Name (SRN) of the organization.\n"
                     },
                     "status": {
                         "type": "string",
@@ -70611,6 +70692,9 @@
                     "createdAt": {
                         "type": "string"
                     },
+                    "deleteWithResources": {
+                        "type": "boolean"
+                    },
                     "description": {
                         "type": "string"
                     },
@@ -70636,6 +70720,7 @@
                 },
                 "required": [
                     "createdAt",
+                    "deleteWithResources",
                     "description",
                     "projectId",
                     "srn",
@@ -70663,6 +70748,9 @@
                     "createdAt": {
                         "description": "(Computed) The date and time when the project was created.\n",
                         "type": "string"
+                    },
+                    "deleteWithResources": {
+                        "type": "boolean"
                     },
                     "description": {
                         "description": "(Computed) The description of the project.\n",
@@ -70697,6 +70785,7 @@
                 },
                 "required": [
                     "createdAt",
+                    "deleteWithResources",
                     "description",
                     "name",
                     "organizationId",
@@ -74878,6 +74967,10 @@
                         "type": "string",
                         "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the hosting is associated with.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region in which hosting exists.\n"
+                    },
                     "webhostingId": {
                         "type": "string",
                         "description": "The hosting id. Only one of \u003cspan pulumi-lang-nodejs=\"`domain`\" pulumi-lang-dotnet=\"`Domain`\" pulumi-lang-go=\"`domain`\" pulumi-lang-python=\"`domain`\" pulumi-lang-yaml=\"`domain`\" pulumi-lang-java=\"`domain`\" pulumi-lang-hcl=\"`domain`\"\u003e`domain`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`webhostingId`\" pulumi-lang-dotnet=\"`WebhostingId`\" pulumi-lang-go=\"`webhostingId`\" pulumi-lang-python=\"`webhosting_id`\" pulumi-lang-yaml=\"`webhostingId`\" pulumi-lang-java=\"`webhostingId`\" pulumi-lang-hcl=\"`webhosting_id`\"\u003e`webhostingId`\u003c/span\u003e should be specified.\n"
@@ -74907,7 +75000,6 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "nameServers": {
@@ -74979,6 +75071,7 @@
                     "createdAt",
                     "dnsStatus",
                     "email",
+                    "id",
                     "nameServers",
                     "offerId",
                     "offerName",
@@ -74992,8 +75085,7 @@
                     "status",
                     "tags",
                     "updatedAt",
-                    "username",
-                    "id"
+                    "username"
                 ],
                 "type": "object"
             }
@@ -75017,8 +75109,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region in which offer exists.\n",
-                        "willReplaceOnChanges": true
+                        "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region in which offer exists.\n"
                     }
                 },
                 "type": "object"
@@ -75034,7 +75125,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "description": "The unique identifier of the option.\n",
                         "type": "string"
                     },
                     "name": {
@@ -75056,7 +75147,6 @@
                         "type": "string"
                     },
                     "products": {
-                        "deprecationMessage": "The product field is deprecated. Please use the offer field instead.",
                         "description": "(deprecated) The offer product.\n",
                         "items": {
                             "$ref": "#/types/scaleway:hosting/getOfferProduct:getOfferProduct"
@@ -75069,11 +75159,11 @@
                 },
                 "required": [
                     "billingOperationPath",
+                    "id",
                     "offers",
                     "price",
                     "products",
-                    "region",
-                    "id"
+                    "region"
                 ],
                 "type": "object"
             }
@@ -75859,6 +75949,9 @@
                     "createdAt": {
                         "type": "string"
                     },
+                    "deleteWithResources": {
+                        "type": "boolean"
+                    },
                     "description": {
                         "type": "string"
                     },
@@ -75884,6 +75977,7 @@
                 },
                 "required": [
                     "createdAt",
+                    "deleteWithResources",
                     "description",
                     "projectId",
                     "srn",
@@ -76724,6 +76818,10 @@
                         "description": "The number of days the data is retained in the data source.\n",
                         "type": "integer"
                     },
+                    "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the data source.\n",
+                        "type": "string"
+                    },
                     "synchronizedWithGrafana": {
                         "description": "Indicates whether the data source is synchronized with Grafana.\n",
                         "type": "boolean"
@@ -76744,6 +76842,7 @@
                     "createdAt",
                     "pushUrl",
                     "retentionDays",
+                    "srn",
                     "synchronizedWithGrafana",
                     "updatedAt",
                     "url"
@@ -82511,7 +82610,7 @@
                 "properties": {
                     "imageId": {
                         "type": "string",
-                        "description": "The ID of the registry image.\n"
+                        "description": "The ID of the registry image the tag belongs to.\n"
                     },
                     "name": {
                         "type": "string",
@@ -84046,8 +84145,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region in which offer exists.\n",
-                        "willReplaceOnChanges": true
+                        "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region in which offer exists.\n"
                     }
                 },
                 "type": "object"
@@ -84063,7 +84161,7 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
+                        "description": "The unique identifier of the option.\n",
                         "type": "string"
                     },
                     "name": {
@@ -84085,7 +84183,6 @@
                         "type": "string"
                     },
                     "products": {
-                        "deprecationMessage": "The product field is deprecated. Please use the offer field instead.",
                         "description": "(deprecated) The offer product.\n",
                         "items": {
                             "$ref": "#/types/scaleway:index/getWebHostOfferProduct:getWebHostOfferProduct"
@@ -84098,11 +84195,11 @@
                 },
                 "required": [
                     "billingOperationPath",
+                    "id",
                     "offers",
                     "price",
                     "products",
-                    "region",
-                    "id"
+                    "region"
                 ],
                 "type": "object"
             }
@@ -84124,6 +84221,10 @@
                     "projectId": {
                         "type": "string",
                         "description": "\u003cspan pulumi-lang-nodejs=\"`projectId`\" pulumi-lang-dotnet=\"`ProjectId`\" pulumi-lang-go=\"`projectId`\" pulumi-lang-python=\"`project_id`\" pulumi-lang-yaml=\"`projectId`\" pulumi-lang-java=\"`projectId`\" pulumi-lang-hcl=\"`project_id`\"\u003e`projectId`\u003c/span\u003e) The ID of the project the hosting is associated with.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "\u003cspan pulumi-lang-nodejs=\"`region`\" pulumi-lang-dotnet=\"`Region`\" pulumi-lang-go=\"`region`\" pulumi-lang-python=\"`region`\" pulumi-lang-yaml=\"`region`\" pulumi-lang-java=\"`region`\" pulumi-lang-hcl=\"`region`\"\u003e`region`\u003c/span\u003e) The region in which hosting exists.\n"
                     },
                     "webhostingId": {
                         "type": "string",
@@ -84154,7 +84255,6 @@
                         "type": "string"
                     },
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "nameServers": {
@@ -84226,6 +84326,7 @@
                     "createdAt",
                     "dnsStatus",
                     "email",
+                    "id",
                     "nameServers",
                     "offerId",
                     "offerName",
@@ -84239,8 +84340,7 @@
                     "status",
                     "tags",
                     "updatedAt",
-                    "username",
-                    "id"
+                    "username"
                 ],
                 "type": "object"
             }
@@ -85494,6 +85594,10 @@
                     "region": {
                         "type": "string"
                     },
+                    "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the dedicated connection.\n",
+                        "type": "string"
+                    },
                     "status": {
                         "description": "Status of the dedicated connection.\n",
                         "type": "string"
@@ -85527,6 +85631,7 @@
                     "popId",
                     "projectId",
                     "region",
+                    "srn",
                     "status",
                     "tags",
                     "updatedAt",
@@ -85647,6 +85752,7 @@
                         "type": "array"
                     },
                     "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the link.\n",
                         "type": "string"
                     },
                     "status": {
@@ -85753,6 +85859,10 @@
                     "region": {
                         "type": "string"
                     },
+                    "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the partner.\n",
+                        "type": "string"
+                    },
                     "updatedAt": {
                         "description": "Last update date of the partner.\n",
                         "type": "string"
@@ -85765,6 +85875,7 @@
                     "name",
                     "portalUrl",
                     "region",
+                    "srn",
                     "updatedAt",
                     "id"
                 ],
@@ -85886,6 +85997,10 @@
                     },
                     "region": {
                         "type": "string"
+                    },
+                    "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the PoP.\n",
+                        "type": "string"
                     }
                 },
                 "required": [
@@ -85897,6 +86012,7 @@
                     "logoUrl",
                     "name",
                     "region",
+                    "srn",
                     "id"
                 ],
                 "type": "object"
@@ -86049,6 +86165,7 @@
                         "type": "string"
                     },
                     "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the routing policy.\n",
                         "type": "string"
                     },
                     "tags": {
@@ -90839,6 +90956,10 @@
                     "region": {
                         "type": "string"
                     },
+                    "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the data export.\n",
+                        "type": "string"
+                    },
                     "status": {
                         "description": "Status of the data export (\u003cspan pulumi-lang-nodejs=\"`creating`\" pulumi-lang-dotnet=\"`Creating`\" pulumi-lang-go=\"`creating`\" pulumi-lang-python=\"`creating`\" pulumi-lang-yaml=\"`creating`\" pulumi-lang-java=\"`creating`\" pulumi-lang-hcl=\"`creating`\"\u003e`creating`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`ready`\" pulumi-lang-dotnet=\"`Ready`\" pulumi-lang-go=\"`ready`\" pulumi-lang-python=\"`ready`\" pulumi-lang-yaml=\"`ready`\" pulumi-lang-java=\"`ready`\" pulumi-lang-hcl=\"`ready`\"\u003e`ready`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`error`\" pulumi-lang-dotnet=\"`Error`\" pulumi-lang-go=\"`error`\" pulumi-lang-python=\"`error`\" pulumi-lang-yaml=\"`error`\" pulumi-lang-java=\"`error`\" pulumi-lang-hcl=\"`error`\"\u003e`error`\u003c/span\u003e).\n",
                         "type": "string"
@@ -90855,6 +90976,7 @@
                     "description",
                     "exportedProducts",
                     "otlpDestinations",
+                    "srn",
                     "status",
                     "updatedAt"
                 ],
@@ -90886,11 +91008,16 @@
                     },
                     "projectId": {
                         "type": "string"
+                    },
+                    "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the Grafana instance.\n",
+                        "type": "string"
                     }
                 },
                 "required": [
                     "grafanaUrl",
                     "projectId",
+                    "srn",
                     "id"
                 ],
                 "type": "object"
@@ -91202,6 +91329,10 @@
                         "description": "The number of days the data is retained in the data source.\n",
                         "type": "integer"
                     },
+                    "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the data source.\n",
+                        "type": "string"
+                    },
                     "synchronizedWithGrafana": {
                         "description": "Indicates whether the data source is synchronized with Grafana.\n",
                         "type": "boolean"
@@ -91222,6 +91353,7 @@
                     "createdAt",
                     "pushUrl",
                     "retentionDays",
+                    "srn",
                     "synchronizedWithGrafana",
                     "updatedAt",
                     "url"
@@ -91299,6 +91431,10 @@
                         },
                         "type": "array"
                     },
+                    "srn": {
+                        "description": "The Scaleway Resource Name (SRN) of the data source.\n",
+                        "type": "string"
+                    },
                     "synchronizedWithGrafana": {
                         "description": "Indicates whether the data source is synchronized with Grafana.\n",
                         "type": "boolean"
@@ -91321,6 +91457,7 @@
                     "pushUrl",
                     "retentionDays",
                     "sources",
+                    "srn",
                     "synchronizedWithGrafana",
                     "updatedAt",
                     "url",
@@ -91827,7 +91964,7 @@
                 "properties": {
                     "imageId": {
                         "type": "string",
-                        "description": "The ID of the registry image.\n"
+                        "description": "The ID of the registry image the tag belongs to.\n"
                     },
                     "name": {
                         "type": "string",
