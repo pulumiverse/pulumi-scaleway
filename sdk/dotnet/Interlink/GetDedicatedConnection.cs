@@ -238,6 +238,10 @@ namespace Pulumiverse.Scaleway.Interlink
         public readonly string ProjectId;
         public readonly string Region;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the dedicated connection.
+        /// </summary>
+        public readonly string Srn;
+        /// <summary>
         /// Status of the dedicated connection.
         /// </summary>
         public readonly string Status;
@@ -278,6 +282,8 @@ namespace Pulumiverse.Scaleway.Interlink
 
             string region,
 
+            string srn,
+
             string status,
 
             ImmutableArray<string> tags,
@@ -297,6 +303,7 @@ namespace Pulumiverse.Scaleway.Interlink
             PopId = popId;
             ProjectId = projectId;
             Region = region;
+            Srn = srn;
             Status = status;
             Tags = tags;
             UpdatedAt = updatedAt;

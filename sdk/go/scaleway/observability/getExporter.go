@@ -111,6 +111,8 @@ type LookupExporterResult struct {
 	OtlpDestinations []GetExporterOtlpDestination `pulumi:"otlpDestinations"`
 	ProjectId        *string                      `pulumi:"projectId"`
 	Region           *string                      `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the data export.
+	Srn string `pulumi:"srn"`
 	// Status of the data export (`creating`, `ready`, `error`).
 	Status string `pulumi:"status"`
 	// Last update date (RFC 3339).
@@ -199,6 +201,11 @@ func (o LookupExporterResultOutput) ProjectId() pulumi.StringPtrOutput {
 
 func (o LookupExporterResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupExporterResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the data export.
+func (o LookupExporterResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupExporterResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Status of the data export (`creating`, `ready`, `error`).

@@ -173,6 +173,12 @@ namespace Pulumiverse.Scaleway
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the alert manager.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a CockpitAlertManager resource with the given unique name, arguments, and options.
@@ -317,6 +323,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the alert manager.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         public CockpitAlertManagerState()
         {

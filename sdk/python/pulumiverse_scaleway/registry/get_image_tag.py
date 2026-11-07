@@ -164,7 +164,7 @@ def get_image_tag(image_id: Optional[_builtins.str] = None,
     Gets information about a specific tag of a Container Registry image.
 
 
-    :param _builtins.str image_id: The ID of the registry image.
+    :param _builtins.str image_id: The ID of the registry image the tag belongs to.
     :param _builtins.str name: The name of the registry image tag.
     :param _builtins.str project_id: The ID of the project the image tag is associated with.
     :param _builtins.str region: The region in which the registry image tag exists.
@@ -201,7 +201,7 @@ def get_image_tag_output(image_id: pulumi.Input[Optional[_builtins.str]] = None,
     Gets information about a specific tag of a Container Registry image.
 
 
-    :param _builtins.str image_id: The ID of the registry image.
+    :param _builtins.str image_id: The ID of the registry image the tag belongs to.
     :param _builtins.str name: The name of the registry image tag.
     :param _builtins.str project_id: The ID of the project the image tag is associated with.
     :param _builtins.str region: The region in which the registry image tag exists.

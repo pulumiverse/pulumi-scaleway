@@ -124,8 +124,6 @@ export class Webhosting extends pulumi.CustomResource {
     declare public /*out*/ readonly options: pulumi.Output<outputs.WebhostingOption[]>;
     /**
      * (Deprecated) The organization ID the hosting is associated with.
-     *
-     * @deprecated The organizationId field is deprecated and will be removed in the next major version.
      */
     declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
@@ -284,8 +282,6 @@ export interface WebhostingState {
     options?: pulumi.Input<pulumi.Input<inputs.WebhostingOption>[] | undefined>;
     /**
      * (Deprecated) The organization ID the hosting is associated with.
-     *
-     * @deprecated The organizationId field is deprecated and will be removed in the next major version.
      */
     organizationId?: pulumi.Input<string | undefined>;
     /**

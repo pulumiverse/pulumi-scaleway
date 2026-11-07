@@ -107,6 +107,8 @@ type GetDedicatedConnectionResult struct {
 	// The ID of the project the dedicated connection belongs to.
 	ProjectId string `pulumi:"projectId"`
 	Region    string `pulumi:"region"`
+	// The Scaleway Resource Name (SRN) of the dedicated connection.
+	Srn string `pulumi:"srn"`
 	// Status of the dedicated connection.
 	Status string `pulumi:"status"`
 	// List of tags associated with the dedicated connection.
@@ -201,6 +203,11 @@ func (o GetDedicatedConnectionResultOutput) ProjectId() pulumi.StringOutput {
 
 func (o GetDedicatedConnectionResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDedicatedConnectionResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the dedicated connection.
+func (o GetDedicatedConnectionResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDedicatedConnectionResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // Status of the dedicated connection.

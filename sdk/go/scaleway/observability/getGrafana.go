@@ -172,6 +172,8 @@ type GetGrafanaResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
+	// The Scaleway Resource Name (SRN) of the Grafana instance.
+	Srn string `pulumi:"srn"`
 }
 
 func GetGrafanaOutput(ctx *pulumi.Context, args GetGrafanaOutputArgs, opts ...pulumi.InvokeOption) GetGrafanaResultOutput {
@@ -216,6 +218,11 @@ func (o GetGrafanaResultOutput) Id() pulumi.StringOutput {
 
 func (o GetGrafanaResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGrafanaResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the Grafana instance.
+func (o GetGrafanaResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGrafanaResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func init() {

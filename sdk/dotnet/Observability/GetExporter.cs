@@ -258,6 +258,10 @@ namespace Pulumiverse.Scaleway.Observability
         public readonly string? ProjectId;
         public readonly string? Region;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the data export.
+        /// </summary>
+        public readonly string Srn;
+        /// <summary>
         /// Status of the data export (`Creating`, `Ready`, `Error`).
         /// </summary>
         public readonly string Status;
@@ -288,6 +292,8 @@ namespace Pulumiverse.Scaleway.Observability
 
             string? region,
 
+            string srn,
+
             string status,
 
             string updatedAt)
@@ -302,6 +308,7 @@ namespace Pulumiverse.Scaleway.Observability
             OtlpDestinations = otlpDestinations;
             ProjectId = projectId;
             Region = region;
+            Srn = srn;
             Status = status;
             UpdatedAt = updatedAt;
         }
