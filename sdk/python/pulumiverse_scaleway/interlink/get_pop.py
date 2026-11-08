@@ -26,7 +26,7 @@ class GetPopResult:
     """
     A collection of values returned by getPop.
     """
-    def __init__(__self__, address=None, available_link_bandwidths_mbps=None, city=None, display_name=None, hosting_provider_name=None, id=None, logo_url=None, name=None, pop_id=None, region=None):
+    def __init__(__self__, address=None, available_link_bandwidths_mbps=None, city=None, display_name=None, hosting_provider_name=None, id=None, logo_url=None, name=None, pop_id=None, region=None, srn=None):
         if address and not isinstance(address, str):
             raise TypeError("Expected argument 'address' to be a str")
         pulumi.set(__self__, "address", address)
@@ -57,6 +57,9 @@ class GetPopResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
 
     @_builtins.property
     @pulumi.getter
@@ -129,6 +132,14 @@ class GetPopResult:
     def region(self) -> _builtins.str:
         return pulumi.get(self, "region")
 
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the PoP.
+        """
+        return pulumi.get(self, "srn")
+
 
 class AwaitableGetPopResult(GetPopResult):
     # pylint: disable=using-constant-test
@@ -145,7 +156,8 @@ class AwaitableGetPopResult(GetPopResult):
             logo_url=self.logo_url,
             name=self.name,
             pop_id=self.pop_id,
-            region=self.region)
+            region=self.region,
+            srn=self.srn)
 
 
 def get_pop(name: Optional[_builtins.str] = None,
@@ -197,7 +209,8 @@ def get_pop(name: Optional[_builtins.str] = None,
         logo_url=pulumi.get(__ret__, 'logo_url'),
         name=pulumi.get(__ret__, 'name'),
         pop_id=pulumi.get(__ret__, 'pop_id'),
-        region=pulumi.get(__ret__, 'region'))
+        region=pulumi.get(__ret__, 'region'),
+        srn=pulumi.get(__ret__, 'srn'))
 def get_pop_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                    pop_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                    region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -246,4 +259,5 @@ def get_pop_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
         logo_url=pulumi.get(__response__, 'logo_url'),
         name=pulumi.get(__response__, 'name'),
         pop_id=pulumi.get(__response__, 'pop_id'),
-        region=pulumi.get(__response__, 'region')))
+        region=pulumi.get(__response__, 'region'),
+        srn=pulumi.get(__response__, 'srn')))

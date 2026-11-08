@@ -25,7 +25,7 @@ export function getRegistryImageTag(args: GetRegistryImageTagArgs, opts?: pulumi
  */
 export interface GetRegistryImageTagArgs {
     /**
-     * The ID of the registry image.
+     * The ID of the registry image the tag belongs to.
      */
     imageId: string;
     /**
@@ -101,7 +101,7 @@ export function getRegistryImageTagOutput(args: GetRegistryImageTagOutputArgs, o
  */
 export interface GetRegistryImageTagOutputArgs {
     /**
-     * The ID of the registry image.
+     * The ID of the registry image the tag belongs to.
      */
     imageId: pulumi.Input<string>;
     /**

@@ -34,6 +34,7 @@ export function getWebhosting(args?: GetWebhostingArgs, opts?: pulumi.InvokeOpti
         "domain": args.domain,
         "organizationId": args.organizationId,
         "projectId": args.projectId,
+        "region": args.region,
         "webhostingId": args.webhostingId,
     }, opts);
 }
@@ -55,6 +56,10 @@ export interface GetWebhostingArgs {
      */
     projectId?: string;
     /**
+     * `region`) The region in which hosting exists.
+     */
+    region?: string;
+    /**
      * The hosting id. Only one of `domain` and `webhostingId` should be specified.
      */
     webhostingId?: string;
@@ -69,9 +74,6 @@ export interface GetWebhostingResult {
     readonly dnsStatus: string;
     readonly domain?: string;
     readonly email: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
     readonly id: string;
     readonly nameServers: outputs.GetWebhostingNameServer[];
     readonly offerId: string;
@@ -118,6 +120,7 @@ export function getWebhostingOutput(args?: GetWebhostingOutputArgs, opts?: pulum
         "domain": args.domain,
         "organizationId": args.organizationId,
         "projectId": args.projectId,
+        "region": args.region,
         "webhostingId": args.webhostingId,
     }, opts);
 }
@@ -138,6 +141,10 @@ export interface GetWebhostingOutputArgs {
      * `projectId`) The ID of the project the hosting is associated with.
      */
     projectId?: pulumi.Input<string | undefined>;
+    /**
+     * `region`) The region in which hosting exists.
+     */
+    region?: pulumi.Input<string | undefined>;
     /**
      * The hosting id. Only one of `domain` and `webhostingId` should be specified.
      */

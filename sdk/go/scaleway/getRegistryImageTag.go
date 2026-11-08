@@ -26,7 +26,7 @@ func GetRegistryImageTag(ctx *pulumi.Context, args *GetRegistryImageTagArgs, opt
 
 // A collection of arguments for invoking getRegistryImageTag.
 type GetRegistryImageTagArgs struct {
-	// The ID of the registry image.
+	// The ID of the registry image the tag belongs to.
 	ImageId string `pulumi:"imageId"`
 	// The name of the registry image tag.
 	Name *string `pulumi:"name"`
@@ -66,7 +66,7 @@ func GetRegistryImageTagOutput(ctx *pulumi.Context, args GetRegistryImageTagOutp
 
 // A collection of arguments for invoking getRegistryImageTag.
 type GetRegistryImageTagOutputArgs struct {
-	// The ID of the registry image.
+	// The ID of the registry image the tag belongs to.
 	ImageId pulumi.StringInput `pulumi:"imageId"`
 	// The name of the registry image tag.
 	Name pulumi.StringPtrInput `pulumi:"name"`

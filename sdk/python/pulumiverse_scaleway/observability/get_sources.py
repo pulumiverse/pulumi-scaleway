@@ -27,7 +27,7 @@ class GetSourcesResult:
     """
     A collection of values returned by getSources.
     """
-    def __init__(__self__, created_at=None, id=None, name=None, origin=None, project_id=None, push_url=None, region=None, retention_days=None, sources=None, synchronized_with_grafana=None, type=None, updated_at=None, url=None):
+    def __init__(__self__, created_at=None, id=None, name=None, origin=None, project_id=None, push_url=None, region=None, retention_days=None, sources=None, srn=None, synchronized_with_grafana=None, type=None, updated_at=None, url=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -55,6 +55,9 @@ class GetSourcesResult:
         if sources and not isinstance(sources, list):
             raise TypeError("Expected argument 'sources' to be a list")
         pulumi.set(__self__, "sources", sources)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if synchronized_with_grafana and not isinstance(synchronized_with_grafana, bool):
             raise TypeError("Expected argument 'synchronized_with_grafana' to be a bool")
         pulumi.set(__self__, "synchronized_with_grafana", synchronized_with_grafana)
@@ -141,6 +144,14 @@ class GetSourcesResult:
         return pulumi.get(self, "sources")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the data source.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="synchronizedWithGrafana")
     def synchronized_with_grafana(self) -> _builtins.bool:
         """
@@ -188,6 +199,7 @@ class AwaitableGetSourcesResult(GetSourcesResult):
             region=self.region,
             retention_days=self.retention_days,
             sources=self.sources,
+            srn=self.srn,
             synchronized_with_grafana=self.synchronized_with_grafana,
             type=self.type,
             updated_at=self.updated_at,
@@ -280,6 +292,7 @@ def get_sources(name: Optional[_builtins.str] = None,
         region=pulumi.get(__ret__, 'region'),
         retention_days=pulumi.get(__ret__, 'retention_days'),
         sources=pulumi.get(__ret__, 'sources'),
+        srn=pulumi.get(__ret__, 'srn'),
         synchronized_with_grafana=pulumi.get(__ret__, 'synchronized_with_grafana'),
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
@@ -369,6 +382,7 @@ def get_sources_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = N
         region=pulumi.get(__response__, 'region'),
         retention_days=pulumi.get(__response__, 'retention_days'),
         sources=pulumi.get(__response__, 'sources'),
+        srn=pulumi.get(__response__, 'srn'),
         synchronized_with_grafana=pulumi.get(__response__, 'synchronized_with_grafana'),
         type=pulumi.get(__response__, 'type'),
         updated_at=pulumi.get(__response__, 'updated_at'),

@@ -26,7 +26,7 @@ class GetPartnerResult:
     """
     A collection of values returned by getPartner.
     """
-    def __init__(__self__, contact_email=None, created_at=None, id=None, logo_url=None, name=None, partner_id=None, portal_url=None, region=None, updated_at=None):
+    def __init__(__self__, contact_email=None, created_at=None, id=None, logo_url=None, name=None, partner_id=None, portal_url=None, region=None, srn=None, updated_at=None):
         if contact_email and not isinstance(contact_email, str):
             raise TypeError("Expected argument 'contact_email' to be a str")
         pulumi.set(__self__, "contact_email", contact_email)
@@ -51,6 +51,9 @@ class GetPartnerResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
@@ -111,6 +114,14 @@ class GetPartnerResult:
         return pulumi.get(self, "region")
 
     @_builtins.property
+    @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the partner.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> _builtins.str:
         """
@@ -133,6 +144,7 @@ class AwaitableGetPartnerResult(GetPartnerResult):
             partner_id=self.partner_id,
             portal_url=self.portal_url,
             region=self.region,
+            srn=self.srn,
             updated_at=self.updated_at)
 
 
@@ -184,6 +196,7 @@ def get_partner(name: Optional[_builtins.str] = None,
         partner_id=pulumi.get(__ret__, 'partner_id'),
         portal_url=pulumi.get(__ret__, 'portal_url'),
         region=pulumi.get(__ret__, 'region'),
+        srn=pulumi.get(__ret__, 'srn'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_partner_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        partner_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
@@ -232,4 +245,5 @@ def get_partner_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = N
         partner_id=pulumi.get(__response__, 'partner_id'),
         portal_url=pulumi.get(__response__, 'portal_url'),
         region=pulumi.get(__response__, 'region'),
+        srn=pulumi.get(__response__, 'srn'),
         updated_at=pulumi.get(__response__, 'updated_at')))

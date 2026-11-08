@@ -108,6 +108,10 @@ export interface GetExporterResult {
     readonly projectId?: string;
     readonly region?: string;
     /**
+     * The Scaleway Resource Name (SRN) of the data export.
+     */
+    readonly srn: string;
+    /**
      * Status of the data export (`creating`, `ready`, `error`).
      */
     readonly status: string;

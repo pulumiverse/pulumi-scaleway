@@ -101,6 +101,10 @@ export interface GetDedicatedConnectionResult {
     readonly projectId: string;
     readonly region: string;
     /**
+     * The Scaleway Resource Name (SRN) of the dedicated connection.
+     */
+    readonly srn: string;
+    /**
      * Status of the dedicated connection.
      */
     readonly status: string;

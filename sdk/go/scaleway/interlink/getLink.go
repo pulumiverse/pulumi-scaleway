@@ -130,7 +130,8 @@ type LookupLinkResult struct {
 	RoutingPolicyV6Id string `pulumi:"routingPolicyV6Id"`
 	// BGP configuration on Scaleway's side.
 	ScwBgpConfigs []GetLinkScwBgpConfig `pulumi:"scwBgpConfigs"`
-	Srn           string                `pulumi:"srn"`
+	// The Scaleway Resource Name (SRN) of the link.
+	Srn string `pulumi:"srn"`
 	// Status of the link.
 	Status string `pulumi:"status"`
 	// List of tags associated with the link.
@@ -277,6 +278,7 @@ func (o LookupLinkResultOutput) ScwBgpConfigs() GetLinkScwBgpConfigArrayOutput {
 	return o.ApplyT(func(v LookupLinkResult) []GetLinkScwBgpConfig { return v.ScwBgpConfigs }).(GetLinkScwBgpConfigArrayOutput)
 }
 
+// The Scaleway Resource Name (SRN) of the link.
 func (o LookupLinkResultOutput) Srn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLinkResult) string { return v.Srn }).(pulumi.StringOutput)
 }

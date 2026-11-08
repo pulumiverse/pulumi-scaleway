@@ -50,6 +50,10 @@ namespace Pulumiverse.Scaleway.Interlink.Outputs
         /// `Region`) The region to list PoPs from.
         /// </summary>
         public readonly string Region;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the PoP.
+        /// </summary>
+        public readonly string Srn;
 
         [OutputConstructor]
         private GetPopsPopResult(
@@ -69,7 +73,9 @@ namespace Pulumiverse.Scaleway.Interlink.Outputs
 
             string name,
 
-            string region)
+            string region,
+
+            string srn)
         {
             Address = address;
             AvailableLinkBandwidthsMbps = availableLinkBandwidthsMbps;
@@ -80,6 +86,7 @@ namespace Pulumiverse.Scaleway.Interlink.Outputs
             LogoUrl = logoUrl;
             Name = name;
             Region = region;
+            Srn = srn;
         }
     }
 }

@@ -46,6 +46,7 @@ export interface GetProjectArgs {
  */
 export interface GetProjectResult {
     readonly createdAt: string;
+    readonly deleteWithResources: boolean;
     readonly description: string;
     /**
      * The provider-assigned unique ID for this managed resource.

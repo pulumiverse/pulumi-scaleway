@@ -47,6 +47,10 @@ namespace Pulumiverse.Scaleway.Observability.Outputs
         /// </summary>
         public readonly int RetentionDays;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the data source.
+        /// </summary>
+        public readonly string Srn;
+        /// <summary>
         /// Indicates whether the data source is synchronized with Grafana.
         /// </summary>
         public readonly bool SynchronizedWithGrafana;
@@ -81,6 +85,8 @@ namespace Pulumiverse.Scaleway.Observability.Outputs
 
             int retentionDays,
 
+            string srn,
+
             bool synchronizedWithGrafana,
 
             string type,
@@ -97,6 +103,7 @@ namespace Pulumiverse.Scaleway.Observability.Outputs
             PushUrl = pushUrl;
             Region = region;
             RetentionDays = retentionDays;
+            Srn = srn;
             SynchronizedWithGrafana = synchronizedWithGrafana;
             Type = type;
             UpdatedAt = updatedAt;

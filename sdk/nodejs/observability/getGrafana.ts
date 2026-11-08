@@ -111,6 +111,10 @@ export interface GetGrafanaResult {
      */
     readonly id: string;
     readonly projectId: string;
+    /**
+     * The Scaleway Resource Name (SRN) of the Grafana instance.
+     */
+    readonly srn: string;
 }
 /**
  * Gets information about Scaleway Cockpit's Grafana instance for a specific project.

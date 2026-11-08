@@ -226,6 +226,10 @@ namespace Pulumiverse.Scaleway.Interlink
         public readonly string PortalUrl;
         public readonly string Region;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the partner.
+        /// </summary>
+        public readonly string Srn;
+        /// <summary>
         /// Last update date of the partner.
         /// </summary>
         public readonly string UpdatedAt;
@@ -248,6 +252,8 @@ namespace Pulumiverse.Scaleway.Interlink
 
             string region,
 
+            string srn,
+
             string updatedAt)
         {
             ContactEmail = contactEmail;
@@ -258,6 +264,7 @@ namespace Pulumiverse.Scaleway.Interlink
             PartnerId = partnerId;
             PortalUrl = portalUrl;
             Region = region;
+            Srn = srn;
             UpdatedAt = updatedAt;
         }
     }
