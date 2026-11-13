@@ -24860,7 +24860,7 @@
                 },
                 "sizeInGb": {
                     "type": "integer",
-                    "description": "The size of the volume in gigabytes.\n"
+                    "description": "The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if \u003cspan pulumi-lang-nodejs=\"`snapshotId`\" pulumi-lang-dotnet=\"`SnapshotId`\" pulumi-lang-go=\"`snapshotId`\" pulumi-lang-python=\"`snapshot_id`\" pulumi-lang-yaml=\"`snapshotId`\" pulumi-lang-java=\"`snapshotId`\" pulumi-lang-hcl=\"`snapshot_id`\"\u003e`snapshotId`\u003c/span\u003e is specified.\n"
                 },
                 "snapshotId": {
                     "type": "string",
@@ -24894,8 +24894,7 @@
             "inputProperties": {
                 "instanceVolumeId": {
                     "type": "string",
-                    "description": "The instance volume to create the block volume from",
-                    "willReplaceOnChanges": true
+                    "description": "The instance volume to create the block volume from"
                 },
                 "iops": {
                     "type": "integer",
@@ -24907,12 +24906,11 @@
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "). The ID of the Project the volume is associated with.\n",
-                    "willReplaceOnChanges": true
+                    "description": "). The ID of the Project the volume is associated with.\n"
                 },
                 "sizeInGb": {
                     "type": "integer",
-                    "description": "The size of the volume in gigabytes.\n"
+                    "description": "The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if \u003cspan pulumi-lang-nodejs=\"`snapshotId`\" pulumi-lang-dotnet=\"`SnapshotId`\" pulumi-lang-go=\"`snapshotId`\" pulumi-lang-python=\"`snapshot_id`\" pulumi-lang-yaml=\"`snapshotId`\" pulumi-lang-java=\"`snapshotId`\" pulumi-lang-hcl=\"`snapshot_id`\"\u003e`snapshotId`\u003c/span\u003e is specified.\n"
                 },
                 "snapshotId": {
                     "type": "string",
@@ -24927,8 +24925,7 @@
                 },
                 "zone": {
                     "type": "string",
-                    "description": "). The zone in which the volume should be created.\n",
-                    "willReplaceOnChanges": true
+                    "description": "). The zone in which the volume should be created.\n"
                 }
             },
             "requiredInputs": [
@@ -24939,8 +24936,7 @@
                 "properties": {
                     "instanceVolumeId": {
                         "type": "string",
-                        "description": "The instance volume to create the block volume from",
-                        "willReplaceOnChanges": true
+                        "description": "The instance volume to create the block volume from"
                     },
                     "iops": {
                         "type": "integer",
@@ -24952,12 +24948,11 @@
                     },
                     "projectId": {
                         "type": "string",
-                        "description": "). The ID of the Project the volume is associated with.\n",
-                        "willReplaceOnChanges": true
+                        "description": "). The ID of the Project the volume is associated with.\n"
                     },
                     "sizeInGb": {
                         "type": "integer",
-                        "description": "The size of the volume in gigabytes.\n"
+                        "description": "The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if \u003cspan pulumi-lang-nodejs=\"`snapshotId`\" pulumi-lang-dotnet=\"`SnapshotId`\" pulumi-lang-go=\"`snapshotId`\" pulumi-lang-python=\"`snapshot_id`\" pulumi-lang-yaml=\"`snapshotId`\" pulumi-lang-java=\"`snapshotId`\" pulumi-lang-hcl=\"`snapshot_id`\"\u003e`snapshotId`\u003c/span\u003e is specified.\n"
                     },
                     "snapshotId": {
                         "type": "string",
@@ -24976,8 +24971,7 @@
                     },
                     "zone": {
                         "type": "string",
-                        "description": "). The zone in which the volume should be created.\n",
-                        "willReplaceOnChanges": true
+                        "description": "). The zone in which the volume should be created.\n"
                     }
                 },
                 "type": "object"
@@ -34920,7 +34914,7 @@
                 },
                 "sizeInGb": {
                     "type": "integer",
-                    "description": "The size of the volume in gigabytes.\n"
+                    "description": "The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if \u003cspan pulumi-lang-nodejs=\"`snapshotId`\" pulumi-lang-dotnet=\"`SnapshotId`\" pulumi-lang-go=\"`snapshotId`\" pulumi-lang-python=\"`snapshot_id`\" pulumi-lang-yaml=\"`snapshotId`\" pulumi-lang-java=\"`snapshotId`\" pulumi-lang-hcl=\"`snapshot_id`\"\u003e`snapshotId`\u003c/span\u003e is specified.\n"
                 },
                 "snapshotId": {
                     "type": "string",
@@ -34954,8 +34948,7 @@
             "inputProperties": {
                 "instanceVolumeId": {
                     "type": "string",
-                    "description": "The instance volume to create the block volume from",
-                    "willReplaceOnChanges": true
+                    "description": "The instance volume to create the block volume from"
                 },
                 "iops": {
                     "type": "integer",
@@ -34967,12 +34960,11 @@
                 },
                 "projectId": {
                     "type": "string",
-                    "description": "). The ID of the Project the volume is associated with.\n",
-                    "willReplaceOnChanges": true
+                    "description": "). The ID of the Project the volume is associated with.\n"
                 },
                 "sizeInGb": {
                     "type": "integer",
-                    "description": "The size of the volume in gigabytes.\n"
+                    "description": "The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if \u003cspan pulumi-lang-nodejs=\"`snapshotId`\" pulumi-lang-dotnet=\"`SnapshotId`\" pulumi-lang-go=\"`snapshotId`\" pulumi-lang-python=\"`snapshot_id`\" pulumi-lang-yaml=\"`snapshotId`\" pulumi-lang-java=\"`snapshotId`\" pulumi-lang-hcl=\"`snapshot_id`\"\u003e`snapshotId`\u003c/span\u003e is specified.\n"
                 },
                 "snapshotId": {
                     "type": "string",
@@ -34987,8 +34979,7 @@
                 },
                 "zone": {
                     "type": "string",
-                    "description": "). The zone in which the volume should be created.\n",
-                    "willReplaceOnChanges": true
+                    "description": "). The zone in which the volume should be created.\n"
                 }
             },
             "requiredInputs": [
@@ -34999,8 +34990,7 @@
                 "properties": {
                     "instanceVolumeId": {
                         "type": "string",
-                        "description": "The instance volume to create the block volume from",
-                        "willReplaceOnChanges": true
+                        "description": "The instance volume to create the block volume from"
                     },
                     "iops": {
                         "type": "integer",
@@ -35012,12 +35002,11 @@
                     },
                     "projectId": {
                         "type": "string",
-                        "description": "). The ID of the Project the volume is associated with.\n",
-                        "willReplaceOnChanges": true
+                        "description": "). The ID of the Project the volume is associated with.\n"
                     },
                     "sizeInGb": {
                         "type": "integer",
-                        "description": "The size of the volume in gigabytes.\n"
+                        "description": "The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if \u003cspan pulumi-lang-nodejs=\"`snapshotId`\" pulumi-lang-dotnet=\"`SnapshotId`\" pulumi-lang-go=\"`snapshotId`\" pulumi-lang-python=\"`snapshot_id`\" pulumi-lang-yaml=\"`snapshotId`\" pulumi-lang-java=\"`snapshotId`\" pulumi-lang-hcl=\"`snapshot_id`\"\u003e`snapshotId`\u003c/span\u003e is specified.\n"
                     },
                     "snapshotId": {
                         "type": "string",
@@ -35036,8 +35025,7 @@
                     },
                     "zone": {
                         "type": "string",
-                        "description": "). The zone in which the volume should be created.\n",
-                        "willReplaceOnChanges": true
+                        "description": "). The zone in which the volume should be created.\n"
                     }
                 },
                 "type": "object"
@@ -71863,7 +71851,6 @@
                 "description": "A collection of values returned by getVolume.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceVolumeId": {
@@ -71901,13 +71888,16 @@
                     }
                 },
                 "required": [
+                    "id",
                     "instanceVolumeId",
                     "iops",
+                    "name",
+                    "projectId",
                     "sizeInGb",
                     "snapshotId",
                     "srn",
                     "tags",
-                    "id"
+                    "zone"
                 ],
                 "type": "object"
             }
@@ -76705,7 +76695,6 @@
                 "description": "A collection of values returned by getBlockVolume.\n",
                 "properties": {
                     "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
                         "type": "string"
                     },
                     "instanceVolumeId": {
@@ -76743,13 +76732,16 @@
                     }
                 },
                 "required": [
+                    "id",
                     "instanceVolumeId",
                     "iops",
+                    "name",
+                    "projectId",
                     "sizeInGb",
                     "snapshotId",
                     "srn",
                     "tags",
-                    "id"
+                    "zone"
                 ],
                 "type": "object"
             }
