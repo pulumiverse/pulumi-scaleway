@@ -108,7 +108,7 @@ namespace Pulumiverse.Scaleway.Block
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the volume in gigabytes.
+        /// The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `SnapshotId` is specified.
         /// </summary>
         [Output("sizeInGb")]
         public Output<int> SizeInGb { get; private set; } = null!;
@@ -213,7 +213,7 @@ namespace Pulumiverse.Scaleway.Block
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The size of the volume in gigabytes.
+        /// The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `SnapshotId` is specified.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
@@ -275,7 +275,7 @@ namespace Pulumiverse.Scaleway.Block
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The size of the volume in gigabytes.
+        /// The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `SnapshotId` is specified.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }

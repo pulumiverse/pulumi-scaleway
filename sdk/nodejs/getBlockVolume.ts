@@ -47,20 +47,17 @@ export interface GetBlockVolumeArgs {
  * A collection of values returned by getBlockVolume.
  */
 export interface GetBlockVolumeResult {
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
     readonly id: string;
     readonly instanceVolumeId: string;
     readonly iops: number;
-    readonly name?: string;
-    readonly projectId?: string;
+    readonly name: string;
+    readonly projectId: string;
     readonly sizeInGb: number;
     readonly snapshotId: string;
     readonly srn: string;
     readonly tags: string[];
     readonly volumeId?: string;
-    readonly zone?: string;
+    readonly zone: string;
 }
 /**
  * The `scaleway.block.Volume` data source is used to retrieve information about a Block Storage volume.

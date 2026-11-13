@@ -34,7 +34,7 @@ class BlockVolumeArgs:
         :param pulumi.Input[_builtins.str] instance_volume_id: The instance volume to create the block volume from
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Project the volume is associated with.
-        :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes.
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshot_id` is specified.
         :param pulumi.Input[_builtins.str] snapshot_id: If set, the new volume will be created from this snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[_builtins.str] zone: ). The zone in which the volume should be created.
@@ -107,7 +107,7 @@ class BlockVolumeArgs:
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The size of the volume in gigabytes.
+        The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshot_id` is specified.
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -171,7 +171,7 @@ class _BlockVolumeState:
         :param pulumi.Input[_builtins.int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Project the volume is associated with.
-        :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes.
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshot_id` is specified.
         :param pulumi.Input[_builtins.str] snapshot_id: If set, the new volume will be created from this snapshot.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the volume.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the volume.
@@ -248,7 +248,7 @@ class _BlockVolumeState:
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The size of the volume in gigabytes.
+        The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshot_id` is specified.
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -380,7 +380,7 @@ class BlockVolume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Project the volume is associated with.
-        :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes.
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshot_id` is specified.
         :param pulumi.Input[_builtins.str] snapshot_id: If set, the new volume will be created from this snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[_builtins.str] zone: ). The zone in which the volume should be created.
@@ -514,7 +514,7 @@ class BlockVolume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Project the volume is associated with.
-        :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes.
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshot_id` is specified.
         :param pulumi.Input[_builtins.str] snapshot_id: If set, the new volume will be created from this snapshot.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the volume.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the volume.
@@ -595,7 +595,7 @@ class BlockVolume(pulumi.CustomResource):
     @pulumi.getter(name="sizeInGb")
     def size_in_gb(self) -> pulumi.Output[_builtins.int]:
         """
-        The size of the volume in gigabytes.
+        The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshot_id` is specified.
         """
         return pulumi.get(self, "size_in_gb")
 

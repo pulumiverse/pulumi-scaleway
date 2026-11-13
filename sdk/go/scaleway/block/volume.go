@@ -109,7 +109,7 @@ type Volume struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ). The ID of the Project the volume is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The size of the volume in gigabytes.
+	// The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshotId` is specified.
 	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
 	// If set, the new volume will be created from this snapshot.
 	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
@@ -168,7 +168,7 @@ type volumeState struct {
 	Name *string `pulumi:"name"`
 	// ). The ID of the Project the volume is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The size of the volume in gigabytes.
+	// The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshotId` is specified.
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// If set, the new volume will be created from this snapshot.
 	SnapshotId *string `pulumi:"snapshotId"`
@@ -189,7 +189,7 @@ type VolumeState struct {
 	Name pulumi.StringPtrInput
 	// ). The ID of the Project the volume is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The size of the volume in gigabytes.
+	// The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshotId` is specified.
 	SizeInGb pulumi.IntPtrInput
 	// If set, the new volume will be created from this snapshot.
 	SnapshotId pulumi.StringPtrInput
@@ -220,7 +220,7 @@ type volumeArgs struct {
 	Name *string `pulumi:"name"`
 	// ). The ID of the Project the volume is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The size of the volume in gigabytes.
+	// The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshotId` is specified.
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// If set, the new volume will be created from this snapshot.
 	SnapshotId *string `pulumi:"snapshotId"`
@@ -240,7 +240,7 @@ type VolumeArgs struct {
 	Name pulumi.StringPtrInput
 	// ). The ID of the Project the volume is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The size of the volume in gigabytes.
+	// The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshotId` is specified.
 	SizeInGb pulumi.IntPtrInput
 	// If set, the new volume will be created from this snapshot.
 	SnapshotId pulumi.StringPtrInput
@@ -357,7 +357,7 @@ func (o VolumeOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The size of the volume in gigabytes.
+// The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshotId` is specified.
 func (o VolumeOutput) SizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.SizeInGb }).(pulumi.IntOutput)
 }
