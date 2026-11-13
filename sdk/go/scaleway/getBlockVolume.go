@@ -39,18 +39,17 @@ type LookupBlockVolumeArgs struct {
 
 // A collection of values returned by getBlockVolume.
 type LookupBlockVolumeResult struct {
-	// The provider-assigned unique ID for this managed resource.
 	Id               string   `pulumi:"id"`
 	InstanceVolumeId string   `pulumi:"instanceVolumeId"`
 	Iops             int      `pulumi:"iops"`
-	Name             *string  `pulumi:"name"`
-	ProjectId        *string  `pulumi:"projectId"`
+	Name             string   `pulumi:"name"`
+	ProjectId        string   `pulumi:"projectId"`
 	SizeInGb         int      `pulumi:"sizeInGb"`
 	SnapshotId       string   `pulumi:"snapshotId"`
 	Srn              string   `pulumi:"srn"`
 	Tags             []string `pulumi:"tags"`
 	VolumeId         *string  `pulumi:"volumeId"`
-	Zone             *string  `pulumi:"zone"`
+	Zone             string   `pulumi:"zone"`
 }
 
 func LookupBlockVolumeOutput(ctx *pulumi.Context, args LookupBlockVolumeOutputArgs, opts ...pulumi.InvokeOption) LookupBlockVolumeResultOutput {
@@ -89,7 +88,6 @@ func (o LookupBlockVolumeResultOutput) ToLookupBlockVolumeResultOutputWithContex
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
 func (o LookupBlockVolumeResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBlockVolumeResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -102,12 +100,12 @@ func (o LookupBlockVolumeResultOutput) Iops() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupBlockVolumeResult) int { return v.Iops }).(pulumi.IntOutput)
 }
 
-func (o LookupBlockVolumeResultOutput) Name() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBlockVolumeResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+func (o LookupBlockVolumeResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBlockVolumeResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o LookupBlockVolumeResultOutput) ProjectId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBlockVolumeResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+func (o LookupBlockVolumeResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBlockVolumeResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 func (o LookupBlockVolumeResultOutput) SizeInGb() pulumi.IntOutput {
@@ -130,8 +128,8 @@ func (o LookupBlockVolumeResultOutput) VolumeId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupBlockVolumeResult) *string { return v.VolumeId }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupBlockVolumeResultOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBlockVolumeResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
+func (o LookupBlockVolumeResultOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBlockVolumeResult) string { return v.Zone }).(pulumi.StringOutput)
 }
 
 func init() {

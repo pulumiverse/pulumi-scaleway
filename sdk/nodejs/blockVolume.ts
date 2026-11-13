@@ -115,7 +115,7 @@ export class BlockVolume extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * The size of the volume in gigabytes.
+     * The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshotId` is specified.
      */
     declare public readonly sizeInGb: pulumi.Output<number>;
     /**
@@ -201,7 +201,7 @@ export interface BlockVolumeState {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * The size of the volume in gigabytes.
+     * The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshotId` is specified.
      */
     sizeInGb?: pulumi.Input<number | undefined>;
     /**
@@ -243,7 +243,7 @@ export interface BlockVolumeArgs {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * The size of the volume in gigabytes.
+     * The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshotId` is specified.
      */
     sizeInGb?: pulumi.Input<number | undefined>;
     /**

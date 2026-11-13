@@ -66,9 +66,6 @@ class GetBlockVolumeResult:
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
         return pulumi.get(self, "id")
 
     @_builtins.property
@@ -83,12 +80,12 @@ class GetBlockVolumeResult:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[_builtins.str]:
+    def name(self) -> _builtins.str:
         return pulumi.get(self, "name")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[_builtins.str]:
+    def project_id(self) -> _builtins.str:
         return pulumi.get(self, "project_id")
 
     @_builtins.property
@@ -118,7 +115,7 @@ class GetBlockVolumeResult:
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[_builtins.str]:
+    def zone(self) -> _builtins.str:
         return pulumi.get(self, "zone")
 
 

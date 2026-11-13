@@ -103,20 +103,17 @@ namespace Pulumiverse.Scaleway.Block
     [OutputType]
     public sealed class GetVolumeResult
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         public readonly string InstanceVolumeId;
         public readonly int Iops;
-        public readonly string? Name;
-        public readonly string? ProjectId;
+        public readonly string Name;
+        public readonly string ProjectId;
         public readonly int SizeInGb;
         public readonly string SnapshotId;
         public readonly string Srn;
         public readonly ImmutableArray<string> Tags;
         public readonly string? VolumeId;
-        public readonly string? Zone;
+        public readonly string Zone;
 
         [OutputConstructor]
         private GetVolumeResult(
@@ -126,9 +123,9 @@ namespace Pulumiverse.Scaleway.Block
 
             int iops,
 
-            string? name,
+            string name,
 
-            string? projectId,
+            string projectId,
 
             int sizeInGb,
 
@@ -140,7 +137,7 @@ namespace Pulumiverse.Scaleway.Block
 
             string? volumeId,
 
-            string? zone)
+            string zone)
         {
             Id = id;
             InstanceVolumeId = instanceVolumeId;
