@@ -164,6 +164,7 @@ class _BlockSnapshotState:
     def __init__(__self__, *,
                  export: pulumi.Input[Optional['BlockSnapshotExportArgs']] = None,
                  import_: pulumi.Input[Optional['BlockSnapshotImportArgs']] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  srn: pulumi.Input[Optional[_builtins.str]] = None,
@@ -176,6 +177,7 @@ class _BlockSnapshotState:
 
         :param pulumi.Input['BlockSnapshotExportArgs'] export: Use this block to export the volume as a QCOW file to Object Storage.
         :param pulumi.Input['BlockSnapshotImportArgs'] import_: Use this block to import a QCOW image from Object Storage to create a volume.
+        :param pulumi.Input[_builtins.str] kms_key_id: The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the snapshot.
@@ -190,6 +192,8 @@ class _BlockSnapshotState:
             pulumi.set(__self__, "export", export)
         if import_ is not None:
             pulumi.set(__self__, "import_", import_)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -228,6 +232,18 @@ class _BlockSnapshotState:
     @import_.setter
     def import_(self, value: pulumi.Input[Optional['BlockSnapshotImportArgs']]):
         pulumi.set(self, "import_", value)
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -540,6 +556,7 @@ class BlockSnapshot(pulumi.CustomResource):
             __props__.__dict__["timeouts"] = timeouts
             __props__.__dict__["volume_id"] = volume_id
             __props__.__dict__["zone"] = zone
+            __props__.__dict__["kms_key_id"] = None
             __props__.__dict__["srn"] = None
         super(BlockSnapshot, __self__).__init__(
             'scaleway:index/blockSnapshot:BlockSnapshot',
@@ -553,6 +570,7 @@ class BlockSnapshot(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             export: pulumi.Input[Optional[Union['BlockSnapshotExportArgs', 'BlockSnapshotExportArgsDict', 'outputs.BlockSnapshotExport']]] = None,
             import_: pulumi.Input[Optional[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict', 'outputs.BlockSnapshotImport']]] = None,
+            kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
@@ -569,6 +587,7 @@ class BlockSnapshot(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['BlockSnapshotExportArgs', 'BlockSnapshotExportArgsDict', 'outputs.BlockSnapshotExport']] export: Use this block to export the volume as a QCOW file to Object Storage.
         :param pulumi.Input[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict', 'outputs.BlockSnapshotImport']] import_: Use this block to import a QCOW image from Object Storage to create a volume.
+        :param pulumi.Input[_builtins.str] kms_key_id: The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
         :param pulumi.Input[_builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the snapshot.
@@ -585,6 +604,7 @@ class BlockSnapshot(pulumi.CustomResource):
 
         __props__.__dict__["export"] = export
         __props__.__dict__["import_"] = import_
+        __props__.__dict__["kms_key_id"] = kms_key_id
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["srn"] = srn
@@ -599,6 +619,7 @@ class BlockSnapshot(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             export: pulumi.Input[Optional[Union['BlockSnapshotExportArgs', 'BlockSnapshotExportArgsDict', 'outputs.BlockSnapshotExport']]] = None,
             import_: pulumi.Input[Optional[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict', 'outputs.BlockSnapshotImport']]] = None,
+            kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             srn: pulumi.Input[Optional[_builtins.str]] = None,
@@ -609,6 +630,7 @@ class BlockSnapshot(pulumi.CustomResource):
         __props__: dict = {}
         __props__["export"] = export
         __props__["import"] = import_
+        __props__["kmsKeyId"] = kms_key_id
         __props__["name"] = name
         __props__["projectId"] = project_id
         __props__["srn"] = srn
@@ -633,6 +655,14 @@ class BlockSnapshot(pulumi.CustomResource):
         Use this block to import a QCOW image from Object Storage to create a volume.
         """
         return pulumi.get(self, "import_")
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+        """
+        return pulumi.get(self, "kms_key_id")
 
     @_builtins.property
     @pulumi.getter

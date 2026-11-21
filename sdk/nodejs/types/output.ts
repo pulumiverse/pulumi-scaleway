@@ -680,6 +680,21 @@ export interface DatabaseReadReplicaPrivateNetwork {
     zone: string;
 }
 
+export interface DataorchestratorWorkflowCronSchedule {
+    /**
+     * Overlap policy (`forbid`, `allow`, `queue`, …).
+     */
+    overlap: string;
+    /**
+     * UNIX cron expression.
+     */
+    schedule: string;
+    /**
+     * Canonical TZ identifier (e.g. `Europe/Paris`).
+     */
+    timezoneIdentifier: string;
+}
+
 export interface DomainRecordGeoIp {
     /**
      * The list of matches
@@ -1463,6 +1478,21 @@ export interface GetDatabaseInstanceUpgradableVersion {
      * Version string
      */
     version: string;
+}
+
+export interface GetDataorchestratorWorkflowCronSchedule {
+    /**
+     * Overlap policy.
+     */
+    overlap: string;
+    /**
+     * UNIX cron expression.
+     */
+    schedule: string;
+    /**
+     * Timezone identifier.
+     */
+    timezoneIdentifier: string;
 }
 
 export interface GetDomainRecordGeoIp {
@@ -5850,6 +5880,10 @@ export namespace block {
          */
         id: string;
         /**
+         * The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+         */
+        kmsKeyId: string;
+        /**
          * Filter snapshots by their name. Snapshots with a matching name are listed.
          */
         name: string;
@@ -7124,9 +7158,9 @@ export namespace domain {
          */
         extensionFrs: outputs.domain.GetRegistrationAdministrativeContactExtensionFr[];
         /**
-         * Extension details specific to Dutch domain registrations.
+         * SIDN-specific details for Dutch (.nl) domain registrations.
          */
-        extensionNls: string[];
+        extensionNls: outputs.domain.GetRegistrationAdministrativeContactExtensionNl[];
         /**
          * Fax number for the contact (if available).
          */
@@ -7144,7 +7178,7 @@ export namespace domain {
          */
         lastname: string;
         /**
-         * Legal form of the contact (e.g., 'individual' or 'organization').
+         * Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
          */
         legalForm: string;
         /**
@@ -7250,6 +7284,17 @@ export namespace domain {
         trademarkInpi: string;
     }
 
+    export interface GetRegistrationAdministrativeContactExtensionNl {
+        /**
+         * SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+         */
+        legalForm: string;
+        /**
+         * KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+         */
+        legalFormRegistrationNumber: string;
+    }
+
     export interface GetRegistrationDsRecord {
         /**
          * The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
@@ -7340,9 +7385,9 @@ export namespace domain {
          */
         extensionFrs: outputs.domain.GetRegistrationOwnerContactExtensionFr[];
         /**
-         * Extension details specific to Dutch domain registrations.
+         * SIDN-specific details for Dutch (.nl) domain registrations.
          */
-        extensionNls: string[];
+        extensionNls: outputs.domain.GetRegistrationOwnerContactExtensionNl[];
         /**
          * Fax number for the contact (if available).
          */
@@ -7360,7 +7405,7 @@ export namespace domain {
          */
         lastname: string;
         /**
-         * Legal form of the contact (e.g., 'individual' or 'organization').
+         * Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
          */
         legalForm: string;
         /**
@@ -7466,6 +7511,17 @@ export namespace domain {
         trademarkInpi: string;
     }
 
+    export interface GetRegistrationOwnerContactExtensionNl {
+        /**
+         * SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+         */
+        legalForm: string;
+        /**
+         * KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+         */
+        legalFormRegistrationNumber: string;
+    }
+
     export interface GetRegistrationTechnicalContact {
         /**
          * Primary address line for the contact.
@@ -7508,9 +7564,9 @@ export namespace domain {
          */
         extensionFrs: outputs.domain.GetRegistrationTechnicalContactExtensionFr[];
         /**
-         * Extension details specific to Dutch domain registrations.
+         * SIDN-specific details for Dutch (.nl) domain registrations.
          */
-        extensionNls: string[];
+        extensionNls: outputs.domain.GetRegistrationTechnicalContactExtensionNl[];
         /**
          * Fax number for the contact (if available).
          */
@@ -7528,7 +7584,7 @@ export namespace domain {
          */
         lastname: string;
         /**
-         * Legal form of the contact (e.g., 'individual' or 'organization').
+         * Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
          */
         legalForm: string;
         /**
@@ -7632,6 +7688,17 @@ export namespace domain {
          * Trademark information from INPI (French extension).
          */
         trademarkInpi: string;
+    }
+
+    export interface GetRegistrationTechnicalContactExtensionNl {
+        /**
+         * SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+         */
+        legalForm: string;
+        /**
+         * KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+         */
+        legalFormRegistrationNumber: string;
     }
 
     export interface RecordGeoIp {
@@ -7743,9 +7810,9 @@ export namespace domain {
          */
         extensionFr: outputs.domain.RegistrationAdministrativeContactExtensionFr;
         /**
-         * Extension details specific to Dutch domain registrations.
+         * SIDN-specific details for Dutch (.nl) domain registrations.
          */
-        extensionNls: string[];
+        extensionNls: outputs.domain.RegistrationAdministrativeContactExtensionNl[];
         /**
          * Fax number for the contact (if available).
          */
@@ -7763,7 +7830,7 @@ export namespace domain {
          */
         lastname: string;
         /**
-         * Legal form of the contact (e.g., 'individual' or 'organization').
+         * Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
          */
         legalForm: string;
         /**
@@ -7869,6 +7936,17 @@ export namespace domain {
         trademarkInpi?: string;
     }
 
+    export interface RegistrationAdministrativeContactExtensionNl {
+        /**
+         * SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+         */
+        legalForm?: string;
+        /**
+         * KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+         */
+        legalFormRegistrationNumber?: string;
+    }
+
     export interface RegistrationDsRecord {
         /**
          * The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
@@ -7959,9 +8037,9 @@ export namespace domain {
          */
         extensionFr: outputs.domain.RegistrationOwnerContactExtensionFr;
         /**
-         * Extension details specific to Dutch domain registrations.
+         * SIDN-specific details for Dutch (.nl) domain registrations.
          */
-        extensionNls: string[];
+        extensionNls: outputs.domain.RegistrationOwnerContactExtensionNl[];
         /**
          * Fax number for the contact (if available).
          */
@@ -7979,7 +8057,7 @@ export namespace domain {
          */
         lastname: string;
         /**
-         * Legal form of the contact (e.g., 'individual' or 'organization').
+         * Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
          */
         legalForm: string;
         /**
@@ -8085,6 +8163,17 @@ export namespace domain {
         trademarkInpi?: string;
     }
 
+    export interface RegistrationOwnerContactExtensionNl {
+        /**
+         * SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+         */
+        legalForm?: string;
+        /**
+         * KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+         */
+        legalFormRegistrationNumber?: string;
+    }
+
     export interface RegistrationTechnicalContact {
         /**
          * Primary address line for the contact.
@@ -8127,9 +8216,9 @@ export namespace domain {
          */
         extensionFr: outputs.domain.RegistrationTechnicalContactExtensionFr;
         /**
-         * Extension details specific to Dutch domain registrations.
+         * SIDN-specific details for Dutch (.nl) domain registrations.
          */
-        extensionNls: string[];
+        extensionNls: outputs.domain.RegistrationTechnicalContactExtensionNl[];
         /**
          * Fax number for the contact (if available).
          */
@@ -8147,7 +8236,7 @@ export namespace domain {
          */
         lastname: string;
         /**
-         * Legal form of the contact (e.g., 'individual' or 'organization').
+         * Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
          */
         legalForm: string;
         /**
@@ -8251,6 +8340,17 @@ export namespace domain {
          * Trademark information from INPI (French extension).
          */
         trademarkInpi?: string;
+    }
+
+    export interface RegistrationTechnicalContactExtensionNl {
+        /**
+         * SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+         */
+        legalForm?: string;
+        /**
+         * KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+         */
+        legalFormRegistrationNumber?: string;
     }
 
 }
@@ -10576,6 +10676,25 @@ export namespace job {
          * The secret version.
          */
         secretVersion?: string;
+    }
+
+    export interface TriggerCronConfig {
+        /**
+         * The arguments passed to the startup command used by the triggered job (in list of string format).
+         */
+        args?: string[];
+        /**
+         * The CRON schedule in UNIX format.
+         */
+        schedule: string;
+        /**
+         * The startup command that will be used by the triggered job (in list of string format).
+         */
+        startupCommands?: string[];
+        /**
+         * The timezone for the CRON schedule, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+         */
+        timezone: string;
     }
 
 }

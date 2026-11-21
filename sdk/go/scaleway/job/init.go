@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "scaleway:job/definition:Definition":
 		r = &Definition{}
+	case "scaleway:job/trigger:Trigger":
+		r = &Trigger{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -39,6 +41,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"job/definition",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"job/trigger",
 		&module{version},
 	)
 }

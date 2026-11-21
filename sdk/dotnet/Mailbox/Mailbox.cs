@@ -150,6 +150,18 @@ namespace Pulumiverse.Scaleway.Mailbox
         public Output<string> Email { get; private set; } = null!;
 
         /// <summary>
+        /// Whether email forwarding is enabled for this mailbox. When `False`, no forwarding rules deliver mail. Defaults to `False` when omitted (API default).
+        /// </summary>
+        [Output("forwardingEnabled")]
+        public Output<bool> ForwardingEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to keep a copy of forwarded emails in this mailbox. Defaults to `False` when omitted (API default).
+        /// </summary>
+        [Output("forwardingKeepCopy")]
+        public Output<bool> ForwardingKeepCopy { get; private set; } = null!;
+
+        /// <summary>
         /// Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
         /// </summary>
         [Output("localPart")]
@@ -269,6 +281,18 @@ namespace Pulumiverse.Scaleway.Mailbox
         public Input<string> DomainId { get; set; } = null!;
 
         /// <summary>
+        /// Whether email forwarding is enabled for this mailbox. When `False`, no forwarding rules deliver mail. Defaults to `False` when omitted (API default).
+        /// </summary>
+        [Input("forwardingEnabled")]
+        public Input<bool>? ForwardingEnabled { get; set; }
+
+        /// <summary>
+        /// Whether to keep a copy of forwarded emails in this mailbox. Defaults to `False` when omitted (API default).
+        /// </summary>
+        [Input("forwardingKeepCopy")]
+        public Input<bool>? ForwardingKeepCopy { get; set; }
+
+        /// <summary>
         /// Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
         /// </summary>
         [Input("localPart", required: true)]
@@ -350,6 +374,18 @@ namespace Pulumiverse.Scaleway.Mailbox
         /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
+
+        /// <summary>
+        /// Whether email forwarding is enabled for this mailbox. When `False`, no forwarding rules deliver mail. Defaults to `False` when omitted (API default).
+        /// </summary>
+        [Input("forwardingEnabled")]
+        public Input<bool>? ForwardingEnabled { get; set; }
+
+        /// <summary>
+        /// Whether to keep a copy of forwarded emails in this mailbox. Defaults to `False` when omitted (API default).
+        /// </summary>
+        [Input("forwardingKeepCopy")]
+        public Input<bool>? ForwardingKeepCopy { get; set; }
 
         /// <summary>
         /// Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.

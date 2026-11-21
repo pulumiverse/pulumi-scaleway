@@ -13,6 +13,8 @@ namespace Pulumiverse.Scaleway.S2svpn
     public static class GetRoutingPolicy
     {
         /// <summary>
+        /// Gets information about a Site-to-Site VPN routing policy.
+        /// 
         /// For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
         /// 
         /// ## Example Usage
@@ -55,6 +57,8 @@ namespace Pulumiverse.Scaleway.S2svpn
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetRoutingPolicyResult>("scaleway:s2svpn/getRoutingPolicy:getRoutingPolicy", args ?? new GetRoutingPolicyArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Gets information about a Site-to-Site VPN routing policy.
+        /// 
         /// For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
         /// 
         /// ## Example Usage
@@ -97,6 +101,8 @@ namespace Pulumiverse.Scaleway.S2svpn
             => global::Pulumi.Deployment.Instance.Invoke<GetRoutingPolicyResult>("scaleway:s2svpn/getRoutingPolicy:getRoutingPolicy", args ?? new GetRoutingPolicyInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Gets information about a Site-to-Site VPN routing policy.
+        /// 
         /// For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
         /// 
         /// ## Example Usage

@@ -141,6 +141,10 @@ export class InstanceSnapshot extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly sizeInGb: pulumi.Output<number>;
     /**
+     * The Scaleway Resource Name (SRN) of the snapshot.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * A list of tags to apply to the snapshot.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -181,6 +185,7 @@ export class InstanceSnapshot extends pulumi.CustomResource {
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["sizeInGb"] = state?.sizeInGb;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["type"] = state?.type;
             resourceInputs["volumeId"] = state?.volumeId;
@@ -197,6 +202,7 @@ export class InstanceSnapshot extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["sizeInGb"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(InstanceSnapshot.__pulumiType, name, resourceInputs, opts);
@@ -232,6 +238,10 @@ export interface InstanceSnapshotState {
      * (Optional) The size of the snapshot.
      */
     sizeInGb?: pulumi.Input<number | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the snapshot.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the snapshot.
      */

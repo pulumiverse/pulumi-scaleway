@@ -7,6 +7,8 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
+ * Gets information about a Site-to-Site VPN connection.
+ *
  * For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
  *
  * ## Example Usage
@@ -169,6 +171,8 @@ export interface GetConnectionResult {
     readonly vpnGatewayId: string;
 }
 /**
+ * Gets information about a Site-to-Site VPN connection.
+ *
  * For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
  *
  * ## Example Usage

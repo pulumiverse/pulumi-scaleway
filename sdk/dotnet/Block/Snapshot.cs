@@ -146,6 +146,12 @@ namespace Pulumiverse.Scaleway.Block
         public Output<Outputs.SnapshotImport?> Import { get; private set; } = null!;
 
         /// <summary>
+        /// The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+        /// </summary>
+        [Output("kmsKeyId")]
+        public Output<string> KmsKeyId { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the snapshot. If not provided, a name will be randomly generated.
         /// </summary>
         [Output("name")]
@@ -315,6 +321,12 @@ namespace Pulumiverse.Scaleway.Block
         /// </summary>
         [Input("import")]
         public Input<Inputs.SnapshotImportGetArgs>? Import { get; set; }
+
+        /// <summary>
+        /// The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+        /// </summary>
+        [Input("kmsKeyId")]
+        public Input<string>? KmsKeyId { get; set; }
 
         /// <summary>
         /// The name of the snapshot. If not provided, a name will be randomly generated.

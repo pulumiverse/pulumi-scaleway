@@ -160,6 +160,10 @@ namespace Pulumiverse.Scaleway
         public readonly string SecurityGroupId;
         public readonly string? ServerId;
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the server.
+        /// </summary>
+        public readonly string Srn;
+        /// <summary>
         /// The state of the server. Possible values are: `Started`, `Stopped` or `Standby`.
         /// </summary>
         public readonly string State;
@@ -228,6 +232,8 @@ namespace Pulumiverse.Scaleway
 
             string? serverId,
 
+            string srn,
+
             string state,
 
             ImmutableArray<string> tags,
@@ -262,6 +268,7 @@ namespace Pulumiverse.Scaleway
             RootVolumes = rootVolumes;
             SecurityGroupId = securityGroupId;
             ServerId = serverId;
+            Srn = srn;
             State = state;
             Tags = tags;
             Type = type;

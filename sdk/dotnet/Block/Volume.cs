@@ -96,6 +96,12 @@ namespace Pulumiverse.Scaleway.Block
         public Output<int> Iops { get; private set; } = null!;
 
         /// <summary>
+        /// UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `InstanceVolumeId`. When creating from a `SnapshotId`, the value must match the snapshot's `KmsKeyId`.
+        /// </summary>
+        [Output("kmsKeyId")]
+        public Output<string> KmsKeyId { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the volume. If not provided, a name will be randomly generated.
         /// </summary>
         [Output("name")]
@@ -201,6 +207,12 @@ namespace Pulumiverse.Scaleway.Block
         public Input<int> Iops { get; set; } = null!;
 
         /// <summary>
+        /// UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `InstanceVolumeId`. When creating from a `SnapshotId`, the value must match the snapshot's `KmsKeyId`.
+        /// </summary>
+        [Input("kmsKeyId")]
+        public Input<string>? KmsKeyId { get; set; }
+
+        /// <summary>
         /// The name of the volume. If not provided, a name will be randomly generated.
         /// </summary>
         [Input("name")]
@@ -261,6 +273,12 @@ namespace Pulumiverse.Scaleway.Block
         /// </summary>
         [Input("iops")]
         public Input<int>? Iops { get; set; }
+
+        /// <summary>
+        /// UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `InstanceVolumeId`. When creating from a `SnapshotId`, the value must match the snapshot's `KmsKeyId`.
+        /// </summary>
+        [Input("kmsKeyId")]
+        public Input<string>? KmsKeyId { get; set; }
 
         /// <summary>
         /// The name of the volume. If not provided, a name will be randomly generated.

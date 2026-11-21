@@ -50,6 +50,7 @@ __all__ = [
     'DatabaseInstanceUpgradableVersion',
     'DatabaseReadReplicaDirectAccess',
     'DatabaseReadReplicaPrivateNetwork',
+    'DataorchestratorWorkflowCronSchedule',
     'DomainRecordGeoIp',
     'DomainRecordGeoIpMatch',
     'DomainRecordHttpService',
@@ -186,6 +187,7 @@ __all__ = [
     'GetDatabaseInstancePrivateNetworkResult',
     'GetDatabaseInstanceReadReplicaResult',
     'GetDatabaseInstanceUpgradableVersionResult',
+    'GetDataorchestratorWorkflowCronScheduleResult',
     'GetDomainRecordGeoIpResult',
     'GetDomainRecordGeoIpMatchResult',
     'GetDomainRecordHttpServiceResult',
@@ -2545,6 +2547,64 @@ class DatabaseReadReplicaPrivateNetwork(dict):
         Private network zone
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class DataorchestratorWorkflowCronSchedule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "timezoneIdentifier":
+            suggest = "timezone_identifier"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DataorchestratorWorkflowCronSchedule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DataorchestratorWorkflowCronSchedule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DataorchestratorWorkflowCronSchedule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 schedule: _builtins.str,
+                 timezone_identifier: _builtins.str,
+                 overlap: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str schedule: UNIX cron expression.
+        :param _builtins.str timezone_identifier: Canonical TZ identifier (e.g. `Europe/Paris`).
+        :param _builtins.str overlap: Overlap policy (`forbid`, `allow`, `queue`, …).
+        """
+        pulumi.set(__self__, "schedule", schedule)
+        pulumi.set(__self__, "timezone_identifier", timezone_identifier)
+        if overlap is not None:
+            pulumi.set(__self__, "overlap", overlap)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> _builtins.str:
+        """
+        UNIX cron expression.
+        """
+        return pulumi.get(self, "schedule")
+
+    @_builtins.property
+    @pulumi.getter(name="timezoneIdentifier")
+    def timezone_identifier(self) -> _builtins.str:
+        """
+        Canonical TZ identifier (e.g. `Europe/Paris`).
+        """
+        return pulumi.get(self, "timezone_identifier")
+
+    @_builtins.property
+    @pulumi.getter
+    def overlap(self) -> Optional[_builtins.str]:
+        """
+        Overlap policy (`forbid`, `allow`, `queue`, …).
+        """
+        return pulumi.get(self, "overlap")
 
 
 @pulumi.output_type
@@ -10840,6 +10900,46 @@ class GetDatabaseInstanceUpgradableVersionResult(dict):
         Version string
         """
         return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetDataorchestratorWorkflowCronScheduleResult(dict):
+    def __init__(__self__, *,
+                 overlap: _builtins.str,
+                 schedule: _builtins.str,
+                 timezone_identifier: _builtins.str):
+        """
+        :param _builtins.str overlap: Overlap policy.
+        :param _builtins.str schedule: UNIX cron expression.
+        :param _builtins.str timezone_identifier: Timezone identifier.
+        """
+        pulumi.set(__self__, "overlap", overlap)
+        pulumi.set(__self__, "schedule", schedule)
+        pulumi.set(__self__, "timezone_identifier", timezone_identifier)
+
+    @_builtins.property
+    @pulumi.getter
+    def overlap(self) -> _builtins.str:
+        """
+        Overlap policy.
+        """
+        return pulumi.get(self, "overlap")
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> _builtins.str:
+        """
+        UNIX cron expression.
+        """
+        return pulumi.get(self, "schedule")
+
+    @_builtins.property
+    @pulumi.getter(name="timezoneIdentifier")
+    def timezone_identifier(self) -> _builtins.str:
+        """
+        Timezone identifier.
+        """
+        return pulumi.get(self, "timezone_identifier")
 
 
 @pulumi.output_type

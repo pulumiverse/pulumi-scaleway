@@ -18,6 +18,7 @@ __all__ = [
     'DefinitionCron',
     'DefinitionRetryPolicy',
     'DefinitionSecretReference',
+    'TriggerCronConfig',
 ]
 
 @pulumi.output_type
@@ -170,5 +171,75 @@ class DefinitionSecretReference(dict):
         The secret version.
         """
         return pulumi.get(self, "secret_version")
+
+
+@pulumi.output_type
+class TriggerCronConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "startupCommands":
+            suggest = "startup_commands"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in TriggerCronConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        TriggerCronConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        TriggerCronConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 schedule: _builtins.str,
+                 timezone: _builtins.str,
+                 args: Optional[Sequence[_builtins.str]] = None,
+                 startup_commands: Optional[Sequence[_builtins.str]] = None):
+        """
+        :param _builtins.str schedule: The CRON schedule in UNIX format.
+        :param _builtins.str timezone: The timezone for the CRON schedule, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        :param Sequence[_builtins.str] args: The arguments passed to the startup command used by the triggered job (in list of string format).
+        :param Sequence[_builtins.str] startup_commands: The startup command that will be used by the triggered job (in list of string format).
+        """
+        pulumi.set(__self__, "schedule", schedule)
+        pulumi.set(__self__, "timezone", timezone)
+        if args is not None:
+            pulumi.set(__self__, "args", args)
+        if startup_commands is not None:
+            pulumi.set(__self__, "startup_commands", startup_commands)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> _builtins.str:
+        """
+        The CRON schedule in UNIX format.
+        """
+        return pulumi.get(self, "schedule")
+
+    @_builtins.property
+    @pulumi.getter
+    def timezone(self) -> _builtins.str:
+        """
+        The timezone for the CRON schedule, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        """
+        return pulumi.get(self, "timezone")
+
+    @_builtins.property
+    @pulumi.getter
+    def args(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The arguments passed to the startup command used by the triggered job (in list of string format).
+        """
+        return pulumi.get(self, "args")
+
+    @_builtins.property
+    @pulumi.getter(name="startupCommands")
+    def startup_commands(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The startup command that will be used by the triggered job (in list of string format).
+        """
+        return pulumi.get(self, "startup_commands")
 
 

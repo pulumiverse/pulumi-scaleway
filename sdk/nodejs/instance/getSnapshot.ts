@@ -75,6 +75,7 @@ export interface GetSnapshotResult {
     readonly projectId?: string;
     readonly sizeInGb: number;
     readonly snapshotId?: string;
+    readonly srn: string;
     readonly tags: string[];
     readonly type: string;
     readonly volumeId: string;

@@ -8,6 +8,7 @@ import typing
 # Export this package's modules as members:
 from .alias import *
 from .domain import *
+from .forwarding import *
 from .get_mailbox import *
 from .mailbox import *
 from ._inputs import *

@@ -11,6 +11,8 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Elasticmetal
 {
     /// <summary>
+    /// Creates and manages Scaleway Bare Metal Servers.
+    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

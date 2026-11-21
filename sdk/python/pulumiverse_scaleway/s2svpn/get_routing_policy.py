@@ -184,6 +184,8 @@ def get_routing_policy(name: Optional[_builtins.str] = None,
                        routing_policy_id: Optional[_builtins.str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRoutingPolicyResult:
     """
+    Gets information about a Site-to-Site VPN routing policy.
+
     For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
 
     ## Example Usage
@@ -240,6 +242,8 @@ def get_routing_policy_output(name: pulumi.Input[Optional[Optional[_builtins.str
                               routing_policy_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRoutingPolicyResult]:
     """
+    Gets information about a Site-to-Site VPN routing policy.
+
     For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
 
     ## Example Usage

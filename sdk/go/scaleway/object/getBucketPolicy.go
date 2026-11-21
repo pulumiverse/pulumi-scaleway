@@ -71,12 +71,11 @@ type LookupBucketPolicyArgs struct {
 // A collection of values returned by getBucketPolicy.
 type LookupBucketPolicyResult struct {
 	Bucket string `pulumi:"bucket"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
+	Id     string `pulumi:"id"`
 	// The content of the bucket policy in JSON format.
-	Policy    string  `pulumi:"policy"`
-	ProjectId *string `pulumi:"projectId"`
-	Region    *string `pulumi:"region"`
+	Policy    string `pulumi:"policy"`
+	ProjectId string `pulumi:"projectId"`
+	Region    string `pulumi:"region"`
 }
 
 func LookupBucketPolicyOutput(ctx *pulumi.Context, args LookupBucketPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupBucketPolicyResultOutput {
@@ -123,7 +122,6 @@ func (o LookupBucketPolicyResultOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBucketPolicyResult) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// The provider-assigned unique ID for this managed resource.
 func (o LookupBucketPolicyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBucketPolicyResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -133,12 +131,12 @@ func (o LookupBucketPolicyResultOutput) Policy() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBucketPolicyResult) string { return v.Policy }).(pulumi.StringOutput)
 }
 
-func (o LookupBucketPolicyResultOutput) ProjectId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBucketPolicyResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+func (o LookupBucketPolicyResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketPolicyResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o LookupBucketPolicyResultOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LookupBucketPolicyResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+func (o LookupBucketPolicyResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBucketPolicyResult) string { return v.Region }).(pulumi.StringOutput)
 }
 
 func init() {

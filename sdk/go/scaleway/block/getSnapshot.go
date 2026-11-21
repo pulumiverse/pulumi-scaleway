@@ -41,6 +41,7 @@ type LookupSnapshotArgs struct {
 // A collection of values returned by getSnapshot.
 type LookupSnapshotResult struct {
 	Id         string   `pulumi:"id"`
+	KmsKeyId   string   `pulumi:"kmsKeyId"`
 	Name       string   `pulumi:"name"`
 	ProjectId  string   `pulumi:"projectId"`
 	SnapshotId *string  `pulumi:"snapshotId"`
@@ -90,6 +91,10 @@ func (o LookupSnapshotResultOutput) ToLookupSnapshotResultOutputWithContext(ctx 
 
 func (o LookupSnapshotResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSnapshotResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupSnapshotResultOutput) KmsKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSnapshotResult) string { return v.KmsKeyId }).(pulumi.StringOutput)
 }
 
 func (o LookupSnapshotResultOutput) Name() pulumi.StringOutput {

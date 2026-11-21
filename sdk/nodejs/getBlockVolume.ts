@@ -50,6 +50,7 @@ export interface GetBlockVolumeResult {
     readonly id: string;
     readonly instanceVolumeId: string;
     readonly iops: number;
+    readonly kmsKeyId: string;
     readonly name: string;
     readonly projectId: string;
     readonly sizeInGb: number;

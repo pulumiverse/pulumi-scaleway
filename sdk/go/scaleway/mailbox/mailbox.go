@@ -159,6 +159,10 @@ type Mailbox struct {
 	DomainId pulumi.StringOutput `pulumi:"domainId"`
 	// Full email address of the mailbox (`local_part@domain`).
 	Email pulumi.StringOutput `pulumi:"email"`
+	// Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+	ForwardingEnabled pulumi.BoolOutput `pulumi:"forwardingEnabled"`
+	// Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
+	ForwardingKeepCopy pulumi.BoolOutput `pulumi:"forwardingKeepCopy"`
 	// Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
 	LocalPart pulumi.StringOutput `pulumi:"localPart"`
 	// Next renewal period (`monthly`, `yearly`, or `canceled`).
@@ -240,6 +244,10 @@ type mailboxState struct {
 	DomainId *string `pulumi:"domainId"`
 	// Full email address of the mailbox (`local_part@domain`).
 	Email *string `pulumi:"email"`
+	// Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+	ForwardingEnabled *bool `pulumi:"forwardingEnabled"`
+	// Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
+	ForwardingKeepCopy *bool `pulumi:"forwardingKeepCopy"`
 	// Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
 	LocalPart *string `pulumi:"localPart"`
 	// Next renewal period (`monthly`, `yearly`, or `canceled`).
@@ -272,6 +280,10 @@ type MailboxState struct {
 	DomainId pulumi.StringPtrInput
 	// Full email address of the mailbox (`local_part@domain`).
 	Email pulumi.StringPtrInput
+	// Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+	ForwardingEnabled pulumi.BoolPtrInput
+	// Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
+	ForwardingKeepCopy pulumi.BoolPtrInput
 	// Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
 	LocalPart pulumi.StringPtrInput
 	// Next renewal period (`monthly`, `yearly`, or `canceled`).
@@ -308,6 +320,10 @@ func MailboxExists(ctx *pulumi.Context,
 type mailboxArgs struct {
 	// UUID of the `mailbox.Domain` to which this mailbox belongs.
 	DomainId string `pulumi:"domainId"`
+	// Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+	ForwardingEnabled *bool `pulumi:"forwardingEnabled"`
+	// Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
+	ForwardingKeepCopy *bool `pulumi:"forwardingKeepCopy"`
 	// Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
 	LocalPart string `pulumi:"localPart"`
 	// Password for the mailbox. Conflicts with `passwordWo`. Stored in state.
@@ -325,6 +341,10 @@ type mailboxArgs struct {
 type MailboxArgs struct {
 	// UUID of the `mailbox.Domain` to which this mailbox belongs.
 	DomainId pulumi.StringInput
+	// Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+	ForwardingEnabled pulumi.BoolPtrInput
+	// Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
+	ForwardingKeepCopy pulumi.BoolPtrInput
 	// Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
 	LocalPart pulumi.StringInput
 	// Password for the mailbox. Conflicts with `passwordWo`. Stored in state.
@@ -443,6 +463,16 @@ func (o MailboxOutput) DomainId() pulumi.StringOutput {
 // Full email address of the mailbox (`local_part@domain`).
 func (o MailboxOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v *Mailbox) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
+}
+
+// Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+func (o MailboxOutput) ForwardingEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Mailbox) pulumi.BoolOutput { return v.ForwardingEnabled }).(pulumi.BoolOutput)
+}
+
+// Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
+func (o MailboxOutput) ForwardingKeepCopy() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Mailbox) pulumi.BoolOutput { return v.ForwardingKeepCopy }).(pulumi.BoolOutput)
 }
 
 // Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.

@@ -380,6 +380,10 @@ export class Server extends pulumi.CustomResource {
      */
     declare public readonly securityGroupId: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the server.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      */
     declare public readonly state: pulumi.Output<string>;
@@ -445,6 +449,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["replaceOnTypeChange"] = state?.replaceOnTypeChange;
             resourceInputs["rootVolume"] = state?.rootVolume;
             resourceInputs["securityGroupId"] = state?.securityGroupId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["state"] = state?.state;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["type"] = state?.type;
@@ -482,6 +487,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["zone"] = args?.zone;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["placementGroupPolicyRespected"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/instanceServer:InstanceServer" }] };
@@ -605,6 +611,10 @@ export interface ServerState {
      * > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
      */
     securityGroupId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the server.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      */

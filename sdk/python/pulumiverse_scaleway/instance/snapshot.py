@@ -154,6 +154,7 @@ class _SnapshotState:
                  organization_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  volume_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -168,6 +169,7 @@ class _SnapshotState:
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the snapshot is
                associated with.
         :param pulumi.Input[_builtins.int] size_in_gb: (Optional) The size of the snapshot.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
         :param pulumi.Input[_builtins.str] type: The snapshot's volume type. The possible values are: `l_ssd` (Local SSD).
                Updates to this field will recreate a new resource.
@@ -187,6 +189,8 @@ class _SnapshotState:
             pulumi.set(__self__, "project_id", project_id)
         if size_in_gb is not None:
             pulumi.set(__self__, "size_in_gb", size_in_gb)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if type is not None:
@@ -268,6 +272,18 @@ class _SnapshotState:
     @size_in_gb.setter
     def size_in_gb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size_in_gb", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the snapshot.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -520,6 +536,7 @@ class Snapshot(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["size_in_gb"] = None
+            __props__.__dict__["srn"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/instanceSnapshot:InstanceSnapshot")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Snapshot, __self__).__init__(
@@ -538,6 +555,7 @@ class Snapshot(pulumi.CustomResource):
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             volume_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -556,6 +574,7 @@ class Snapshot(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the snapshot is
                associated with.
         :param pulumi.Input[_builtins.int] size_in_gb: (Optional) The size of the snapshot.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the snapshot.
         :param pulumi.Input[_builtins.str] type: The snapshot's volume type. The possible values are: `l_ssd` (Local SSD).
                Updates to this field will recreate a new resource.
@@ -573,6 +592,7 @@ class Snapshot(pulumi.CustomResource):
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["size_in_gb"] = size_in_gb
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
         __props__.__dict__["volume_id"] = volume_id
@@ -588,6 +608,7 @@ class Snapshot(pulumi.CustomResource):
             organization_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             volume_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -599,6 +620,7 @@ class Snapshot(pulumi.CustomResource):
         __props__["organizationId"] = organization_id
         __props__["projectId"] = project_id
         __props__["sizeInGb"] = size_in_gb
+        __props__["srn"] = srn
         __props__["tags"] = tags
         __props__["type"] = type
         __props__["volumeId"] = volume_id
@@ -653,6 +675,14 @@ class Snapshot(pulumi.CustomResource):
         (Optional) The size of the snapshot.
         """
         return pulumi.get(self, "size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the snapshot.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

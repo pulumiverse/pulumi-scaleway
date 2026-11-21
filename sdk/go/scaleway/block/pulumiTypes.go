@@ -664,6 +664,8 @@ func (o SnapshotTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
 type GetSnapshotsSnapshot struct {
 	// The ID of the snapshot in the `zone/uuid` format.
 	Id string `pulumi:"id"`
+	// The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+	KmsKeyId string `pulumi:"kmsKeyId"`
 	// Filter snapshots by their name. Snapshots with a matching name are listed.
 	Name string `pulumi:"name"`
 	// The ID of the Project the snapshots are associated with, used as filter.
@@ -692,6 +694,8 @@ type GetSnapshotsSnapshotInput interface {
 type GetSnapshotsSnapshotArgs struct {
 	// The ID of the snapshot in the `zone/uuid` format.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+	KmsKeyId pulumi.StringInput `pulumi:"kmsKeyId"`
 	// Filter snapshots by their name. Snapshots with a matching name are listed.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The ID of the Project the snapshots are associated with, used as filter.
@@ -760,6 +764,11 @@ func (o GetSnapshotsSnapshotOutput) ToGetSnapshotsSnapshotOutputWithContext(ctx 
 // The ID of the snapshot in the `zone/uuid` format.
 func (o GetSnapshotsSnapshotOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+func (o GetSnapshotsSnapshotOutput) KmsKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotsSnapshot) string { return v.KmsKeyId }).(pulumi.StringOutput)
 }
 
 // Filter snapshots by their name. Snapshots with a matching name are listed.

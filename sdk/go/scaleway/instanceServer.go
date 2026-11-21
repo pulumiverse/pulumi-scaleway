@@ -482,6 +482,8 @@ type InstanceServer struct {
 	//
 	// > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
+	// The Scaleway Resource Name (SRN) of the server.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringOutput `pulumi:"state"`
 	// The tags associated with the server.
@@ -604,6 +606,8 @@ type instanceServerState struct {
 	//
 	// > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
+	// The Scaleway Resource Name (SRN) of the server.
+	Srn *string `pulumi:"srn"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State *string `pulumi:"state"`
 	// The tags associated with the server.
@@ -694,6 +698,8 @@ type InstanceServerState struct {
 	//
 	// > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 	SecurityGroupId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the server.
+	Srn pulumi.StringPtrInput
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrInput
 	// The tags associated with the server.
@@ -1117,6 +1123,11 @@ func (o InstanceServerOutput) RootVolume() InstanceServerRootVolumeOutput {
 // > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 func (o InstanceServerOutput) SecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.SecurityGroupId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the server.
+func (o InstanceServerOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The state of the server. Possible values are: `started`, `stopped` or `standby`.
