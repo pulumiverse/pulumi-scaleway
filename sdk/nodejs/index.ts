@@ -115,6 +115,11 @@ export type DatabaseUser = import("./databaseUser").DatabaseUser;
 export const DatabaseUser: typeof import("./databaseUser").DatabaseUser = null as any;
 utilities.lazyLoad(exports, ["DatabaseUser"], () => require("./databaseUser"));
 
+export { DataorchestratorWorkflowArgs, DataorchestratorWorkflowState } from "./dataorchestratorWorkflow";
+export type DataorchestratorWorkflow = import("./dataorchestratorWorkflow").DataorchestratorWorkflow;
+export const DataorchestratorWorkflow: typeof import("./dataorchestratorWorkflow").DataorchestratorWorkflow = null as any;
+utilities.lazyLoad(exports, ["DataorchestratorWorkflow"], () => require("./dataorchestratorWorkflow"));
+
 export { DomainRecordArgs, DomainRecordState } from "./domainRecord";
 export type DomainRecord = import("./domainRecord").DomainRecord;
 export const DomainRecord: typeof import("./domainRecord").DomainRecord = null as any;
@@ -314,6 +319,16 @@ export { GetDatabasePrivilegeArgs, GetDatabasePrivilegeResult, GetDatabasePrivil
 export const getDatabasePrivilege: typeof import("./getDatabasePrivilege").getDatabasePrivilege = null as any;
 export const getDatabasePrivilegeOutput: typeof import("./getDatabasePrivilege").getDatabasePrivilegeOutput = null as any;
 utilities.lazyLoad(exports, ["getDatabasePrivilege","getDatabasePrivilegeOutput"], () => require("./getDatabasePrivilege"));
+
+export { GetDataorchestratorWorkflowArgs, GetDataorchestratorWorkflowResult, GetDataorchestratorWorkflowOutputArgs } from "./getDataorchestratorWorkflow";
+export const getDataorchestratorWorkflow: typeof import("./getDataorchestratorWorkflow").getDataorchestratorWorkflow = null as any;
+export const getDataorchestratorWorkflowOutput: typeof import("./getDataorchestratorWorkflow").getDataorchestratorWorkflowOutput = null as any;
+utilities.lazyLoad(exports, ["getDataorchestratorWorkflow","getDataorchestratorWorkflowOutput"], () => require("./getDataorchestratorWorkflow"));
+
+export { GetDataorchestratorWorkflowRunArgs, GetDataorchestratorWorkflowRunResult, GetDataorchestratorWorkflowRunOutputArgs } from "./getDataorchestratorWorkflowRun";
+export const getDataorchestratorWorkflowRun: typeof import("./getDataorchestratorWorkflowRun").getDataorchestratorWorkflowRun = null as any;
+export const getDataorchestratorWorkflowRunOutput: typeof import("./getDataorchestratorWorkflowRun").getDataorchestratorWorkflowRunOutput = null as any;
+utilities.lazyLoad(exports, ["getDataorchestratorWorkflowRun","getDataorchestratorWorkflowRunOutput"], () => require("./getDataorchestratorWorkflowRun"));
 
 export { GetDomainRecordArgs, GetDomainRecordResult, GetDomainRecordOutputArgs } from "./getDomainRecord";
 export const getDomainRecord: typeof import("./getDomainRecord").getDomainRecord = null as any;
@@ -1161,6 +1176,8 @@ const _module = {
                 return new DatabaseReadReplica(name, <any>undefined, { urn })
             case "scaleway:index/databaseUser:DatabaseUser":
                 return new DatabaseUser(name, <any>undefined, { urn })
+            case "scaleway:index/dataorchestratorWorkflow:DataorchestratorWorkflow":
+                return new DataorchestratorWorkflow(name, <any>undefined, { urn })
             case "scaleway:index/domainRecord:DomainRecord":
                 return new DomainRecord(name, <any>undefined, { urn })
             case "scaleway:index/domainZone:DomainZone":
@@ -1374,6 +1391,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/databaseInstance", _mod
 pulumi.runtime.registerResourceModule("scaleway", "index/databasePrivilege", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseReadReplica", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseUser", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/dataorchestratorWorkflow", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainRecord", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainZone", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/edgeServicesBackendStage", _module)

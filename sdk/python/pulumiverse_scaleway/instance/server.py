@@ -517,6 +517,7 @@ class _ServerState:
                  replace_on_type_change: pulumi.Input[Optional[_builtins.bool]] = None,
                  root_volume: pulumi.Input[Optional['ServerRootVolumeArgs']] = None,
                  security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  state: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -568,6 +569,7 @@ class _ServerState:
         :param pulumi.Input[_builtins.str] security_group_id: The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
                
                > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the server.
         :param pulumi.Input[_builtins.str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the server.
         :param pulumi.Input[_builtins.str] type: The commercial type of the server.
@@ -631,6 +633,8 @@ class _ServerState:
             pulumi.set(__self__, "root_volume", root_volume)
         if security_group_id is not None:
             pulumi.set(__self__, "security_group_id", security_group_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if state is not None:
             pulumi.set(__self__, "state", state)
         if tags is not None:
@@ -927,6 +931,18 @@ class _ServerState:
     @security_group_id.setter
     def security_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "security_group_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the server.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1592,6 +1608,7 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["zone"] = zone
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["placement_group_policy_respected"] = None
+            __props__.__dict__["srn"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/instanceServer:InstanceServer")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Server, __self__).__init__(
@@ -1626,6 +1643,7 @@ class Server(pulumi.CustomResource):
             replace_on_type_change: pulumi.Input[Optional[_builtins.bool]] = None,
             root_volume: pulumi.Input[Optional[Union['ServerRootVolumeArgs', 'ServerRootVolumeArgsDict', 'outputs.ServerRootVolume']]] = None,
             security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1681,6 +1699,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] security_group_id: The [security group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group9) the server is attached to.
                
                > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the server.
         :param pulumi.Input[_builtins.str] state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the server.
         :param pulumi.Input[_builtins.str] type: The commercial type of the server.
@@ -1723,6 +1742,7 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["replace_on_type_change"] = replace_on_type_change
         __props__.__dict__["root_volume"] = root_volume
         __props__.__dict__["security_group_id"] = security_group_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["state"] = state
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
@@ -1755,6 +1775,7 @@ class Server(pulumi.CustomResource):
             replace_on_type_change: pulumi.Input[Optional[_builtins.bool]] = None,
             root_volume: pulumi.Input[Optional[Union['ServerRootVolumeArgs', 'ServerRootVolumeArgsDict', 'outputs.ServerRootVolume']]] = None,
             security_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1783,6 +1804,7 @@ class Server(pulumi.CustomResource):
         __props__["replaceOnTypeChange"] = replace_on_type_change
         __props__["rootVolume"] = root_volume
         __props__["securityGroupId"] = security_group_id
+        __props__["srn"] = srn
         __props__["state"] = state
         __props__["tags"] = tags
         __props__["type"] = type
@@ -1987,6 +2009,14 @@ class Server(pulumi.CustomResource):
         > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
         """
         return pulumi.get(self, "security_group_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the server.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

@@ -15,6 +15,11 @@ export type Domain = import("./domain").Domain;
 export const Domain: typeof import("./domain").Domain = null as any;
 utilities.lazyLoad(exports, ["Domain"], () => require("./domain"));
 
+export { ForwardingArgs, ForwardingState } from "./forwarding";
+export type Forwarding = import("./forwarding").Forwarding;
+export const Forwarding: typeof import("./forwarding").Forwarding = null as any;
+utilities.lazyLoad(exports, ["Forwarding"], () => require("./forwarding"));
+
 export { GetMailboxArgs, GetMailboxResult, GetMailboxOutputArgs } from "./getMailbox";
 export const getMailbox: typeof import("./getMailbox").getMailbox = null as any;
 export const getMailboxOutput: typeof import("./getMailbox").getMailboxOutput = null as any;
@@ -34,6 +39,8 @@ const _module = {
                 return new Alias(name, <any>undefined, { urn })
             case "scaleway:mailbox/domain:Domain":
                 return new Domain(name, <any>undefined, { urn })
+            case "scaleway:mailbox/forwarding:Forwarding":
+                return new Forwarding(name, <any>undefined, { urn })
             case "scaleway:mailbox/mailbox:Mailbox":
                 return new Mailbox(name, <any>undefined, { urn })
             default:
@@ -43,4 +50,5 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("scaleway", "mailbox/alias", _module)
 pulumi.runtime.registerResourceModule("scaleway", "mailbox/domain", _module)
+pulumi.runtime.registerResourceModule("scaleway", "mailbox/forwarding", _module)
 pulumi.runtime.registerResourceModule("scaleway", "mailbox/mailbox", _module)

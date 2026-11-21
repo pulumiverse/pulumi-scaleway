@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Alias{}
 	case "scaleway:mailbox/domain:Domain":
 		r = &Domain{}
+	case "scaleway:mailbox/forwarding:Forwarding":
+		r = &Forwarding{}
 	case "scaleway:mailbox/mailbox:Mailbox":
 		r = &Mailbox{}
 	default:
@@ -48,6 +50,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"mailbox/domain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"mailbox/forwarding",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

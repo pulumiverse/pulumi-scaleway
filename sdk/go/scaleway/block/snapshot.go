@@ -163,6 +163,8 @@ type Snapshot struct {
 	Export SnapshotExportPtrOutput `pulumi:"export"`
 	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import SnapshotImportPtrOutput `pulumi:"import"`
+	// The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+	KmsKeyId pulumi.StringOutput `pulumi:"kmsKeyId"`
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ). The ID of the Scaleway Project the snapshot is associated with.
@@ -221,6 +223,8 @@ type snapshotState struct {
 	Export *SnapshotExport `pulumi:"export"`
 	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import *SnapshotImport `pulumi:"import"`
+	// The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+	KmsKeyId *string `pulumi:"kmsKeyId"`
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
 	// ). The ID of the Scaleway Project the snapshot is associated with.
@@ -244,6 +248,8 @@ type SnapshotState struct {
 	Export SnapshotExportPtrInput
 	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import SnapshotImportPtrInput
+	// The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+	KmsKeyId pulumi.StringPtrInput
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
 	// ). The ID of the Scaleway Project the snapshot is associated with.
@@ -410,6 +416,11 @@ func (o SnapshotOutput) Export() SnapshotExportPtrOutput {
 // Use this block to import a QCOW image from Object Storage to create a volume.
 func (o SnapshotOutput) Import() SnapshotImportPtrOutput {
 	return o.ApplyT(func(v *Snapshot) SnapshotImportPtrOutput { return v.Import }).(SnapshotImportPtrOutput)
+}
+
+// The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+func (o SnapshotOutput) KmsKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.KmsKeyId }).(pulumi.StringOutput)
 }
 
 // The name of the snapshot. If not provided, a name will be randomly generated.

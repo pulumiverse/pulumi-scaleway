@@ -167,16 +167,13 @@ namespace Pulumiverse.Scaleway.Object
     public sealed class GetBucketPolicyResult
     {
         public readonly string Bucket;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         /// <summary>
         /// The content of the bucket policy in JSON format.
         /// </summary>
         public readonly string Policy;
-        public readonly string? ProjectId;
-        public readonly string? Region;
+        public readonly string ProjectId;
+        public readonly string Region;
 
         [OutputConstructor]
         private GetBucketPolicyResult(
@@ -186,9 +183,9 @@ namespace Pulumiverse.Scaleway.Object
 
             string policy,
 
-            string? projectId,
+            string projectId,
 
-            string? region)
+            string region)
         {
             Bucket = bucket;
             Id = id;

@@ -52,6 +52,7 @@ export interface GetSnapshotArgs {
  */
 export interface GetSnapshotResult {
     readonly id: string;
+    readonly kmsKeyId: string;
     readonly name: string;
     readonly projectId: string;
     readonly snapshotId?: string;

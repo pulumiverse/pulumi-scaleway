@@ -104,6 +104,10 @@ export class Volume extends pulumi.CustomResource {
      */
     declare public readonly iops: pulumi.Output<number>;
     /**
+     * UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instanceVolumeId`. When creating from a `snapshotId`, the value must match the snapshot's `kmsKeyId`.
+     */
+    declare public readonly kmsKeyId: pulumi.Output<string>;
+    /**
      * The name of the volume. If not provided, a name will be randomly generated.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -147,6 +151,7 @@ export class Volume extends pulumi.CustomResource {
             const state = argsOrState as VolumeState | undefined;
             resourceInputs["instanceVolumeId"] = state?.instanceVolumeId;
             resourceInputs["iops"] = state?.iops;
+            resourceInputs["kmsKeyId"] = state?.kmsKeyId;
             resourceInputs["name"] = state?.name;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["sizeInGb"] = state?.sizeInGb;
@@ -161,6 +166,7 @@ export class Volume extends pulumi.CustomResource {
             }
             resourceInputs["instanceVolumeId"] = args?.instanceVolumeId;
             resourceInputs["iops"] = args?.iops;
+            resourceInputs["kmsKeyId"] = args?.kmsKeyId;
             resourceInputs["name"] = args?.name;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["sizeInGb"] = args?.sizeInGb;
@@ -188,6 +194,10 @@ export interface VolumeState {
      * The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
      */
     iops?: pulumi.Input<number | undefined>;
+    /**
+     * UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instanceVolumeId`. When creating from a `snapshotId`, the value must match the snapshot's `kmsKeyId`.
+     */
+    kmsKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the volume. If not provided, a name will be randomly generated.
      */
@@ -230,6 +240,10 @@ export interface VolumeArgs {
      * The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
      */
     iops: pulumi.Input<number>;
+    /**
+     * UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instanceVolumeId`. When creating from a `snapshotId`, the value must match the snapshot's `kmsKeyId`.
+     */
+    kmsKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the volume. If not provided, a name will be randomly generated.
      */

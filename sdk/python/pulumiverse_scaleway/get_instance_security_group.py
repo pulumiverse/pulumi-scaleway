@@ -29,7 +29,7 @@ class GetInstanceSecurityGroupResult:
     """
     A collection of values returned by getInstanceSecurityGroup.
     """
-    def __init__(__self__, description=None, enable_default_security=None, external_rules=None, id=None, inbound_default_policy=None, inbound_rules=None, name=None, organization_id=None, outbound_default_policy=None, outbound_rules=None, project_id=None, security_group_id=None, stateful=None, tags=None, zone=None):
+    def __init__(__self__, description=None, enable_default_security=None, external_rules=None, id=None, inbound_default_policy=None, inbound_rules=None, name=None, organization_id=None, outbound_default_policy=None, outbound_rules=None, project_id=None, security_group_id=None, srn=None, stateful=None, tags=None, zone=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -66,6 +66,9 @@ class GetInstanceSecurityGroupResult:
         if security_group_id and not isinstance(security_group_id, str):
             raise TypeError("Expected argument 'security_group_id' to be a str")
         pulumi.set(__self__, "security_group_id", security_group_id)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if stateful and not isinstance(stateful, bool):
             raise TypeError("Expected argument 'stateful' to be a bool")
         pulumi.set(__self__, "stateful", stateful)
@@ -156,6 +159,14 @@ class GetInstanceSecurityGroupResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the security group.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def stateful(self) -> _builtins.bool:
         return pulumi.get(self, "stateful")
 
@@ -188,6 +199,7 @@ class AwaitableGetInstanceSecurityGroupResult(GetInstanceSecurityGroupResult):
             outbound_rules=self.outbound_rules,
             project_id=self.project_id,
             security_group_id=self.security_group_id,
+            srn=self.srn,
             stateful=self.stateful,
             tags=self.tags,
             zone=self.zone)
@@ -229,6 +241,7 @@ def get_instance_security_group(name: Optional[_builtins.str] = None,
         outbound_rules=pulumi.get(__ret__, 'outbound_rules'),
         project_id=pulumi.get(__ret__, 'project_id'),
         security_group_id=pulumi.get(__ret__, 'security_group_id'),
+        srn=pulumi.get(__ret__, 'srn'),
         stateful=pulumi.get(__ret__, 'stateful'),
         tags=pulumi.get(__ret__, 'tags'),
         zone=pulumi.get(__ret__, 'zone'))
@@ -267,6 +280,7 @@ def get_instance_security_group_output(name: pulumi.Input[Optional[Optional[_bui
         outbound_rules=pulumi.get(__response__, 'outbound_rules'),
         project_id=pulumi.get(__response__, 'project_id'),
         security_group_id=pulumi.get(__response__, 'security_group_id'),
+        srn=pulumi.get(__response__, 'srn'),
         stateful=pulumi.get(__response__, 'stateful'),
         tags=pulumi.get(__response__, 'tags'),
         zone=pulumi.get(__response__, 'zone')))

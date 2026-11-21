@@ -41,6 +41,8 @@ __all__ = [
     'RegistrationAdministrativeContactExtensionFrIndividualInfoArgsDict',
     'RegistrationAdministrativeContactExtensionFrTrademarkInfoArgs',
     'RegistrationAdministrativeContactExtensionFrTrademarkInfoArgsDict',
+    'RegistrationAdministrativeContactExtensionNlArgs',
+    'RegistrationAdministrativeContactExtensionNlArgsDict',
     'RegistrationDsRecordArgs',
     'RegistrationDsRecordArgsDict',
     'RegistrationDsRecordDigestArgs',
@@ -65,6 +67,8 @@ __all__ = [
     'RegistrationOwnerContactExtensionFrIndividualInfoArgsDict',
     'RegistrationOwnerContactExtensionFrTrademarkInfoArgs',
     'RegistrationOwnerContactExtensionFrTrademarkInfoArgsDict',
+    'RegistrationOwnerContactExtensionNlArgs',
+    'RegistrationOwnerContactExtensionNlArgsDict',
     'RegistrationTechnicalContactArgs',
     'RegistrationTechnicalContactArgsDict',
     'RegistrationTechnicalContactExtensionEuArgs',
@@ -81,6 +85,8 @@ __all__ = [
     'RegistrationTechnicalContactExtensionFrIndividualInfoArgsDict',
     'RegistrationTechnicalContactExtensionFrTrademarkInfoArgs',
     'RegistrationTechnicalContactExtensionFrTrademarkInfoArgsDict',
+    'RegistrationTechnicalContactExtensionNlArgs',
+    'RegistrationTechnicalContactExtensionNlArgsDict',
 ]
 
 class RecordGeoIpArgsDict(TypedDict):
@@ -405,7 +411,7 @@ class RegistrationAdministrativeContactArgsDict(TypedDict):
     """
     legal_form: pulumi.Input[_builtins.str]
     """
-    Legal form of the contact (e.g., 'individual' or 'organization').
+    Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
     """
     phone_number: pulumi.Input[_builtins.str]
     """
@@ -439,9 +445,9 @@ class RegistrationAdministrativeContactArgsDict(TypedDict):
     """
     Details specific to French domain extensions.
     """
-    extension_nls: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    extension_nls: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationAdministrativeContactExtensionNlArgsDict']]]]]
     """
-    Extension details specific to Dutch domain registrations.
+    SIDN-specific details for Dutch (.nl) domain registrations.
     """
     fax_number: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -486,7 +492,7 @@ class RegistrationAdministrativeContactArgs:
                  email_alt: pulumi.Input[Optional[_builtins.str]] = None,
                  extension_eu: pulumi.Input[Optional['RegistrationAdministrativeContactExtensionEuArgs']] = None,
                  extension_fr: pulumi.Input[Optional['RegistrationAdministrativeContactExtensionFrArgs']] = None,
-                 extension_nls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 extension_nls: pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationAdministrativeContactExtensionNlArgs']]]] = None,
                  fax_number: pulumi.Input[Optional[_builtins.str]] = None,
                  lang: pulumi.Input[Optional[_builtins.str]] = None,
                  resale: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -500,7 +506,7 @@ class RegistrationAdministrativeContactArgs:
         :param pulumi.Input[_builtins.str] email: Primary email address of the contact.
         :param pulumi.Input[_builtins.str] firstname: First name of the contact.
         :param pulumi.Input[_builtins.str] lastname: Last name of the contact.
-        :param pulumi.Input[_builtins.str] legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
+        :param pulumi.Input[_builtins.str] legal_form: Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
         :param pulumi.Input[_builtins.str] phone_number: Primary phone number of the contact.
         :param pulumi.Input[_builtins.str] zip: Postal code of the contact's address.
         :param pulumi.Input[_builtins.str] address_line2: Secondary address line for the contact (optional).
@@ -509,7 +515,7 @@ class RegistrationAdministrativeContactArgs:
         :param pulumi.Input[_builtins.str] email_alt: Alternative email address for the contact.
         :param pulumi.Input['RegistrationAdministrativeContactExtensionEuArgs'] extension_eu: Details specific to European domain extensions.
         :param pulumi.Input['RegistrationAdministrativeContactExtensionFrArgs'] extension_fr: Details specific to French domain extensions.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] extension_nls: Extension details specific to Dutch domain registrations.
+        :param pulumi.Input[Sequence[pulumi.Input['RegistrationAdministrativeContactExtensionNlArgs']]] extension_nls: SIDN-specific details for Dutch (.nl) domain registrations.
         :param pulumi.Input[_builtins.str] fax_number: Fax number for the contact (if available).
         :param pulumi.Input[_builtins.str] lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
         :param pulumi.Input[_builtins.bool] resale: Indicates if the contact is used for resale purposes.
@@ -629,7 +635,7 @@ class RegistrationAdministrativeContactArgs:
     @pulumi.getter(name="legalForm")
     def legal_form(self) -> pulumi.Input[_builtins.str]:
         """
-        Legal form of the contact (e.g., 'individual' or 'organization').
+        Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
         """
         return pulumi.get(self, "legal_form")
 
@@ -735,14 +741,14 @@ class RegistrationAdministrativeContactArgs:
 
     @_builtins.property
     @pulumi.getter(name="extensionNls")
-    def extension_nls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+    def extension_nls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationAdministrativeContactExtensionNlArgs']]]]:
         """
-        Extension details specific to Dutch domain registrations.
+        SIDN-specific details for Dutch (.nl) domain registrations.
         """
         return pulumi.get(self, "extension_nls")
 
     @extension_nls.setter
-    def extension_nls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+    def extension_nls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationAdministrativeContactExtensionNlArgs']]]]):
         pulumi.set(self, "extension_nls", value)
 
     @_builtins.property
@@ -1161,6 +1167,55 @@ class RegistrationAdministrativeContactExtensionFrTrademarkInfoArgs:
         pulumi.set(self, "trademark_inpi", value)
 
 
+class RegistrationAdministrativeContactExtensionNlArgsDict(TypedDict):
+    legal_form: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+    """
+    legal_form_registration_number: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+    """
+
+@pulumi.input_type
+class RegistrationAdministrativeContactExtensionNlArgs:
+    def __init__(__self__, *,
+                 legal_form: pulumi.Input[Optional[_builtins.str]] = None,
+                 legal_form_registration_number: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] legal_form: SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+        :param pulumi.Input[_builtins.str] legal_form_registration_number: KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+        """
+        if legal_form is not None:
+            pulumi.set(__self__, "legal_form", legal_form)
+        if legal_form_registration_number is not None:
+            pulumi.set(__self__, "legal_form_registration_number", legal_form_registration_number)
+
+    @_builtins.property
+    @pulumi.getter(name="legalForm")
+    def legal_form(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+        """
+        return pulumi.get(self, "legal_form")
+
+    @legal_form.setter
+    def legal_form(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "legal_form", value)
+
+    @_builtins.property
+    @pulumi.getter(name="legalFormRegistrationNumber")
+    def legal_form_registration_number(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+        """
+        return pulumi.get(self, "legal_form_registration_number")
+
+    @legal_form_registration_number.setter
+    def legal_form_registration_number(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "legal_form_registration_number", value)
+
+
 class RegistrationDsRecordArgsDict(TypedDict):
     algorithm: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -1402,7 +1457,7 @@ class RegistrationOwnerContactArgsDict(TypedDict):
     """
     legal_form: pulumi.Input[_builtins.str]
     """
-    Legal form of the contact (e.g., 'individual' or 'organization').
+    Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
     """
     phone_number: pulumi.Input[_builtins.str]
     """
@@ -1436,9 +1491,9 @@ class RegistrationOwnerContactArgsDict(TypedDict):
     """
     Details specific to French domain extensions.
     """
-    extension_nls: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    extension_nls: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationOwnerContactExtensionNlArgsDict']]]]]
     """
-    Extension details specific to Dutch domain registrations.
+    SIDN-specific details for Dutch (.nl) domain registrations.
     """
     fax_number: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -1483,7 +1538,7 @@ class RegistrationOwnerContactArgs:
                  email_alt: pulumi.Input[Optional[_builtins.str]] = None,
                  extension_eu: pulumi.Input[Optional['RegistrationOwnerContactExtensionEuArgs']] = None,
                  extension_fr: pulumi.Input[Optional['RegistrationOwnerContactExtensionFrArgs']] = None,
-                 extension_nls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 extension_nls: pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationOwnerContactExtensionNlArgs']]]] = None,
                  fax_number: pulumi.Input[Optional[_builtins.str]] = None,
                  lang: pulumi.Input[Optional[_builtins.str]] = None,
                  resale: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1497,7 +1552,7 @@ class RegistrationOwnerContactArgs:
         :param pulumi.Input[_builtins.str] email: Primary email address of the contact.
         :param pulumi.Input[_builtins.str] firstname: First name of the contact.
         :param pulumi.Input[_builtins.str] lastname: Last name of the contact.
-        :param pulumi.Input[_builtins.str] legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
+        :param pulumi.Input[_builtins.str] legal_form: Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
         :param pulumi.Input[_builtins.str] phone_number: Primary phone number of the contact.
         :param pulumi.Input[_builtins.str] zip: Postal code of the contact's address.
         :param pulumi.Input[_builtins.str] address_line2: Secondary address line for the contact (optional).
@@ -1506,7 +1561,7 @@ class RegistrationOwnerContactArgs:
         :param pulumi.Input[_builtins.str] email_alt: Alternative email address for the contact.
         :param pulumi.Input['RegistrationOwnerContactExtensionEuArgs'] extension_eu: Details specific to European domain extensions.
         :param pulumi.Input['RegistrationOwnerContactExtensionFrArgs'] extension_fr: Details specific to French domain extensions.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] extension_nls: Extension details specific to Dutch domain registrations.
+        :param pulumi.Input[Sequence[pulumi.Input['RegistrationOwnerContactExtensionNlArgs']]] extension_nls: SIDN-specific details for Dutch (.nl) domain registrations.
         :param pulumi.Input[_builtins.str] fax_number: Fax number for the contact (if available).
         :param pulumi.Input[_builtins.str] lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
         :param pulumi.Input[_builtins.bool] resale: Indicates if the contact is used for resale purposes.
@@ -1626,7 +1681,7 @@ class RegistrationOwnerContactArgs:
     @pulumi.getter(name="legalForm")
     def legal_form(self) -> pulumi.Input[_builtins.str]:
         """
-        Legal form of the contact (e.g., 'individual' or 'organization').
+        Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
         """
         return pulumi.get(self, "legal_form")
 
@@ -1732,14 +1787,14 @@ class RegistrationOwnerContactArgs:
 
     @_builtins.property
     @pulumi.getter(name="extensionNls")
-    def extension_nls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+    def extension_nls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationOwnerContactExtensionNlArgs']]]]:
         """
-        Extension details specific to Dutch domain registrations.
+        SIDN-specific details for Dutch (.nl) domain registrations.
         """
         return pulumi.get(self, "extension_nls")
 
     @extension_nls.setter
-    def extension_nls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+    def extension_nls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationOwnerContactExtensionNlArgs']]]]):
         pulumi.set(self, "extension_nls", value)
 
     @_builtins.property
@@ -2158,6 +2213,55 @@ class RegistrationOwnerContactExtensionFrTrademarkInfoArgs:
         pulumi.set(self, "trademark_inpi", value)
 
 
+class RegistrationOwnerContactExtensionNlArgsDict(TypedDict):
+    legal_form: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+    """
+    legal_form_registration_number: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+    """
+
+@pulumi.input_type
+class RegistrationOwnerContactExtensionNlArgs:
+    def __init__(__self__, *,
+                 legal_form: pulumi.Input[Optional[_builtins.str]] = None,
+                 legal_form_registration_number: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] legal_form: SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+        :param pulumi.Input[_builtins.str] legal_form_registration_number: KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+        """
+        if legal_form is not None:
+            pulumi.set(__self__, "legal_form", legal_form)
+        if legal_form_registration_number is not None:
+            pulumi.set(__self__, "legal_form_registration_number", legal_form_registration_number)
+
+    @_builtins.property
+    @pulumi.getter(name="legalForm")
+    def legal_form(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+        """
+        return pulumi.get(self, "legal_form")
+
+    @legal_form.setter
+    def legal_form(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "legal_form", value)
+
+    @_builtins.property
+    @pulumi.getter(name="legalFormRegistrationNumber")
+    def legal_form_registration_number(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+        """
+        return pulumi.get(self, "legal_form_registration_number")
+
+    @legal_form_registration_number.setter
+    def legal_form_registration_number(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "legal_form_registration_number", value)
+
+
 class RegistrationTechnicalContactArgsDict(TypedDict):
     address_line1: pulumi.Input[_builtins.str]
     """
@@ -2185,7 +2289,7 @@ class RegistrationTechnicalContactArgsDict(TypedDict):
     """
     legal_form: pulumi.Input[_builtins.str]
     """
-    Legal form of the contact (e.g., 'individual' or 'organization').
+    Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
     """
     phone_number: pulumi.Input[_builtins.str]
     """
@@ -2219,9 +2323,9 @@ class RegistrationTechnicalContactArgsDict(TypedDict):
     """
     Details specific to French domain extensions.
     """
-    extension_nls: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    extension_nls: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationTechnicalContactExtensionNlArgsDict']]]]]
     """
-    Extension details specific to Dutch domain registrations.
+    SIDN-specific details for Dutch (.nl) domain registrations.
     """
     fax_number: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -2266,7 +2370,7 @@ class RegistrationTechnicalContactArgs:
                  email_alt: pulumi.Input[Optional[_builtins.str]] = None,
                  extension_eu: pulumi.Input[Optional['RegistrationTechnicalContactExtensionEuArgs']] = None,
                  extension_fr: pulumi.Input[Optional['RegistrationTechnicalContactExtensionFrArgs']] = None,
-                 extension_nls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 extension_nls: pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationTechnicalContactExtensionNlArgs']]]] = None,
                  fax_number: pulumi.Input[Optional[_builtins.str]] = None,
                  lang: pulumi.Input[Optional[_builtins.str]] = None,
                  resale: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -2280,7 +2384,7 @@ class RegistrationTechnicalContactArgs:
         :param pulumi.Input[_builtins.str] email: Primary email address of the contact.
         :param pulumi.Input[_builtins.str] firstname: First name of the contact.
         :param pulumi.Input[_builtins.str] lastname: Last name of the contact.
-        :param pulumi.Input[_builtins.str] legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
+        :param pulumi.Input[_builtins.str] legal_form: Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
         :param pulumi.Input[_builtins.str] phone_number: Primary phone number of the contact.
         :param pulumi.Input[_builtins.str] zip: Postal code of the contact's address.
         :param pulumi.Input[_builtins.str] address_line2: Secondary address line for the contact (optional).
@@ -2289,7 +2393,7 @@ class RegistrationTechnicalContactArgs:
         :param pulumi.Input[_builtins.str] email_alt: Alternative email address for the contact.
         :param pulumi.Input['RegistrationTechnicalContactExtensionEuArgs'] extension_eu: Details specific to European domain extensions.
         :param pulumi.Input['RegistrationTechnicalContactExtensionFrArgs'] extension_fr: Details specific to French domain extensions.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] extension_nls: Extension details specific to Dutch domain registrations.
+        :param pulumi.Input[Sequence[pulumi.Input['RegistrationTechnicalContactExtensionNlArgs']]] extension_nls: SIDN-specific details for Dutch (.nl) domain registrations.
         :param pulumi.Input[_builtins.str] fax_number: Fax number for the contact (if available).
         :param pulumi.Input[_builtins.str] lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
         :param pulumi.Input[_builtins.bool] resale: Indicates if the contact is used for resale purposes.
@@ -2409,7 +2513,7 @@ class RegistrationTechnicalContactArgs:
     @pulumi.getter(name="legalForm")
     def legal_form(self) -> pulumi.Input[_builtins.str]:
         """
-        Legal form of the contact (e.g., 'individual' or 'organization').
+        Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
         """
         return pulumi.get(self, "legal_form")
 
@@ -2515,14 +2619,14 @@ class RegistrationTechnicalContactArgs:
 
     @_builtins.property
     @pulumi.getter(name="extensionNls")
-    def extension_nls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+    def extension_nls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationTechnicalContactExtensionNlArgs']]]]:
         """
-        Extension details specific to Dutch domain registrations.
+        SIDN-specific details for Dutch (.nl) domain registrations.
         """
         return pulumi.get(self, "extension_nls")
 
     @extension_nls.setter
-    def extension_nls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+    def extension_nls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['RegistrationTechnicalContactExtensionNlArgs']]]]):
         pulumi.set(self, "extension_nls", value)
 
     @_builtins.property
@@ -2939,5 +3043,54 @@ class RegistrationTechnicalContactExtensionFrTrademarkInfoArgs:
     @trademark_inpi.setter
     def trademark_inpi(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "trademark_inpi", value)
+
+
+class RegistrationTechnicalContactExtensionNlArgsDict(TypedDict):
+    legal_form: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+    """
+    legal_form_registration_number: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+    """
+
+@pulumi.input_type
+class RegistrationTechnicalContactExtensionNlArgs:
+    def __init__(__self__, *,
+                 legal_form: pulumi.Input[Optional[_builtins.str]] = None,
+                 legal_form_registration_number: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] legal_form: SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+        :param pulumi.Input[_builtins.str] legal_form_registration_number: KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+        """
+        if legal_form is not None:
+            pulumi.set(__self__, "legal_form", legal_form)
+        if legal_form_registration_number is not None:
+            pulumi.set(__self__, "legal_form_registration_number", legal_form_registration_number)
+
+    @_builtins.property
+    @pulumi.getter(name="legalForm")
+    def legal_form(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+        """
+        return pulumi.get(self, "legal_form")
+
+    @legal_form.setter
+    def legal_form(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "legal_form", value)
+
+    @_builtins.property
+    @pulumi.getter(name="legalFormRegistrationNumber")
+    def legal_form_registration_number(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+        """
+        return pulumi.get(self, "legal_form_registration_number")
+
+    @legal_form_registration_number.setter
+    def legal_form_registration_number(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "legal_form_registration_number", value)
 
 

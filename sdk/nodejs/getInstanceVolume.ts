@@ -62,6 +62,10 @@ export interface GetInstanceVolumeResult {
     readonly projectId?: string;
     readonly serverId: string;
     readonly sizeInGb: number;
+    /**
+     * The Scaleway Resource Name (SRN) of the volume.
+     */
+    readonly srn: string;
     readonly tags: string[];
     readonly type: string;
     readonly volumeId?: string;

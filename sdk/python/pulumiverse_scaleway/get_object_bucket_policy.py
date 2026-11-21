@@ -53,9 +53,6 @@ class GetObjectBucketPolicyResult:
     @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
         return pulumi.get(self, "id")
 
     @_builtins.property
@@ -68,12 +65,12 @@ class GetObjectBucketPolicyResult:
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[_builtins.str]:
+    def project_id(self) -> _builtins.str:
         return pulumi.get(self, "project_id")
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[_builtins.str]:
+    def region(self) -> _builtins.str:
         return pulumi.get(self, "region")
 
 

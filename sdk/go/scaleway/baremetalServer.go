@@ -12,6 +12,8 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Creates and manages Scaleway Bare Metal Servers.
+//
 // ## Example Usage
 //
 // ```go

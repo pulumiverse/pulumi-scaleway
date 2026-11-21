@@ -158,7 +158,7 @@ import (
 //
 // Each contact block supports the following attributes:
 //
-// - `legalForm` (Required, String): Legal form of the contact.
+// - `legalForm` (Required, String): Legal form of the contact (`individual`, `corporate`, `association`, or `other`). Not the SIDN `.nl` legal form — use `extension_nl.legal_form` for that.
 // - `firstname` (Required, String): First name.
 // - `lastname` (Required, String): Last name.
 // - `companyName` (Optional, String): Company name.
@@ -170,6 +170,11 @@ import (
 // - `country` (Required, String): Country code (ISO format).
 // - `vatIdentificationCode` (Required, String): VAT identification code.
 // - `companyIdentificationCode` (Required, String): Company identification code.
+// - `extensionFr` (Optional, List Max: 1): AFNIC-specific details for French (`.fr`) domains (`mode`, and optional nested infos).
+// - `extensionEu` (Optional, List Max: 1): EU-specific details (`europeanCitizenship`).
+// - `extensionNl` (Optional, List Max: 1): SIDN-specific details for Dutch (`.nl`) domains:
+//   - `legalForm` (Optional, String): SIDN legal form (e.g. `limitedCompany`, `naturalPerson`).
+//   - `legalFormRegistrationNumber` (Optional, String): KvK (Chamber of Commerce) or other registry registration number.
 //
 // ## Import
 //

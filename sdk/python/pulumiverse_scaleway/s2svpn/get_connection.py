@@ -365,6 +365,8 @@ def get_connection(connection_id: Optional[_builtins.str] = None,
                    region: Optional[_builtins.str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConnectionResult:
     """
+    Gets information about a Site-to-Site VPN connection.
+
     For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
 
     ## Example Usage
@@ -436,6 +438,8 @@ def get_connection_output(connection_id: pulumi.Input[Optional[Optional[_builtin
                           region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetConnectionResult]:
     """
+    Gets information about a Site-to-Site VPN connection.
+
     For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
 
     ## Example Usage

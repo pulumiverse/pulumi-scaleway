@@ -439,6 +439,200 @@ func (o DefinitionSecretReferenceArrayOutput) Index(i pulumi.IntInput) Definitio
 	}).(DefinitionSecretReferenceOutput)
 }
 
+type TriggerCronConfig struct {
+	// The arguments passed to the startup command used by the triggered job (in list of string format).
+	Args []string `pulumi:"args"`
+	// The CRON schedule in UNIX format.
+	Schedule string `pulumi:"schedule"`
+	// The startup command that will be used by the triggered job (in list of string format).
+	StartupCommands []string `pulumi:"startupCommands"`
+	// The timezone for the CRON schedule, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+	Timezone string `pulumi:"timezone"`
+}
+
+// TriggerCronConfigInput is an input type that accepts TriggerCronConfigArgs and TriggerCronConfigOutput values.
+// You can construct a concrete instance of `TriggerCronConfigInput` via:
+//
+//	TriggerCronConfigArgs{...}
+type TriggerCronConfigInput interface {
+	pulumi.Input
+
+	ToTriggerCronConfigOutput() TriggerCronConfigOutput
+	ToTriggerCronConfigOutputWithContext(context.Context) TriggerCronConfigOutput
+}
+
+type TriggerCronConfigArgs struct {
+	// The arguments passed to the startup command used by the triggered job (in list of string format).
+	Args pulumi.StringArrayInput `pulumi:"args"`
+	// The CRON schedule in UNIX format.
+	Schedule pulumi.StringInput `pulumi:"schedule"`
+	// The startup command that will be used by the triggered job (in list of string format).
+	StartupCommands pulumi.StringArrayInput `pulumi:"startupCommands"`
+	// The timezone for the CRON schedule, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+	Timezone pulumi.StringInput `pulumi:"timezone"`
+}
+
+func (TriggerCronConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TriggerCronConfig)(nil)).Elem()
+}
+
+func (i TriggerCronConfigArgs) ToTriggerCronConfigOutput() TriggerCronConfigOutput {
+	return i.ToTriggerCronConfigOutputWithContext(context.Background())
+}
+
+func (i TriggerCronConfigArgs) ToTriggerCronConfigOutputWithContext(ctx context.Context) TriggerCronConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerCronConfigOutput)
+}
+
+func (i TriggerCronConfigArgs) ToTriggerCronConfigPtrOutput() TriggerCronConfigPtrOutput {
+	return i.ToTriggerCronConfigPtrOutputWithContext(context.Background())
+}
+
+func (i TriggerCronConfigArgs) ToTriggerCronConfigPtrOutputWithContext(ctx context.Context) TriggerCronConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerCronConfigOutput).ToTriggerCronConfigPtrOutputWithContext(ctx)
+}
+
+// TriggerCronConfigPtrInput is an input type that accepts TriggerCronConfigArgs, TriggerCronConfigPtr and TriggerCronConfigPtrOutput values.
+// You can construct a concrete instance of `TriggerCronConfigPtrInput` via:
+//
+//	        TriggerCronConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type TriggerCronConfigPtrInput interface {
+	pulumi.Input
+
+	ToTriggerCronConfigPtrOutput() TriggerCronConfigPtrOutput
+	ToTriggerCronConfigPtrOutputWithContext(context.Context) TriggerCronConfigPtrOutput
+}
+
+type triggerCronConfigPtrType TriggerCronConfigArgs
+
+func TriggerCronConfigPtr(v *TriggerCronConfigArgs) TriggerCronConfigPtrInput {
+	return (*triggerCronConfigPtrType)(v)
+}
+
+func (*triggerCronConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**TriggerCronConfig)(nil)).Elem()
+}
+
+func (i *triggerCronConfigPtrType) ToTriggerCronConfigPtrOutput() TriggerCronConfigPtrOutput {
+	return i.ToTriggerCronConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *triggerCronConfigPtrType) ToTriggerCronConfigPtrOutputWithContext(ctx context.Context) TriggerCronConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TriggerCronConfigPtrOutput)
+}
+
+type TriggerCronConfigOutput struct{ *pulumi.OutputState }
+
+func (TriggerCronConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TriggerCronConfig)(nil)).Elem()
+}
+
+func (o TriggerCronConfigOutput) ToTriggerCronConfigOutput() TriggerCronConfigOutput {
+	return o
+}
+
+func (o TriggerCronConfigOutput) ToTriggerCronConfigOutputWithContext(ctx context.Context) TriggerCronConfigOutput {
+	return o
+}
+
+func (o TriggerCronConfigOutput) ToTriggerCronConfigPtrOutput() TriggerCronConfigPtrOutput {
+	return o.ToTriggerCronConfigPtrOutputWithContext(context.Background())
+}
+
+func (o TriggerCronConfigOutput) ToTriggerCronConfigPtrOutputWithContext(ctx context.Context) TriggerCronConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v TriggerCronConfig) *TriggerCronConfig {
+		return &v
+	}).(TriggerCronConfigPtrOutput)
+}
+
+// The arguments passed to the startup command used by the triggered job (in list of string format).
+func (o TriggerCronConfigOutput) Args() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TriggerCronConfig) []string { return v.Args }).(pulumi.StringArrayOutput)
+}
+
+// The CRON schedule in UNIX format.
+func (o TriggerCronConfigOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v TriggerCronConfig) string { return v.Schedule }).(pulumi.StringOutput)
+}
+
+// The startup command that will be used by the triggered job (in list of string format).
+func (o TriggerCronConfigOutput) StartupCommands() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v TriggerCronConfig) []string { return v.StartupCommands }).(pulumi.StringArrayOutput)
+}
+
+// The timezone for the CRON schedule, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+func (o TriggerCronConfigOutput) Timezone() pulumi.StringOutput {
+	return o.ApplyT(func(v TriggerCronConfig) string { return v.Timezone }).(pulumi.StringOutput)
+}
+
+type TriggerCronConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (TriggerCronConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**TriggerCronConfig)(nil)).Elem()
+}
+
+func (o TriggerCronConfigPtrOutput) ToTriggerCronConfigPtrOutput() TriggerCronConfigPtrOutput {
+	return o
+}
+
+func (o TriggerCronConfigPtrOutput) ToTriggerCronConfigPtrOutputWithContext(ctx context.Context) TriggerCronConfigPtrOutput {
+	return o
+}
+
+func (o TriggerCronConfigPtrOutput) Elem() TriggerCronConfigOutput {
+	return o.ApplyT(func(v *TriggerCronConfig) TriggerCronConfig {
+		if v != nil {
+			return *v
+		}
+		var ret TriggerCronConfig
+		return ret
+	}).(TriggerCronConfigOutput)
+}
+
+// The arguments passed to the startup command used by the triggered job (in list of string format).
+func (o TriggerCronConfigPtrOutput) Args() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TriggerCronConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Args
+	}).(pulumi.StringArrayOutput)
+}
+
+// The CRON schedule in UNIX format.
+func (o TriggerCronConfigPtrOutput) Schedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TriggerCronConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Schedule
+	}).(pulumi.StringPtrOutput)
+}
+
+// The startup command that will be used by the triggered job (in list of string format).
+func (o TriggerCronConfigPtrOutput) StartupCommands() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *TriggerCronConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.StartupCommands
+	}).(pulumi.StringArrayOutput)
+}
+
+// The timezone for the CRON schedule, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+func (o TriggerCronConfigPtrOutput) Timezone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TriggerCronConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Timezone
+	}).(pulumi.StringPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DefinitionCronInput)(nil)).Elem(), DefinitionCronArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DefinitionCronPtrInput)(nil)).Elem(), DefinitionCronArgs{})
@@ -446,10 +640,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DefinitionRetryPolicyPtrInput)(nil)).Elem(), DefinitionRetryPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DefinitionSecretReferenceInput)(nil)).Elem(), DefinitionSecretReferenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DefinitionSecretReferenceArrayInput)(nil)).Elem(), DefinitionSecretReferenceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TriggerCronConfigInput)(nil)).Elem(), TriggerCronConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TriggerCronConfigPtrInput)(nil)).Elem(), TriggerCronConfigArgs{})
 	pulumi.RegisterOutputType(DefinitionCronOutput{})
 	pulumi.RegisterOutputType(DefinitionCronPtrOutput{})
 	pulumi.RegisterOutputType(DefinitionRetryPolicyOutput{})
 	pulumi.RegisterOutputType(DefinitionRetryPolicyPtrOutput{})
 	pulumi.RegisterOutputType(DefinitionSecretReferenceOutput{})
 	pulumi.RegisterOutputType(DefinitionSecretReferenceArrayOutput{})
+	pulumi.RegisterOutputType(TriggerCronConfigOutput{})
+	pulumi.RegisterOutputType(TriggerCronConfigPtrOutput{})
 }

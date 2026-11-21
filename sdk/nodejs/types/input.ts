@@ -680,6 +680,21 @@ export interface DatabaseReadReplicaPrivateNetwork {
     zone?: pulumi.Input<string | undefined>;
 }
 
+export interface DataorchestratorWorkflowCronSchedule {
+    /**
+     * Overlap policy (`forbid`, `allow`, `queue`, …).
+     */
+    overlap?: pulumi.Input<string | undefined>;
+    /**
+     * UNIX cron expression.
+     */
+    schedule: pulumi.Input<string>;
+    /**
+     * Canonical TZ identifier (e.g. `Europe/Paris`).
+     */
+    timezoneIdentifier: pulumi.Input<string>;
+}
+
 export interface DomainRecordGeoIp {
     /**
      * The list of matches
@@ -3701,9 +3716,9 @@ export namespace domain {
          */
         extensionFr?: pulumi.Input<inputs.domain.RegistrationAdministrativeContactExtensionFr | undefined>;
         /**
-         * Extension details specific to Dutch domain registrations.
+         * SIDN-specific details for Dutch (.nl) domain registrations.
          */
-        extensionNls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        extensionNls?: pulumi.Input<pulumi.Input<inputs.domain.RegistrationAdministrativeContactExtensionNl>[] | undefined>;
         /**
          * Fax number for the contact (if available).
          */
@@ -3721,7 +3736,7 @@ export namespace domain {
          */
         lastname: pulumi.Input<string>;
         /**
-         * Legal form of the contact (e.g., 'individual' or 'organization').
+         * Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
          */
         legalForm: pulumi.Input<string>;
         /**
@@ -3827,6 +3842,17 @@ export namespace domain {
         trademarkInpi?: pulumi.Input<string | undefined>;
     }
 
+    export interface RegistrationAdministrativeContactExtensionNl {
+        /**
+         * SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+         */
+        legalForm?: pulumi.Input<string | undefined>;
+        /**
+         * KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+         */
+        legalFormRegistrationNumber?: pulumi.Input<string | undefined>;
+    }
+
     export interface RegistrationDsRecord {
         /**
          * The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
@@ -3917,9 +3943,9 @@ export namespace domain {
          */
         extensionFr?: pulumi.Input<inputs.domain.RegistrationOwnerContactExtensionFr | undefined>;
         /**
-         * Extension details specific to Dutch domain registrations.
+         * SIDN-specific details for Dutch (.nl) domain registrations.
          */
-        extensionNls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        extensionNls?: pulumi.Input<pulumi.Input<inputs.domain.RegistrationOwnerContactExtensionNl>[] | undefined>;
         /**
          * Fax number for the contact (if available).
          */
@@ -3937,7 +3963,7 @@ export namespace domain {
          */
         lastname: pulumi.Input<string>;
         /**
-         * Legal form of the contact (e.g., 'individual' or 'organization').
+         * Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
          */
         legalForm: pulumi.Input<string>;
         /**
@@ -4043,6 +4069,17 @@ export namespace domain {
         trademarkInpi?: pulumi.Input<string | undefined>;
     }
 
+    export interface RegistrationOwnerContactExtensionNl {
+        /**
+         * SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+         */
+        legalForm?: pulumi.Input<string | undefined>;
+        /**
+         * KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+         */
+        legalFormRegistrationNumber?: pulumi.Input<string | undefined>;
+    }
+
     export interface RegistrationTechnicalContact {
         /**
          * Primary address line for the contact.
@@ -4085,9 +4122,9 @@ export namespace domain {
          */
         extensionFr?: pulumi.Input<inputs.domain.RegistrationTechnicalContactExtensionFr | undefined>;
         /**
-         * Extension details specific to Dutch domain registrations.
+         * SIDN-specific details for Dutch (.nl) domain registrations.
          */
-        extensionNls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        extensionNls?: pulumi.Input<pulumi.Input<inputs.domain.RegistrationTechnicalContactExtensionNl>[] | undefined>;
         /**
          * Fax number for the contact (if available).
          */
@@ -4105,7 +4142,7 @@ export namespace domain {
          */
         lastname: pulumi.Input<string>;
         /**
-         * Legal form of the contact (e.g., 'individual' or 'organization').
+         * Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
          */
         legalForm: pulumi.Input<string>;
         /**
@@ -4209,6 +4246,17 @@ export namespace domain {
          * Trademark information from INPI (French extension).
          */
         trademarkInpi?: pulumi.Input<string | undefined>;
+    }
+
+    export interface RegistrationTechnicalContactExtensionNl {
+        /**
+         * SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+         */
+        legalForm?: pulumi.Input<string | undefined>;
+        /**
+         * KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+         */
+        legalFormRegistrationNumber?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -5349,6 +5397,25 @@ export namespace job {
          * The secret version.
          */
         secretVersion?: pulumi.Input<string | undefined>;
+    }
+
+    export interface TriggerCronConfig {
+        /**
+         * The arguments passed to the startup command used by the triggered job (in list of string format).
+         */
+        args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The CRON schedule in UNIX format.
+         */
+        schedule: pulumi.Input<string>;
+        /**
+         * The startup command that will be used by the triggered job (in list of string format).
+         */
+        startupCommands?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The timezone for the CRON schedule, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+         */
+        timezone: pulumi.Input<string>;
     }
 }
 

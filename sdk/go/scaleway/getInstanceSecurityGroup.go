@@ -56,9 +56,11 @@ type LookupInstanceSecurityGroupResult struct {
 	OutboundRules   []GetInstanceSecurityGroupOutboundRule `pulumi:"outboundRules"`
 	ProjectId       *string                                `pulumi:"projectId"`
 	SecurityGroupId *string                                `pulumi:"securityGroupId"`
-	Stateful        bool                                   `pulumi:"stateful"`
-	Tags            []string                               `pulumi:"tags"`
-	Zone            *string                                `pulumi:"zone"`
+	// The Scaleway Resource Name (SRN) of the security group.
+	Srn      string   `pulumi:"srn"`
+	Stateful bool     `pulumi:"stateful"`
+	Tags     []string `pulumi:"tags"`
+	Zone     *string  `pulumi:"zone"`
 }
 
 func LookupInstanceSecurityGroupOutput(ctx *pulumi.Context, args LookupInstanceSecurityGroupOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceSecurityGroupResultOutput {
@@ -151,6 +153,11 @@ func (o LookupInstanceSecurityGroupResultOutput) ProjectId() pulumi.StringPtrOut
 
 func (o LookupInstanceSecurityGroupResultOutput) SecurityGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstanceSecurityGroupResult) *string { return v.SecurityGroupId }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the security group.
+func (o LookupInstanceSecurityGroupResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceSecurityGroupResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupInstanceSecurityGroupResultOutput) Stateful() pulumi.BoolOutput {

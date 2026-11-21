@@ -711,8 +711,8 @@ type RegistrationAdministrativeContact struct {
 	ExtensionEu *RegistrationAdministrativeContactExtensionEu `pulumi:"extensionEu"`
 	// Details specific to French domain extensions.
 	ExtensionFr *RegistrationAdministrativeContactExtensionFr `pulumi:"extensionFr"`
-	// Extension details specific to Dutch domain registrations.
-	ExtensionNls []string `pulumi:"extensionNls"`
+	// SIDN-specific details for Dutch (.nl) domain registrations.
+	ExtensionNls []RegistrationAdministrativeContactExtensionNl `pulumi:"extensionNls"`
 	// Fax number for the contact (if available).
 	FaxNumber *string `pulumi:"faxNumber"`
 	// First name of the contact.
@@ -721,7 +721,7 @@ type RegistrationAdministrativeContact struct {
 	Lang *string `pulumi:"lang"`
 	// Last name of the contact.
 	Lastname string `pulumi:"lastname"`
-	// Legal form of the contact (e.g., 'individual' or 'organization').
+	// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 	LegalForm string `pulumi:"legalForm"`
 	// Primary phone number of the contact.
 	PhoneNumber string `pulumi:"phoneNumber"`
@@ -769,8 +769,8 @@ type RegistrationAdministrativeContactArgs struct {
 	ExtensionEu RegistrationAdministrativeContactExtensionEuPtrInput `pulumi:"extensionEu"`
 	// Details specific to French domain extensions.
 	ExtensionFr RegistrationAdministrativeContactExtensionFrPtrInput `pulumi:"extensionFr"`
-	// Extension details specific to Dutch domain registrations.
-	ExtensionNls pulumi.StringArrayInput `pulumi:"extensionNls"`
+	// SIDN-specific details for Dutch (.nl) domain registrations.
+	ExtensionNls RegistrationAdministrativeContactExtensionNlArrayInput `pulumi:"extensionNls"`
 	// Fax number for the contact (if available).
 	FaxNumber pulumi.StringPtrInput `pulumi:"faxNumber"`
 	// First name of the contact.
@@ -779,7 +779,7 @@ type RegistrationAdministrativeContactArgs struct {
 	Lang pulumi.StringPtrInput `pulumi:"lang"`
 	// Last name of the contact.
 	Lastname pulumi.StringInput `pulumi:"lastname"`
-	// Legal form of the contact (e.g., 'individual' or 'organization').
+	// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 	LegalForm pulumi.StringInput `pulumi:"legalForm"`
 	// Primary phone number of the contact.
 	PhoneNumber pulumi.StringInput `pulumi:"phoneNumber"`
@@ -900,9 +900,11 @@ func (o RegistrationAdministrativeContactOutput) ExtensionFr() RegistrationAdmin
 	}).(RegistrationAdministrativeContactExtensionFrPtrOutput)
 }
 
-// Extension details specific to Dutch domain registrations.
-func (o RegistrationAdministrativeContactOutput) ExtensionNls() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v RegistrationAdministrativeContact) []string { return v.ExtensionNls }).(pulumi.StringArrayOutput)
+// SIDN-specific details for Dutch (.nl) domain registrations.
+func (o RegistrationAdministrativeContactOutput) ExtensionNls() RegistrationAdministrativeContactExtensionNlArrayOutput {
+	return o.ApplyT(func(v RegistrationAdministrativeContact) []RegistrationAdministrativeContactExtensionNl {
+		return v.ExtensionNls
+	}).(RegistrationAdministrativeContactExtensionNlArrayOutput)
 }
 
 // Fax number for the contact (if available).
@@ -925,7 +927,7 @@ func (o RegistrationAdministrativeContactOutput) Lastname() pulumi.StringOutput 
 	return o.ApplyT(func(v RegistrationAdministrativeContact) string { return v.Lastname }).(pulumi.StringOutput)
 }
 
-// Legal form of the contact (e.g., 'individual' or 'organization').
+// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 func (o RegistrationAdministrativeContactOutput) LegalForm() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistrationAdministrativeContact) string { return v.LegalForm }).(pulumi.StringOutput)
 }
@@ -2082,6 +2084,112 @@ func (o RegistrationAdministrativeContactExtensionFrTrademarkInfoPtrOutput) Trad
 	}).(pulumi.StringPtrOutput)
 }
 
+type RegistrationAdministrativeContactExtensionNl struct {
+	// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+	LegalForm *string `pulumi:"legalForm"`
+	// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+	LegalFormRegistrationNumber *string `pulumi:"legalFormRegistrationNumber"`
+}
+
+// RegistrationAdministrativeContactExtensionNlInput is an input type that accepts RegistrationAdministrativeContactExtensionNlArgs and RegistrationAdministrativeContactExtensionNlOutput values.
+// You can construct a concrete instance of `RegistrationAdministrativeContactExtensionNlInput` via:
+//
+//	RegistrationAdministrativeContactExtensionNlArgs{...}
+type RegistrationAdministrativeContactExtensionNlInput interface {
+	pulumi.Input
+
+	ToRegistrationAdministrativeContactExtensionNlOutput() RegistrationAdministrativeContactExtensionNlOutput
+	ToRegistrationAdministrativeContactExtensionNlOutputWithContext(context.Context) RegistrationAdministrativeContactExtensionNlOutput
+}
+
+type RegistrationAdministrativeContactExtensionNlArgs struct {
+	// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+	LegalForm pulumi.StringPtrInput `pulumi:"legalForm"`
+	// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+	LegalFormRegistrationNumber pulumi.StringPtrInput `pulumi:"legalFormRegistrationNumber"`
+}
+
+func (RegistrationAdministrativeContactExtensionNlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistrationAdministrativeContactExtensionNl)(nil)).Elem()
+}
+
+func (i RegistrationAdministrativeContactExtensionNlArgs) ToRegistrationAdministrativeContactExtensionNlOutput() RegistrationAdministrativeContactExtensionNlOutput {
+	return i.ToRegistrationAdministrativeContactExtensionNlOutputWithContext(context.Background())
+}
+
+func (i RegistrationAdministrativeContactExtensionNlArgs) ToRegistrationAdministrativeContactExtensionNlOutputWithContext(ctx context.Context) RegistrationAdministrativeContactExtensionNlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistrationAdministrativeContactExtensionNlOutput)
+}
+
+// RegistrationAdministrativeContactExtensionNlArrayInput is an input type that accepts RegistrationAdministrativeContactExtensionNlArray and RegistrationAdministrativeContactExtensionNlArrayOutput values.
+// You can construct a concrete instance of `RegistrationAdministrativeContactExtensionNlArrayInput` via:
+//
+//	RegistrationAdministrativeContactExtensionNlArray{ RegistrationAdministrativeContactExtensionNlArgs{...} }
+type RegistrationAdministrativeContactExtensionNlArrayInput interface {
+	pulumi.Input
+
+	ToRegistrationAdministrativeContactExtensionNlArrayOutput() RegistrationAdministrativeContactExtensionNlArrayOutput
+	ToRegistrationAdministrativeContactExtensionNlArrayOutputWithContext(context.Context) RegistrationAdministrativeContactExtensionNlArrayOutput
+}
+
+type RegistrationAdministrativeContactExtensionNlArray []RegistrationAdministrativeContactExtensionNlInput
+
+func (RegistrationAdministrativeContactExtensionNlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistrationAdministrativeContactExtensionNl)(nil)).Elem()
+}
+
+func (i RegistrationAdministrativeContactExtensionNlArray) ToRegistrationAdministrativeContactExtensionNlArrayOutput() RegistrationAdministrativeContactExtensionNlArrayOutput {
+	return i.ToRegistrationAdministrativeContactExtensionNlArrayOutputWithContext(context.Background())
+}
+
+func (i RegistrationAdministrativeContactExtensionNlArray) ToRegistrationAdministrativeContactExtensionNlArrayOutputWithContext(ctx context.Context) RegistrationAdministrativeContactExtensionNlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistrationAdministrativeContactExtensionNlArrayOutput)
+}
+
+type RegistrationAdministrativeContactExtensionNlOutput struct{ *pulumi.OutputState }
+
+func (RegistrationAdministrativeContactExtensionNlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistrationAdministrativeContactExtensionNl)(nil)).Elem()
+}
+
+func (o RegistrationAdministrativeContactExtensionNlOutput) ToRegistrationAdministrativeContactExtensionNlOutput() RegistrationAdministrativeContactExtensionNlOutput {
+	return o
+}
+
+func (o RegistrationAdministrativeContactExtensionNlOutput) ToRegistrationAdministrativeContactExtensionNlOutputWithContext(ctx context.Context) RegistrationAdministrativeContactExtensionNlOutput {
+	return o
+}
+
+// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+func (o RegistrationAdministrativeContactExtensionNlOutput) LegalForm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistrationAdministrativeContactExtensionNl) *string { return v.LegalForm }).(pulumi.StringPtrOutput)
+}
+
+// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+func (o RegistrationAdministrativeContactExtensionNlOutput) LegalFormRegistrationNumber() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistrationAdministrativeContactExtensionNl) *string { return v.LegalFormRegistrationNumber }).(pulumi.StringPtrOutput)
+}
+
+type RegistrationAdministrativeContactExtensionNlArrayOutput struct{ *pulumi.OutputState }
+
+func (RegistrationAdministrativeContactExtensionNlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistrationAdministrativeContactExtensionNl)(nil)).Elem()
+}
+
+func (o RegistrationAdministrativeContactExtensionNlArrayOutput) ToRegistrationAdministrativeContactExtensionNlArrayOutput() RegistrationAdministrativeContactExtensionNlArrayOutput {
+	return o
+}
+
+func (o RegistrationAdministrativeContactExtensionNlArrayOutput) ToRegistrationAdministrativeContactExtensionNlArrayOutputWithContext(ctx context.Context) RegistrationAdministrativeContactExtensionNlArrayOutput {
+	return o
+}
+
+func (o RegistrationAdministrativeContactExtensionNlArrayOutput) Index(i pulumi.IntInput) RegistrationAdministrativeContactExtensionNlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegistrationAdministrativeContactExtensionNl {
+		return vs[0].([]RegistrationAdministrativeContactExtensionNl)[vs[1].(int)]
+	}).(RegistrationAdministrativeContactExtensionNlOutput)
+}
+
 type RegistrationDsRecord struct {
 	// The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
 	Algorithm *string `pulumi:"algorithm"`
@@ -2536,8 +2644,8 @@ type RegistrationOwnerContact struct {
 	ExtensionEu *RegistrationOwnerContactExtensionEu `pulumi:"extensionEu"`
 	// Details specific to French domain extensions.
 	ExtensionFr *RegistrationOwnerContactExtensionFr `pulumi:"extensionFr"`
-	// Extension details specific to Dutch domain registrations.
-	ExtensionNls []string `pulumi:"extensionNls"`
+	// SIDN-specific details for Dutch (.nl) domain registrations.
+	ExtensionNls []RegistrationOwnerContactExtensionNl `pulumi:"extensionNls"`
 	// Fax number for the contact (if available).
 	FaxNumber *string `pulumi:"faxNumber"`
 	// First name of the contact.
@@ -2546,7 +2654,7 @@ type RegistrationOwnerContact struct {
 	Lang *string `pulumi:"lang"`
 	// Last name of the contact.
 	Lastname string `pulumi:"lastname"`
-	// Legal form of the contact (e.g., 'individual' or 'organization').
+	// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 	LegalForm string `pulumi:"legalForm"`
 	// Primary phone number of the contact.
 	PhoneNumber string `pulumi:"phoneNumber"`
@@ -2594,8 +2702,8 @@ type RegistrationOwnerContactArgs struct {
 	ExtensionEu RegistrationOwnerContactExtensionEuPtrInput `pulumi:"extensionEu"`
 	// Details specific to French domain extensions.
 	ExtensionFr RegistrationOwnerContactExtensionFrPtrInput `pulumi:"extensionFr"`
-	// Extension details specific to Dutch domain registrations.
-	ExtensionNls pulumi.StringArrayInput `pulumi:"extensionNls"`
+	// SIDN-specific details for Dutch (.nl) domain registrations.
+	ExtensionNls RegistrationOwnerContactExtensionNlArrayInput `pulumi:"extensionNls"`
 	// Fax number for the contact (if available).
 	FaxNumber pulumi.StringPtrInput `pulumi:"faxNumber"`
 	// First name of the contact.
@@ -2604,7 +2712,7 @@ type RegistrationOwnerContactArgs struct {
 	Lang pulumi.StringPtrInput `pulumi:"lang"`
 	// Last name of the contact.
 	Lastname pulumi.StringInput `pulumi:"lastname"`
-	// Legal form of the contact (e.g., 'individual' or 'organization').
+	// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 	LegalForm pulumi.StringInput `pulumi:"legalForm"`
 	// Primary phone number of the contact.
 	PhoneNumber pulumi.StringInput `pulumi:"phoneNumber"`
@@ -2747,9 +2855,9 @@ func (o RegistrationOwnerContactOutput) ExtensionFr() RegistrationOwnerContactEx
 	return o.ApplyT(func(v RegistrationOwnerContact) *RegistrationOwnerContactExtensionFr { return v.ExtensionFr }).(RegistrationOwnerContactExtensionFrPtrOutput)
 }
 
-// Extension details specific to Dutch domain registrations.
-func (o RegistrationOwnerContactOutput) ExtensionNls() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v RegistrationOwnerContact) []string { return v.ExtensionNls }).(pulumi.StringArrayOutput)
+// SIDN-specific details for Dutch (.nl) domain registrations.
+func (o RegistrationOwnerContactOutput) ExtensionNls() RegistrationOwnerContactExtensionNlArrayOutput {
+	return o.ApplyT(func(v RegistrationOwnerContact) []RegistrationOwnerContactExtensionNl { return v.ExtensionNls }).(RegistrationOwnerContactExtensionNlArrayOutput)
 }
 
 // Fax number for the contact (if available).
@@ -2772,7 +2880,7 @@ func (o RegistrationOwnerContactOutput) Lastname() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistrationOwnerContact) string { return v.Lastname }).(pulumi.StringOutput)
 }
 
-// Legal form of the contact (e.g., 'individual' or 'organization').
+// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 func (o RegistrationOwnerContactOutput) LegalForm() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistrationOwnerContact) string { return v.LegalForm }).(pulumi.StringOutput)
 }
@@ -2931,14 +3039,14 @@ func (o RegistrationOwnerContactPtrOutput) ExtensionFr() RegistrationOwnerContac
 	}).(RegistrationOwnerContactExtensionFrPtrOutput)
 }
 
-// Extension details specific to Dutch domain registrations.
-func (o RegistrationOwnerContactPtrOutput) ExtensionNls() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *RegistrationOwnerContact) []string {
+// SIDN-specific details for Dutch (.nl) domain registrations.
+func (o RegistrationOwnerContactPtrOutput) ExtensionNls() RegistrationOwnerContactExtensionNlArrayOutput {
+	return o.ApplyT(func(v *RegistrationOwnerContact) []RegistrationOwnerContactExtensionNl {
 		if v == nil {
 			return nil
 		}
 		return v.ExtensionNls
-	}).(pulumi.StringArrayOutput)
+	}).(RegistrationOwnerContactExtensionNlArrayOutput)
 }
 
 // Fax number for the contact (if available).
@@ -2981,7 +3089,7 @@ func (o RegistrationOwnerContactPtrOutput) Lastname() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Legal form of the contact (e.g., 'individual' or 'organization').
+// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 func (o RegistrationOwnerContactPtrOutput) LegalForm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RegistrationOwnerContact) *string {
 		if v == nil {
@@ -4153,6 +4261,112 @@ func (o RegistrationOwnerContactExtensionFrTrademarkInfoPtrOutput) TrademarkInpi
 	}).(pulumi.StringPtrOutput)
 }
 
+type RegistrationOwnerContactExtensionNl struct {
+	// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+	LegalForm *string `pulumi:"legalForm"`
+	// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+	LegalFormRegistrationNumber *string `pulumi:"legalFormRegistrationNumber"`
+}
+
+// RegistrationOwnerContactExtensionNlInput is an input type that accepts RegistrationOwnerContactExtensionNlArgs and RegistrationOwnerContactExtensionNlOutput values.
+// You can construct a concrete instance of `RegistrationOwnerContactExtensionNlInput` via:
+//
+//	RegistrationOwnerContactExtensionNlArgs{...}
+type RegistrationOwnerContactExtensionNlInput interface {
+	pulumi.Input
+
+	ToRegistrationOwnerContactExtensionNlOutput() RegistrationOwnerContactExtensionNlOutput
+	ToRegistrationOwnerContactExtensionNlOutputWithContext(context.Context) RegistrationOwnerContactExtensionNlOutput
+}
+
+type RegistrationOwnerContactExtensionNlArgs struct {
+	// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+	LegalForm pulumi.StringPtrInput `pulumi:"legalForm"`
+	// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+	LegalFormRegistrationNumber pulumi.StringPtrInput `pulumi:"legalFormRegistrationNumber"`
+}
+
+func (RegistrationOwnerContactExtensionNlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistrationOwnerContactExtensionNl)(nil)).Elem()
+}
+
+func (i RegistrationOwnerContactExtensionNlArgs) ToRegistrationOwnerContactExtensionNlOutput() RegistrationOwnerContactExtensionNlOutput {
+	return i.ToRegistrationOwnerContactExtensionNlOutputWithContext(context.Background())
+}
+
+func (i RegistrationOwnerContactExtensionNlArgs) ToRegistrationOwnerContactExtensionNlOutputWithContext(ctx context.Context) RegistrationOwnerContactExtensionNlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistrationOwnerContactExtensionNlOutput)
+}
+
+// RegistrationOwnerContactExtensionNlArrayInput is an input type that accepts RegistrationOwnerContactExtensionNlArray and RegistrationOwnerContactExtensionNlArrayOutput values.
+// You can construct a concrete instance of `RegistrationOwnerContactExtensionNlArrayInput` via:
+//
+//	RegistrationOwnerContactExtensionNlArray{ RegistrationOwnerContactExtensionNlArgs{...} }
+type RegistrationOwnerContactExtensionNlArrayInput interface {
+	pulumi.Input
+
+	ToRegistrationOwnerContactExtensionNlArrayOutput() RegistrationOwnerContactExtensionNlArrayOutput
+	ToRegistrationOwnerContactExtensionNlArrayOutputWithContext(context.Context) RegistrationOwnerContactExtensionNlArrayOutput
+}
+
+type RegistrationOwnerContactExtensionNlArray []RegistrationOwnerContactExtensionNlInput
+
+func (RegistrationOwnerContactExtensionNlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistrationOwnerContactExtensionNl)(nil)).Elem()
+}
+
+func (i RegistrationOwnerContactExtensionNlArray) ToRegistrationOwnerContactExtensionNlArrayOutput() RegistrationOwnerContactExtensionNlArrayOutput {
+	return i.ToRegistrationOwnerContactExtensionNlArrayOutputWithContext(context.Background())
+}
+
+func (i RegistrationOwnerContactExtensionNlArray) ToRegistrationOwnerContactExtensionNlArrayOutputWithContext(ctx context.Context) RegistrationOwnerContactExtensionNlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistrationOwnerContactExtensionNlArrayOutput)
+}
+
+type RegistrationOwnerContactExtensionNlOutput struct{ *pulumi.OutputState }
+
+func (RegistrationOwnerContactExtensionNlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistrationOwnerContactExtensionNl)(nil)).Elem()
+}
+
+func (o RegistrationOwnerContactExtensionNlOutput) ToRegistrationOwnerContactExtensionNlOutput() RegistrationOwnerContactExtensionNlOutput {
+	return o
+}
+
+func (o RegistrationOwnerContactExtensionNlOutput) ToRegistrationOwnerContactExtensionNlOutputWithContext(ctx context.Context) RegistrationOwnerContactExtensionNlOutput {
+	return o
+}
+
+// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+func (o RegistrationOwnerContactExtensionNlOutput) LegalForm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistrationOwnerContactExtensionNl) *string { return v.LegalForm }).(pulumi.StringPtrOutput)
+}
+
+// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+func (o RegistrationOwnerContactExtensionNlOutput) LegalFormRegistrationNumber() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistrationOwnerContactExtensionNl) *string { return v.LegalFormRegistrationNumber }).(pulumi.StringPtrOutput)
+}
+
+type RegistrationOwnerContactExtensionNlArrayOutput struct{ *pulumi.OutputState }
+
+func (RegistrationOwnerContactExtensionNlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistrationOwnerContactExtensionNl)(nil)).Elem()
+}
+
+func (o RegistrationOwnerContactExtensionNlArrayOutput) ToRegistrationOwnerContactExtensionNlArrayOutput() RegistrationOwnerContactExtensionNlArrayOutput {
+	return o
+}
+
+func (o RegistrationOwnerContactExtensionNlArrayOutput) ToRegistrationOwnerContactExtensionNlArrayOutputWithContext(ctx context.Context) RegistrationOwnerContactExtensionNlArrayOutput {
+	return o
+}
+
+func (o RegistrationOwnerContactExtensionNlArrayOutput) Index(i pulumi.IntInput) RegistrationOwnerContactExtensionNlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegistrationOwnerContactExtensionNl {
+		return vs[0].([]RegistrationOwnerContactExtensionNl)[vs[1].(int)]
+	}).(RegistrationOwnerContactExtensionNlOutput)
+}
+
 type RegistrationTechnicalContact struct {
 	// Primary address line for the contact.
 	AddressLine1 string `pulumi:"addressLine1"`
@@ -4174,8 +4388,8 @@ type RegistrationTechnicalContact struct {
 	ExtensionEu *RegistrationTechnicalContactExtensionEu `pulumi:"extensionEu"`
 	// Details specific to French domain extensions.
 	ExtensionFr *RegistrationTechnicalContactExtensionFr `pulumi:"extensionFr"`
-	// Extension details specific to Dutch domain registrations.
-	ExtensionNls []string `pulumi:"extensionNls"`
+	// SIDN-specific details for Dutch (.nl) domain registrations.
+	ExtensionNls []RegistrationTechnicalContactExtensionNl `pulumi:"extensionNls"`
 	// Fax number for the contact (if available).
 	FaxNumber *string `pulumi:"faxNumber"`
 	// First name of the contact.
@@ -4184,7 +4398,7 @@ type RegistrationTechnicalContact struct {
 	Lang *string `pulumi:"lang"`
 	// Last name of the contact.
 	Lastname string `pulumi:"lastname"`
-	// Legal form of the contact (e.g., 'individual' or 'organization').
+	// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 	LegalForm string `pulumi:"legalForm"`
 	// Primary phone number of the contact.
 	PhoneNumber string `pulumi:"phoneNumber"`
@@ -4232,8 +4446,8 @@ type RegistrationTechnicalContactArgs struct {
 	ExtensionEu RegistrationTechnicalContactExtensionEuPtrInput `pulumi:"extensionEu"`
 	// Details specific to French domain extensions.
 	ExtensionFr RegistrationTechnicalContactExtensionFrPtrInput `pulumi:"extensionFr"`
-	// Extension details specific to Dutch domain registrations.
-	ExtensionNls pulumi.StringArrayInput `pulumi:"extensionNls"`
+	// SIDN-specific details for Dutch (.nl) domain registrations.
+	ExtensionNls RegistrationTechnicalContactExtensionNlArrayInput `pulumi:"extensionNls"`
 	// Fax number for the contact (if available).
 	FaxNumber pulumi.StringPtrInput `pulumi:"faxNumber"`
 	// First name of the contact.
@@ -4242,7 +4456,7 @@ type RegistrationTechnicalContactArgs struct {
 	Lang pulumi.StringPtrInput `pulumi:"lang"`
 	// Last name of the contact.
 	Lastname pulumi.StringInput `pulumi:"lastname"`
-	// Legal form of the contact (e.g., 'individual' or 'organization').
+	// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 	LegalForm pulumi.StringInput `pulumi:"legalForm"`
 	// Primary phone number of the contact.
 	PhoneNumber pulumi.StringInput `pulumi:"phoneNumber"`
@@ -4359,9 +4573,9 @@ func (o RegistrationTechnicalContactOutput) ExtensionFr() RegistrationTechnicalC
 	return o.ApplyT(func(v RegistrationTechnicalContact) *RegistrationTechnicalContactExtensionFr { return v.ExtensionFr }).(RegistrationTechnicalContactExtensionFrPtrOutput)
 }
 
-// Extension details specific to Dutch domain registrations.
-func (o RegistrationTechnicalContactOutput) ExtensionNls() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v RegistrationTechnicalContact) []string { return v.ExtensionNls }).(pulumi.StringArrayOutput)
+// SIDN-specific details for Dutch (.nl) domain registrations.
+func (o RegistrationTechnicalContactOutput) ExtensionNls() RegistrationTechnicalContactExtensionNlArrayOutput {
+	return o.ApplyT(func(v RegistrationTechnicalContact) []RegistrationTechnicalContactExtensionNl { return v.ExtensionNls }).(RegistrationTechnicalContactExtensionNlArrayOutput)
 }
 
 // Fax number for the contact (if available).
@@ -4384,7 +4598,7 @@ func (o RegistrationTechnicalContactOutput) Lastname() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistrationTechnicalContact) string { return v.Lastname }).(pulumi.StringOutput)
 }
 
-// Legal form of the contact (e.g., 'individual' or 'organization').
+// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 func (o RegistrationTechnicalContactOutput) LegalForm() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistrationTechnicalContact) string { return v.LegalForm }).(pulumi.StringOutput)
 }
@@ -5541,6 +5755,112 @@ func (o RegistrationTechnicalContactExtensionFrTrademarkInfoPtrOutput) Trademark
 	}).(pulumi.StringPtrOutput)
 }
 
+type RegistrationTechnicalContactExtensionNl struct {
+	// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+	LegalForm *string `pulumi:"legalForm"`
+	// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+	LegalFormRegistrationNumber *string `pulumi:"legalFormRegistrationNumber"`
+}
+
+// RegistrationTechnicalContactExtensionNlInput is an input type that accepts RegistrationTechnicalContactExtensionNlArgs and RegistrationTechnicalContactExtensionNlOutput values.
+// You can construct a concrete instance of `RegistrationTechnicalContactExtensionNlInput` via:
+//
+//	RegistrationTechnicalContactExtensionNlArgs{...}
+type RegistrationTechnicalContactExtensionNlInput interface {
+	pulumi.Input
+
+	ToRegistrationTechnicalContactExtensionNlOutput() RegistrationTechnicalContactExtensionNlOutput
+	ToRegistrationTechnicalContactExtensionNlOutputWithContext(context.Context) RegistrationTechnicalContactExtensionNlOutput
+}
+
+type RegistrationTechnicalContactExtensionNlArgs struct {
+	// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+	LegalForm pulumi.StringPtrInput `pulumi:"legalForm"`
+	// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+	LegalFormRegistrationNumber pulumi.StringPtrInput `pulumi:"legalFormRegistrationNumber"`
+}
+
+func (RegistrationTechnicalContactExtensionNlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistrationTechnicalContactExtensionNl)(nil)).Elem()
+}
+
+func (i RegistrationTechnicalContactExtensionNlArgs) ToRegistrationTechnicalContactExtensionNlOutput() RegistrationTechnicalContactExtensionNlOutput {
+	return i.ToRegistrationTechnicalContactExtensionNlOutputWithContext(context.Background())
+}
+
+func (i RegistrationTechnicalContactExtensionNlArgs) ToRegistrationTechnicalContactExtensionNlOutputWithContext(ctx context.Context) RegistrationTechnicalContactExtensionNlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistrationTechnicalContactExtensionNlOutput)
+}
+
+// RegistrationTechnicalContactExtensionNlArrayInput is an input type that accepts RegistrationTechnicalContactExtensionNlArray and RegistrationTechnicalContactExtensionNlArrayOutput values.
+// You can construct a concrete instance of `RegistrationTechnicalContactExtensionNlArrayInput` via:
+//
+//	RegistrationTechnicalContactExtensionNlArray{ RegistrationTechnicalContactExtensionNlArgs{...} }
+type RegistrationTechnicalContactExtensionNlArrayInput interface {
+	pulumi.Input
+
+	ToRegistrationTechnicalContactExtensionNlArrayOutput() RegistrationTechnicalContactExtensionNlArrayOutput
+	ToRegistrationTechnicalContactExtensionNlArrayOutputWithContext(context.Context) RegistrationTechnicalContactExtensionNlArrayOutput
+}
+
+type RegistrationTechnicalContactExtensionNlArray []RegistrationTechnicalContactExtensionNlInput
+
+func (RegistrationTechnicalContactExtensionNlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistrationTechnicalContactExtensionNl)(nil)).Elem()
+}
+
+func (i RegistrationTechnicalContactExtensionNlArray) ToRegistrationTechnicalContactExtensionNlArrayOutput() RegistrationTechnicalContactExtensionNlArrayOutput {
+	return i.ToRegistrationTechnicalContactExtensionNlArrayOutputWithContext(context.Background())
+}
+
+func (i RegistrationTechnicalContactExtensionNlArray) ToRegistrationTechnicalContactExtensionNlArrayOutputWithContext(ctx context.Context) RegistrationTechnicalContactExtensionNlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegistrationTechnicalContactExtensionNlArrayOutput)
+}
+
+type RegistrationTechnicalContactExtensionNlOutput struct{ *pulumi.OutputState }
+
+func (RegistrationTechnicalContactExtensionNlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegistrationTechnicalContactExtensionNl)(nil)).Elem()
+}
+
+func (o RegistrationTechnicalContactExtensionNlOutput) ToRegistrationTechnicalContactExtensionNlOutput() RegistrationTechnicalContactExtensionNlOutput {
+	return o
+}
+
+func (o RegistrationTechnicalContactExtensionNlOutput) ToRegistrationTechnicalContactExtensionNlOutputWithContext(ctx context.Context) RegistrationTechnicalContactExtensionNlOutput {
+	return o
+}
+
+// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+func (o RegistrationTechnicalContactExtensionNlOutput) LegalForm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistrationTechnicalContactExtensionNl) *string { return v.LegalForm }).(pulumi.StringPtrOutput)
+}
+
+// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+func (o RegistrationTechnicalContactExtensionNlOutput) LegalFormRegistrationNumber() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RegistrationTechnicalContactExtensionNl) *string { return v.LegalFormRegistrationNumber }).(pulumi.StringPtrOutput)
+}
+
+type RegistrationTechnicalContactExtensionNlArrayOutput struct{ *pulumi.OutputState }
+
+func (RegistrationTechnicalContactExtensionNlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegistrationTechnicalContactExtensionNl)(nil)).Elem()
+}
+
+func (o RegistrationTechnicalContactExtensionNlArrayOutput) ToRegistrationTechnicalContactExtensionNlArrayOutput() RegistrationTechnicalContactExtensionNlArrayOutput {
+	return o
+}
+
+func (o RegistrationTechnicalContactExtensionNlArrayOutput) ToRegistrationTechnicalContactExtensionNlArrayOutputWithContext(ctx context.Context) RegistrationTechnicalContactExtensionNlArrayOutput {
+	return o
+}
+
+func (o RegistrationTechnicalContactExtensionNlArrayOutput) Index(i pulumi.IntInput) RegistrationTechnicalContactExtensionNlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegistrationTechnicalContactExtensionNl {
+		return vs[0].([]RegistrationTechnicalContactExtensionNl)[vs[1].(int)]
+	}).(RegistrationTechnicalContactExtensionNlOutput)
+}
+
 type GetRecordGeoIp struct {
 	// The list of matches
 	Matches []GetRecordGeoIpMatch `pulumi:"matches"`
@@ -6119,8 +6439,8 @@ type GetRegistrationAdministrativeContact struct {
 	ExtensionEus []GetRegistrationAdministrativeContactExtensionEus `pulumi:"extensionEus"`
 	// Details specific to French domain extensions.
 	ExtensionFrs []GetRegistrationAdministrativeContactExtensionFr `pulumi:"extensionFrs"`
-	// Extension details specific to Dutch domain registrations.
-	ExtensionNls []string `pulumi:"extensionNls"`
+	// SIDN-specific details for Dutch (.nl) domain registrations.
+	ExtensionNls []GetRegistrationAdministrativeContactExtensionNl `pulumi:"extensionNls"`
 	// Fax number for the contact (if available).
 	FaxNumber string `pulumi:"faxNumber"`
 	// First name of the contact.
@@ -6129,7 +6449,7 @@ type GetRegistrationAdministrativeContact struct {
 	Lang string `pulumi:"lang"`
 	// Last name of the contact.
 	Lastname string `pulumi:"lastname"`
-	// Legal form of the contact (e.g., 'individual' or 'organization').
+	// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 	LegalForm string `pulumi:"legalForm"`
 	// Primary phone number of the contact.
 	PhoneNumber string `pulumi:"phoneNumber"`
@@ -6177,8 +6497,8 @@ type GetRegistrationAdministrativeContactArgs struct {
 	ExtensionEus GetRegistrationAdministrativeContactExtensionEusArrayInput `pulumi:"extensionEus"`
 	// Details specific to French domain extensions.
 	ExtensionFrs GetRegistrationAdministrativeContactExtensionFrArrayInput `pulumi:"extensionFrs"`
-	// Extension details specific to Dutch domain registrations.
-	ExtensionNls pulumi.StringArrayInput `pulumi:"extensionNls"`
+	// SIDN-specific details for Dutch (.nl) domain registrations.
+	ExtensionNls GetRegistrationAdministrativeContactExtensionNlArrayInput `pulumi:"extensionNls"`
 	// Fax number for the contact (if available).
 	FaxNumber pulumi.StringInput `pulumi:"faxNumber"`
 	// First name of the contact.
@@ -6187,7 +6507,7 @@ type GetRegistrationAdministrativeContactArgs struct {
 	Lang pulumi.StringInput `pulumi:"lang"`
 	// Last name of the contact.
 	Lastname pulumi.StringInput `pulumi:"lastname"`
-	// Legal form of the contact (e.g., 'individual' or 'organization').
+	// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 	LegalForm pulumi.StringInput `pulumi:"legalForm"`
 	// Primary phone number of the contact.
 	PhoneNumber pulumi.StringInput `pulumi:"phoneNumber"`
@@ -6308,9 +6628,11 @@ func (o GetRegistrationAdministrativeContactOutput) ExtensionFrs() GetRegistrati
 	}).(GetRegistrationAdministrativeContactExtensionFrArrayOutput)
 }
 
-// Extension details specific to Dutch domain registrations.
-func (o GetRegistrationAdministrativeContactOutput) ExtensionNls() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetRegistrationAdministrativeContact) []string { return v.ExtensionNls }).(pulumi.StringArrayOutput)
+// SIDN-specific details for Dutch (.nl) domain registrations.
+func (o GetRegistrationAdministrativeContactOutput) ExtensionNls() GetRegistrationAdministrativeContactExtensionNlArrayOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) []GetRegistrationAdministrativeContactExtensionNl {
+		return v.ExtensionNls
+	}).(GetRegistrationAdministrativeContactExtensionNlArrayOutput)
 }
 
 // Fax number for the contact (if available).
@@ -6333,7 +6655,7 @@ func (o GetRegistrationAdministrativeContactOutput) Lastname() pulumi.StringOutp
 	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.Lastname }).(pulumi.StringOutput)
 }
 
-// Legal form of the contact (e.g., 'individual' or 'organization').
+// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 func (o GetRegistrationAdministrativeContactOutput) LegalForm() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.LegalForm }).(pulumi.StringOutput)
 }
@@ -7142,6 +7464,112 @@ func (o GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput)
 	}).(GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput)
 }
 
+type GetRegistrationAdministrativeContactExtensionNl struct {
+	// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+	LegalForm string `pulumi:"legalForm"`
+	// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+	LegalFormRegistrationNumber string `pulumi:"legalFormRegistrationNumber"`
+}
+
+// GetRegistrationAdministrativeContactExtensionNlInput is an input type that accepts GetRegistrationAdministrativeContactExtensionNlArgs and GetRegistrationAdministrativeContactExtensionNlOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionNlInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionNlArgs{...}
+type GetRegistrationAdministrativeContactExtensionNlInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionNlOutput() GetRegistrationAdministrativeContactExtensionNlOutput
+	ToGetRegistrationAdministrativeContactExtensionNlOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionNlOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionNlArgs struct {
+	// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+	LegalForm pulumi.StringInput `pulumi:"legalForm"`
+	// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+	LegalFormRegistrationNumber pulumi.StringInput `pulumi:"legalFormRegistrationNumber"`
+}
+
+func (GetRegistrationAdministrativeContactExtensionNlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionNl)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionNlArgs) ToGetRegistrationAdministrativeContactExtensionNlOutput() GetRegistrationAdministrativeContactExtensionNlOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionNlOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionNlArgs) ToGetRegistrationAdministrativeContactExtensionNlOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionNlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionNlOutput)
+}
+
+// GetRegistrationAdministrativeContactExtensionNlArrayInput is an input type that accepts GetRegistrationAdministrativeContactExtensionNlArray and GetRegistrationAdministrativeContactExtensionNlArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionNlArrayInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionNlArray{ GetRegistrationAdministrativeContactExtensionNlArgs{...} }
+type GetRegistrationAdministrativeContactExtensionNlArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionNlArrayOutput() GetRegistrationAdministrativeContactExtensionNlArrayOutput
+	ToGetRegistrationAdministrativeContactExtensionNlArrayOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionNlArrayOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionNlArray []GetRegistrationAdministrativeContactExtensionNlInput
+
+func (GetRegistrationAdministrativeContactExtensionNlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionNl)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionNlArray) ToGetRegistrationAdministrativeContactExtensionNlArrayOutput() GetRegistrationAdministrativeContactExtensionNlArrayOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionNlArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionNlArray) ToGetRegistrationAdministrativeContactExtensionNlArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionNlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionNlArrayOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionNlOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionNlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionNl)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionNlOutput) ToGetRegistrationAdministrativeContactExtensionNlOutput() GetRegistrationAdministrativeContactExtensionNlOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionNlOutput) ToGetRegistrationAdministrativeContactExtensionNlOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionNlOutput {
+	return o
+}
+
+// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+func (o GetRegistrationAdministrativeContactExtensionNlOutput) LegalForm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionNl) string { return v.LegalForm }).(pulumi.StringOutput)
+}
+
+// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+func (o GetRegistrationAdministrativeContactExtensionNlOutput) LegalFormRegistrationNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionNl) string { return v.LegalFormRegistrationNumber }).(pulumi.StringOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionNlArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionNlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionNl)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionNlArrayOutput) ToGetRegistrationAdministrativeContactExtensionNlArrayOutput() GetRegistrationAdministrativeContactExtensionNlArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionNlArrayOutput) ToGetRegistrationAdministrativeContactExtensionNlArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionNlArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionNlArrayOutput) Index(i pulumi.IntInput) GetRegistrationAdministrativeContactExtensionNlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationAdministrativeContactExtensionNl {
+		return vs[0].([]GetRegistrationAdministrativeContactExtensionNl)[vs[1].(int)]
+	}).(GetRegistrationAdministrativeContactExtensionNlOutput)
+}
+
 type GetRegistrationDsRecord struct {
 	// The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
 	Algorithm string `pulumi:"algorithm"`
@@ -7596,8 +8024,8 @@ type GetRegistrationOwnerContact struct {
 	ExtensionEus []GetRegistrationOwnerContactExtensionEus `pulumi:"extensionEus"`
 	// Details specific to French domain extensions.
 	ExtensionFrs []GetRegistrationOwnerContactExtensionFr `pulumi:"extensionFrs"`
-	// Extension details specific to Dutch domain registrations.
-	ExtensionNls []string `pulumi:"extensionNls"`
+	// SIDN-specific details for Dutch (.nl) domain registrations.
+	ExtensionNls []GetRegistrationOwnerContactExtensionNl `pulumi:"extensionNls"`
 	// Fax number for the contact (if available).
 	FaxNumber string `pulumi:"faxNumber"`
 	// First name of the contact.
@@ -7606,7 +8034,7 @@ type GetRegistrationOwnerContact struct {
 	Lang string `pulumi:"lang"`
 	// Last name of the contact.
 	Lastname string `pulumi:"lastname"`
-	// Legal form of the contact (e.g., 'individual' or 'organization').
+	// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 	LegalForm string `pulumi:"legalForm"`
 	// Primary phone number of the contact.
 	PhoneNumber string `pulumi:"phoneNumber"`
@@ -7654,8 +8082,8 @@ type GetRegistrationOwnerContactArgs struct {
 	ExtensionEus GetRegistrationOwnerContactExtensionEusArrayInput `pulumi:"extensionEus"`
 	// Details specific to French domain extensions.
 	ExtensionFrs GetRegistrationOwnerContactExtensionFrArrayInput `pulumi:"extensionFrs"`
-	// Extension details specific to Dutch domain registrations.
-	ExtensionNls pulumi.StringArrayInput `pulumi:"extensionNls"`
+	// SIDN-specific details for Dutch (.nl) domain registrations.
+	ExtensionNls GetRegistrationOwnerContactExtensionNlArrayInput `pulumi:"extensionNls"`
 	// Fax number for the contact (if available).
 	FaxNumber pulumi.StringInput `pulumi:"faxNumber"`
 	// First name of the contact.
@@ -7664,7 +8092,7 @@ type GetRegistrationOwnerContactArgs struct {
 	Lang pulumi.StringInput `pulumi:"lang"`
 	// Last name of the contact.
 	Lastname pulumi.StringInput `pulumi:"lastname"`
-	// Legal form of the contact (e.g., 'individual' or 'organization').
+	// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 	LegalForm pulumi.StringInput `pulumi:"legalForm"`
 	// Primary phone number of the contact.
 	PhoneNumber pulumi.StringInput `pulumi:"phoneNumber"`
@@ -7781,9 +8209,9 @@ func (o GetRegistrationOwnerContactOutput) ExtensionFrs() GetRegistrationOwnerCo
 	return o.ApplyT(func(v GetRegistrationOwnerContact) []GetRegistrationOwnerContactExtensionFr { return v.ExtensionFrs }).(GetRegistrationOwnerContactExtensionFrArrayOutput)
 }
 
-// Extension details specific to Dutch domain registrations.
-func (o GetRegistrationOwnerContactOutput) ExtensionNls() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetRegistrationOwnerContact) []string { return v.ExtensionNls }).(pulumi.StringArrayOutput)
+// SIDN-specific details for Dutch (.nl) domain registrations.
+func (o GetRegistrationOwnerContactOutput) ExtensionNls() GetRegistrationOwnerContactExtensionNlArrayOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) []GetRegistrationOwnerContactExtensionNl { return v.ExtensionNls }).(GetRegistrationOwnerContactExtensionNlArrayOutput)
 }
 
 // Fax number for the contact (if available).
@@ -7806,7 +8234,7 @@ func (o GetRegistrationOwnerContactOutput) Lastname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.Lastname }).(pulumi.StringOutput)
 }
 
-// Legal form of the contact (e.g., 'individual' or 'organization').
+// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 func (o GetRegistrationOwnerContactOutput) LegalForm() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.LegalForm }).(pulumi.StringOutput)
 }
@@ -8613,6 +9041,112 @@ func (o GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput) Index(i 
 	}).(GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput)
 }
 
+type GetRegistrationOwnerContactExtensionNl struct {
+	// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+	LegalForm string `pulumi:"legalForm"`
+	// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+	LegalFormRegistrationNumber string `pulumi:"legalFormRegistrationNumber"`
+}
+
+// GetRegistrationOwnerContactExtensionNlInput is an input type that accepts GetRegistrationOwnerContactExtensionNlArgs and GetRegistrationOwnerContactExtensionNlOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionNlInput` via:
+//
+//	GetRegistrationOwnerContactExtensionNlArgs{...}
+type GetRegistrationOwnerContactExtensionNlInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionNlOutput() GetRegistrationOwnerContactExtensionNlOutput
+	ToGetRegistrationOwnerContactExtensionNlOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionNlOutput
+}
+
+type GetRegistrationOwnerContactExtensionNlArgs struct {
+	// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+	LegalForm pulumi.StringInput `pulumi:"legalForm"`
+	// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+	LegalFormRegistrationNumber pulumi.StringInput `pulumi:"legalFormRegistrationNumber"`
+}
+
+func (GetRegistrationOwnerContactExtensionNlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionNl)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionNlArgs) ToGetRegistrationOwnerContactExtensionNlOutput() GetRegistrationOwnerContactExtensionNlOutput {
+	return i.ToGetRegistrationOwnerContactExtensionNlOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionNlArgs) ToGetRegistrationOwnerContactExtensionNlOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionNlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionNlOutput)
+}
+
+// GetRegistrationOwnerContactExtensionNlArrayInput is an input type that accepts GetRegistrationOwnerContactExtensionNlArray and GetRegistrationOwnerContactExtensionNlArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionNlArrayInput` via:
+//
+//	GetRegistrationOwnerContactExtensionNlArray{ GetRegistrationOwnerContactExtensionNlArgs{...} }
+type GetRegistrationOwnerContactExtensionNlArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionNlArrayOutput() GetRegistrationOwnerContactExtensionNlArrayOutput
+	ToGetRegistrationOwnerContactExtensionNlArrayOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionNlArrayOutput
+}
+
+type GetRegistrationOwnerContactExtensionNlArray []GetRegistrationOwnerContactExtensionNlInput
+
+func (GetRegistrationOwnerContactExtensionNlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionNl)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionNlArray) ToGetRegistrationOwnerContactExtensionNlArrayOutput() GetRegistrationOwnerContactExtensionNlArrayOutput {
+	return i.ToGetRegistrationOwnerContactExtensionNlArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionNlArray) ToGetRegistrationOwnerContactExtensionNlArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionNlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionNlArrayOutput)
+}
+
+type GetRegistrationOwnerContactExtensionNlOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionNlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionNl)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionNlOutput) ToGetRegistrationOwnerContactExtensionNlOutput() GetRegistrationOwnerContactExtensionNlOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionNlOutput) ToGetRegistrationOwnerContactExtensionNlOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionNlOutput {
+	return o
+}
+
+// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+func (o GetRegistrationOwnerContactExtensionNlOutput) LegalForm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionNl) string { return v.LegalForm }).(pulumi.StringOutput)
+}
+
+// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+func (o GetRegistrationOwnerContactExtensionNlOutput) LegalFormRegistrationNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionNl) string { return v.LegalFormRegistrationNumber }).(pulumi.StringOutput)
+}
+
+type GetRegistrationOwnerContactExtensionNlArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionNlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionNl)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionNlArrayOutput) ToGetRegistrationOwnerContactExtensionNlArrayOutput() GetRegistrationOwnerContactExtensionNlArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionNlArrayOutput) ToGetRegistrationOwnerContactExtensionNlArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionNlArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionNlArrayOutput) Index(i pulumi.IntInput) GetRegistrationOwnerContactExtensionNlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationOwnerContactExtensionNl {
+		return vs[0].([]GetRegistrationOwnerContactExtensionNl)[vs[1].(int)]
+	}).(GetRegistrationOwnerContactExtensionNlOutput)
+}
+
 type GetRegistrationTechnicalContact struct {
 	// Primary address line for the contact.
 	AddressLine1 string `pulumi:"addressLine1"`
@@ -8634,8 +9168,8 @@ type GetRegistrationTechnicalContact struct {
 	ExtensionEus []GetRegistrationTechnicalContactExtensionEus `pulumi:"extensionEus"`
 	// Details specific to French domain extensions.
 	ExtensionFrs []GetRegistrationTechnicalContactExtensionFr `pulumi:"extensionFrs"`
-	// Extension details specific to Dutch domain registrations.
-	ExtensionNls []string `pulumi:"extensionNls"`
+	// SIDN-specific details for Dutch (.nl) domain registrations.
+	ExtensionNls []GetRegistrationTechnicalContactExtensionNl `pulumi:"extensionNls"`
 	// Fax number for the contact (if available).
 	FaxNumber string `pulumi:"faxNumber"`
 	// First name of the contact.
@@ -8644,7 +9178,7 @@ type GetRegistrationTechnicalContact struct {
 	Lang string `pulumi:"lang"`
 	// Last name of the contact.
 	Lastname string `pulumi:"lastname"`
-	// Legal form of the contact (e.g., 'individual' or 'organization').
+	// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 	LegalForm string `pulumi:"legalForm"`
 	// Primary phone number of the contact.
 	PhoneNumber string `pulumi:"phoneNumber"`
@@ -8692,8 +9226,8 @@ type GetRegistrationTechnicalContactArgs struct {
 	ExtensionEus GetRegistrationTechnicalContactExtensionEusArrayInput `pulumi:"extensionEus"`
 	// Details specific to French domain extensions.
 	ExtensionFrs GetRegistrationTechnicalContactExtensionFrArrayInput `pulumi:"extensionFrs"`
-	// Extension details specific to Dutch domain registrations.
-	ExtensionNls pulumi.StringArrayInput `pulumi:"extensionNls"`
+	// SIDN-specific details for Dutch (.nl) domain registrations.
+	ExtensionNls GetRegistrationTechnicalContactExtensionNlArrayInput `pulumi:"extensionNls"`
 	// Fax number for the contact (if available).
 	FaxNumber pulumi.StringInput `pulumi:"faxNumber"`
 	// First name of the contact.
@@ -8702,7 +9236,7 @@ type GetRegistrationTechnicalContactArgs struct {
 	Lang pulumi.StringInput `pulumi:"lang"`
 	// Last name of the contact.
 	Lastname pulumi.StringInput `pulumi:"lastname"`
-	// Legal form of the contact (e.g., 'individual' or 'organization').
+	// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 	LegalForm pulumi.StringInput `pulumi:"legalForm"`
 	// Primary phone number of the contact.
 	PhoneNumber pulumi.StringInput `pulumi:"phoneNumber"`
@@ -8823,9 +9357,11 @@ func (o GetRegistrationTechnicalContactOutput) ExtensionFrs() GetRegistrationTec
 	}).(GetRegistrationTechnicalContactExtensionFrArrayOutput)
 }
 
-// Extension details specific to Dutch domain registrations.
-func (o GetRegistrationTechnicalContactOutput) ExtensionNls() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetRegistrationTechnicalContact) []string { return v.ExtensionNls }).(pulumi.StringArrayOutput)
+// SIDN-specific details for Dutch (.nl) domain registrations.
+func (o GetRegistrationTechnicalContactOutput) ExtensionNls() GetRegistrationTechnicalContactExtensionNlArrayOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) []GetRegistrationTechnicalContactExtensionNl {
+		return v.ExtensionNls
+	}).(GetRegistrationTechnicalContactExtensionNlArrayOutput)
 }
 
 // Fax number for the contact (if available).
@@ -8848,7 +9384,7 @@ func (o GetRegistrationTechnicalContactOutput) Lastname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.Lastname }).(pulumi.StringOutput)
 }
 
-// Legal form of the contact (e.g., 'individual' or 'organization').
+// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
 func (o GetRegistrationTechnicalContactOutput) LegalForm() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.LegalForm }).(pulumi.StringOutput)
 }
@@ -9655,6 +10191,112 @@ func (o GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput) Inde
 	}).(GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput)
 }
 
+type GetRegistrationTechnicalContactExtensionNl struct {
+	// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+	LegalForm string `pulumi:"legalForm"`
+	// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+	LegalFormRegistrationNumber string `pulumi:"legalFormRegistrationNumber"`
+}
+
+// GetRegistrationTechnicalContactExtensionNlInput is an input type that accepts GetRegistrationTechnicalContactExtensionNlArgs and GetRegistrationTechnicalContactExtensionNlOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionNlInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionNlArgs{...}
+type GetRegistrationTechnicalContactExtensionNlInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionNlOutput() GetRegistrationTechnicalContactExtensionNlOutput
+	ToGetRegistrationTechnicalContactExtensionNlOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionNlOutput
+}
+
+type GetRegistrationTechnicalContactExtensionNlArgs struct {
+	// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+	LegalForm pulumi.StringInput `pulumi:"legalForm"`
+	// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+	LegalFormRegistrationNumber pulumi.StringInput `pulumi:"legalFormRegistrationNumber"`
+}
+
+func (GetRegistrationTechnicalContactExtensionNlArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionNl)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionNlArgs) ToGetRegistrationTechnicalContactExtensionNlOutput() GetRegistrationTechnicalContactExtensionNlOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionNlOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionNlArgs) ToGetRegistrationTechnicalContactExtensionNlOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionNlOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionNlOutput)
+}
+
+// GetRegistrationTechnicalContactExtensionNlArrayInput is an input type that accepts GetRegistrationTechnicalContactExtensionNlArray and GetRegistrationTechnicalContactExtensionNlArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionNlArrayInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionNlArray{ GetRegistrationTechnicalContactExtensionNlArgs{...} }
+type GetRegistrationTechnicalContactExtensionNlArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionNlArrayOutput() GetRegistrationTechnicalContactExtensionNlArrayOutput
+	ToGetRegistrationTechnicalContactExtensionNlArrayOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionNlArrayOutput
+}
+
+type GetRegistrationTechnicalContactExtensionNlArray []GetRegistrationTechnicalContactExtensionNlInput
+
+func (GetRegistrationTechnicalContactExtensionNlArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionNl)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionNlArray) ToGetRegistrationTechnicalContactExtensionNlArrayOutput() GetRegistrationTechnicalContactExtensionNlArrayOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionNlArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionNlArray) ToGetRegistrationTechnicalContactExtensionNlArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionNlArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionNlArrayOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionNlOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionNlOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionNl)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionNlOutput) ToGetRegistrationTechnicalContactExtensionNlOutput() GetRegistrationTechnicalContactExtensionNlOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionNlOutput) ToGetRegistrationTechnicalContactExtensionNlOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionNlOutput {
+	return o
+}
+
+// SIDN legal form for .nl domains (e.g. limited_company, natural_person). Distinct from the contact-level legal_form.
+func (o GetRegistrationTechnicalContactExtensionNlOutput) LegalForm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionNl) string { return v.LegalForm }).(pulumi.StringOutput)
+}
+
+// KvK (Chamber of Commerce) or other registry registration number for the SIDN legal form.
+func (o GetRegistrationTechnicalContactExtensionNlOutput) LegalFormRegistrationNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionNl) string { return v.LegalFormRegistrationNumber }).(pulumi.StringOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionNlArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionNlArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionNl)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionNlArrayOutput) ToGetRegistrationTechnicalContactExtensionNlArrayOutput() GetRegistrationTechnicalContactExtensionNlArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionNlArrayOutput) ToGetRegistrationTechnicalContactExtensionNlArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionNlArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionNlArrayOutput) Index(i pulumi.IntInput) GetRegistrationTechnicalContactExtensionNlOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationTechnicalContactExtensionNl {
+		return vs[0].([]GetRegistrationTechnicalContactExtensionNl)[vs[1].(int)]
+	}).(GetRegistrationTechnicalContactExtensionNlOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordGeoIpInput)(nil)).Elem(), RecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordGeoIpPtrInput)(nil)).Elem(), RecordGeoIpArgs{})
@@ -9682,6 +10324,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationAdministrativeContactExtensionFrIndividualInfoPtrInput)(nil)).Elem(), RegistrationAdministrativeContactExtensionFrIndividualInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationAdministrativeContactExtensionFrTrademarkInfoInput)(nil)).Elem(), RegistrationAdministrativeContactExtensionFrTrademarkInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationAdministrativeContactExtensionFrTrademarkInfoPtrInput)(nil)).Elem(), RegistrationAdministrativeContactExtensionFrTrademarkInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationAdministrativeContactExtensionNlInput)(nil)).Elem(), RegistrationAdministrativeContactExtensionNlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationAdministrativeContactExtensionNlArrayInput)(nil)).Elem(), RegistrationAdministrativeContactExtensionNlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationDsRecordInput)(nil)).Elem(), RegistrationDsRecordArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationDsRecordArrayInput)(nil)).Elem(), RegistrationDsRecordArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationDsRecordDigestInput)(nil)).Elem(), RegistrationDsRecordDigestArgs{})
@@ -9706,6 +10350,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationOwnerContactExtensionFrIndividualInfoPtrInput)(nil)).Elem(), RegistrationOwnerContactExtensionFrIndividualInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationOwnerContactExtensionFrTrademarkInfoInput)(nil)).Elem(), RegistrationOwnerContactExtensionFrTrademarkInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationOwnerContactExtensionFrTrademarkInfoPtrInput)(nil)).Elem(), RegistrationOwnerContactExtensionFrTrademarkInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationOwnerContactExtensionNlInput)(nil)).Elem(), RegistrationOwnerContactExtensionNlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationOwnerContactExtensionNlArrayInput)(nil)).Elem(), RegistrationOwnerContactExtensionNlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationTechnicalContactInput)(nil)).Elem(), RegistrationTechnicalContactArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationTechnicalContactArrayInput)(nil)).Elem(), RegistrationTechnicalContactArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationTechnicalContactExtensionEuInput)(nil)).Elem(), RegistrationTechnicalContactExtensionEuArgs{})
@@ -9722,6 +10368,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationTechnicalContactExtensionFrIndividualInfoPtrInput)(nil)).Elem(), RegistrationTechnicalContactExtensionFrIndividualInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationTechnicalContactExtensionFrTrademarkInfoInput)(nil)).Elem(), RegistrationTechnicalContactExtensionFrTrademarkInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationTechnicalContactExtensionFrTrademarkInfoPtrInput)(nil)).Elem(), RegistrationTechnicalContactExtensionFrTrademarkInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationTechnicalContactExtensionNlInput)(nil)).Elem(), RegistrationTechnicalContactExtensionNlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegistrationTechnicalContactExtensionNlArrayInput)(nil)).Elem(), RegistrationTechnicalContactExtensionNlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordGeoIpInput)(nil)).Elem(), GetRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordGeoIpArrayInput)(nil)).Elem(), GetRecordGeoIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordGeoIpMatchInput)(nil)).Elem(), GetRecordGeoIpMatchArgs{})
@@ -9748,6 +10396,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrIndividualInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrTrademarkInfoInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionNlInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionNlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionNlArrayInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionNlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationDsRecordInput)(nil)).Elem(), GetRegistrationDsRecordArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationDsRecordArrayInput)(nil)).Elem(), GetRegistrationDsRecordArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationDsRecordDigestInput)(nil)).Elem(), GetRegistrationDsRecordDigestArgs{})
@@ -9772,6 +10422,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrIndividualInfoArrayInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrIndividualInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrTrademarkInfoInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrTrademarkInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrTrademarkInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionNlInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionNlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionNlArrayInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionNlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactInput)(nil)).Elem(), GetRegistrationTechnicalContactArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactArrayInput)(nil)).Elem(), GetRegistrationTechnicalContactArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionEusInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionEusArgs{})
@@ -9788,6 +10440,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrIndividualInfoArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrTrademarkInfoInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrTrademarkInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrTrademarkInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionNlInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionNlArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionNlArrayInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionNlArray{})
 	pulumi.RegisterOutputType(RecordGeoIpOutput{})
 	pulumi.RegisterOutputType(RecordGeoIpPtrOutput{})
 	pulumi.RegisterOutputType(RecordGeoIpMatchOutput{})
@@ -9814,6 +10468,8 @@ func init() {
 	pulumi.RegisterOutputType(RegistrationAdministrativeContactExtensionFrIndividualInfoPtrOutput{})
 	pulumi.RegisterOutputType(RegistrationAdministrativeContactExtensionFrTrademarkInfoOutput{})
 	pulumi.RegisterOutputType(RegistrationAdministrativeContactExtensionFrTrademarkInfoPtrOutput{})
+	pulumi.RegisterOutputType(RegistrationAdministrativeContactExtensionNlOutput{})
+	pulumi.RegisterOutputType(RegistrationAdministrativeContactExtensionNlArrayOutput{})
 	pulumi.RegisterOutputType(RegistrationDsRecordOutput{})
 	pulumi.RegisterOutputType(RegistrationDsRecordArrayOutput{})
 	pulumi.RegisterOutputType(RegistrationDsRecordDigestOutput{})
@@ -9838,6 +10494,8 @@ func init() {
 	pulumi.RegisterOutputType(RegistrationOwnerContactExtensionFrIndividualInfoPtrOutput{})
 	pulumi.RegisterOutputType(RegistrationOwnerContactExtensionFrTrademarkInfoOutput{})
 	pulumi.RegisterOutputType(RegistrationOwnerContactExtensionFrTrademarkInfoPtrOutput{})
+	pulumi.RegisterOutputType(RegistrationOwnerContactExtensionNlOutput{})
+	pulumi.RegisterOutputType(RegistrationOwnerContactExtensionNlArrayOutput{})
 	pulumi.RegisterOutputType(RegistrationTechnicalContactOutput{})
 	pulumi.RegisterOutputType(RegistrationTechnicalContactArrayOutput{})
 	pulumi.RegisterOutputType(RegistrationTechnicalContactExtensionEuOutput{})
@@ -9854,6 +10512,8 @@ func init() {
 	pulumi.RegisterOutputType(RegistrationTechnicalContactExtensionFrIndividualInfoPtrOutput{})
 	pulumi.RegisterOutputType(RegistrationTechnicalContactExtensionFrTrademarkInfoOutput{})
 	pulumi.RegisterOutputType(RegistrationTechnicalContactExtensionFrTrademarkInfoPtrOutput{})
+	pulumi.RegisterOutputType(RegistrationTechnicalContactExtensionNlOutput{})
+	pulumi.RegisterOutputType(RegistrationTechnicalContactExtensionNlArrayOutput{})
 	pulumi.RegisterOutputType(GetRecordGeoIpOutput{})
 	pulumi.RegisterOutputType(GetRecordGeoIpArrayOutput{})
 	pulumi.RegisterOutputType(GetRecordGeoIpMatchOutput{})
@@ -9880,6 +10540,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput{})
 	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput{})
 	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionNlOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionNlArrayOutput{})
 	pulumi.RegisterOutputType(GetRegistrationDsRecordOutput{})
 	pulumi.RegisterOutputType(GetRegistrationDsRecordArrayOutput{})
 	pulumi.RegisterOutputType(GetRegistrationDsRecordDigestOutput{})
@@ -9904,6 +10566,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput{})
 	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput{})
 	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionNlOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionNlArrayOutput{})
 	pulumi.RegisterOutputType(GetRegistrationTechnicalContactOutput{})
 	pulumi.RegisterOutputType(GetRegistrationTechnicalContactArrayOutput{})
 	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionEusOutput{})
@@ -9920,4 +10584,6 @@ func init() {
 	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput{})
 	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput{})
 	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionNlOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionNlArrayOutput{})
 }

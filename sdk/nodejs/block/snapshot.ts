@@ -131,6 +131,10 @@ export class Snapshot extends pulumi.CustomResource {
      */
     declare public readonly import: pulumi.Output<outputs.block.SnapshotImport | undefined>;
     /**
+     * The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+     */
+    declare public /*out*/ readonly kmsKeyId: pulumi.Output<string>;
+    /**
      * The name of the snapshot. If not provided, a name will be randomly generated.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -176,6 +180,7 @@ export class Snapshot extends pulumi.CustomResource {
             const state = argsOrState as SnapshotState | undefined;
             resourceInputs["export"] = state?.export;
             resourceInputs["import"] = state?.import;
+            resourceInputs["kmsKeyId"] = state?.kmsKeyId;
             resourceInputs["name"] = state?.name;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["srn"] = state?.srn;
@@ -193,6 +198,7 @@ export class Snapshot extends pulumi.CustomResource {
             resourceInputs["timeouts"] = args?.timeouts;
             resourceInputs["volumeId"] = args?.volumeId;
             resourceInputs["zone"] = args?.zone;
+            resourceInputs["kmsKeyId"] = undefined /*out*/;
             resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -214,6 +220,10 @@ export interface SnapshotState {
      * Use this block to import a QCOW image from Object Storage to create a volume.
      */
     import?: pulumi.Input<inputs.block.SnapshotImport | undefined>;
+    /**
+     * The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+     */
+    kmsKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the snapshot. If not provided, a name will be randomly generated.
      */

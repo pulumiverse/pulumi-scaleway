@@ -212,6 +212,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the security group.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// A boolean to specify whether the security group should be stateful or not.
         /// </summary>
         [Output("stateful")]
@@ -447,6 +453,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the security group.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// A boolean to specify whether the security group should be stateful or not.

@@ -11,6 +11,8 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Gets information about a Site-to-Site VPN gateway.
+//
 // For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
 //
 // ## Example Usage
