@@ -60,16 +60,13 @@ export interface GetBucketPolicyArgs {
  */
 export interface GetBucketPolicyResult {
     readonly bucket: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
     readonly id: string;
     /**
      * The content of the bucket policy in JSON format.
      */
     readonly policy: string;
-    readonly projectId?: string;
-    readonly region?: string;
+    readonly projectId: string;
+    readonly region: string;
 }
 /**
  * The `scaleway.object.BucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.

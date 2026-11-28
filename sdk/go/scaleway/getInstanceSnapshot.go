@@ -83,6 +83,7 @@ type LookupInstanceSnapshotResult struct {
 	ProjectId      *string                     `pulumi:"projectId"`
 	SizeInGb       int                         `pulumi:"sizeInGb"`
 	SnapshotId     *string                     `pulumi:"snapshotId"`
+	Srn            string                      `pulumi:"srn"`
 	Tags           []string                    `pulumi:"tags"`
 	Type           string                      `pulumi:"type"`
 	VolumeId       string                      `pulumi:"volumeId"`
@@ -158,6 +159,10 @@ func (o LookupInstanceSnapshotResultOutput) SizeInGb() pulumi.IntOutput {
 
 func (o LookupInstanceSnapshotResultOutput) SnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstanceSnapshotResult) *string { return v.SnapshotId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupInstanceSnapshotResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceSnapshotResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupInstanceSnapshotResultOutput) Tags() pulumi.StringArrayOutput {

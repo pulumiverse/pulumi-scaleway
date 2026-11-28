@@ -139,7 +139,7 @@ namespace Pulumiverse.Scaleway.Domain
     /// 
     /// Each contact block supports the following attributes:
     /// 
-    /// - `LegalForm` (Required, String): Legal form of the contact.
+    /// - `LegalForm` (Required, String): Legal form of the contact (`Individual`, `Corporate`, `Association`, or `Other`). Not the SIDN `.nl` legal form — use `extension_nl.legal_form` for that.
     /// - `Firstname` (Required, String): First name.
     /// - `Lastname` (Required, String): Last name.
     /// - `CompanyName` (Optional, String): Company name.
@@ -151,6 +151,11 @@ namespace Pulumiverse.Scaleway.Domain
     /// - `Country` (Required, String): Country code (ISO format).
     /// - `VatIdentificationCode` (Required, String): VAT identification code.
     /// - `CompanyIdentificationCode` (Required, String): Company identification code.
+    /// - `ExtensionFr` (Optional, List Max: 1): AFNIC-specific details for French (`.fr`) domains (`Mode`, and optional nested infos).
+    /// - `ExtensionEu` (Optional, List Max: 1): EU-specific details (`EuropeanCitizenship`).
+    /// - `ExtensionNl` (Optional, List Max: 1): SIDN-specific details for Dutch (`.nl`) domains:
+    ///     - `LegalForm` (Optional, String): SIDN legal form (e.g. `LimitedCompany`, `NaturalPerson`).
+    ///     - `LegalFormRegistrationNumber` (Optional, String): KvK (Chamber of Commerce) or other registry registration number.
     /// 
     /// ## Import
     /// 

@@ -74,6 +74,8 @@ type LookupInstanceServerResult struct {
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId string  `pulumi:"securityGroupId"`
 	ServerId        *string `pulumi:"serverId"`
+	// The Scaleway Resource Name (SRN) of the server.
+	Srn string `pulumi:"srn"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State string `pulumi:"state"`
 	// The tags associated with the server.
@@ -228,6 +230,11 @@ func (o LookupInstanceServerResultOutput) SecurityGroupId() pulumi.StringOutput 
 
 func (o LookupInstanceServerResultOutput) ServerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstanceServerResult) *string { return v.ServerId }).(pulumi.StringPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the server.
+func (o LookupInstanceServerResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupInstanceServerResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The state of the server. Possible values are: `started`, `stopped` or `standby`.

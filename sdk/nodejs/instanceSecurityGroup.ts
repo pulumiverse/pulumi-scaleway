@@ -186,6 +186,10 @@ export class InstanceSecurityGroup extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
+     * The Scaleway Resource Name (SRN) of the security group.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * A boolean to specify whether the security group should be stateful or not.
      */
     declare public readonly stateful: pulumi.Output<boolean | undefined>;
@@ -224,6 +228,7 @@ export class InstanceSecurityGroup extends pulumi.CustomResource {
             resourceInputs["outboundDefaultPolicy"] = state?.outboundDefaultPolicy;
             resourceInputs["outboundRules"] = state?.outboundRules;
             resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["stateful"] = state?.stateful;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["zone"] = state?.zone;
@@ -242,6 +247,7 @@ export class InstanceSecurityGroup extends pulumi.CustomResource {
             resourceInputs["tags"] = args?.tags;
             resourceInputs["zone"] = args?.zone;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(InstanceSecurityGroup.__pulumiType, name, resourceInputs, opts);
@@ -293,6 +299,10 @@ export interface InstanceSecurityGroupState {
      * `projectId`) The ID of the project the security group is associated with.
      */
     projectId?: pulumi.Input<string | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the security group.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * A boolean to specify whether the security group should be stateful or not.
      */

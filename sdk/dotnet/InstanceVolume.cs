@@ -91,6 +91,12 @@ namespace Pulumiverse.Scaleway
         public Output<int?> SizeInGb { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the volume.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// A list of tags to apply to the volume.
         /// </summary>
         [Output("tags")]
@@ -262,6 +268,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the volume.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

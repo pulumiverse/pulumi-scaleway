@@ -234,6 +234,7 @@ class _InstanceSecurityGroupState:
                  outbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  outbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input['InstanceSecurityGroupOutboundRuleArgs']]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  stateful: pulumi.Input[Optional[_builtins.bool]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
@@ -251,6 +252,7 @@ class _InstanceSecurityGroupState:
         :param pulumi.Input[_builtins.str] outbound_default_policy: The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecurityGroupOutboundRuleArgs']]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the security group is associated with.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the security group.
         :param pulumi.Input[_builtins.bool] stateful: A boolean to specify whether the security group should be stateful or not.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags of the security group.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the security group should be created.
@@ -275,6 +277,8 @@ class _InstanceSecurityGroupState:
             pulumi.set(__self__, "outbound_rules", outbound_rules)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if stateful is not None:
             pulumi.set(__self__, "stateful", stateful)
         if tags is not None:
@@ -402,6 +406,18 @@ class _InstanceSecurityGroupState:
     @project_id.setter
     def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the security group.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -724,6 +740,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["zone"] = zone
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["srn"] = None
         super(InstanceSecurityGroup, __self__).__init__(
             'scaleway:index/instanceSecurityGroup:InstanceSecurityGroup',
             resource_name,
@@ -744,6 +761,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
             outbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
             outbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceSecurityGroupOutboundRuleArgs', 'InstanceSecurityGroupOutboundRuleArgsDict', 'outputs.InstanceSecurityGroupOutboundRule']]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             stateful: pulumi.Input[Optional[_builtins.bool]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'InstanceSecurityGroup':
@@ -765,6 +783,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] outbound_default_policy: The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupOutboundRuleArgs', 'InstanceSecurityGroupOutboundRuleArgsDict', 'outputs.InstanceSecurityGroupOutboundRule']]]] outbound_rules: A list of outbound rule to add to the security group. (Structure is documented below.)
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the security group is associated with.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the security group.
         :param pulumi.Input[_builtins.bool] stateful: A boolean to specify whether the security group should be stateful or not.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags of the security group.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the security group should be created.
@@ -783,6 +802,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
         __props__.__dict__["outbound_default_policy"] = outbound_default_policy
         __props__.__dict__["outbound_rules"] = outbound_rules
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["stateful"] = stateful
         __props__.__dict__["tags"] = tags
         __props__.__dict__["zone"] = zone
@@ -801,6 +821,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
             outbound_default_policy: pulumi.Input[Optional[_builtins.str]] = None,
             outbound_rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceSecurityGroupOutboundRuleArgs', 'InstanceSecurityGroupOutboundRuleArgsDict', 'outputs.InstanceSecurityGroupOutboundRule']]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             stateful: pulumi.Input[Optional[_builtins.bool]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
@@ -815,6 +836,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
         __props__["outboundDefaultPolicy"] = outbound_default_policy
         __props__["outboundRules"] = outbound_rules
         __props__["projectId"] = project_id
+        __props__["srn"] = srn
         __props__["stateful"] = stateful
         __props__["tags"] = tags
         __props__["zone"] = zone
@@ -900,6 +922,14 @@ class InstanceSecurityGroup(pulumi.CustomResource):
         `project_id`) The ID of the project the security group is associated with.
         """
         return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the security group.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

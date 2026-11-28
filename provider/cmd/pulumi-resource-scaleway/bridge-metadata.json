@@ -462,6 +462,10 @@
                     }
                 }
             },
+            "scaleway_dataorchestrator_workflow": {
+                "current": "scaleway:index/dataorchestratorWorkflow:DataorchestratorWorkflow",
+                "majorVersion": 1
+            },
             "scaleway_datawarehouse_database": {
                 "current": "scaleway:datawarehouse/database:Database",
                 "majorVersion": 1
@@ -1613,6 +1617,22 @@
                     }
                 }
             },
+            "scaleway_job_trigger": {
+                "current": "scaleway:job/trigger:Trigger",
+                "majorVersion": 1,
+                "fields": {
+                    "cron_config": {
+                        "fields": {
+                            "args": {
+                                "maxItemsOne": false
+                            },
+                            "startup_command": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
             "scaleway_k8s_acl": {
                 "current": "scaleway:kubernetes/acl:Acl",
                 "majorVersion": 1,
@@ -1979,6 +1999,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "scaleway_mailbox_forwarding": {
+                "current": "scaleway:mailbox/forwarding:Forwarding",
+                "majorVersion": 1
             },
             "scaleway_messageq_deployment": {
                 "current": "scaleway:messageq/deployment:Deployment",
@@ -3454,6 +3478,14 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "scaleway_dataorchestrator_workflow": {
+                "current": "scaleway:index/getDataorchestratorWorkflow:getDataorchestratorWorkflow",
+                "majorVersion": 1
+            },
+            "scaleway_dataorchestrator_workflow_run": {
+                "current": "scaleway:index/getDataorchestratorWorkflowRun:getDataorchestratorWorkflowRun",
+                "majorVersion": 1
             },
             "scaleway_domain_record": {
                 "current": "scaleway:domain/getRecord:getRecord",
@@ -5845,6 +5877,13 @@
                     "scaleway:index/domainRecord:DomainRecord"
                 ]
             },
+            "scaleway_domain_registration": {
+                "maxItemsOneOverrides": {
+                    "administrative_contact.$.extension_nl": false,
+                    "owner_contact.$.extension_nl": false,
+                    "technical_contact.$.extension_nl": false
+                }
+            },
             "scaleway_domain_zone": {
                 "aliases": [
                     "scaleway:index/domainZone:DomainZone"
@@ -6766,18 +6805,22 @@
             "scaleway_block_snapshot": {},
             "scaleway_block_volume": {},
             "scaleway_datalab": {},
+            "scaleway_dataorchestrator_workflow": {},
             "scaleway_file_filesystem": {},
             "scaleway_iam_saml": {},
             "scaleway_iam_saml_certificate": {},
             "scaleway_iam_scim": {},
             "scaleway_iam_scim_token": {},
             "scaleway_instance_template": {},
+            "scaleway_job_trigger": {},
             "scaleway_key_manager_key_material": {},
             "scaleway_mailbox": {},
             "scaleway_mailbox_alias": {},
             "scaleway_mailbox_domain": {},
+            "scaleway_mailbox_forwarding": {},
             "scaleway_messageq_deployment": {},
             "scaleway_messageq_user": {},
+            "scaleway_object_bucket_policy": {},
             "scaleway_partner_organization": {},
             "scaleway_webhosting": {}
         }
@@ -6874,6 +6917,7 @@
             "scaleway:index/databasePrivilege:DatabasePrivilege": 0,
             "scaleway:index/databaseReadReplica:DatabaseReadReplica": 0,
             "scaleway:index/databaseUser:DatabaseUser": 0,
+            "scaleway:index/dataorchestratorWorkflow:DataorchestratorWorkflow": 1,
             "scaleway:index/domainRecord:DomainRecord": 0,
             "scaleway:index/domainZone:DomainZone": 0,
             "scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage": 0,
@@ -6944,7 +6988,7 @@
             "scaleway:index/objectBucket:ObjectBucket": 0,
             "scaleway:index/objectBucketAcl:ObjectBucketAcl": 0,
             "scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration": 0,
-            "scaleway:index/objectBucketPolicy:ObjectBucketPolicy": 0,
+            "scaleway:index/objectBucketPolicy:ObjectBucketPolicy": 1,
             "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration": 0,
             "scaleway:index/objectItem:ObjectItem": 0,
             "scaleway:index/rdbSnapshot:RdbSnapshot": 0,
@@ -6990,6 +7034,7 @@
             "scaleway:ipam/ip:Ip": 0,
             "scaleway:ipam/ipReverseDns:IpReverseDns": 0,
             "scaleway:job/definition:Definition": 0,
+            "scaleway:job/trigger:Trigger": 1,
             "scaleway:kafka/cluster:Cluster": 0,
             "scaleway:keymanager/key:Key": 0,
             "scaleway:keymanager/keyMaterial:KeyMaterial": 1,
@@ -7006,6 +7051,7 @@
             "scaleway:loadbalancers/route:Route": 0,
             "scaleway:mailbox/alias:Alias": 1,
             "scaleway:mailbox/domain:Domain": 1,
+            "scaleway:mailbox/forwarding:Forwarding": 1,
             "scaleway:mailbox/mailbox:Mailbox": 1,
             "scaleway:messageq/deployment:Deployment": 1,
             "scaleway:messageq/user:User": 1,
@@ -7037,7 +7083,7 @@
             "scaleway:object/bucket:Bucket": 0,
             "scaleway:object/bucketAcl:BucketAcl": 0,
             "scaleway:object/bucketLockConfiguration:BucketLockConfiguration": 0,
-            "scaleway:object/bucketPolicy:BucketPolicy": 0,
+            "scaleway:object/bucketPolicy:BucketPolicy": 1,
             "scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration": 0,
             "scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration": 0,
             "scaleway:object/item:Item": 0,
@@ -7146,6 +7192,8 @@
             "scaleway:index/getDatabaseBackup:getDatabaseBackup": 0,
             "scaleway:index/getDatabaseInstance:getDatabaseInstance": 0,
             "scaleway:index/getDatabasePrivilege:getDatabasePrivilege": 0,
+            "scaleway:index/getDataorchestratorWorkflow:getDataorchestratorWorkflow": 1,
+            "scaleway:index/getDataorchestratorWorkflowRun:getDataorchestratorWorkflowRun": 1,
             "scaleway:index/getDomainRecord:getDomainRecord": 0,
             "scaleway:index/getDomainZone:getDomainZone": 0,
             "scaleway:index/getFlexibleIp:getFlexibleIp": 0,
@@ -7191,7 +7239,7 @@
             "scaleway:index/getMnqSqs:getMnqSqs": 0,
             "scaleway:index/getMongoDbInstance:getMongoDbInstance": 0,
             "scaleway:index/getObjectBucket:getObjectBucket": 0,
-            "scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy": 0,
+            "scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy": 1,
             "scaleway:index/getRedisCluster:getRedisCluster": 0,
             "scaleway:index/getRegistryImage:getRegistryImage": 0,
             "scaleway:index/getRegistryImageTag:getRegistryImageTag": 0,
@@ -7280,7 +7328,7 @@
             "scaleway:network/getVpcs:getVpcs": 0,
             "scaleway:object/get:get": 0,
             "scaleway:object/getBucket:getBucket": 0,
-            "scaleway:object/getBucketPolicy:getBucketPolicy": 0,
+            "scaleway:object/getBucketPolicy:getBucketPolicy": 1,
             "scaleway:object/getBucketServerSideEncryptionConfiguration:getBucketServerSideEncryptionConfiguration": 0,
             "scaleway:observability/getConfig:getConfig": 0,
             "scaleway:observability/getExporter:getExporter": 0,

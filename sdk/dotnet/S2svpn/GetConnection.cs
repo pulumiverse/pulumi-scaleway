@@ -13,6 +13,8 @@ namespace Pulumiverse.Scaleway.S2svpn
     public static class GetConnection
     {
         /// <summary>
+        /// Gets information about a Site-to-Site VPN connection.
+        /// 
         /// For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
         /// 
         /// ## Example Usage
@@ -55,6 +57,8 @@ namespace Pulumiverse.Scaleway.S2svpn
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetConnectionResult>("scaleway:s2svpn/getConnection:getConnection", args ?? new GetConnectionArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Gets information about a Site-to-Site VPN connection.
+        /// 
         /// For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
         /// 
         /// ## Example Usage
@@ -97,6 +101,8 @@ namespace Pulumiverse.Scaleway.S2svpn
             => global::Pulumi.Deployment.Instance.Invoke<GetConnectionResult>("scaleway:s2svpn/getConnection:getConnection", args ?? new GetConnectionInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Gets information about a Site-to-Site VPN connection.
+        /// 
         /// For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
         /// 
         /// ## Example Usage

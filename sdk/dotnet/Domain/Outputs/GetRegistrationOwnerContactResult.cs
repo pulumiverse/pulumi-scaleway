@@ -55,9 +55,9 @@ namespace Pulumiverse.Scaleway.Domain.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetRegistrationOwnerContactExtensionFrResult> ExtensionFrs;
         /// <summary>
-        /// Extension details specific to Dutch domain registrations.
+        /// SIDN-specific details for Dutch (.nl) domain registrations.
         /// </summary>
-        public readonly ImmutableArray<string> ExtensionNls;
+        public readonly ImmutableArray<Outputs.GetRegistrationOwnerContactExtensionNlResult> ExtensionNls;
         /// <summary>
         /// Fax number for the contact (if available).
         /// </summary>
@@ -75,7 +75,7 @@ namespace Pulumiverse.Scaleway.Domain.Outputs
         /// </summary>
         public readonly string Lastname;
         /// <summary>
-        /// Legal form of the contact (e.g., 'individual' or 'organization').
+        /// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
         /// </summary>
         public readonly string LegalForm;
         /// <summary>
@@ -125,7 +125,7 @@ namespace Pulumiverse.Scaleway.Domain.Outputs
 
             ImmutableArray<Outputs.GetRegistrationOwnerContactExtensionFrResult> extensionFrs,
 
-            ImmutableArray<string> extensionNls,
+            ImmutableArray<Outputs.GetRegistrationOwnerContactExtensionNlResult> extensionNls,
 
             string faxNumber,
 

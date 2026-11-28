@@ -105,6 +105,10 @@ export interface GetServerResult {
     readonly securityGroupId: string;
     readonly serverId?: string;
     /**
+     * The Scaleway Resource Name (SRN) of the server.
+     */
+    readonly srn: string;
+    /**
      * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      */
     readonly state: string;

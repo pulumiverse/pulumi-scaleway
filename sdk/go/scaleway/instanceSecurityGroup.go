@@ -193,6 +193,8 @@ type InstanceSecurityGroup struct {
 	OutboundRules InstanceSecurityGroupOutboundRuleArrayOutput `pulumi:"outboundRules"`
 	// `projectId`) The ID of the project the security group is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// The Scaleway Resource Name (SRN) of the security group.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful pulumi.BoolPtrOutput `pulumi:"stateful"`
 	// The tags of the security group.
@@ -252,6 +254,8 @@ type instanceSecurityGroupState struct {
 	OutboundRules []InstanceSecurityGroupOutboundRule `pulumi:"outboundRules"`
 	// `projectId`) The ID of the project the security group is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// The Scaleway Resource Name (SRN) of the security group.
+	Srn *string `pulumi:"srn"`
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful *bool `pulumi:"stateful"`
 	// The tags of the security group.
@@ -282,6 +286,8 @@ type InstanceSecurityGroupState struct {
 	OutboundRules InstanceSecurityGroupOutboundRuleArrayInput
 	// `projectId`) The ID of the project the security group is associated with.
 	ProjectId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the security group.
+	Srn pulumi.StringPtrInput
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful pulumi.BoolPtrInput
 	// The tags of the security group.
@@ -493,6 +499,11 @@ func (o InstanceSecurityGroupOutput) OutboundRules() InstanceSecurityGroupOutbou
 // `projectId`) The ID of the project the security group is associated with.
 func (o InstanceSecurityGroupOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSecurityGroup) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the security group.
+func (o InstanceSecurityGroupOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *InstanceSecurityGroup) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // A boolean to specify whether the security group should be stateful or not.

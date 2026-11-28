@@ -191,6 +191,7 @@ namespace Pulumiverse.Scaleway
         public readonly string? ProjectId;
         public readonly int SizeInGb;
         public readonly string? SnapshotId;
+        public readonly string Srn;
         public readonly ImmutableArray<string> Tags;
         public readonly string Type;
         public readonly string VolumeId;
@@ -214,6 +215,8 @@ namespace Pulumiverse.Scaleway
 
             string? snapshotId,
 
+            string srn,
+
             ImmutableArray<string> tags,
 
             string type,
@@ -230,6 +233,7 @@ namespace Pulumiverse.Scaleway
             ProjectId = projectId;
             SizeInGb = sizeInGb;
             SnapshotId = snapshotId;
+            Srn = srn;
             Tags = tags;
             Type = type;
             VolumeId = volumeId;

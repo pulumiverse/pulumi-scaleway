@@ -71,6 +71,8 @@ type InstanceVolume struct {
 	//
 	// > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
 	SizeInGb pulumi.IntPtrOutput `pulumi:"sizeInGb"`
+	// The Scaleway Resource Name (SRN) of the volume.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
@@ -128,6 +130,8 @@ type instanceVolumeState struct {
 	//
 	// > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
 	SizeInGb *int `pulumi:"sizeInGb"`
+	// The Scaleway Resource Name (SRN) of the volume.
+	Srn *string `pulumi:"srn"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
 	// The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
@@ -153,6 +157,8 @@ type InstanceVolumeState struct {
 	//
 	// > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
 	SizeInGb pulumi.IntPtrInput
+	// The Scaleway Resource Name (SRN) of the volume.
+	Srn pulumi.StringPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
 	// The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
@@ -336,6 +342,11 @@ func (o InstanceVolumeOutput) ServerId() pulumi.StringOutput {
 // > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
 func (o InstanceVolumeOutput) SizeInGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InstanceVolume) pulumi.IntPtrOutput { return v.SizeInGb }).(pulumi.IntPtrOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the volume.
+func (o InstanceVolumeOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *InstanceVolume) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // A list of tags to apply to the volume.

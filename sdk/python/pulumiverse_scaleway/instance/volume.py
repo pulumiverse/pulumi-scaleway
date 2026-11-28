@@ -166,6 +166,7 @@ class _VolumeState:
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  server_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+                 srn: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  zone: pulumi.Input[Optional[_builtins.str]] = None):
@@ -181,6 +182,7 @@ class _VolumeState:
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
                
                > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the volume.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[_builtins.str] type: The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the volume should be created.
@@ -199,6 +201,8 @@ class _VolumeState:
             pulumi.set(__self__, "server_id", server_id)
         if size_in_gb is not None:
             pulumi.set(__self__, "size_in_gb", size_in_gb)
+        if srn is not None:
+            pulumi.set(__self__, "srn", srn)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if type is not None:
@@ -291,6 +295,18 @@ class _VolumeState:
     @size_in_gb.setter
     def size_in_gb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "size_in_gb", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The Scaleway Resource Name (SRN) of the volume.
+        """
+        return pulumi.get(self, "srn")
+
+    @srn.setter
+    def srn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "srn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -457,6 +473,7 @@ class Volume(pulumi.CustomResource):
             __props__.__dict__["zone"] = zone
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["server_id"] = None
+            __props__.__dict__["srn"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/instanceVolume:InstanceVolume")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Volume, __self__).__init__(
@@ -476,6 +493,7 @@ class Volume(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             server_id: pulumi.Input[Optional[_builtins.str]] = None,
             size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> 'Volume':
@@ -495,6 +513,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
                
                > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
+        :param pulumi.Input[_builtins.str] srn: The Scaleway Resource Name (SRN) of the volume.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[_builtins.str] type: The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the volume should be created.
@@ -510,6 +529,7 @@ class Volume(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["server_id"] = server_id
         __props__.__dict__["size_in_gb"] = size_in_gb
+        __props__.__dict__["srn"] = srn
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
         __props__.__dict__["zone"] = zone
@@ -525,6 +545,7 @@ class Volume(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             server_id: pulumi.Input[Optional[_builtins.str]] = None,
             size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
+            srn: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             zone: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
@@ -536,6 +557,7 @@ class Volume(pulumi.CustomResource):
         __props__["projectId"] = project_id
         __props__["serverId"] = server_id
         __props__["sizeInGb"] = size_in_gb
+        __props__["srn"] = srn
         __props__["tags"] = tags
         __props__["type"] = type
         __props__["zone"] = zone
@@ -598,6 +620,14 @@ class Volume(pulumi.CustomResource):
         > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
         """
         return pulumi.get(self, "size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter
+    def srn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Scaleway Resource Name (SRN) of the volume.
+        """
+        return pulumi.get(self, "srn")
 
     @_builtins.property
     @pulumi.getter

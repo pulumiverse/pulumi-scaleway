@@ -74,14 +74,14 @@ namespace Pulumiverse.Scaleway.Domain.Inputs
         public Input<Inputs.RegistrationTechnicalContactExtensionFrGetArgs>? ExtensionFr { get; set; }
 
         [Input("extensionNls")]
-        private InputList<string>? _extensionNls;
+        private InputList<Inputs.RegistrationTechnicalContactExtensionNlGetArgs>? _extensionNls;
 
         /// <summary>
-        /// Extension details specific to Dutch domain registrations.
+        /// SIDN-specific details for Dutch (.nl) domain registrations.
         /// </summary>
-        public InputList<string> ExtensionNls
+        public InputList<Inputs.RegistrationTechnicalContactExtensionNlGetArgs> ExtensionNls
         {
-            get => _extensionNls ?? (_extensionNls = new InputList<string>());
+            get => _extensionNls ?? (_extensionNls = new InputList<Inputs.RegistrationTechnicalContactExtensionNlGetArgs>());
             set => _extensionNls = value;
         }
 
@@ -110,7 +110,7 @@ namespace Pulumiverse.Scaleway.Domain.Inputs
         public Input<string> Lastname { get; set; } = null!;
 
         /// <summary>
-        /// Legal form of the contact (e.g., 'individual' or 'organization').
+        /// Legal form of the contact (individual, corporate, association, or other). Not the SIDN .nl legal form — use extension_nl.legal_form for that.
         /// </summary>
         [Input("legalForm", required: true)]
         public Input<string> LegalForm { get; set; } = null!;

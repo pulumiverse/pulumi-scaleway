@@ -5,6 +5,8 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
+ * Gets information about a Site-to-Site VPN routing policy.
+ *
  * For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
  *
  * ## Example Usage
@@ -107,6 +109,8 @@ export interface GetRoutingPolicyResult {
     readonly updatedAt: string;
 }
 /**
+ * Gets information about a Site-to-Site VPN routing policy.
+ *
  * For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
  *
  * ## Example Usage

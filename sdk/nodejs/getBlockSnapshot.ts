@@ -54,6 +54,7 @@ export interface GetBlockSnapshotArgs {
  */
 export interface GetBlockSnapshotResult {
     readonly id: string;
+    readonly kmsKeyId: string;
     readonly name: string;
     readonly projectId: string;
     readonly snapshotId?: string;

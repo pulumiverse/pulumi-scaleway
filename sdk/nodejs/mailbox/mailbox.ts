@@ -137,6 +137,14 @@ export class Mailbox extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly email: pulumi.Output<string>;
     /**
+     * Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+     */
+    declare public readonly forwardingEnabled: pulumi.Output<boolean>;
+    /**
+     * Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
+     */
+    declare public readonly forwardingKeepCopy: pulumi.Output<boolean>;
+    /**
      * Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
      */
     declare public readonly localPart: pulumi.Output<string>;
@@ -195,6 +203,8 @@ export class Mailbox extends pulumi.CustomResource {
             resourceInputs["deletionScheduledAt"] = state?.deletionScheduledAt;
             resourceInputs["domainId"] = state?.domainId;
             resourceInputs["email"] = state?.email;
+            resourceInputs["forwardingEnabled"] = state?.forwardingEnabled;
+            resourceInputs["forwardingKeepCopy"] = state?.forwardingKeepCopy;
             resourceInputs["localPart"] = state?.localPart;
             resourceInputs["nextSubscriptionPeriod"] = state?.nextSubscriptionPeriod;
             resourceInputs["nextSubscriptionPeriodStartsAt"] = state?.nextSubscriptionPeriodStartsAt;
@@ -217,6 +227,8 @@ export class Mailbox extends pulumi.CustomResource {
                 throw new Error("Missing required property 'subscriptionPeriod'");
             }
             resourceInputs["domainId"] = args?.domainId;
+            resourceInputs["forwardingEnabled"] = args?.forwardingEnabled;
+            resourceInputs["forwardingKeepCopy"] = args?.forwardingKeepCopy;
             resourceInputs["localPart"] = args?.localPart;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
@@ -258,6 +270,14 @@ export interface MailboxState {
      * Full email address of the mailbox (`local_part@domain`).
      */
     email?: pulumi.Input<string | undefined>;
+    /**
+     * Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+     */
+    forwardingEnabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
+     */
+    forwardingKeepCopy?: pulumi.Input<boolean | undefined>;
     /**
      * Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
      */
@@ -309,6 +329,14 @@ export interface MailboxArgs {
      * UUID of the `scaleway.mailbox.Domain` to which this mailbox belongs.
      */
     domainId: pulumi.Input<string>;
+    /**
+     * Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+     */
+    forwardingEnabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
+     */
+    forwardingKeepCopy?: pulumi.Input<boolean | undefined>;
     /**
      * Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
      */

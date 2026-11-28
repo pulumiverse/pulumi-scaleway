@@ -10,6 +10,11 @@ export type Definition = import("./definition").Definition;
 export const Definition: typeof import("./definition").Definition = null as any;
 utilities.lazyLoad(exports, ["Definition"], () => require("./definition"));
 
+export { TriggerArgs, TriggerState } from "./trigger";
+export type Trigger = import("./trigger").Trigger;
+export const Trigger: typeof import("./trigger").Trigger = null as any;
+utilities.lazyLoad(exports, ["Trigger"], () => require("./trigger"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -17,9 +22,12 @@ const _module = {
         switch (type) {
             case "scaleway:job/definition:Definition":
                 return new Definition(name, <any>undefined, { urn })
+            case "scaleway:job/trigger:Trigger":
+                return new Trigger(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("scaleway", "job/definition", _module)
+pulumi.runtime.registerResourceModule("scaleway", "job/trigger", _module)

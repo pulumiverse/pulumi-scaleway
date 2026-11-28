@@ -498,6 +498,12 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string> SecurityGroupId { get; private set; } = null!;
 
         /// <summary>
+        /// The Scaleway Resource Name (SRN) of the server.
+        /// </summary>
+        [Output("srn")]
+        public Output<string> Srn { get; private set; } = null!;
+
+        /// <summary>
         /// The state of the server. Possible values are: `Started`, `Stopped` or `Standby`.
         /// </summary>
         [Output("state")]
@@ -1013,6 +1019,12 @@ namespace Pulumiverse.Scaleway.Instance
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }
+
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the server.
+        /// </summary>
+        [Input("srn")]
+        public Input<string>? Srn { get; set; }
 
         /// <summary>
         /// The state of the server. Possible values are: `Started`, `Stopped` or `Standby`.
