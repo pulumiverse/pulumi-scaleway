@@ -107,6 +107,7 @@ namespace Pulumiverse.Scaleway
         public readonly string Id;
         public readonly string InstanceVolumeId;
         public readonly int Iops;
+        public readonly string KmsKeyId;
         public readonly string Name;
         public readonly string ProjectId;
         public readonly int SizeInGb;
@@ -123,6 +124,8 @@ namespace Pulumiverse.Scaleway
             string instanceVolumeId,
 
             int iops,
+
+            string kmsKeyId,
 
             string name,
 
@@ -143,6 +146,7 @@ namespace Pulumiverse.Scaleway
             Id = id;
             InstanceVolumeId = instanceVolumeId;
             Iops = iops;
+            KmsKeyId = kmsKeyId;
             Name = name;
             ProjectId = projectId;
             SizeInGb = sizeInGb;

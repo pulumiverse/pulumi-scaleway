@@ -42,6 +42,7 @@ type LookupBlockVolumeResult struct {
 	Id               string   `pulumi:"id"`
 	InstanceVolumeId string   `pulumi:"instanceVolumeId"`
 	Iops             int      `pulumi:"iops"`
+	KmsKeyId         string   `pulumi:"kmsKeyId"`
 	Name             string   `pulumi:"name"`
 	ProjectId        string   `pulumi:"projectId"`
 	SizeInGb         int      `pulumi:"sizeInGb"`
@@ -98,6 +99,10 @@ func (o LookupBlockVolumeResultOutput) InstanceVolumeId() pulumi.StringOutput {
 
 func (o LookupBlockVolumeResultOutput) Iops() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupBlockVolumeResult) int { return v.Iops }).(pulumi.IntOutput)
+}
+
+func (o LookupBlockVolumeResultOutput) KmsKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBlockVolumeResult) string { return v.KmsKeyId }).(pulumi.StringOutput)
 }
 
 func (o LookupBlockVolumeResultOutput) Name() pulumi.StringOutput {

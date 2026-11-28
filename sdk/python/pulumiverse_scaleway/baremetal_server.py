@@ -1041,6 +1041,8 @@ class BaremetalServer(pulumi.CustomResource):
                  zone: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
+        Creates and manages Scaleway Bare Metal Servers.
+
         ## Example Usage
 
         ```python
@@ -1281,6 +1283,8 @@ class BaremetalServer(pulumi.CustomResource):
                  args: BaremetalServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        Creates and manages Scaleway Bare Metal Servers.
+
         ## Example Usage
 
         ```python

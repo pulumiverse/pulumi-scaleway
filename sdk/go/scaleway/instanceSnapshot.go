@@ -160,6 +160,8 @@ type InstanceSnapshot struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// (Optional) The size of the snapshot.
 	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
+	// The Scaleway Resource Name (SRN) of the snapshot.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The snapshot's volume type. The possible values are: `lSsd` (Local SSD).
@@ -215,6 +217,8 @@ type instanceSnapshotState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// (Optional) The size of the snapshot.
 	SizeInGb *int `pulumi:"sizeInGb"`
+	// The Scaleway Resource Name (SRN) of the snapshot.
+	Srn *string `pulumi:"srn"`
 	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
 	// The snapshot's volume type. The possible values are: `lSsd` (Local SSD).
@@ -241,6 +245,8 @@ type InstanceSnapshotState struct {
 	ProjectId pulumi.StringPtrInput
 	// (Optional) The size of the snapshot.
 	SizeInGb pulumi.IntPtrInput
+	// The Scaleway Resource Name (SRN) of the snapshot.
+	Srn pulumi.StringPtrInput
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
 	// The snapshot's volume type. The possible values are: `lSsd` (Local SSD).
@@ -420,6 +426,11 @@ func (o InstanceSnapshotOutput) ProjectId() pulumi.StringOutput {
 // (Optional) The size of the snapshot.
 func (o InstanceSnapshotOutput) SizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.IntOutput { return v.SizeInGb }).(pulumi.IntOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the snapshot.
+func (o InstanceSnapshotOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // A list of tags to apply to the snapshot.

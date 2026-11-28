@@ -21,6 +21,7 @@ class VolumeArgs:
     def __init__(__self__, *,
                  iops: pulumi.Input[_builtins.int],
                  instance_volume_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -32,6 +33,7 @@ class VolumeArgs:
 
         :param pulumi.Input[_builtins.int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         :param pulumi.Input[_builtins.str] instance_volume_id: The instance volume to create the block volume from
+        :param pulumi.Input[_builtins.str] kms_key_id: UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instance_volume_id`. When creating from a `snapshot_id`, the value must match the snapshot's `kms_key_id`.
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Project the volume is associated with.
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshot_id` is specified.
@@ -42,6 +44,8 @@ class VolumeArgs:
         pulumi.set(__self__, "iops", iops)
         if instance_volume_id is not None:
             pulumi.set(__self__, "instance_volume_id", instance_volume_id)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -78,6 +82,18 @@ class VolumeArgs:
     @instance_volume_id.setter
     def instance_volume_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_volume_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instance_volume_id`. When creating from a `snapshot_id`, the value must match the snapshot's `kms_key_id`.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -157,6 +173,7 @@ class _VolumeState:
     def __init__(__self__, *,
                  instance_volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -169,6 +186,7 @@ class _VolumeState:
 
         :param pulumi.Input[_builtins.str] instance_volume_id: The instance volume to create the block volume from
         :param pulumi.Input[_builtins.int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
+        :param pulumi.Input[_builtins.str] kms_key_id: UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instance_volume_id`. When creating from a `snapshot_id`, the value must match the snapshot's `kms_key_id`.
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Project the volume is associated with.
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshot_id` is specified.
@@ -181,6 +199,8 @@ class _VolumeState:
             pulumi.set(__self__, "instance_volume_id", instance_volume_id)
         if iops is not None:
             pulumi.set(__self__, "iops", iops)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -219,6 +239,18 @@ class _VolumeState:
     @iops.setter
     def iops(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "iops", value)
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instance_volume_id`. When creating from a `snapshot_id`, the value must match the snapshot's `kms_key_id`.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
 
     @_builtins.property
     @pulumi.getter
@@ -313,6 +345,7 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -373,6 +406,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_volume_id: The instance volume to create the block volume from
         :param pulumi.Input[_builtins.int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
+        :param pulumi.Input[_builtins.str] kms_key_id: UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instance_volume_id`. When creating from a `snapshot_id`, the value must match the snapshot's `kms_key_id`.
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Project the volume is associated with.
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshot_id` is specified.
@@ -452,6 +486,7 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_volume_id: pulumi.Input[Optional[_builtins.str]] = None,
                  iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -471,6 +506,7 @@ class Volume(pulumi.CustomResource):
             if iops is None and not opts.urn:
                 raise TypeError("Missing required property 'iops'")
             __props__.__dict__["iops"] = iops
+            __props__.__dict__["kms_key_id"] = kms_key_id
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["size_in_gb"] = size_in_gb
@@ -492,6 +528,7 @@ class Volume(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             instance_volume_id: pulumi.Input[Optional[_builtins.str]] = None,
             iops: pulumi.Input[Optional[_builtins.int]] = None,
+            kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -508,6 +545,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_volume_id: The instance volume to create the block volume from
         :param pulumi.Input[_builtins.int] iops: The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
+        :param pulumi.Input[_builtins.str] kms_key_id: UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instance_volume_id`. When creating from a `snapshot_id`, the value must match the snapshot's `kms_key_id`.
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided, a name will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: ). The ID of the Project the volume is associated with.
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume in gigabytes. Defaults to 5GB, or to the snapshot's size if `snapshot_id` is specified.
@@ -522,6 +560,7 @@ class Volume(pulumi.CustomResource):
 
         __props__.__dict__["instance_volume_id"] = instance_volume_id
         __props__.__dict__["iops"] = iops
+        __props__.__dict__["kms_key_id"] = kms_key_id
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["size_in_gb"] = size_in_gb
@@ -536,6 +575,7 @@ class Volume(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             instance_volume_id: pulumi.Input[Optional[_builtins.str]] = None,
             iops: pulumi.Input[Optional[_builtins.int]] = None,
+            kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             size_in_gb: pulumi.Input[Optional[_builtins.int]] = None,
@@ -546,6 +586,7 @@ class Volume(pulumi.CustomResource):
         __props__: dict = {}
         __props__["instanceVolumeId"] = instance_volume_id
         __props__["iops"] = iops
+        __props__["kmsKeyId"] = kms_key_id
         __props__["name"] = name
         __props__["projectId"] = project_id
         __props__["sizeInGb"] = size_in_gb
@@ -570,6 +611,14 @@ class Volume(pulumi.CustomResource):
         The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
         """
         return pulumi.get(self, "iops")
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> pulumi.Output[_builtins.str]:
+        """
+        UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instance_volume_id`. When creating from a `snapshot_id`, the value must match the snapshot's `kms_key_id`.
+        """
+        return pulumi.get(self, "kms_key_id")
 
     @_builtins.property
     @pulumi.getter

@@ -83,6 +83,8 @@ __all__ = [
     'DatabaseReadReplicaDirectAccessArgsDict',
     'DatabaseReadReplicaPrivateNetworkArgs',
     'DatabaseReadReplicaPrivateNetworkArgsDict',
+    'DataorchestratorWorkflowCronScheduleArgs',
+    'DataorchestratorWorkflowCronScheduleArgsDict',
     'DomainRecordGeoIpArgs',
     'DomainRecordGeoIpArgsDict',
     'DomainRecordGeoIpMatchArgs',
@@ -3393,6 +3395,73 @@ class DatabaseReadReplicaPrivateNetworkArgs:
     @zone.setter
     def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
+
+
+class DataorchestratorWorkflowCronScheduleArgsDict(TypedDict):
+    schedule: pulumi.Input[_builtins.str]
+    """
+    UNIX cron expression.
+    """
+    timezone_identifier: pulumi.Input[_builtins.str]
+    """
+    Canonical TZ identifier (e.g. `Europe/Paris`).
+    """
+    overlap: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Overlap policy (`forbid`, `allow`, `queue`, …).
+    """
+
+@pulumi.input_type
+class DataorchestratorWorkflowCronScheduleArgs:
+    def __init__(__self__, *,
+                 schedule: pulumi.Input[_builtins.str],
+                 timezone_identifier: pulumi.Input[_builtins.str],
+                 overlap: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] schedule: UNIX cron expression.
+        :param pulumi.Input[_builtins.str] timezone_identifier: Canonical TZ identifier (e.g. `Europe/Paris`).
+        :param pulumi.Input[_builtins.str] overlap: Overlap policy (`forbid`, `allow`, `queue`, …).
+        """
+        pulumi.set(__self__, "schedule", schedule)
+        pulumi.set(__self__, "timezone_identifier", timezone_identifier)
+        if overlap is not None:
+            pulumi.set(__self__, "overlap", overlap)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> pulumi.Input[_builtins.str]:
+        """
+        UNIX cron expression.
+        """
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "schedule", value)
+
+    @_builtins.property
+    @pulumi.getter(name="timezoneIdentifier")
+    def timezone_identifier(self) -> pulumi.Input[_builtins.str]:
+        """
+        Canonical TZ identifier (e.g. `Europe/Paris`).
+        """
+        return pulumi.get(self, "timezone_identifier")
+
+    @timezone_identifier.setter
+    def timezone_identifier(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "timezone_identifier", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def overlap(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Overlap policy (`forbid`, `allow`, `queue`, …).
+        """
+        return pulumi.get(self, "overlap")
+
+    @overlap.setter
+    def overlap(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "overlap", value)
 
 
 class DomainRecordGeoIpArgsDict(TypedDict):

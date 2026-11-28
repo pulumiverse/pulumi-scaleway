@@ -245,6 +245,8 @@ def get_gateway(name: Optional[_builtins.str] = None,
                 vpn_gateway_id: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGatewayResult:
     """
+    Gets information about a Site-to-Site VPN gateway.
+
     For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
 
     ## Example Usage
@@ -306,6 +308,8 @@ def get_gateway_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = N
                        vpn_gateway_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGatewayResult]:
     """
+    Gets information about a Site-to-Site VPN gateway.
+
     For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
 
     ## Example Usage

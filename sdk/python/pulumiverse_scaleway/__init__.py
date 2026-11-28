@@ -28,6 +28,7 @@ from .database_instance import *
 from .database_privilege import *
 from .database_read_replica import *
 from .database_user import *
+from .dataorchestrator_workflow import *
 from .domain_record import *
 from .domain_zone import *
 from .edge_services_backend_stage import *
@@ -68,6 +69,8 @@ from .get_database_acl import *
 from .get_database_backup import *
 from .get_database_instance import *
 from .get_database_privilege import *
+from .get_dataorchestrator_workflow import *
+from .get_dataorchestrator_workflow_run import *
 from .get_domain_record import *
 from .get_domain_zone import *
 from .get_flexible_ip import *
@@ -1068,6 +1071,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/dataorchestratorWorkflow",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/dataorchestratorWorkflow:DataorchestratorWorkflow": "DataorchestratorWorkflow"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/domainRecord",
   "fqn": "pulumiverse_scaleway",
   "classes": {
@@ -1996,6 +2007,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "job/trigger",
+  "fqn": "pulumiverse_scaleway.job",
+  "classes": {
+   "scaleway:job/trigger:Trigger": "Trigger"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "kafka/cluster",
   "fqn": "pulumiverse_scaleway.kafka",
   "classes": {
@@ -2120,6 +2139,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.mailbox",
   "classes": {
    "scaleway:mailbox/domain:Domain": "Domain"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mailbox/forwarding",
+  "fqn": "pulumiverse_scaleway.mailbox",
+  "classes": {
+   "scaleway:mailbox/forwarding:Forwarding": "Forwarding"
   }
  },
  {

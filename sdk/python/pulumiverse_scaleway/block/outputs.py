@@ -172,6 +172,7 @@ class SnapshotTimeouts(dict):
 class GetSnapshotsSnapshotResult(dict):
     def __init__(__self__, *,
                  id: _builtins.str,
+                 kms_key_id: _builtins.str,
                  name: _builtins.str,
                  project_id: _builtins.str,
                  srn: _builtins.str,
@@ -180,6 +181,7 @@ class GetSnapshotsSnapshotResult(dict):
                  zone: _builtins.str):
         """
         :param _builtins.str id: The ID of the snapshot in the `zone/uuid` format.
+        :param _builtins.str kms_key_id: The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
         :param _builtins.str name: Filter snapshots by their name. Snapshots with a matching name are listed.
         :param _builtins.str project_id: The ID of the Project the snapshots are associated with, used as filter.
         :param _builtins.str srn: The Scaleway Resource Name (SRN) of the snapshot.
@@ -188,6 +190,7 @@ class GetSnapshotsSnapshotResult(dict):
         :param _builtins.str zone: `zone`) The zone in which snapshots exist.
         """
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "kms_key_id", kms_key_id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "srn", srn)
@@ -202,6 +205,14 @@ class GetSnapshotsSnapshotResult(dict):
         The ID of the snapshot in the `zone/uuid` format.
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> _builtins.str:
+        """
+        The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+        """
+        return pulumi.get(self, "kms_key_id")
 
     @_builtins.property
     @pulumi.getter

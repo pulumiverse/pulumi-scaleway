@@ -26,7 +26,7 @@ class GetVolumeResult:
     """
     A collection of values returned by getVolume.
     """
-    def __init__(__self__, id=None, instance_volume_id=None, iops=None, name=None, project_id=None, size_in_gb=None, snapshot_id=None, srn=None, tags=None, volume_id=None, zone=None):
+    def __init__(__self__, id=None, instance_volume_id=None, iops=None, kms_key_id=None, name=None, project_id=None, size_in_gb=None, snapshot_id=None, srn=None, tags=None, volume_id=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -36,6 +36,9 @@ class GetVolumeResult:
         if iops and not isinstance(iops, int):
             raise TypeError("Expected argument 'iops' to be a int")
         pulumi.set(__self__, "iops", iops)
+        if kms_key_id and not isinstance(kms_key_id, str):
+            raise TypeError("Expected argument 'kms_key_id' to be a str")
+        pulumi.set(__self__, "kms_key_id", kms_key_id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -75,6 +78,11 @@ class GetVolumeResult:
     @pulumi.getter
     def iops(self) -> _builtins.int:
         return pulumi.get(self, "iops")
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> _builtins.str:
+        return pulumi.get(self, "kms_key_id")
 
     @_builtins.property
     @pulumi.getter
@@ -126,6 +134,7 @@ class AwaitableGetVolumeResult(GetVolumeResult):
             id=self.id,
             instance_volume_id=self.instance_volume_id,
             iops=self.iops,
+            kms_key_id=self.kms_key_id,
             name=self.name,
             project_id=self.project_id,
             size_in_gb=self.size_in_gb,
@@ -163,6 +172,7 @@ def get_volume(name: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         instance_volume_id=pulumi.get(__ret__, 'instance_volume_id'),
         iops=pulumi.get(__ret__, 'iops'),
+        kms_key_id=pulumi.get(__ret__, 'kms_key_id'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         size_in_gb=pulumi.get(__ret__, 'size_in_gb'),
@@ -197,6 +207,7 @@ def get_volume_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = No
         id=pulumi.get(__response__, 'id'),
         instance_volume_id=pulumi.get(__response__, 'instance_volume_id'),
         iops=pulumi.get(__response__, 'iops'),
+        kms_key_id=pulumi.get(__response__, 'kms_key_id'),
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
         size_in_gb=pulumi.get(__response__, 'size_in_gb'),

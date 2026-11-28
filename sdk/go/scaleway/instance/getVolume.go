@@ -44,14 +44,16 @@ type LookupVolumeResult struct {
 	MigrateToSbs bool    `pulumi:"migrateToSbs"`
 	Name         *string `pulumi:"name"`
 	// The ID of the organization the volume is associated with.
-	OrganizationId string   `pulumi:"organizationId"`
-	ProjectId      *string  `pulumi:"projectId"`
-	ServerId       string   `pulumi:"serverId"`
-	SizeInGb       int      `pulumi:"sizeInGb"`
-	Tags           []string `pulumi:"tags"`
-	Type           string   `pulumi:"type"`
-	VolumeId       *string  `pulumi:"volumeId"`
-	Zone           *string  `pulumi:"zone"`
+	OrganizationId string  `pulumi:"organizationId"`
+	ProjectId      *string `pulumi:"projectId"`
+	ServerId       string  `pulumi:"serverId"`
+	SizeInGb       int     `pulumi:"sizeInGb"`
+	// The Scaleway Resource Name (SRN) of the volume.
+	Srn      string   `pulumi:"srn"`
+	Tags     []string `pulumi:"tags"`
+	Type     string   `pulumi:"type"`
+	VolumeId *string  `pulumi:"volumeId"`
+	Zone     *string  `pulumi:"zone"`
 }
 
 func LookupVolumeOutput(ctx *pulumi.Context, args LookupVolumeOutputArgs, opts ...pulumi.InvokeOption) LookupVolumeResultOutput {
@@ -124,6 +126,11 @@ func (o LookupVolumeResultOutput) ServerId() pulumi.StringOutput {
 
 func (o LookupVolumeResultOutput) SizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupVolumeResult) int { return v.SizeInGb }).(pulumi.IntOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the volume.
+func (o LookupVolumeResultOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupVolumeResult) string { return v.Srn }).(pulumi.StringOutput)
 }
 
 func (o LookupVolumeResultOutput) Tags() pulumi.StringArrayOutput {

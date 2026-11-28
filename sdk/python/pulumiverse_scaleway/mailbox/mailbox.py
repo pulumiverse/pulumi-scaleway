@@ -22,6 +22,8 @@ class MailboxArgs:
                  domain_id: pulumi.Input[_builtins.str],
                  local_part: pulumi.Input[_builtins.str],
                  subscription_period: pulumi.Input[_builtins.str],
+                 forwarding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 forwarding_keep_copy: pulumi.Input[Optional[_builtins.bool]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
@@ -31,6 +33,8 @@ class MailboxArgs:
         :param pulumi.Input[_builtins.str] domain_id: UUID of the `mailbox.Domain` to which this mailbox belongs.
         :param pulumi.Input[_builtins.str] local_part: Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
         :param pulumi.Input[_builtins.str] subscription_period: Billing period for the mailbox. Accepted values: `monthly`, `yearly`. Can be updated in place to change the next renewal period.
+        :param pulumi.Input[_builtins.bool] forwarding_enabled: Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+        :param pulumi.Input[_builtins.bool] forwarding_keep_copy: Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
         :param pulumi.Input[_builtins.str] password: Password for the mailbox. Conflicts with `password_wo`. Stored in state.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password in write-only mode. Conflicts with `password`. Never stored in state. Requires `password_wo_version`.
@@ -39,6 +43,10 @@ class MailboxArgs:
         pulumi.set(__self__, "domain_id", domain_id)
         pulumi.set(__self__, "local_part", local_part)
         pulumi.set(__self__, "subscription_period", subscription_period)
+        if forwarding_enabled is not None:
+            pulumi.set(__self__, "forwarding_enabled", forwarding_enabled)
+        if forwarding_keep_copy is not None:
+            pulumi.set(__self__, "forwarding_keep_copy", forwarding_keep_copy)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if password_wo is not None:
@@ -81,6 +89,30 @@ class MailboxArgs:
     @subscription_period.setter
     def subscription_period(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "subscription_period", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forwardingEnabled")
+    def forwarding_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+        """
+        return pulumi.get(self, "forwarding_enabled")
+
+    @forwarding_enabled.setter
+    def forwarding_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "forwarding_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forwardingKeepCopy")
+    def forwarding_keep_copy(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
+        """
+        return pulumi.get(self, "forwarding_keep_copy")
+
+    @forwarding_keep_copy.setter
+    def forwarding_keep_copy(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "forwarding_keep_copy", value)
 
     @_builtins.property
     @pulumi.getter
@@ -127,6 +159,8 @@ class _MailboxState:
                  deletion_scheduled_at: pulumi.Input[Optional[_builtins.str]] = None,
                  domain_id: pulumi.Input[Optional[_builtins.str]] = None,
                  email: pulumi.Input[Optional[_builtins.str]] = None,
+                 forwarding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 forwarding_keep_copy: pulumi.Input[Optional[_builtins.bool]] = None,
                  local_part: pulumi.Input[Optional[_builtins.str]] = None,
                  next_subscription_period: pulumi.Input[Optional[_builtins.str]] = None,
                  next_subscription_period_starts_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -144,6 +178,8 @@ class _MailboxState:
         :param pulumi.Input[_builtins.str] deletion_scheduled_at: Scheduled deletion date when status is `deletion_scheduled` (RFC 3339 format).
         :param pulumi.Input[_builtins.str] domain_id: UUID of the `mailbox.Domain` to which this mailbox belongs.
         :param pulumi.Input[_builtins.str] email: Full email address of the mailbox (`local_part@domain`).
+        :param pulumi.Input[_builtins.bool] forwarding_enabled: Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+        :param pulumi.Input[_builtins.bool] forwarding_keep_copy: Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
         :param pulumi.Input[_builtins.str] local_part: Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
         :param pulumi.Input[_builtins.str] next_subscription_period: Next renewal period (`monthly`, `yearly`, or `canceled`).
         :param pulumi.Input[_builtins.str] next_subscription_period_starts_at: Date when the next billing period begins (RFC 3339 format).
@@ -164,6 +200,10 @@ class _MailboxState:
             pulumi.set(__self__, "domain_id", domain_id)
         if email is not None:
             pulumi.set(__self__, "email", email)
+        if forwarding_enabled is not None:
+            pulumi.set(__self__, "forwarding_enabled", forwarding_enabled)
+        if forwarding_keep_copy is not None:
+            pulumi.set(__self__, "forwarding_keep_copy", forwarding_keep_copy)
         if local_part is not None:
             pulumi.set(__self__, "local_part", local_part)
         if next_subscription_period is not None:
@@ -232,6 +272,30 @@ class _MailboxState:
     @email.setter
     def email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forwardingEnabled")
+    def forwarding_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+        """
+        return pulumi.get(self, "forwarding_enabled")
+
+    @forwarding_enabled.setter
+    def forwarding_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "forwarding_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="forwardingKeepCopy")
+    def forwarding_keep_copy(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
+        """
+        return pulumi.get(self, "forwarding_keep_copy")
+
+    @forwarding_keep_copy.setter
+    def forwarding_keep_copy(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "forwarding_keep_copy", value)
 
     @_builtins.property
     @pulumi.getter(name="localPart")
@@ -362,6 +426,8 @@ class Mailbox(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  domain_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 forwarding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 forwarding_keep_copy: pulumi.Input[Optional[_builtins.bool]] = None,
                  local_part: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -442,6 +508,8 @@ class Mailbox(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] domain_id: UUID of the `mailbox.Domain` to which this mailbox belongs.
+        :param pulumi.Input[_builtins.bool] forwarding_enabled: Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+        :param pulumi.Input[_builtins.bool] forwarding_keep_copy: Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
         :param pulumi.Input[_builtins.str] local_part: Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
         :param pulumi.Input[_builtins.str] password: Password for the mailbox. Conflicts with `password_wo`. Stored in state.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -542,6 +610,8 @@ class Mailbox(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  domain_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 forwarding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 forwarding_keep_copy: pulumi.Input[Optional[_builtins.bool]] = None,
                  local_part: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -559,6 +629,8 @@ class Mailbox(pulumi.CustomResource):
             if domain_id is None and not opts.urn:
                 raise TypeError("Missing required property 'domain_id'")
             __props__.__dict__["domain_id"] = domain_id
+            __props__.__dict__["forwarding_enabled"] = forwarding_enabled
+            __props__.__dict__["forwarding_keep_copy"] = forwarding_keep_copy
             if local_part is None and not opts.urn:
                 raise TypeError("Missing required property 'local_part'")
             __props__.__dict__["local_part"] = local_part
@@ -592,6 +664,8 @@ class Mailbox(pulumi.CustomResource):
             deletion_scheduled_at: pulumi.Input[Optional[_builtins.str]] = None,
             domain_id: pulumi.Input[Optional[_builtins.str]] = None,
             email: pulumi.Input[Optional[_builtins.str]] = None,
+            forwarding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            forwarding_keep_copy: pulumi.Input[Optional[_builtins.bool]] = None,
             local_part: pulumi.Input[Optional[_builtins.str]] = None,
             next_subscription_period: pulumi.Input[Optional[_builtins.str]] = None,
             next_subscription_period_starts_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -613,6 +687,8 @@ class Mailbox(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] deletion_scheduled_at: Scheduled deletion date when status is `deletion_scheduled` (RFC 3339 format).
         :param pulumi.Input[_builtins.str] domain_id: UUID of the `mailbox.Domain` to which this mailbox belongs.
         :param pulumi.Input[_builtins.str] email: Full email address of the mailbox (`local_part@domain`).
+        :param pulumi.Input[_builtins.bool] forwarding_enabled: Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+        :param pulumi.Input[_builtins.bool] forwarding_keep_copy: Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
         :param pulumi.Input[_builtins.str] local_part: Local part of the email address (part before the `@`). Must be 1–64 characters. Changing this value forces a new mailbox to be created.
         :param pulumi.Input[_builtins.str] next_subscription_period: Next renewal period (`monthly`, `yearly`, or `canceled`).
         :param pulumi.Input[_builtins.str] next_subscription_period_starts_at: Date when the next billing period begins (RFC 3339 format).
@@ -633,6 +709,8 @@ class Mailbox(pulumi.CustomResource):
         __props__.__dict__["deletion_scheduled_at"] = deletion_scheduled_at
         __props__.__dict__["domain_id"] = domain_id
         __props__.__dict__["email"] = email
+        __props__.__dict__["forwarding_enabled"] = forwarding_enabled
+        __props__.__dict__["forwarding_keep_copy"] = forwarding_keep_copy
         __props__.__dict__["local_part"] = local_part
         __props__.__dict__["next_subscription_period"] = next_subscription_period
         __props__.__dict__["next_subscription_period_starts_at"] = next_subscription_period_starts_at
@@ -652,6 +730,8 @@ class Mailbox(pulumi.CustomResource):
             deletion_scheduled_at: pulumi.Input[Optional[_builtins.str]] = None,
             domain_id: pulumi.Input[Optional[_builtins.str]] = None,
             email: pulumi.Input[Optional[_builtins.str]] = None,
+            forwarding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            forwarding_keep_copy: pulumi.Input[Optional[_builtins.bool]] = None,
             local_part: pulumi.Input[Optional[_builtins.str]] = None,
             next_subscription_period: pulumi.Input[Optional[_builtins.str]] = None,
             next_subscription_period_starts_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -667,6 +747,8 @@ class Mailbox(pulumi.CustomResource):
         __props__["deletionScheduledAt"] = deletion_scheduled_at
         __props__["domainId"] = domain_id
         __props__["email"] = email
+        __props__["forwardingEnabled"] = forwarding_enabled
+        __props__["forwardingKeepCopy"] = forwarding_keep_copy
         __props__["localPart"] = local_part
         __props__["nextSubscriptionPeriod"] = next_subscription_period
         __props__["nextSubscriptionPeriodStartsAt"] = next_subscription_period_starts_at
@@ -710,6 +792,22 @@ class Mailbox(pulumi.CustomResource):
         Full email address of the mailbox (`local_part@domain`).
         """
         return pulumi.get(self, "email")
+
+    @_builtins.property
+    @pulumi.getter(name="forwardingEnabled")
+    def forwarding_enabled(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether email forwarding is enabled for this mailbox. When `false`, no forwarding rules deliver mail. Defaults to `false` when omitted (API default).
+        """
+        return pulumi.get(self, "forwarding_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="forwardingKeepCopy")
+    def forwarding_keep_copy(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether to keep a copy of forwarded emails in this mailbox. Defaults to `false` when omitted (API default).
+        """
+        return pulumi.get(self, "forwarding_keep_copy")
 
     @_builtins.property
     @pulumi.getter(name="localPart")

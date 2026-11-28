@@ -19,6 +19,10 @@ namespace Pulumiverse.Scaleway.Block.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The UUID of the KMS key used to protect the parent volume's encryption. Empty if the parent volume is not encrypted.
+        /// </summary>
+        public readonly string KmsKeyId;
+        /// <summary>
         /// Filter snapshots by their name. Snapshots with a matching name are listed.
         /// </summary>
         public readonly string Name;
@@ -47,6 +51,8 @@ namespace Pulumiverse.Scaleway.Block.Outputs
         private GetSnapshotsSnapshotResult(
             string id,
 
+            string kmsKeyId,
+
             string name,
 
             string projectId,
@@ -60,6 +66,7 @@ namespace Pulumiverse.Scaleway.Block.Outputs
             string zone)
         {
             Id = id;
+            KmsKeyId = kmsKeyId;
             Name = name;
             ProjectId = projectId;
             Srn = srn;

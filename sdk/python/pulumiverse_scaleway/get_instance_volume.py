@@ -28,7 +28,7 @@ class GetInstanceVolumeResult:
     """
     A collection of values returned by getInstanceVolume.
     """
-    def __init__(__self__, from_snapshot_id=None, id=None, migrate_to_sbs=None, name=None, organization_id=None, project_id=None, server_id=None, size_in_gb=None, tags=None, type=None, volume_id=None, zone=None):
+    def __init__(__self__, from_snapshot_id=None, id=None, migrate_to_sbs=None, name=None, organization_id=None, project_id=None, server_id=None, size_in_gb=None, srn=None, tags=None, type=None, volume_id=None, zone=None):
         if from_snapshot_id and not isinstance(from_snapshot_id, str):
             raise TypeError("Expected argument 'from_snapshot_id' to be a str")
         pulumi.set(__self__, "from_snapshot_id", from_snapshot_id)
@@ -53,6 +53,9 @@ class GetInstanceVolumeResult:
         if size_in_gb and not isinstance(size_in_gb, int):
             raise TypeError("Expected argument 'size_in_gb' to be a int")
         pulumi.set(__self__, "size_in_gb", size_in_gb)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -114,6 +117,14 @@ class GetInstanceVolumeResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the volume.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def tags(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "tags")
 
@@ -147,6 +158,7 @@ class AwaitableGetInstanceVolumeResult(GetInstanceVolumeResult):
             project_id=self.project_id,
             server_id=self.server_id,
             size_in_gb=self.size_in_gb,
+            srn=self.srn,
             tags=self.tags,
             type=self.type,
             volume_id=self.volume_id,
@@ -187,6 +199,7 @@ def get_instance_volume(name: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         server_id=pulumi.get(__ret__, 'server_id'),
         size_in_gb=pulumi.get(__ret__, 'size_in_gb'),
+        srn=pulumi.get(__ret__, 'srn'),
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
         volume_id=pulumi.get(__ret__, 'volume_id'),
@@ -224,6 +237,7 @@ def get_instance_volume_output(name: pulumi.Input[Optional[Optional[_builtins.st
         project_id=pulumi.get(__response__, 'project_id'),
         server_id=pulumi.get(__response__, 'server_id'),
         size_in_gb=pulumi.get(__response__, 'size_in_gb'),
+        srn=pulumi.get(__response__, 'srn'),
         tags=pulumi.get(__response__, 'tags'),
         type=pulumi.get(__response__, 'type'),
         volume_id=pulumi.get(__response__, 'volume_id'),

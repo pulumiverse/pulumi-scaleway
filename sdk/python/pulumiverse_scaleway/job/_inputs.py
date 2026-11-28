@@ -21,6 +21,8 @@ __all__ = [
     'DefinitionRetryPolicyArgsDict',
     'DefinitionSecretReferenceArgs',
     'DefinitionSecretReferenceArgsDict',
+    'TriggerCronConfigArgs',
+    'TriggerCronConfigArgsDict',
 ]
 
 class DefinitionCronArgsDict(TypedDict):
@@ -205,5 +207,92 @@ class DefinitionSecretReferenceArgs:
     @secret_version.setter
     def secret_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_version", value)
+
+
+class TriggerCronConfigArgsDict(TypedDict):
+    schedule: pulumi.Input[_builtins.str]
+    """
+    The CRON schedule in UNIX format.
+    """
+    timezone: pulumi.Input[_builtins.str]
+    """
+    The timezone for the CRON schedule, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+    """
+    args: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    The arguments passed to the startup command used by the triggered job (in list of string format).
+    """
+    startup_commands: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    The startup command that will be used by the triggered job (in list of string format).
+    """
+
+@pulumi.input_type
+class TriggerCronConfigArgs:
+    def __init__(__self__, *,
+                 schedule: pulumi.Input[_builtins.str],
+                 timezone: pulumi.Input[_builtins.str],
+                 args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 startup_commands: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] schedule: The CRON schedule in UNIX format.
+        :param pulumi.Input[_builtins.str] timezone: The timezone for the CRON schedule, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: The arguments passed to the startup command used by the triggered job (in list of string format).
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] startup_commands: The startup command that will be used by the triggered job (in list of string format).
+        """
+        pulumi.set(__self__, "schedule", schedule)
+        pulumi.set(__self__, "timezone", timezone)
+        if args is not None:
+            pulumi.set(__self__, "args", args)
+        if startup_commands is not None:
+            pulumi.set(__self__, "startup_commands", startup_commands)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> pulumi.Input[_builtins.str]:
+        """
+        The CRON schedule in UNIX format.
+        """
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "schedule", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timezone(self) -> pulumi.Input[_builtins.str]:
+        """
+        The timezone for the CRON schedule, must be a canonical TZ identifier as found in this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+        """
+        return pulumi.get(self, "timezone")
+
+    @timezone.setter
+    def timezone(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "timezone", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def args(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The arguments passed to the startup command used by the triggered job (in list of string format).
+        """
+        return pulumi.get(self, "args")
+
+    @args.setter
+    def args(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "args", value)
+
+    @_builtins.property
+    @pulumi.getter(name="startupCommands")
+    def startup_commands(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The startup command that will be used by the triggered job (in list of string format).
+        """
+        return pulumi.get(self, "startup_commands")
+
+    @startup_commands.setter
+    def startup_commands(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "startup_commands", value)
 
 

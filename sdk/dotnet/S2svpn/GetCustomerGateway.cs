@@ -13,6 +13,8 @@ namespace Pulumiverse.Scaleway.S2svpn
     public static class GetCustomerGateway
     {
         /// <summary>
+        /// Gets information about a Site-to-Site VPN customer gateway.
+        /// 
         /// For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
         /// 
         /// ## Example Usage
@@ -55,6 +57,8 @@ namespace Pulumiverse.Scaleway.S2svpn
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCustomerGatewayResult>("scaleway:s2svpn/getCustomerGateway:getCustomerGateway", args ?? new GetCustomerGatewayArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Gets information about a Site-to-Site VPN customer gateway.
+        /// 
         /// For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
         /// 
         /// ## Example Usage
@@ -97,6 +101,8 @@ namespace Pulumiverse.Scaleway.S2svpn
             => global::Pulumi.Deployment.Instance.Invoke<GetCustomerGatewayResult>("scaleway:s2svpn/getCustomerGateway:getCustomerGateway", args ?? new GetCustomerGatewayInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// Gets information about a Site-to-Site VPN customer gateway.
+        /// 
         /// For further information refer to the Site-to-Site VPN [API documentation](https://www.scaleway.com/en/developers/api/site-to-site-vpn/).
         /// 
         /// ## Example Usage

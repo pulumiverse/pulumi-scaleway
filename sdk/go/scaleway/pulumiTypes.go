@@ -5692,6 +5692,181 @@ func (o DatabaseReadReplicaPrivateNetworkPtrOutput) Zone() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+type DataorchestratorWorkflowCronSchedule struct {
+	// Overlap policy (`forbid`, `allow`, `queue`, …).
+	Overlap *string `pulumi:"overlap"`
+	// UNIX cron expression.
+	Schedule string `pulumi:"schedule"`
+	// Canonical TZ identifier (e.g. `Europe/Paris`).
+	TimezoneIdentifier string `pulumi:"timezoneIdentifier"`
+}
+
+// DataorchestratorWorkflowCronScheduleInput is an input type that accepts DataorchestratorWorkflowCronScheduleArgs and DataorchestratorWorkflowCronScheduleOutput values.
+// You can construct a concrete instance of `DataorchestratorWorkflowCronScheduleInput` via:
+//
+//	DataorchestratorWorkflowCronScheduleArgs{...}
+type DataorchestratorWorkflowCronScheduleInput interface {
+	pulumi.Input
+
+	ToDataorchestratorWorkflowCronScheduleOutput() DataorchestratorWorkflowCronScheduleOutput
+	ToDataorchestratorWorkflowCronScheduleOutputWithContext(context.Context) DataorchestratorWorkflowCronScheduleOutput
+}
+
+type DataorchestratorWorkflowCronScheduleArgs struct {
+	// Overlap policy (`forbid`, `allow`, `queue`, …).
+	Overlap pulumi.StringPtrInput `pulumi:"overlap"`
+	// UNIX cron expression.
+	Schedule pulumi.StringInput `pulumi:"schedule"`
+	// Canonical TZ identifier (e.g. `Europe/Paris`).
+	TimezoneIdentifier pulumi.StringInput `pulumi:"timezoneIdentifier"`
+}
+
+func (DataorchestratorWorkflowCronScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataorchestratorWorkflowCronSchedule)(nil)).Elem()
+}
+
+func (i DataorchestratorWorkflowCronScheduleArgs) ToDataorchestratorWorkflowCronScheduleOutput() DataorchestratorWorkflowCronScheduleOutput {
+	return i.ToDataorchestratorWorkflowCronScheduleOutputWithContext(context.Background())
+}
+
+func (i DataorchestratorWorkflowCronScheduleArgs) ToDataorchestratorWorkflowCronScheduleOutputWithContext(ctx context.Context) DataorchestratorWorkflowCronScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataorchestratorWorkflowCronScheduleOutput)
+}
+
+func (i DataorchestratorWorkflowCronScheduleArgs) ToDataorchestratorWorkflowCronSchedulePtrOutput() DataorchestratorWorkflowCronSchedulePtrOutput {
+	return i.ToDataorchestratorWorkflowCronSchedulePtrOutputWithContext(context.Background())
+}
+
+func (i DataorchestratorWorkflowCronScheduleArgs) ToDataorchestratorWorkflowCronSchedulePtrOutputWithContext(ctx context.Context) DataorchestratorWorkflowCronSchedulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataorchestratorWorkflowCronScheduleOutput).ToDataorchestratorWorkflowCronSchedulePtrOutputWithContext(ctx)
+}
+
+// DataorchestratorWorkflowCronSchedulePtrInput is an input type that accepts DataorchestratorWorkflowCronScheduleArgs, DataorchestratorWorkflowCronSchedulePtr and DataorchestratorWorkflowCronSchedulePtrOutput values.
+// You can construct a concrete instance of `DataorchestratorWorkflowCronSchedulePtrInput` via:
+//
+//	        DataorchestratorWorkflowCronScheduleArgs{...}
+//
+//	or:
+//
+//	        nil
+type DataorchestratorWorkflowCronSchedulePtrInput interface {
+	pulumi.Input
+
+	ToDataorchestratorWorkflowCronSchedulePtrOutput() DataorchestratorWorkflowCronSchedulePtrOutput
+	ToDataorchestratorWorkflowCronSchedulePtrOutputWithContext(context.Context) DataorchestratorWorkflowCronSchedulePtrOutput
+}
+
+type dataorchestratorWorkflowCronSchedulePtrType DataorchestratorWorkflowCronScheduleArgs
+
+func DataorchestratorWorkflowCronSchedulePtr(v *DataorchestratorWorkflowCronScheduleArgs) DataorchestratorWorkflowCronSchedulePtrInput {
+	return (*dataorchestratorWorkflowCronSchedulePtrType)(v)
+}
+
+func (*dataorchestratorWorkflowCronSchedulePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DataorchestratorWorkflowCronSchedule)(nil)).Elem()
+}
+
+func (i *dataorchestratorWorkflowCronSchedulePtrType) ToDataorchestratorWorkflowCronSchedulePtrOutput() DataorchestratorWorkflowCronSchedulePtrOutput {
+	return i.ToDataorchestratorWorkflowCronSchedulePtrOutputWithContext(context.Background())
+}
+
+func (i *dataorchestratorWorkflowCronSchedulePtrType) ToDataorchestratorWorkflowCronSchedulePtrOutputWithContext(ctx context.Context) DataorchestratorWorkflowCronSchedulePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DataorchestratorWorkflowCronSchedulePtrOutput)
+}
+
+type DataorchestratorWorkflowCronScheduleOutput struct{ *pulumi.OutputState }
+
+func (DataorchestratorWorkflowCronScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DataorchestratorWorkflowCronSchedule)(nil)).Elem()
+}
+
+func (o DataorchestratorWorkflowCronScheduleOutput) ToDataorchestratorWorkflowCronScheduleOutput() DataorchestratorWorkflowCronScheduleOutput {
+	return o
+}
+
+func (o DataorchestratorWorkflowCronScheduleOutput) ToDataorchestratorWorkflowCronScheduleOutputWithContext(ctx context.Context) DataorchestratorWorkflowCronScheduleOutput {
+	return o
+}
+
+func (o DataorchestratorWorkflowCronScheduleOutput) ToDataorchestratorWorkflowCronSchedulePtrOutput() DataorchestratorWorkflowCronSchedulePtrOutput {
+	return o.ToDataorchestratorWorkflowCronSchedulePtrOutputWithContext(context.Background())
+}
+
+func (o DataorchestratorWorkflowCronScheduleOutput) ToDataorchestratorWorkflowCronSchedulePtrOutputWithContext(ctx context.Context) DataorchestratorWorkflowCronSchedulePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DataorchestratorWorkflowCronSchedule) *DataorchestratorWorkflowCronSchedule {
+		return &v
+	}).(DataorchestratorWorkflowCronSchedulePtrOutput)
+}
+
+// Overlap policy (`forbid`, `allow`, `queue`, …).
+func (o DataorchestratorWorkflowCronScheduleOutput) Overlap() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DataorchestratorWorkflowCronSchedule) *string { return v.Overlap }).(pulumi.StringPtrOutput)
+}
+
+// UNIX cron expression.
+func (o DataorchestratorWorkflowCronScheduleOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v DataorchestratorWorkflowCronSchedule) string { return v.Schedule }).(pulumi.StringOutput)
+}
+
+// Canonical TZ identifier (e.g. `Europe/Paris`).
+func (o DataorchestratorWorkflowCronScheduleOutput) TimezoneIdentifier() pulumi.StringOutput {
+	return o.ApplyT(func(v DataorchestratorWorkflowCronSchedule) string { return v.TimezoneIdentifier }).(pulumi.StringOutput)
+}
+
+type DataorchestratorWorkflowCronSchedulePtrOutput struct{ *pulumi.OutputState }
+
+func (DataorchestratorWorkflowCronSchedulePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DataorchestratorWorkflowCronSchedule)(nil)).Elem()
+}
+
+func (o DataorchestratorWorkflowCronSchedulePtrOutput) ToDataorchestratorWorkflowCronSchedulePtrOutput() DataorchestratorWorkflowCronSchedulePtrOutput {
+	return o
+}
+
+func (o DataorchestratorWorkflowCronSchedulePtrOutput) ToDataorchestratorWorkflowCronSchedulePtrOutputWithContext(ctx context.Context) DataorchestratorWorkflowCronSchedulePtrOutput {
+	return o
+}
+
+func (o DataorchestratorWorkflowCronSchedulePtrOutput) Elem() DataorchestratorWorkflowCronScheduleOutput {
+	return o.ApplyT(func(v *DataorchestratorWorkflowCronSchedule) DataorchestratorWorkflowCronSchedule {
+		if v != nil {
+			return *v
+		}
+		var ret DataorchestratorWorkflowCronSchedule
+		return ret
+	}).(DataorchestratorWorkflowCronScheduleOutput)
+}
+
+// Overlap policy (`forbid`, `allow`, `queue`, …).
+func (o DataorchestratorWorkflowCronSchedulePtrOutput) Overlap() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataorchestratorWorkflowCronSchedule) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Overlap
+	}).(pulumi.StringPtrOutput)
+}
+
+// UNIX cron expression.
+func (o DataorchestratorWorkflowCronSchedulePtrOutput) Schedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataorchestratorWorkflowCronSchedule) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Schedule
+	}).(pulumi.StringPtrOutput)
+}
+
+// Canonical TZ identifier (e.g. `Europe/Paris`).
+func (o DataorchestratorWorkflowCronSchedulePtrOutput) TimezoneIdentifier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DataorchestratorWorkflowCronSchedule) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.TimezoneIdentifier
+	}).(pulumi.StringPtrOutput)
+}
+
 type DomainRecordGeoIp struct {
 	// The list of matches
 	Matches []DomainRecordGeoIpMatch `pulumi:"matches"`
@@ -25736,6 +25911,76 @@ func (o GetDatabaseInstanceUpgradableVersionArrayOutput) Index(i pulumi.IntInput
 	}).(GetDatabaseInstanceUpgradableVersionOutput)
 }
 
+type GetDataorchestratorWorkflowCronSchedule struct {
+	// Overlap policy.
+	Overlap string `pulumi:"overlap"`
+	// UNIX cron expression.
+	Schedule string `pulumi:"schedule"`
+	// Timezone identifier.
+	TimezoneIdentifier string `pulumi:"timezoneIdentifier"`
+}
+
+// GetDataorchestratorWorkflowCronScheduleInput is an input type that accepts GetDataorchestratorWorkflowCronScheduleArgs and GetDataorchestratorWorkflowCronScheduleOutput values.
+// You can construct a concrete instance of `GetDataorchestratorWorkflowCronScheduleInput` via:
+//
+//	GetDataorchestratorWorkflowCronScheduleArgs{...}
+type GetDataorchestratorWorkflowCronScheduleInput interface {
+	pulumi.Input
+
+	ToGetDataorchestratorWorkflowCronScheduleOutput() GetDataorchestratorWorkflowCronScheduleOutput
+	ToGetDataorchestratorWorkflowCronScheduleOutputWithContext(context.Context) GetDataorchestratorWorkflowCronScheduleOutput
+}
+
+type GetDataorchestratorWorkflowCronScheduleArgs struct {
+	// Overlap policy.
+	Overlap pulumi.StringInput `pulumi:"overlap"`
+	// UNIX cron expression.
+	Schedule pulumi.StringInput `pulumi:"schedule"`
+	// Timezone identifier.
+	TimezoneIdentifier pulumi.StringInput `pulumi:"timezoneIdentifier"`
+}
+
+func (GetDataorchestratorWorkflowCronScheduleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataorchestratorWorkflowCronSchedule)(nil)).Elem()
+}
+
+func (i GetDataorchestratorWorkflowCronScheduleArgs) ToGetDataorchestratorWorkflowCronScheduleOutput() GetDataorchestratorWorkflowCronScheduleOutput {
+	return i.ToGetDataorchestratorWorkflowCronScheduleOutputWithContext(context.Background())
+}
+
+func (i GetDataorchestratorWorkflowCronScheduleArgs) ToGetDataorchestratorWorkflowCronScheduleOutputWithContext(ctx context.Context) GetDataorchestratorWorkflowCronScheduleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDataorchestratorWorkflowCronScheduleOutput)
+}
+
+type GetDataorchestratorWorkflowCronScheduleOutput struct{ *pulumi.OutputState }
+
+func (GetDataorchestratorWorkflowCronScheduleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDataorchestratorWorkflowCronSchedule)(nil)).Elem()
+}
+
+func (o GetDataorchestratorWorkflowCronScheduleOutput) ToGetDataorchestratorWorkflowCronScheduleOutput() GetDataorchestratorWorkflowCronScheduleOutput {
+	return o
+}
+
+func (o GetDataorchestratorWorkflowCronScheduleOutput) ToGetDataorchestratorWorkflowCronScheduleOutputWithContext(ctx context.Context) GetDataorchestratorWorkflowCronScheduleOutput {
+	return o
+}
+
+// Overlap policy.
+func (o GetDataorchestratorWorkflowCronScheduleOutput) Overlap() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataorchestratorWorkflowCronSchedule) string { return v.Overlap }).(pulumi.StringOutput)
+}
+
+// UNIX cron expression.
+func (o GetDataorchestratorWorkflowCronScheduleOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataorchestratorWorkflowCronSchedule) string { return v.Schedule }).(pulumi.StringOutput)
+}
+
+// Timezone identifier.
+func (o GetDataorchestratorWorkflowCronScheduleOutput) TimezoneIdentifier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDataorchestratorWorkflowCronSchedule) string { return v.TimezoneIdentifier }).(pulumi.StringOutput)
+}
+
 type GetDomainRecordGeoIp struct {
 	// The list of matches
 	Matches []GetDomainRecordGeoIpMatch `pulumi:"matches"`
@@ -38155,6 +38400,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseReadReplicaDirectAccessPtrInput)(nil)).Elem(), DatabaseReadReplicaDirectAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseReadReplicaPrivateNetworkInput)(nil)).Elem(), DatabaseReadReplicaPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseReadReplicaPrivateNetworkPtrInput)(nil)).Elem(), DatabaseReadReplicaPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DataorchestratorWorkflowCronScheduleInput)(nil)).Elem(), DataorchestratorWorkflowCronScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DataorchestratorWorkflowCronSchedulePtrInput)(nil)).Elem(), DataorchestratorWorkflowCronScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpPtrInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpMatchInput)(nil)).Elem(), DomainRecordGeoIpMatchArgs{})
@@ -38426,6 +38673,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceReadReplicaArrayInput)(nil)).Elem(), GetDatabaseInstanceReadReplicaArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceUpgradableVersionInput)(nil)).Elem(), GetDatabaseInstanceUpgradableVersionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceUpgradableVersionArrayInput)(nil)).Elem(), GetDatabaseInstanceUpgradableVersionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDataorchestratorWorkflowCronScheduleInput)(nil)).Elem(), GetDataorchestratorWorkflowCronScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpInput)(nil)).Elem(), GetDomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpArrayInput)(nil)).Elem(), GetDomainRecordGeoIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpMatchInput)(nil)).Elem(), GetDomainRecordGeoIpMatchArgs{})
@@ -38676,6 +38924,8 @@ func init() {
 	pulumi.RegisterOutputType(DatabaseReadReplicaDirectAccessPtrOutput{})
 	pulumi.RegisterOutputType(DatabaseReadReplicaPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(DatabaseReadReplicaPrivateNetworkPtrOutput{})
+	pulumi.RegisterOutputType(DataorchestratorWorkflowCronScheduleOutput{})
+	pulumi.RegisterOutputType(DataorchestratorWorkflowCronSchedulePtrOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpPtrOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpMatchOutput{})
@@ -38947,6 +39197,7 @@ func init() {
 	pulumi.RegisterOutputType(GetDatabaseInstanceReadReplicaArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceUpgradableVersionOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceUpgradableVersionArrayOutput{})
+	pulumi.RegisterOutputType(GetDataorchestratorWorkflowCronScheduleOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpMatchOutput{})

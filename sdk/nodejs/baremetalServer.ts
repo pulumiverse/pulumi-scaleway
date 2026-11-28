@@ -7,6 +7,8 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * Creates and manages Scaleway Bare Metal Servers.
+ *
  * ## Example Usage
  *
  * ```typescript

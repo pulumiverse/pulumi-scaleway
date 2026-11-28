@@ -480,6 +480,8 @@ type Server struct {
 	//
 	// > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
+	// The Scaleway Resource Name (SRN) of the server.
+	Srn pulumi.StringOutput `pulumi:"srn"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringOutput `pulumi:"state"`
 	// The tags associated with the server.
@@ -608,6 +610,8 @@ type serverState struct {
 	//
 	// > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
+	// The Scaleway Resource Name (SRN) of the server.
+	Srn *string `pulumi:"srn"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State *string `pulumi:"state"`
 	// The tags associated with the server.
@@ -698,6 +702,8 @@ type ServerState struct {
 	//
 	// > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 	SecurityGroupId pulumi.StringPtrInput
+	// The Scaleway Resource Name (SRN) of the server.
+	Srn pulumi.StringPtrInput
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
 	State pulumi.StringPtrInput
 	// The tags associated with the server.
@@ -1121,6 +1127,11 @@ func (o ServerOutput) RootVolume() ServerRootVolumeOutput {
 // > **Important:** If you don't specify a security group, a default one will be created, which won't be tracked by Terraform unless you import it.
 func (o ServerOutput) SecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.SecurityGroupId }).(pulumi.StringOutput)
+}
+
+// The Scaleway Resource Name (SRN) of the server.
+func (o ServerOutput) Srn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Srn }).(pulumi.StringOutput)
 }
 
 // The state of the server. Possible values are: `started`, `stopped` or `standby`.

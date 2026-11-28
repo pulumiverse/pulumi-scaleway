@@ -76,6 +76,10 @@ export interface GetSecurityGroupResult {
     readonly outboundRules: outputs.instance.GetSecurityGroupOutboundRule[];
     readonly projectId?: string;
     readonly securityGroupId?: string;
+    /**
+     * The Scaleway Resource Name (SRN) of the security group.
+     */
+    readonly srn: string;
     readonly stateful: boolean;
     readonly tags: string[];
     readonly zone?: string;

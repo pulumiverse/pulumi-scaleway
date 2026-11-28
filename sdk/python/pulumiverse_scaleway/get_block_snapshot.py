@@ -28,10 +28,13 @@ class GetBlockSnapshotResult:
     """
     A collection of values returned by getBlockSnapshot.
     """
-    def __init__(__self__, id=None, name=None, project_id=None, snapshot_id=None, srn=None, tags=None, volume_id=None, zone=None):
+    def __init__(__self__, id=None, kms_key_id=None, name=None, project_id=None, snapshot_id=None, srn=None, tags=None, volume_id=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if kms_key_id and not isinstance(kms_key_id, str):
+            raise TypeError("Expected argument 'kms_key_id' to be a str")
+        pulumi.set(__self__, "kms_key_id", kms_key_id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -58,6 +61,11 @@ class GetBlockSnapshotResult:
     @pulumi.getter
     def id(self) -> _builtins.str:
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> _builtins.str:
+        return pulumi.get(self, "kms_key_id")
 
     @_builtins.property
     @pulumi.getter
@@ -102,6 +110,7 @@ class AwaitableGetBlockSnapshotResult(GetBlockSnapshotResult):
             yield self
         return GetBlockSnapshotResult(
             id=self.id,
+            kms_key_id=self.kms_key_id,
             name=self.name,
             project_id=self.project_id,
             snapshot_id=self.snapshot_id,
@@ -141,6 +150,7 @@ def get_block_snapshot(name: Optional[_builtins.str] = None,
 
     return AwaitableGetBlockSnapshotResult(
         id=pulumi.get(__ret__, 'id'),
+        kms_key_id=pulumi.get(__ret__, 'kms_key_id'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
@@ -177,6 +187,7 @@ def get_block_snapshot_output(name: pulumi.Input[Optional[Optional[_builtins.str
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBlockSnapshot:getBlockSnapshot', __args__, opts=opts, typ=GetBlockSnapshotResult)
     return __ret__.apply(lambda __response__: GetBlockSnapshotResult(
         id=pulumi.get(__response__, 'id'),
+        kms_key_id=pulumi.get(__response__, 'kms_key_id'),
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
         snapshot_id=pulumi.get(__response__, 'snapshot_id'),

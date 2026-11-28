@@ -29,7 +29,7 @@ class GetInstanceServerResult:
     """
     A collection of values returned by getInstanceServer.
     """
-    def __init__(__self__, additional_volume_ids=None, admin_password_encryption_ssh_key_id=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, filesystems=None, id=None, image=None, ip_id=None, ip_ids=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ips=None, private_networks=None, project_id=None, protected=None, public_ips=None, replace_on_type_change=None, root_volumes=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_data=None, zone=None):
+    def __init__(__self__, additional_volume_ids=None, admin_password_encryption_ssh_key_id=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, filesystems=None, id=None, image=None, ip_id=None, ip_ids=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ips=None, private_networks=None, project_id=None, protected=None, public_ips=None, replace_on_type_change=None, root_volumes=None, security_group_id=None, server_id=None, srn=None, state=None, tags=None, type=None, user_data=None, zone=None):
         if additional_volume_ids and not isinstance(additional_volume_ids, list):
             raise TypeError("Expected argument 'additional_volume_ids' to be a list")
         pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
@@ -102,6 +102,9 @@ class GetInstanceServerResult:
         if server_id and not isinstance(server_id, str):
             raise TypeError("Expected argument 'server_id' to be a str")
         pulumi.set(__self__, "server_id", server_id)
+        if srn and not isinstance(srn, str):
+            raise TypeError("Expected argument 'srn' to be a str")
+        pulumi.set(__self__, "srn", srn)
         if state and not isinstance(state, str):
             raise TypeError("Expected argument 'state' to be a str")
         pulumi.set(__self__, "state", state)
@@ -274,6 +277,14 @@ class GetInstanceServerResult:
 
     @_builtins.property
     @pulumi.getter
+    def srn(self) -> _builtins.str:
+        """
+        The Scaleway Resource Name (SRN) of the server.
+        """
+        return pulumi.get(self, "srn")
+
+    @_builtins.property
+    @pulumi.getter
     def state(self) -> _builtins.str:
         """
         The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -341,6 +352,7 @@ class AwaitableGetInstanceServerResult(GetInstanceServerResult):
             root_volumes=self.root_volumes,
             security_group_id=self.security_group_id,
             server_id=self.server_id,
+            srn=self.srn,
             state=self.state,
             tags=self.tags,
             type=self.type,
@@ -396,6 +408,7 @@ def get_instance_server(name: Optional[_builtins.str] = None,
         root_volumes=pulumi.get(__ret__, 'root_volumes'),
         security_group_id=pulumi.get(__ret__, 'security_group_id'),
         server_id=pulumi.get(__ret__, 'server_id'),
+        srn=pulumi.get(__ret__, 'srn'),
         state=pulumi.get(__ret__, 'state'),
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
@@ -448,6 +461,7 @@ def get_instance_server_output(name: pulumi.Input[Optional[Optional[_builtins.st
         root_volumes=pulumi.get(__response__, 'root_volumes'),
         security_group_id=pulumi.get(__response__, 'security_group_id'),
         server_id=pulumi.get(__response__, 'server_id'),
+        srn=pulumi.get(__response__, 'srn'),
         state=pulumi.get(__response__, 'state'),
         tags=pulumi.get(__response__, 'tags'),
         type=pulumi.get(__response__, 'type'),

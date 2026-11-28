@@ -105,6 +105,8 @@ type Volume struct {
 	InstanceVolumeId pulumi.StringOutput `pulumi:"instanceVolumeId"`
 	// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
 	Iops pulumi.IntOutput `pulumi:"iops"`
+	// UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instanceVolumeId`. When creating from a `snapshotId`, the value must match the snapshot's `kmsKeyId`.
+	KmsKeyId pulumi.StringOutput `pulumi:"kmsKeyId"`
 	// The name of the volume. If not provided, a name will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ). The ID of the Project the volume is associated with.
@@ -164,6 +166,8 @@ type volumeState struct {
 	InstanceVolumeId *string `pulumi:"instanceVolumeId"`
 	// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
 	Iops *int `pulumi:"iops"`
+	// UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instanceVolumeId`. When creating from a `snapshotId`, the value must match the snapshot's `kmsKeyId`.
+	KmsKeyId *string `pulumi:"kmsKeyId"`
 	// The name of the volume. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
 	// ). The ID of the Project the volume is associated with.
@@ -185,6 +189,8 @@ type VolumeState struct {
 	InstanceVolumeId pulumi.StringPtrInput
 	// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
 	Iops pulumi.IntPtrInput
+	// UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instanceVolumeId`. When creating from a `snapshotId`, the value must match the snapshot's `kmsKeyId`.
+	KmsKeyId pulumi.StringPtrInput
 	// The name of the volume. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
 	// ). The ID of the Project the volume is associated with.
@@ -216,6 +222,8 @@ type volumeArgs struct {
 	InstanceVolumeId *string `pulumi:"instanceVolumeId"`
 	// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
 	Iops int `pulumi:"iops"`
+	// UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instanceVolumeId`. When creating from a `snapshotId`, the value must match the snapshot's `kmsKeyId`.
+	KmsKeyId *string `pulumi:"kmsKeyId"`
 	// The name of the volume. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
 	// ). The ID of the Project the volume is associated with.
@@ -236,6 +244,8 @@ type VolumeArgs struct {
 	InstanceVolumeId pulumi.StringPtrInput
 	// The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
 	Iops pulumi.IntInput
+	// UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instanceVolumeId`. When creating from a `snapshotId`, the value must match the snapshot's `kmsKeyId`.
+	KmsKeyId pulumi.StringPtrInput
 	// The name of the volume. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
 	// ). The ID of the Project the volume is associated with.
@@ -345,6 +355,11 @@ func (o VolumeOutput) InstanceVolumeId() pulumi.StringOutput {
 // The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
 func (o VolumeOutput) Iops() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.Iops }).(pulumi.IntOutput)
+}
+
+// UUID of the KMS key used to protect the volume's encryption. Using this field will encrypt the new volume. Only available to the Private Beta's users. The KMS key must use symmetric encryption with the `AES-256-GCM` algorithm. Cannot be used with `instanceVolumeId`. When creating from a `snapshotId`, the value must match the snapshot's `kmsKeyId`.
+func (o VolumeOutput) KmsKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.KmsKeyId }).(pulumi.StringOutput)
 }
 
 // The name of the volume. If not provided, a name will be randomly generated.

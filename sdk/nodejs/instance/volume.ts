@@ -99,6 +99,10 @@ export class Volume extends pulumi.CustomResource {
      */
     declare public readonly sizeInGb: pulumi.Output<number | undefined>;
     /**
+     * The Scaleway Resource Name (SRN) of the volume.
+     */
+    declare public /*out*/ readonly srn: pulumi.Output<string>;
+    /**
      * A list of tags to apply to the volume.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
@@ -131,6 +135,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["serverId"] = state?.serverId;
             resourceInputs["sizeInGb"] = state?.sizeInGb;
+            resourceInputs["srn"] = state?.srn;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["type"] = state?.type;
             resourceInputs["zone"] = state?.zone;
@@ -149,6 +154,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["zone"] = args?.zone;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["serverId"] = undefined /*out*/;
+            resourceInputs["srn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/instanceVolume:InstanceVolume" }] };
@@ -191,6 +197,10 @@ export interface VolumeState {
      * > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
      */
     sizeInGb?: pulumi.Input<number | undefined>;
+    /**
+     * The Scaleway Resource Name (SRN) of the volume.
+     */
+    srn?: pulumi.Input<string | undefined>;
     /**
      * A list of tags to apply to the volume.
      */

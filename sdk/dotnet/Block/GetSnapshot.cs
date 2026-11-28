@@ -119,6 +119,7 @@ namespace Pulumiverse.Scaleway.Block
     public sealed class GetSnapshotResult
     {
         public readonly string Id;
+        public readonly string KmsKeyId;
         public readonly string Name;
         public readonly string ProjectId;
         public readonly string? SnapshotId;
@@ -130,6 +131,8 @@ namespace Pulumiverse.Scaleway.Block
         [OutputConstructor]
         private GetSnapshotResult(
             string id,
+
+            string kmsKeyId,
 
             string name,
 
@@ -146,6 +149,7 @@ namespace Pulumiverse.Scaleway.Block
             string zone)
         {
             Id = id;
+            KmsKeyId = kmsKeyId;
             Name = name;
             ProjectId = projectId;
             SnapshotId = snapshotId;

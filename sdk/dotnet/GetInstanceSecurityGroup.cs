@@ -131,6 +131,10 @@ namespace Pulumiverse.Scaleway
         public readonly ImmutableArray<Outputs.GetInstanceSecurityGroupOutboundRuleResult> OutboundRules;
         public readonly string? ProjectId;
         public readonly string? SecurityGroupId;
+        /// <summary>
+        /// The Scaleway Resource Name (SRN) of the security group.
+        /// </summary>
+        public readonly string Srn;
         public readonly bool Stateful;
         public readonly ImmutableArray<string> Tags;
         public readonly string? Zone;
@@ -161,6 +165,8 @@ namespace Pulumiverse.Scaleway
 
             string? securityGroupId,
 
+            string srn,
+
             bool stateful,
 
             ImmutableArray<string> tags,
@@ -179,6 +185,7 @@ namespace Pulumiverse.Scaleway
             OutboundRules = outboundRules;
             ProjectId = projectId;
             SecurityGroupId = securityGroupId;
+            Srn = srn;
             Stateful = stateful;
             Tags = tags;
             Zone = zone;
